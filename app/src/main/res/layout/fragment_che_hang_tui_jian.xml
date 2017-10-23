@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haoche666.buyer.fragment.CheHangTuiJianFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cheHangTuiJian">
+
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="尼克斯品质车行"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/bigText"
+                android:id="@+id/textView39"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简介：主营方向"
+                android:textSize="@dimen/litterText"
+                android:id="@+id/textView40"
+                android:layout_below="@+id/textView39"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_fenge_huise"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:text="5651辆在售，5484辆已售"
+            android:textSize="@dimen/normal_textsize"
+            android:id="@+id/textView41" />
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:src="@mipmap/chehangtuijian"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView22" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                 />
+
+            <ImageView
+                android:src="@mipmap/chehangtuijian"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView23" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView44" />
+
+            <ImageView
+                android:src="@mipmap/chehangtuijian"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView24" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="进入店铺"
+                android:textSize="@dimen/normal_textsize"
+                android:textColor="@color/basic_color"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/textView42"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:background="@drawable/shape_basic1dp_5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+关注"
+                android:textSize="@dimen/normal_textsize"
+                android:textColor="@color/basic_color"
+                android:layout_marginRight="10dp"
+                android:id="@+id/textView43"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

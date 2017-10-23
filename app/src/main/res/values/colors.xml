@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="basic_color">#e3c787</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="light_black">#000000</color>
+    <color name="line_gray">#f0f0f0</color>
+    <color name="text_gray">#c7c7c7</color>
+    <color name="ligthBasic">#ccc1a7</color>
+    <color name="background">#f4f4f4</color>
+    <color name="shouYeZongSe">#484744</color>
+    <color name="tranblack">#66000000</color>
+    <color name="cheHangBG">#484744</color>
+</resources>
