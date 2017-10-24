@@ -14,4 +14,11 @@
     <color name="shouYeZongSe">#484744</color>
     <color name="tranblack">#66000000</color>
     <color name="cheHangBG">#484744</color>
+    <color name="waveBg">#484744</color>
+    <color name="waveBgLigth">#696866</color>
+    <color name="waveBg1">#55484744</color>
+    <color name="waveBgLigth1">#55696866</color>
+    <color name="tranwhite">#66ffffff</color>
+    <color name="tran">#00ffffff</color>
+    <color name="mineYuE">#848482</color>
 </resources>
