@@ -106,7 +106,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_shou_ye;
-                return new ShouYeViewHolder(parent, layout);
+                return new ShouYeViewHolder(parent, layout,0);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
