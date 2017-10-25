@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/viewBar"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/basic_color"
+    android:background="@color/tranblack"
     android:fitsSystemWindows="true"
     android:gravity="bottom"
     android:minHeight="?attr/actionBarSize"
@@ -12,6 +12,7 @@
 
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titleHeight">
 
@@ -43,7 +44,7 @@
             tools:text="右边"
             android:background="@drawable/white_selector"
             android:textSize="@dimen/normal_textsize"
-            android:textColor="@color/white"
+            android:textColor="@color/light_black"
             android:paddingRight="10dp"
             android:paddingLeft="15dp"
             android:gravity="center_vertical"

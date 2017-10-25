@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.CheHangTiJianAdapter;
 import com.haoche666.buyer.adapter.MyPagerAdapter;
+import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.BannerSettingUtil;
@@ -38,7 +40,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
 
     private View mInflate;
@@ -211,7 +213,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.imageZuJi).setOnClickListener(this);
     }
 
     @Override
@@ -224,5 +226,19 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         page = 1;
         adapter.clear();
         adapter.addAll(DataProvider.getPersonList(page));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imageZuJi:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ZuJiActivity.class);
+                startActivity(intent);
+                break;
+            default:
+
+                break;
+        }
     }
 }
