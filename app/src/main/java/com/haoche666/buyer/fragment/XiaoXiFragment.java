@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +18,7 @@ public class XiaoXiFragment extends ZjbBaseFragment {
 
 
     private View mInflate;
+    private View mRelaTitleStatue;
 
     public XiaoXiFragment() {
         // Required empty public constructor
@@ -51,10 +53,15 @@ public class XiaoXiFragment extends ZjbBaseFragment {
 
     @Override
     protected void findID() {
+        mRelaTitleStatue = mInflate.findViewById(R.id.relaTitleStatue);
     }
 
     @Override
     protected void initViews() {
+        ViewGroup.LayoutParams layoutParams = mRelaTitleStatue.getLayoutParams();
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        mRelaTitleStatue.setLayoutParams(layoutParams);
+        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
     }
 
     @Override

@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.DengLuActivity"></activity>
+        <activity android:name=".base.DengLuActivity" />
+        <activity android:name=".avtivity.ZuJiActivity"></activity>
     </application>
 
 </manifest>
