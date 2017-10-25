@@ -26,11 +26,11 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
             WoDeFragment.class
     };
     private int[] imgRes = new int[]{
-            R.drawable.selector_shouye,
-            R.drawable.selector_shouye,
-            R.drawable.selector_shouye,
-            R.drawable.selector_shouye,
-            R.drawable.selector_shouye
+            R.drawable.selector_item01,
+            R.drawable.selector_item02,
+            R.drawable.selector_item03,
+            R.drawable.selector_item04,
+            R.drawable.selector_item05
     };
     public FragmentTabHost mTabHost;
     @Override
