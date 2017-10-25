@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
@@ -15,7 +17,7 @@ import com.haoche666.buyer.customview.HeaderWaveView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WoDeFragment extends ZjbBaseFragment {
+public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListener {
 
 
     private View mInflate;
@@ -65,7 +67,7 @@ public class WoDeFragment extends ZjbBaseFragment {
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewWoDeGZ).setOnClickListener(this);
     }
 
     @Override
@@ -85,4 +87,17 @@ public class WoDeFragment extends ZjbBaseFragment {
         mHeaderWaveHelper.start();
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()){
+            case R.id.viewWoDeGZ:
+                intent.setClass(getActivity(), WoDeGZActivity.class);
+                startActivity(intent);
+                break;
+            default:
+
+                break;
+        }
+    }
 }
