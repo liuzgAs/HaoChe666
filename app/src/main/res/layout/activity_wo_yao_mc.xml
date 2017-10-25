@@ -272,8 +272,8 @@
             <Button
                 android:id="@+id/button"
                 style="@style/MyBtn01"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:text="确认提交" />
 
             <TextView
