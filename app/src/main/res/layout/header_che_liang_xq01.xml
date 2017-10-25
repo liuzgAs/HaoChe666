@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/maijiaxinxi"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal" >
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="卖家信息"
+                android:textSize="20dp"
+                android:textColor="@color/light_black"
+                android:id="@+id/textView96"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/nikesi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView54"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:textSize="@dimen/bigText"
+                android:textColor="@color/light_black"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="尼克斯品质车行"
+                android:id="@+id/textView97"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView54"
+                android:layout_toEndOf="@+id/imageView54" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shape_basic1dp_5dp"
+                android:text="+ 关注"
+                android:textColor="@color/basic_color"
+                android:textSize="@dimen/litterText" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:textSize="@dimen/litterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主营范围："
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/text_gray"
+                android:id="@+id/textView102"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="15dp" />
+
+            <TextView
+                android:textSize="@dimen/litterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新车保养 二手车买卖 新车保养 二手车"
+                android:id="@+id/textView103"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView102"
+                android:layout_toEndOf="@+id/textView102" />
+        </RelativeLayout>
+
+        <com.haoche666.buyer.customview.ResizableImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/quexinyan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView55"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:paddingBottom="20dp"
+            android:background="@color/white"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:textSize="@dimen/bigText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务介绍"
+                    android:id="@+id/textView98"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:textSize="@dimen/bigText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部"
+                    android:textColor="@color/text_gray"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/textView99"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <ImageView
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/fuwu01"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView56"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="贷款购车"
+                    android:textColor="@color/light_black"
+                    android:id="@+id/textView100"
+                    android:layout_alignTop="@+id/imageView56"
+                    android:layout_toRightOf="@+id/imageView56"
+                    android:layout_toEndOf="@+id/imageView56" />
+
+                <TextView
+                    android:layout_marginBottom="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="低汇率长期限，每月只需供一点"
+                    android:textColor="@color/text_gray"
+                    android:id="@+id/textView101"
+                    android:layout_alignBottom="@+id/imageView56"
+                    android:layout_alignLeft="@+id/textView100"
+                    android:layout_alignStart="@+id/textView100" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <ImageView
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/fuwu02"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView57"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="汽车检测"
+                    android:textColor="@color/light_black"
+                    android:id="@+id/textView104"
+                    android:layout_alignTop="@+id/imageView57"
+                    android:layout_toRightOf="@+id/imageView57"
+                    android:layout_toEndOf="@+id/imageView57" />
+
+                <TextView
+                    android:layout_marginBottom="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="多指标全方位，安全可靠有保障"
+                    android:textColor="@color/text_gray"
+                    android:id="@+id/textView105"
+                    android:layout_alignBottom="@+id/imageView57"
+                    android:layout_alignLeft="@+id/textView104"
+                    android:layout_alignStart="@+id/textView104" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <ImageView
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/fuwu03"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView58"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="保险服务"
+                    android:textColor="@color/light_black"
+                    android:id="@+id/textView106"
+                    android:layout_alignTop="@+id/imageView58"
+                    android:layout_toRightOf="@+id/imageView58"
+                    android:layout_toEndOf="@+id/imageView58" />
+
+                <TextView
+                    android:layout_marginBottom="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="责任宽理赔快，低保额换大保障"
+                    android:textColor="@color/text_gray"
+                    android:id="@+id/textView107"
+                    android:layout_alignBottom="@+id/imageView58"
+                    android:layout_alignLeft="@+id/textView106"
+                    android:layout_alignStart="@+id/textView106" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <ImageView
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/fuwu04"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView59"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="代办过户"
+                    android:textColor="@color/light_black"
+                    android:id="@+id/textView108"
+                    android:layout_alignTop="@+id/imageView59"
+                    android:layout_toRightOf="@+id/imageView59"
+                    android:layout_toEndOf="@+id/imageView59" />
+
+                <TextView
+                    android:layout_marginBottom="3dp"
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="无排队少费时，代办让一切简单"
+                    android:textColor="@color/text_gray"
+                    android:id="@+id/textView109"
+                    android:layout_alignBottom="@+id/imageView59"
+                    android:layout_alignLeft="@+id/textView108"
+                    android:layout_alignStart="@+id/textView108" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

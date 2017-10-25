@@ -17,6 +17,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.CheHangTiJianAdapter;
 import com.haoche666.buyer.adapter.MyPagerAdapter;
+import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
@@ -103,12 +104,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         recyclerView.addItemDecoration(itemDecoration);
         int red = getResources().getColor(R.color.basic_color);
         recyclerView.setRefreshingColor(red);
-        //recyclerView.getSwipeToRefresh().setProgressViewOffset(true, 30, 220);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_shou_ye;
-                return new ShouYeViewHolder(parent, layout,0);
+                return new ShouYeViewHolder(parent, layout, 0);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -206,7 +206,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), CheLiangXQActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -230,7 +232,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageZuJi:
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), ZuJiActivity.class);

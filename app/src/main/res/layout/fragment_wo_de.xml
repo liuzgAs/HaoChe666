@@ -123,6 +123,7 @@
                             android:layout_alignStart="@+id/textView46" />
 
                         <TextView
+                            android:layout_alignBaseline="@+id/textView47"
                             android:textColor="@color/mineYuE"
                             android:layout_marginBottom="6dp"
                             android:textSize="20dp"
@@ -130,7 +131,6 @@
                             android:layout_height="wrap_content"
                             android:text="万"
                             android:id="@+id/textView48"
-                            android:layout_alignBottom="@+id/textView47"
                             android:layout_toRightOf="@+id/textView47"
                             android:layout_toEndOf="@+id/textView47" />
                     </RelativeLayout>

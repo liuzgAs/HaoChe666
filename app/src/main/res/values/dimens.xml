@@ -14,6 +14,7 @@
     <dimen name="titleHeight">45dp</dimen>
     <dimen name="lunBoShiPin">160dp</dimen>
     <dimen name="cheHangTuiJian">240dp</dimen>
+    <dimen name="cheLiangXQBanner">240dp</dimen>
     <dimen name="MineHead">260dp</dimen>
     <dimen name="titleSize">18dp</dimen>
 </resources>

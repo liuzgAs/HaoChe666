@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".base.DengLuActivity" />
         <activity android:name=".avtivity.ZuJiActivity" />
-        <activity android:name=".avtivity.WoYaoMcActivity"></activity>
+        <activity android:name=".avtivity.WoYaoMcActivity" />
+        <activity android:name=".avtivity.CheLiangXQActivity"></activity>
     </application>
 
 </manifest>
