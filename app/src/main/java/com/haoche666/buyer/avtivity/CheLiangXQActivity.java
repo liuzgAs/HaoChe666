@@ -78,8 +78,8 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private void initRecycle() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(10f, this), 0, 0);
-        itemDecoration.setDrawLastItem(false);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.WHITE, (int) DpUtils.convertDpToPixel(10f, this), 0, 0);
+        itemDecoration.setDrawLastItem(true);
         recyclerView.addItemDecoration(itemDecoration);
         int red = getResources().getColor(R.color.basic_color);
         recyclerView.setRefreshingColor(red);
@@ -105,6 +105,19 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
             }
 
+        });
+        adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = new View(CheLiangXQActivity.this);
+                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(15f, CheLiangXQActivity.this)));
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
         });
         recyclerView.setRefreshListener(this);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
