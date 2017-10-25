@@ -42,7 +42,7 @@
         android:src="@mipmap/maicheche" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonYuYueMC"
         style="@style/MyBtn01"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

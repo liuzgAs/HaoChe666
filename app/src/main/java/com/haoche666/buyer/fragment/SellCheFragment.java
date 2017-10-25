@@ -1,15 +1,17 @@
 package com.haoche666.buyer.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.WoYaoMcActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.util.ScreenUtils;
 
-public class SellCheFragment extends ZjbBaseFragment {
+public class SellCheFragment extends ZjbBaseFragment implements View.OnClickListener {
 
     private View mInflate;
     private View mRelaTitleStatue;
@@ -60,11 +62,24 @@ public class SellCheFragment extends ZjbBaseFragment {
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.buttonYuYueMC).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.buttonYuYueMC:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), WoYaoMcActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }

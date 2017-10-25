@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.DengLuActivity" />
-        <activity android:name=".avtivity.ZuJiActivity"></activity>
+        <activity android:name=".avtivity.ZuJiActivity" />
+        <activity android:name=".avtivity.WoYaoMcActivity"></activity>
     </application>
 
 </manifest>
