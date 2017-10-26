@@ -15,7 +15,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.viewholder.GuanZuViewHolder;
+import com.haoche666.buyer.viewholder.GuanZuCHViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -24,13 +24,15 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class GuanZhuCHFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+
+
     private View mInflate;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
 
-    public GuanZhuFragment() {
+    public GuanZhuCHFragment() {
         // Required empty public constructor
     }
 
@@ -40,7 +42,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (mInflate == null) {
-            mInflate = inflater.inflate(R.layout.fragment_guan_zhu, container, false);
+            mInflate = inflater.inflate(R.layout.fragment_guan_zhu_ch, container, false);
             init();
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
@@ -82,8 +84,8 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_guan_zu;
-                return new GuanZuViewHolder(parent, layout);
+                int layout = R.layout.item_guan_zu_ch;
+                return new GuanZuCHViewHolder(parent, layout);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {

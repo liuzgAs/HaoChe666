@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/layout_selector_white_system_gray"
+    >
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="尼克斯品质车行"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="@dimen/bigText"
+        android:textColor="@color/light_black"
+        android:lines="1"
+        android:ellipsize="end"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/viewImg"
+        android:layout_toRightOf="@+id/viewImg"
+        android:layout_toEndOf="@+id/viewImg" />
+
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:id="@+id/viewImg"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@mipmap/aodi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:background="@color/tranblack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="已更新3辆"
+            android:textColor="@color/basic_color"
+            android:textSize="@dimen/normal_textsize"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:id="@+id/textView120"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:textSize="@dimen/normal_textsize"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/text_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二手车买卖、新车保养、零件配置……"
+        android:id="@+id/textView116"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:textColor="@color/light_black"
+        android:layout_marginBottom="3dp"
+        android:textSize="@dimen/litterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5651"
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/viewImg"
+        android:layout_alignLeft="@+id/textView116"
+        android:layout_alignStart="@+id/textView116" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/litterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="辆在售 |"
+        android:id="@+id/textView117"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/litterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5651"
+        android:id="@+id/textView118"
+        android:layout_alignBottom="@+id/textView117"
+        android:layout_toRightOf="@+id/textView117"
+        android:layout_toEndOf="@+id/textView117" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/litterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="辆已售"
+        android:id="@+id/textView119"
+        android:layout_alignBottom="@+id/textView118"
+        android:layout_toRightOf="@+id/textView118"
+        android:layout_toEndOf="@+id/textView118" />
+
+</RelativeLayout>

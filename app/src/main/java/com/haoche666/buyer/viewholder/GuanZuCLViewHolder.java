@@ -8,9 +8,9 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 /**
  * Created by Administrator on 2017/3/28 0028.
  */
-public class GuanZuViewHolder extends BaseViewHolder<Integer> {
+public class GuanZuCLViewHolder extends BaseViewHolder<Integer> {
 
-    public GuanZuViewHolder(ViewGroup parent, @LayoutRes int res) {
+    public GuanZuCLViewHolder(ViewGroup parent, @LayoutRes int res) {
         super(parent, res);
     }
 
