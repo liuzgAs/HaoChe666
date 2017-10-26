@@ -77,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        app:layout_empty="@layout/view_empty"
+        app:layout_empty="@layout/view_empty_che_liang_db"
         app:layout_progress="@layout/view_progress"
         app:scrollbarStyle="insideOverlay" />
 

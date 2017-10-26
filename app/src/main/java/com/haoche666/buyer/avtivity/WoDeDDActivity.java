@@ -1,66 +1,33 @@
-package com.haoche666.buyer.fragment;
+package com.haoche666.buyer.avtivity;
 
-
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.CheLiangXQActivity;
-import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.util.ScreenUtils;
-import com.haoche666.buyer.viewholder.ShouYeViewHolder;
+import com.haoche666.buyer.viewholder.WoDeDDViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
-/**
- * A simple {@link Fragment} subclass.
- * @author Administrator
- */
-public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-
-
-    private View mInflate;
-    private View mRelaTitleStatue;
+public class WoDeDDActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
-
-    public MaiCheFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        if (mInflate == null) {
-            mInflate = inflater.inflate(R.layout.fragment_mai_che, container, false);
-            init();
-        }
-        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
-        ViewGroup parent = (ViewGroup) mInflate.getParent();
-        if (parent != null) {
-            parent.removeView(mInflate);
-        }
-        return mInflate;
-    }
-
-    @Override
-    protected void initIntent() {
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wo_de_dd);
+        init();
     }
 
     @Override
@@ -69,40 +36,41 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     }
 
     @Override
+    protected void initIntent() {
+
+    }
+
+    @Override
     protected void findID() {
-        mRelaTitleStatue = mInflate.findViewById(R.id.relaTitleStatue);
-        recyclerView = mInflate.findViewById(R.id.recyclerView);
+        recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
     }
 
     @Override
     protected void initViews() {
-        ViewGroup.LayoutParams layoutParams = mRelaTitleStatue.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
-        mRelaTitleStatue.setLayoutParams(layoutParams);
-        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        ((TextView)findViewById(R.id.textViewTitle)).setText("我的订单");
         initRecycle();
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(WoDeDDActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, WoDeDDActivity.this), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         int red = getResources().getColor(R.color.basic_color);
         recyclerView.setRefreshingColor(red);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(WoDeDDActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_shou_ye;
-                return new ShouYeViewHolder(parent, layout,1);
+                int layout = R.layout.item_wo_de_dd;
+                return new WoDeDDViewHolder(parent, layout);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
-                View view = new View(getActivity());
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,getActivity())));
+                View view = new View(WoDeDDActivity.this);
+                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,WoDeDDActivity.this)));
                 return view;
             }
 
@@ -148,16 +116,14 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), CheLiangXQActivity.class);
-                startActivity(intent);
+
             }
         });
     }
 
     @Override
     protected void setListeners() {
-
+        findViewById(R.id.imageBack).setOnClickListener(this);
     }
 
     @Override
@@ -166,9 +132,26 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     }
 
     @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imageBack:
+                finish();
+                break;
+            default:
+
+                break;
+        }
+    }
+
+    @Override
     public void onRefresh() {
         page = 1;
         adapter.clear();
         adapter.addAll(DataProvider.getPersonList(page));
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
+import com.haoche666.buyer.avtivity.WoDeDDActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
@@ -70,6 +72,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     protected void setListeners() {
         mInflate.findViewById(R.id.viewWoDeGZ).setOnClickListener(this);
         mInflate.findViewById(R.id.viewDuiBi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewWoDeDD).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewChaXunFW).setOnClickListener(this);
     }
 
     @Override
@@ -92,7 +96,15 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
-        switch (view.getId()){
+        switch (view.getId()) {
+            case R.id.viewChaXunFW:
+                intent.setClass(getActivity(), ChaXunFWActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.viewWoDeDD:
+                intent.setClass(getActivity(), WoDeDDActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewDuiBi:
                 intent.setClass(getActivity(), CheLiangDBActivity.class);
                 startActivity(intent);
