@@ -28,7 +28,8 @@
         <activity android:name=".avtivity.WoDeGZActivity" />
         <activity android:name=".avtivity.CheLiangDBActivity" />
         <activity android:name=".avtivity.WoDeDDActivity" />
-        <activity android:name=".avtivity.ChaXunFWActivity"></activity>
+        <activity android:name=".avtivity.ChaXunFWActivity" />
+        <activity android:name=".avtivity.SheZhiActivity"></activity>
     </application>
 
 </manifest>

@@ -360,9 +360,9 @@
                 android:src="@mipmap/shezhi"
                 android:paddingRight="10dp"
                 android:paddingLeft="15dp"
-                android:layout_width="50dp"
+                android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView25"
+                android:id="@+id/imageSheZhi"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
