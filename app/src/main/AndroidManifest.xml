@@ -30,7 +30,8 @@
         <activity android:name=".avtivity.WoDeDDActivity" />
         <activity android:name=".avtivity.ChaXunFWActivity" />
         <activity android:name=".avtivity.SheZhiActivity" />
-        <activity android:name=".avtivity.ChaWeiBaoActivity"></activity>
+        <activity android:name=".avtivity.ChaWeiXiuActivity" />
+        <activity android:name=".avtivity.ChaWeiZhangActivity"></activity>
     </application>
 
 </manifest>
