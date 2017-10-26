@@ -58,7 +58,7 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
                 startActivity(intent);
                 break;
             case R.id.viewChaWeiXiu:
-                intent.setClass(this, ChaWeiXiuActivity.class);
+                intent.setClass(this, ChaWeiBaoActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageBack:

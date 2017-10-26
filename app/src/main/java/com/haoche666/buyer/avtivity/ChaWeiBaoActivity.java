@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
-public class ChaWeiXiuActivity extends ZjbBaseActivity implements View.OnClickListener {
+public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class ChaWeiXiuActivity extends ZjbBaseActivity implements View.OnClickLi
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("查维修");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("查维保");
     }
 
     @Override

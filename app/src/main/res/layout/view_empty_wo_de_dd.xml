@@ -20,7 +20,7 @@
         android:layout_below="@+id/imageView186"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="暂无订单"
+        android:text="暂无订单！"
         android:textSize="@dimen/MoreBigText" />
 
 </RelativeLayout>
