@@ -42,6 +42,8 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.viewChaWeiXiu).setOnClickListener(this);
         findViewById(R.id.viewChaWeiZhang).setOnClickListener(this);
+        findViewById(R.id.viewChaChuXian).setOnClickListener(this);
+        findViewById(R.id.viewChaXunLS).setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +55,14 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewChaChuXian:
+                intent.setClass(this, ChaChuXiActivityn.class);
+                startActivity(intent);
+                break;
+            case R.id.viewChaXunLS:
+                intent.setClass(this, ChaXunLSActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewChaWeiZhang:
                 intent.setClass(this, ChaWeiZhangActivity.class);
                 startActivity(intent);

@@ -32,7 +32,8 @@
         <activity android:name=".avtivity.SheZhiActivity" />
         <activity android:name=".avtivity.ChaWeiBaoActivity" />
         <activity android:name=".avtivity.ChaWeiZhangActivity" />
-        <activity android:name=".avtivity.ChaXunLSActivity"></activity>
+        <activity android:name=".avtivity.ChaXunLSActivity" />
+        <activity android:name=".avtivity.ChaChuXiActivityn"></activity>
     </application>
 
 </manifest>
