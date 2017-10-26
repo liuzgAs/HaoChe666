@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="com.haoche666.buyer.avtivity.ChaWeiBaoActivity">
+
+    <include layout="@layout/view_bar_white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView134"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="VIN码"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textView134"
+            android:layout_toRightOf="@+id/textView134"
+            android:background="@null"
+            android:gravity="center_vertical|right"
+            android:hint="请输入VIN码"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="@dimen/normal_textsize" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView138"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="查询品牌"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <ImageView
+            android:id="@+id/imageView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/right" />
+
+        <TextView
+            android:id="@+id/textView139"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/imageView75"
+            android:layout_toStartOf="@+id/imageView75"
+            android:text="雷克萨斯"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/normal_textsize" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView140"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="费用"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <TextView
+            android:id="@+id/textView141"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="¥25"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView142"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:text="支付方式"
+        android:textSize="@dimen/litterText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imageView77"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/zhifu_zhifubao" />
+
+        <TextView
+            android:id="@+id/textView143"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imageView77"
+            android:layout_toRightOf="@+id/imageView77"
+            android:text="支付宝支付"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <ImageView
+            android:id="@+id/imageView79"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/gouzhong" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imageView78"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/zhifu_weixin" />
+
+        <TextView
+            android:id="@+id/textView144"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imageView78"
+            android:layout_toRightOf="@+id/imageView78"
+            android:text="微信支付"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/button6"
+        style="@style/MyBtn01"
+        android:text="立即查询" />
+</LinearLayout>
