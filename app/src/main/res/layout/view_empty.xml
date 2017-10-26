@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:src="@mipmap/none_data"
+        android:src="@mipmap/empty_wo_de_dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView186"
@@ -14,6 +14,8 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
+        android:textSize="@dimen/MoreBigText"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="╮(╯▽╰)╭什么都没有"
