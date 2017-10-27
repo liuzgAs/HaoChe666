@@ -59,11 +59,10 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical">
 
-                        <ImageView
-                            android:src="@mipmap/mine_head"
+                        <com.haoche666.buyer.customview.RoateImg
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:id="@+id/imageView26"
+                            android:id="@+id/imageHead"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true" />
 
@@ -75,7 +74,7 @@
                             android:layout_height="wrap_content"
                             android:text="李达达"
                             android:id="@+id/textView45"
-                            android:layout_below="@+id/imageView26"
+                            android:layout_below="@+id/imageHead"
                             android:layout_centerHorizontal="true" />
                     </RelativeLayout>
 

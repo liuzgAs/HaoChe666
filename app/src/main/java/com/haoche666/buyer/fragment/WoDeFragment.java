@@ -2,12 +2,16 @@ package com.haoche666.buyer.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
@@ -17,6 +21,7 @@ import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
+import com.haoche666.buyer.customview.RoateImg;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +32,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private View mInflate;
     private HeaderWaveView waveView;
     private HeaderWaveHelper mHeaderWaveHelper;
+    private RoateImg imageHead;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -62,11 +68,22 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     @Override
     protected void findID() {
         waveView = mInflate.findViewById(R.id.header_wave_view);
+        imageHead = mInflate.findViewById(R.id.imageHead);
     }
 
     @Override
     protected void initViews() {
         mHeaderWaveHelper = new HeaderWaveHelper(waveView, getResources().getColor(R.color.waveBgLigth), getResources().getColor(R.color.waveBg));
+        Glide.with(getActivity())
+                .load(R.mipmap.mine_head)
+                .asBitmap()
+                .placeholder(R.mipmap.ic_empty)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        imageHead.setImageBitmap(resource);
+                    }
+                });
     }
 
     @Override

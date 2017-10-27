@@ -271,7 +271,7 @@
                 android:layout_gravity="center_vertical" >
 
                 <ImageView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/dangan04"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
@@ -312,7 +312,7 @@
                 android:layout_gravity="center_vertical" >
 
                 <ImageView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/dangan05"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
@@ -353,7 +353,7 @@
                 android:layout_gravity="center_vertical" >
 
                 <ImageView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/dangan06"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
