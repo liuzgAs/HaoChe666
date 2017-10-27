@@ -85,4 +85,5 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     protected void initData() {
 
     }
+
 }

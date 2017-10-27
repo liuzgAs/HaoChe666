@@ -51,6 +51,7 @@ public class BannerSettingUtil {
 
     private void autoScroll() {
         mViewPager_banner.postDelayed(new Runnable() {
+            @Override
             public void run() {
                 int position = mViewPager_banner.getCurrentItem() + 1;
                 if (!mDragging) {
@@ -66,6 +67,7 @@ public class BannerSettingUtil {
     }
 
     class BannerOnPageChangeListener implements ViewPager.OnPageChangeListener {
+        @Override
         public void onPageScrollStateChanged(int state) {
             switch (state) {
                 case ViewPager.SCROLL_STATE_IDLE:

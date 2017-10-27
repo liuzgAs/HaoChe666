@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.adapter.CheHangTiJianAdapter;
-import com.haoche666.buyer.adapter.MyPagerAdapter;
+import com.haoche666.buyer.adapter.Banner02Adapter;
+import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -163,9 +163,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     }
                 }, imgList);
                 banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
-                id_viewpager.setAdapter(new MyPagerAdapter(getChildFragmentManager(), imgList));
+                id_viewpager.setAdapter(new BannerAdapter(getActivity(),imgList));
                 id_viewpager.setCurrentItem(50);
-                id_viewpager01.setAdapter(new CheHangTiJianAdapter(getChildFragmentManager(), imgList));
+                id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), imgList));
                 id_viewpager01.setCurrentItem(50);
             }
         });
