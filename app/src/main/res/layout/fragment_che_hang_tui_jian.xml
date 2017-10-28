@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.haoche666.buyer.fragment.CheHangTuiJianFragment">
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -106,13 +106,14 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="进入店铺"
                 android:textSize="@dimen/normal_textsize"
                 android:textColor="@color/basic_color"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/textView42"
+                android:id="@+id/textJinRuDP"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
