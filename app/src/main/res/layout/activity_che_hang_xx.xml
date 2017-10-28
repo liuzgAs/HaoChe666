@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_progress="@layout/view_progress"
-        app:scrollbarStyle="insideOverlay" />
+        app:scrollbarStyle="insideOverlay"
+        android:layout_above="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/viewBar"
@@ -66,4 +67,72 @@
 
         </RelativeLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:background="@color/basic_color"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/che_hang_guanzhu"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:id="@+id/imageView85"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/normal_textsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注ta"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/textView159"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView85"
+                android:layout_toEndOf="@+id/imageView85" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:gravity="center"
+            android:background="@color/basic_color01"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:src="@mipmap/che_hang_dianhua"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:id="@+id/imageView87"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:textColor="@color/basic_color"
+                android:textSize="@dimen/normal_textsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话联系"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/textView160"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView87"
+                android:layout_toEndOf="@+id/imageView87" />
+        </RelativeLayout>
+    </LinearLayout>
+
 </RelativeLayout>
