@@ -2,16 +2,12 @@ package com.haoche666.buyer.fragment;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
@@ -21,7 +17,7 @@ import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
-import com.haoche666.buyer.customview.RoateImg;
+import com.haoche666.buyer.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +28,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private View mInflate;
     private HeaderWaveView waveView;
     private HeaderWaveHelper mHeaderWaveHelper;
-    private RoateImg imageHead;
+    private View viewBar;
+    private View viewBar01;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -68,22 +65,21 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     @Override
     protected void findID() {
         waveView = mInflate.findViewById(R.id.header_wave_view);
-        imageHead = mInflate.findViewById(R.id.imageHead);
+        viewBar = mInflate.findViewById(R.id.viewBar);
+        viewBar01 = mInflate.findViewById(R.id.viewBar01);
     }
 
     @Override
     protected void initViews() {
         mHeaderWaveHelper = new HeaderWaveHelper(waveView, getResources().getColor(R.color.waveBgLigth), getResources().getColor(R.color.waveBg));
-        Glide.with(getActivity())
-                .load(R.mipmap.mine_head)
-                .asBitmap()
-                .placeholder(R.mipmap.ic_empty)
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        imageHead.setImageBitmap(resource);
-                    }
-                });
+        ViewGroup.LayoutParams layoutParams = viewBar.getLayoutParams();
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        viewBar.setLayoutParams(layoutParams);
+        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        ViewGroup.LayoutParams layoutParams01 = viewBar01.getLayoutParams();
+        layoutParams01.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        viewBar01.setLayoutParams(layoutParams01);
+        viewBar01.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
     }
 
     @Override

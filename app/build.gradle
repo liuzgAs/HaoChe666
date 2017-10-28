@@ -8,8 +8,8 @@ android {
         applicationId "com.haoche666.buyer"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 17102802
+        versionName "0.0.2"
     }
     buildTypes {
         release {
@@ -38,5 +38,4 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     compile 'com.iarcuschin:simpleratingbar:0.1.2'
-//    compile 'com.github.pinguo-zhouwei:MZBannerView:v2.0.0'
 }

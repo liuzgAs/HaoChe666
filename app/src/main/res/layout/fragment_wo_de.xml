@@ -6,39 +6,39 @@
     tools:context="com.haoche666.buyer.fragment.WoDeFragment">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:background="@color/white"
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/MineHead"
 
-                android:layout_height="@dimen/MineHead">
+                android:background="@color/white">
 
                 <com.haoche666.buyer.customview.HeaderWaveView
                     android:id="@+id/header_wave_view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MineHead"/>
+                    android:layout_height="@dimen/MineHead" />
 
                 <ImageView
-                    android:src="@mipmap/mine_bg"
-                    android:scaleType="fitXY"
-                    android:layout_marginBottom="45dp"
+                    android:id="@+id/imageView26"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageView26" />
+                    android:layout_marginBottom="45dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/mine_bg" />
 
                 <LinearLayout
+                    android:id="@+id/viewBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/viewBar"
                     android:fitsSystemWindows="true"
                     android:gravity="bottom"
                     android:minHeight="?attr/actionBarSize"
@@ -54,93 +54,94 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginBottom="30dp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/viewBar"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="45dp"
+                    android:orientation="horizontal">
 
                     <RelativeLayout
-                        android:gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                        <com.haoche666.buyer.customview.RoateImg
+                        <ImageView
+                            android:src="@mipmap/mine_head"
+                            android:id="@+id/imageHead"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:id="@+id/imageHead"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true" />
 
                         <TextView
-                            android:textSize="20dp"
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/white"
+                            android:id="@+id/textView45"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="李达达"
-                            android:id="@+id/textView45"
                             android:layout_below="@+id/imageHead"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:text="李达达"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical" >
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
                         <ImageView
-                            android:paddingTop="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:src="@mipmap/haochehuiyuan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="33dp"
                             android:id="@+id/imageView27"
-                            android:layout_alignParentTop="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
                             android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true" />
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:src="@mipmap/haochehuiyuan" />
 
                         <TextView
-                            android:textColor="@color/mineYuE"
-                            android:layout_marginTop="30dp"
-                            android:textSize="@dimen/bigText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="账户余额"
                             android:id="@+id/textView46"
-                            android:layout_below="@+id/imageView27"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignLeft="@+id/imageView27"
-                            android:layout_alignStart="@+id/imageView27" />
-
-                        <TextView
-                            android:layout_marginTop="-5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="50dp"
-                            android:textColor="@color/white"
-                            android:text="8.57"
-                            android:textStyle="bold"
-                            android:id="@+id/textView47"
-                            android:layout_below="@+id/textView46"
-                            android:layout_alignLeft="@+id/textView46"
-                            android:layout_alignStart="@+id/textView46" />
-
-                        <TextView
-                            android:layout_alignBaseline="@+id/textView47"
+                            android:layout_alignStart="@+id/imageView27"
+                            android:layout_below="@+id/imageView27"
+                            android:layout_marginTop="30dp"
+                            android:text="账户余额"
                             android:textColor="@color/mineYuE"
-                            android:layout_marginBottom="6dp"
-                            android:textSize="20dp"
+                            android:textSize="@dimen/bigText" />
+
+                        <TextView
+                            android:id="@+id/textView47"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="万"
+                            android:layout_alignLeft="@+id/textView46"
+                            android:layout_alignStart="@+id/textView46"
+                            android:layout_below="@+id/textView46"
+                            android:layout_marginTop="-5dp"
+                            android:text="8.57"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:textStyle="bold" />
+
+                        <TextView
                             android:id="@+id/textView48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/textView47"
+                            android:layout_marginBottom="6dp"
+                            android:layout_toEndOf="@+id/textView47"
                             android:layout_toRightOf="@+id/textView47"
-                            android:layout_toEndOf="@+id/textView47" />
+                            android:text="元"
+                            android:textColor="@color/mineYuE"
+                            android:textSize="20dp" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -148,191 +149,193 @@
 
             <RelativeLayout
                 android:id="@+id/viewWoDeGZ"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight">
+                android:layout_height="@dimen/normalItemHeight"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/textView49"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我的关注"
-                    android:id="@+id/textView49"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="我的关注"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_guanzhu"
+                    android:id="@+id/imageView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView28"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_guanzhu" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/viewDuiBi"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight" >
+                android:layout_height="@dimen/normalItemHeight"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/textView50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="车辆对比"
-                    android:id="@+id/textView50"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="车辆对比"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_duibi"
+                    android:id="@+id/imageView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView29"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_duibi" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/viewWoDeDD"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight" >
+                android:layout_height="@dimen/normalItemHeight"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我的订单"
-                    android:id="@+id/textView51"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="我的订单"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_dingdan"
+                    android:id="@+id/imageView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView30"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_dingdan" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/viewChaXunFW"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight" >
+                android:layout_height="@dimen/normalItemHeight"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查询服务"
                     android:id="@+id/textView52"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_chaxun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="查询服务"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
+
+                <ImageView
                     android:id="@+id/imageView31"
-                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_chaxun" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight" >
+                android:layout_height="@dimen/normalItemHeight"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我卖的车"
                     android:id="@+id/textView53"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_che"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView32"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="我卖的车"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
+
+                <ImageView
+                    android:id="@+id/imageView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_che" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight" >
+                android:layout_height="@dimen/normalItemHeight"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/bigText"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/textView54"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="联系客服"
-                    android:id="@+id/textView54"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="联系客服"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_kefu"
+                    android:id="@+id/imageView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView33"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_kefu" />
             </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
-        android:visibility="visible"
+        android:id="@+id/viewBar01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:gravity="bottom"
         android:minHeight="?attr/actionBarSize"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
 
         <RelativeLayout
@@ -340,39 +343,39 @@
             android:layout_height="@dimen/titleHeight">
 
             <ImageView
-                android:paddingLeft="10dp"
-                android:background="@drawable/white_selector"
                 android:id="@+id/imageBack"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:background="@drawable/white_selector"
                 android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp"
-                android:src="@mipmap/left"
-                android:layout_alignParentLeft="true"/>
+                android:src="@mipmap/left" />
 
             <TextView
-                tools:text="标题"
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
-                android:textSize="@dimen/titleSize"/>
+                android:textSize="@dimen/titleSize"
+                tools:text="标题" />
 
             <ImageView
-                android:src="@mipmap/shezhi"
-                android:paddingRight="10dp"
-                android:paddingLeft="15dp"
+                android:id="@+id/imageSheZhi"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:id="@+id/imageSheZhi"
-                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_centerVertical="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:src="@mipmap/shezhi" />
 
         </RelativeLayout>
     </LinearLayout>
