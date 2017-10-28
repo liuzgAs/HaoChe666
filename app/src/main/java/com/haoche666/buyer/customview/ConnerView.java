@@ -59,6 +59,7 @@ public class ConnerView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         conner = height / 2;
+        paint.setPathEffect(null);
         RectF rectFleft = new RectF(-conner, 0 + lineWidth / 2, conner, height - lineWidth / 2);
         canvas.drawOval(rectFleft, paint);
         RectF rectFright = new RectF(width - conner, 0 + lineWidth / 2, getWidth() + conner, height - lineWidth / 2);
