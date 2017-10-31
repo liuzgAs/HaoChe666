@@ -24,7 +24,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private View viewBar;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
@@ -67,7 +67,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
     @Override
     protected void setListeners() {
-
+        findViewById(R.id.imageBack).setOnClickListener(this);
     }
 
     @Override
@@ -146,5 +146,16 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         imgList.add(R.mipmap.cheliangxiangqing03);
         adapter.clear();
         adapter.addAll(imgList);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imageBack:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

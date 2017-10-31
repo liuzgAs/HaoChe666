@@ -118,13 +118,42 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             private ViewPager id_viewpager01;
             private ConvenientBanner banner;
             private List<String> imgList = new ArrayList<String>();
+            private View[] bannerText = new View[4];
+            private int zhiShiQi;
 
             @Override
             public View onCreateView(ViewGroup parent) {
                 View header_shou_ye = LayoutInflater.from(getActivity()).inflate(R.layout.header_shou_ye, null);
+                bannerText[0] = header_shou_ye.findViewById(R.id.bannerText01);
+                bannerText[1] = header_shou_ye.findViewById(R.id.bannerText02);
+                bannerText[2] = header_shou_ye.findViewById(R.id.bannerText03);
+                bannerText[3] = header_shou_ye.findViewById(R.id.bannerText04);
                 banner = header_shou_ye.findViewById(R.id.banner);
                 banner.setScrollDuration(1000);
                 banner.startTurning(3000);
+                banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        for (int i = 0; i < 4; i++) {
+                            bannerText[i].setBackgroundResource(R.color.transparent);
+                        }
+                        bannerText[zhiShiQi].setBackgroundResource(R.color.shouYeBanner);
+                        zhiShiQi++;
+                        if (zhiShiQi == 4) {
+                            zhiShiQi = 0;
+                        }
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
                 imgList.add("");
                 imgList.add("");
                 imgList.add("");
@@ -162,8 +191,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         return new LocalImageHolderView();
                     }
                 }, imgList);
-                banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
-                id_viewpager.setAdapter(new BannerAdapter(getActivity(),imgList));
+//                banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
+                id_viewpager.setAdapter(new BannerAdapter(getActivity(), imgList));
                 id_viewpager.setCurrentItem(50);
                 id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), imgList));
                 id_viewpager01.setCurrentItem(50);

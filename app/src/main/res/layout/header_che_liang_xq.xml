@@ -28,6 +28,7 @@
     </RelativeLayout>
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/textView79"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,10 +57,11 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="9.98万"
-            android:textColor="@color/basic_color"
+            android:textColor="@color/textGold"
             android:textSize="18dp" />
 
         <TextView
+            android:textColor="@color/text_gray"
             android:id="@+id/textView81"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +82,7 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/shape_basic1dp_5dp"
             android:text="VR看车"
-            android:textColor="@color/basic_color"
+            android:textColor="@color/textGold"
             android:textSize="@dimen/litterText" />
     </RelativeLayout>
 
@@ -97,6 +99,7 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
+            android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,6 +112,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:textColor="@color/text_gray"
             android:layout_marginRight="10dp"
             android:textSize="@dimen/normal_textsize"
             android:layout_width="wrap_content"
@@ -152,6 +156,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,6 +198,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -234,6 +240,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -281,6 +288,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -322,6 +330,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -363,6 +372,7 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/moreLitterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

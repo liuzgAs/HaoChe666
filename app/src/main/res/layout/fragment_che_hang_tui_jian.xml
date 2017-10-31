@@ -20,6 +20,7 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="尼克斯品质车行"
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:text="进入店铺"
                 android:textSize="@dimen/normal_textsize"
-                android:textColor="@color/basic_color"
+                android:textColor="@color/textGold"
                 android:id="@+id/textJinRuDP"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
@@ -128,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="+关注"
                 android:textSize="@dimen/normal_textsize"
-                android:textColor="@color/basic_color"
+                android:textColor="@color/textGold"
                 android:layout_marginRight="10dp"
                 android:id="@+id/textView43"
                 android:layout_centerVertical="true"

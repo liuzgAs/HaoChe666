@@ -18,6 +18,7 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/textView96"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
                     android:src="@mipmap/nikesi" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView97"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -326,6 +328,7 @@
         android:background="@color/white">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/textView114"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -338,6 +341,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:textColor="@color/text_gray"
             android:id="@+id/textView115"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

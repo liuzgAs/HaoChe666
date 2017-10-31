@@ -17,4 +17,5 @@
     <dimen name="cheLiangXQBanner">240dp</dimen>
     <dimen name="MineHead">260dp</dimen>
     <dimen name="titleSize">18dp</dimen>
+    <dimen name="shouYeBanner">150dp</dimen>
 </resources>

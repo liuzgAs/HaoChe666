@@ -3,8 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <TextView
         android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/white" />
+
+    <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -28,6 +33,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="@color/light_black"
                 android:layout_width="wrap_content"
@@ -66,6 +72,7 @@
     </RelativeLayout>
 
     <TextView
+        android:textStyle="bold"
         android:background="@color/white"
         android:textSize="@dimen/bigText"
         android:layout_width="match_parent"
@@ -76,8 +83,14 @@
         android:text="标致207 2009款 三厢 1.6L 手动品乐版"
         android:id="@+id/textView32" />
 
-    <RelativeLayout
+    <TextView
         android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/white"
+        android:id="@+id/textView161" />
+
+    <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -101,6 +114,7 @@
             android:layout_height="match_parent" >
 
             <TextView
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="@color/light_black"
                 android:layout_width="wrap_content"
@@ -155,8 +169,14 @@
             android:layout_alignEnd="@+id/imageView20" />
 
         <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/jian_bian_tranblack"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="400匹全时四驱到底有多快？两小伙伴都玩疯了呢！疯了！疯了！疯了！疯了！疯了！"
@@ -173,8 +193,14 @@
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal" />
 
-    <RelativeLayout
+    <TextView
         android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/basic_color"
+        android:id="@+id/textView162" />
+
+    <RelativeLayout
         android:background="@color/basic_color"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -198,6 +224,7 @@
             android:layout_height="match_parent" >
 
             <TextView
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="@color/light_black"
                 android:layout_width="wrap_content"
