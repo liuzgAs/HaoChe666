@@ -14,6 +14,7 @@ import com.haoche666.buyer.fragment.SellCheFragment;
 import com.haoche666.buyer.fragment.ShouYeFragment;
 import com.haoche666.buyer.fragment.WoDeFragment;
 import com.haoche666.buyer.fragment.XiaoXiFragment;
+import com.haoche666.buyer.util.DpUtils;
 import com.haoche666.buyer.util.UpgradeUtils;
 
 public class MainActivity extends ZjbBaseNotLeftActivity {
@@ -69,6 +70,9 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
             View inflate = getLayoutInflater().inflate(R.layout.tabs_item, null);
             TextView tabs_text =  inflate.findViewById(R.id.tabs_text);
             ImageView tabs_img =  inflate.findViewById(R.id.tabs_img);
+            if (i==1||i==2){
+                tabs_img.setPadding(0,(int) DpUtils.convertDpToPixel(1f,this),0,(int) DpUtils.convertDpToPixel(1f,this));
+            }
             tabs_text.setText(tabsItem[i]);
             tabs_img.setImageResource(imgRes[i]);
             mTabHost.addTab(mTabHost.newTabSpec(tabsItem[i]).setIndicator(inflate), fragment[i], null);
