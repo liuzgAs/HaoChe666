@@ -24,7 +24,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/gson-2.2.4.jar')
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.lzy.net:okgo:2.1.4'
     compile 'com.jude:easyrecyclerview:4.4.0'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
