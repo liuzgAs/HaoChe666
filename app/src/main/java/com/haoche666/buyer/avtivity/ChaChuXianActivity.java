@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
-public class ChaChuXiActivityn extends ZjbBaseActivity implements View.OnClickListener {
+public class ChaChuXianActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

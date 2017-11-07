@@ -78,7 +78,7 @@
         android:layout_width="match_parent"
         android:paddingTop="10dp"
         android:gravity="center_horizontal"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:textColor="@color/light_black"
         android:text="标致207 2009款 三厢 1.6L 手动品乐版"
         android:id="@+id/textView32" />
@@ -194,7 +194,6 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/basic_color"

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context="com.haoche666.buyer.avtivity.ChaChuXiActivityn">
+    tools:context=".avtivity.ChaChuXianActivity">
 
     <include
         layout="@layout/view_bar_white"
@@ -77,84 +77,7 @@
             android:textColor="@color/light_black"
             android:textSize="@dimen/normal_textsize" />
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView155"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp"
-        android:text="支付方式"
-        android:textSize="@dimen/litterText" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normalItemHeight"
-        android:background="@color/white">
-
-        <ImageView
-            android:id="@+id/imageView82"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/zhifu_zhifubao" />
-
-        <TextView
-            android:id="@+id/textView156"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/imageView82"
-            android:layout_toRightOf="@+id/imageView82"
-            android:text="支付宝支付"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/normal_textsize" />
-
-        <ImageView
-            android:id="@+id/imageView83"
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/gouzhong" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normalItemHeight"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
-
-        <ImageView
-            android:id="@+id/imageView84"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/zhifu_weixin" />
-
-        <TextView
-            android:id="@+id/textView157"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/imageView84"
-            android:layout_toRightOf="@+id/imageView84"
-            android:text="微信支付"
-            android:textColor="@color/light_black"
-            android:textSize="@dimen/normal_textsize" />
-    </RelativeLayout>
-
+    <include layout="@layout/view_zhifu"/>
     <Button
         android:id="@+id/button8"
         style="@style/MyBtn01"

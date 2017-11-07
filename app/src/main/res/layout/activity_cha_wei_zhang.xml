@@ -152,7 +152,7 @@
             android:paddingRight="10dp"
             android:textSize="@dimen/normal_textsize" />
     </RelativeLayout>
-
+    <include layout="@layout/view_zhifu"/>
     <Button
         style="@style/MyBtn01"
         android:layout_marginRight="10dp"

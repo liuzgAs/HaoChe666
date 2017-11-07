@@ -56,7 +56,7 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewChaChuXian:
-                intent.setClass(this, ChaChuXiActivityn.class);
+                intent.setClass(this, ChaChuXianActivity.class);
                 startActivity(intent);
                 break;
             case R.id.viewChaXunLS:

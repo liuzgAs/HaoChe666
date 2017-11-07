@@ -58,7 +58,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
     @Override
     protected void initViews() {
-        textViewTitle.setText("产品详情");
+        textViewTitle.setText("车辆详情");
         viewBarHeight = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(this));
         viewBar.getBackground().mutate().setAlpha(0);
         textViewTitle.setAlpha(0);
