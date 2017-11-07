@@ -14,14 +14,16 @@
         <activity
             android:name=".avtivity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppThemeNoTranslucent">
+            android:theme="@style/AppThemeNoTranslucent"></activity>
+        <activity
+            android:name=".avtivity.DengLuActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.DengLuActivity" />
         <activity android:name=".avtivity.ZuJiActivity" />
         <activity android:name=".avtivity.WoYaoMcActivity" />
         <activity android:name=".avtivity.CheLiangXQActivity" />
@@ -34,7 +36,8 @@
         <activity android:name=".avtivity.ChaWeiZhangActivity" />
         <activity android:name=".avtivity.ChaXunLSActivity" />
         <activity android:name=".avtivity.ChaChuXianActivity" />
-        <activity android:name=".avtivity.CheHangXXActivity"></activity>
+        <activity android:name=".avtivity.CheHangXXActivity" />
+        <activity android:name=".avtivity.ZhuCeActivity"></activity>
     </application>
 
 </manifest>
