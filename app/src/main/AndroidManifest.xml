@@ -14,7 +14,7 @@
         <activity
             android:name=".avtivity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppThemeNoTranslucent"></activity>
+            android:theme="@style/AppThemeNoTranslucent" />
         <activity
             android:name=".avtivity.DengLuActivity"
             android:launchMode="singleTask">
@@ -37,7 +37,9 @@
         <activity android:name=".avtivity.ChaXunLSActivity" />
         <activity android:name=".avtivity.ChaChuXianActivity" />
         <activity android:name=".avtivity.CheHangXXActivity" />
-        <activity android:name=".avtivity.ZhuCeActivity"></activity>
+        <activity android:name=".avtivity.ZhuCeActivity" />
+        <activity android:name=".avtivity.WangJiMMActivity" />
+        <activity android:name=".avtivity.DingDanGLActivity"></activity>
     </application>
 
 </manifest>

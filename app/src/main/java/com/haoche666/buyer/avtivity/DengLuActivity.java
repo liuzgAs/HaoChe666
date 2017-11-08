@@ -47,6 +47,7 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.buttonZhuCe).setOnClickListener(this);
+        findViewById(R.id.textWangJiMM).setOnClickListener(this);
         for (int i = 0; i < editView.length; i++) {
             final int finalI = i;
             editView[i].setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -72,6 +73,10 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.textWangJiMM:
+                intent.setClass(this,WangJiMMActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageBack:
                 finish();
                 break;

@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,20 +12,21 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.viewholder.WoDeDDViewHolder;
+import com.haoche666.buyer.viewholder.DingDanGLViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
-public class WoDeDDActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wo_de_dd);
+        setContentView(R.layout.activity_ding_dan_gl);
         init();
     }
 
@@ -47,36 +47,28 @@ public class WoDeDDActivity extends ZjbBaseActivity implements SwipeRefreshLayou
 
     @Override
     protected void initViews() {
-        ((TextView)findViewById(R.id.textViewTitle)).setText("我的订单");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("订单管理");
         initRecycle();
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(WoDeDDActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(DingDanGLActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, WoDeDDActivity.this), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, DingDanGLActivity.this), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         int red = getResources().getColor(R.color.basic_color);
         recyclerView.setRefreshingColor(red);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(WoDeDDActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(DingDanGLActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_wo_de_dd;
-                return new WoDeDDViewHolder(parent, layout);
-            }
-        });
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = new View(WoDeDDActivity.this);
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,WoDeDDActivity.this)));
-                return view;
+                int layout = R.layout.item_ding_dan_gl;
+                return new DingDanGLViewHolder(parent, layout,viewType);
             }
 
             @Override
-            public void onBindView(View headerView) {
-
+            public int getViewType(int position) {
+                return getItem(position);
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
@@ -133,7 +125,7 @@ public class WoDeDDActivity extends ZjbBaseActivity implements SwipeRefreshLayou
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageBack:
                 finish();
                 break;
@@ -150,4 +142,8 @@ public class WoDeDDActivity extends ZjbBaseActivity implements SwipeRefreshLayou
         adapter.addAll(DataProvider.getPersonList(page));
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

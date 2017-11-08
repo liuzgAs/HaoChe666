@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
+import com.haoche666.buyer.avtivity.DingDanGLActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
-import com.haoche666.buyer.avtivity.WoDeDDActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
@@ -121,7 +121,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewWoDeDD:
-                intent.setClass(getActivity(), WoDeDDActivity.class);
+                intent.setClass(getActivity(), DingDanGLActivity.class);
                 startActivity(intent);
                 break;
             case R.id.viewDuiBi:
