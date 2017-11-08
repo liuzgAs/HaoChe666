@@ -7,70 +7,7 @@
     android:orientation="vertical"
     tools:context="com.haoche666.buyer.avtivity.CheLiangDBActivity">
 
-    <LinearLayout
-        android:id="@+id/viewBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/tranblack"
-        android:fitsSystemWindows="true"
-        android:gravity="bottom"
-        android:minHeight="?attr/actionBarSize"
-        android:orientation="vertical">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/titleHeight"
-            android:background="@color/white">
-
-            <ImageView
-                android:id="@+id/imageBack"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/white_selector"
-                android:paddingBottom="15dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="20dp"
-                android:paddingTop="15dp"
-                android:src="@mipmap/left_black" />
-
-            <TextView
-                android:id="@+id/textViewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="车辆对比"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/titleSize" />
-
-            <ImageView
-                android:id="@+id/imageView63"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:src="@mipmap/bianji" />
-
-            <ImageView
-                android:id="@+id/imageView64"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/imageView63"
-                android:layout_toStartOf="@+id/imageView63"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:src="@mipmap/tianjia" />
-
-        </RelativeLayout>
-    </LinearLayout>
+   <include layout="@layout/view_che_liang_db_bar"/>
 
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/recyclerView"

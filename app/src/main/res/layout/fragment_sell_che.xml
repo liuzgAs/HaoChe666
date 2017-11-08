@@ -5,32 +5,9 @@
     android:background="@color/background"
     tools:context="com.haoche666.buyer.fragment.SellCheFragment">
 
-    <RelativeLayout
+    <include
         android:id="@+id/relaTitleStatue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/tranblack"
-        android:visibility="visible">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/titleHeight"
-            android:background="@color/white">
-
-
-            <TextView
-                android:id="@+id/textViewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="我要卖车"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/titleSize" />
-
-        </RelativeLayout>
-    </RelativeLayout>
+        layout="@layout/view_sell_che_bar" />
 
     <ImageView
         android:id="@+id/imageView39"
