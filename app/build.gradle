@@ -8,8 +8,8 @@ android {
         applicationId "com.haoche666.buyer"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 17102802
-        versionName "0.0.2"
+        versionCode 17110801
+        versionName "0.0.3"
     }
     buildTypes {
         release {
