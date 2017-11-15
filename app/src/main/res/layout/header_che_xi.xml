@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tranblack" />
+
+    <LinearLayout
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/aodilogo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageLogo" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/bigText"
+            android:textColor="@color/light_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="奥迪"
+            android:id="@+id/textName" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="★"
+        android:textColor="@color/light_black"
+        android:paddingLeft="10dp"
+        android:background="@color/white"
+        android:textSize="@dimen/bigText"
+        android:id="@+id/textView183" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="1dp"
+        android:id="@+id/textView184" />
+
+    <TextView
+        android:textColor="@color/light_black"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="不限车系"
+        android:textSize="@dimen/bigText"
+        android:id="@+id/textView185" />
+</LinearLayout>

@@ -7,22 +7,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.customview.SideLetterBar;
+import com.haoche666.buyer.model.CheXi;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.PinPaiBean;
 import com.haoche666.buyer.model.PinPaiXC;
+import com.haoche666.buyer.model.ReMen;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.util.GsonUtils;
 import com.haoche666.buyer.util.LogUtil;
 import com.haoche666.buyer.util.ScreenUtils;
+import com.haoche666.buyer.viewholder.CheXiViewHolder;
 import com.haoche666.buyer.viewholder.PinPaiXCViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -46,6 +52,12 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
     private List<PinPaiBean> pinPaiBeanList;
     private DrawerLayout drawerLayout;
     private List<Integer> letterList = new ArrayList<>();
+    private RecyclerArrayAdapter<CheXi.SeriesBean> adapterRight;
+    private String letter;
+    private int brandId;
+    private String brandName;
+    private String logoPath;
+    private List<ReMen> reMenList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +95,7 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
         mLetterBar = (SideLetterBar) findViewById(R.id.side_letter_bar);
         mLetterBar.setOverlay(overlay);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        initRecyclerViewRight();
     }
 
     @Override
@@ -110,11 +123,10 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
         mLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
             @Override
             public void onLetterChanged(String letter, int position) {
-                LogUtil.LogShitou("PinPaiXCActivity--onLetterChanged position", "" + position);
                 if (position > 1) {
                     RecyclerView recyclerView1 = recyclerView.getRecyclerView();
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView1.getLayoutManager();
-                    layoutManager.scrollToPositionWithOffset(letterList.get(position - 2)+1,0);
+                    layoutManager.scrollToPositionWithOffset(letterList.get(position - 2) + 1, 0);
                 } else {
                     recyclerView.scrollToPosition(0);
                 }
@@ -124,6 +136,16 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
+        reMenList.add(new ReMen("大众", "http://i1.chexun.net/images/2015/0113/16627/logo_50_50_191DFF86BFE0B45C3253927FE6CAE681.jpg", "D", 23));
+        reMenList.add(new ReMen("沃尔沃", "http://i2.chexun.net/images/2015/0108/16620/logo_50_50_14677CAD5F1064B46B4627B843799716.jpg", "W", 92));
+        reMenList.add(new ReMen("日产", "http://i2.chexun.net/images/2015/0108/16620/logo_50_50_E078DDF08F934C9F6A708DFFB6320F42.jpg", "R", 78));
+        reMenList.add(new ReMen("本田", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_70FD7F9E1ABAF0E9D82AD02F1E7CFA24.jpg", "B", 7));
+        reMenList.add(new ReMen("丰田", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_91AF7AA500D18A64C2FCC92119D0C159.jpg", "F", 30));
+        reMenList.add(new ReMen("奥迪", "http://i2.chexun.net/images/2015/0113/16627/logo_50_50_65BC3B6C8188EE6FE49108EA4661AA7D.jpg", "A", 2));
+        reMenList.add(new ReMen("别克", "http://i2.chexun.net/images/2015/0601/16892/logo_50_50_919A034DE5C2F9C658B582854994CE67.jpg", "B", 8));
+        reMenList.add(new ReMen("福特", "http://i0.chexun.net/images/2015/0108/16620/logo_50_50_323E469A0FF5C8B34A0F573CA0AFCBF8.jpg", "F", 29));
+        reMenList.add(new ReMen("宝马", "http://i1.chexun.net/images/2015/0108/16620/logo_50_50_13CCD272D4978F4FF9A18DFC4870AFFE.jpg", "B", 9));
+        reMenList.add(new ReMen("奔驰", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_1357F5B5774D27BF9709F2BBF96A4C6F.jpg", "B", 6));
         onRefresh();
     }
 
@@ -143,12 +165,46 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                drawerLayout.openDrawer(recyclerViewRight);
+                PinPaiBean pinPaiBean = adapter.getItem(position);
+                brandName = pinPaiBean.getBrandName();
+                logoPath = pinPaiBean.getLogoPath();
+                letter = pinPaiBean.getLetter();
+                brandId = pinPaiBean.getBrandId();
+                cheXi();
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            View[] reMenView = new View[10];
+
             @Override
             public View onCreateView(ViewGroup parent) {
                 View view = LayoutInflater.from(PinPaiXCActivity.this).inflate(R.layout.header_pinpai_xc, null);
+                reMenView[0] = view.findViewById(R.id.reMen01);
+                reMenView[1] = view.findViewById(R.id.reMen02);
+                reMenView[2] = view.findViewById(R.id.reMen03);
+                reMenView[3] = view.findViewById(R.id.reMen04);
+                reMenView[4] = view.findViewById(R.id.reMen05);
+                reMenView[5] = view.findViewById(R.id.reMen06);
+                reMenView[6] = view.findViewById(R.id.reMen07);
+                reMenView[7] = view.findViewById(R.id.reMen08);
+                reMenView[8] = view.findViewById(R.id.reMen09);
+                reMenView[9] = view.findViewById(R.id.reMen10);
+                for (int i = 0; i < reMenView.length; i++) {
+                    final int finalI = i;
+                    reMenView[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawerLayout.openDrawer(recyclerViewRight);
+                            ReMen reMen = reMenList.get(finalI);
+                            brandId = reMen.getBrandId();
+                            brandName = reMen.getBrandName();
+                            letter = reMen.getLetter();
+                            logoPath = reMen.getLogoPath();
+                            cheXi();
+                        }
+                    });
+                }
                 return view;
             }
 
@@ -161,6 +217,120 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
         StickyHeaderDecoration decoration = new StickyHeaderDecoration(new StickyHeaderAdapter(this));
         decoration.setIncludeHeader(false);
         recyclerView.addItemDecoration(decoration);
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getCheXiCXOkObject() {
+        String url = Constant.Url.CHE_XI_CX + letter;
+        HashMap<String, String> params = new HashMap<>();
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 车系请求
+     * author： ZhangJieBo
+     * date： 2017/11/15 0015 下午 2:20
+     */
+    private void cheXi() {
+        recyclerViewRight.showProgress();
+        ApiClient.post(this, getCheXiCXOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("车系", s);
+                try {
+                    CheXi cheXi = GsonUtils.parseJSON(s, CheXi.class);
+                    List<CheXi.CompanyBean> companyBeen = cheXi.getCompanyMap().get("" + brandId);
+                    List<CheXi.SeriesBean> seriesBeen = new ArrayList<>();
+                    if (companyBeen != null) {
+                        for (int i = 0; i < companyBeen.size(); i++) {
+                            List<CheXi.SeriesBean> collection = cheXi.getSeriesMap().get("" + companyBeen.get(i).getCompanyId());
+                            if (collection.size() > 0) {
+                                collection.get(0).setCompanyName(companyBeen.get(i).getCompanyName());
+                            }
+                            seriesBeen.addAll(collection);
+                        }
+                    }
+                    adapterRight.clear();
+                    adapterRight.addAll(seriesBeen);
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+
+            public void showError(String msg) {
+                View viewLoader = LayoutInflater.from(PinPaiXCActivity.this).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerViewRight.showProgress();
+                        cheXi();
+                    }
+                });
+                recyclerViewRight.setErrorView(viewLoader);
+                recyclerViewRight.showError();
+            }
+        });
+    }
+
+    private void initRecyclerViewRight() {
+        recyclerViewRight.setLayoutManager(new LinearLayoutManager(this));
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
+        itemDecoration.setDrawLastItem(false);
+        recyclerViewRight.addItemDecoration(itemDecoration);
+        recyclerViewRight.setRefreshingColorResources(R.color.basic_color);
+        recyclerViewRight.setAdapterWithProgress(adapterRight = new RecyclerArrayAdapter<CheXi.SeriesBean>(PinPaiXCActivity.this) {
+            @Override
+            public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
+                int layout = R.layout.item_chexi;
+                return new CheXiViewHolder(parent, layout);
+            }
+        });
+        adapterRight.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
+        adapterRight.addHeader(new RecyclerArrayAdapter.ItemView() {
+
+            private TextView textName;
+            private ImageView imageLogo;
+
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = LayoutInflater.from(PinPaiXCActivity.this).inflate(R.layout.header_che_xi, null);
+                imageLogo = view.findViewById(R.id.imageLogo);
+                textName = view.findViewById(R.id.textName);
+                View textBar = view.findViewById(R.id.textBar);
+                ViewGroup.LayoutParams layoutParams = textBar.getLayoutParams();
+                layoutParams.height = ScreenUtils.getStatusBarHeight(PinPaiXCActivity.this);
+                textBar.setLayoutParams(layoutParams);
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+                if (!TextUtils.isEmpty(logoPath)){
+                    Glide.with(PinPaiXCActivity.this)
+                            .load(logoPath.replace("50_50", "100_100"))
+                            .asBitmap()
+                            .placeholder(R.mipmap.ic_empty)
+                            .into(imageLogo);
+                }
+                textName.setText(brandName);
+            }
+        });
     }
 
     @Override
@@ -421,26 +591,5 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
                 textTitle = itemView.findViewById(R.id.textTitle);
             }
         }
-    }
-
-    /**
-     * RecyclerView 移动到当前位置，
-     *
-     * @param manager   设置RecyclerView对应的manager
-     * @param mRecyclerView  当前的RecyclerView
-     * @param n  要跳转的位置
-     */
-    public static void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
-        int firstItem = manager.findFirstVisibleItemPosition();
-        int lastItem = manager.findLastVisibleItemPosition();
-        if (n <= firstItem) {
-            mRecyclerView.scrollToPosition(n);
-        } else if (n <= lastItem) {
-            int top = mRecyclerView.getChildAt(n - firstItem).getTop();
-            mRecyclerView.scrollBy(0, top);
-        } else {
-            mRecyclerView.scrollToPosition(n);
-        }
-
     }
 }

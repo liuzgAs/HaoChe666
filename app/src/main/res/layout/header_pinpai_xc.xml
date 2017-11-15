@@ -30,6 +30,8 @@
             android:layout_height="90dp">
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen01"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -58,6 +60,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen02"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -86,6 +90,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen03"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -114,6 +120,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen04"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -142,6 +150,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen05"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -176,6 +186,8 @@
             android:layout_height="90dp" >
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen06"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -204,6 +216,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen07"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -232,6 +246,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen08"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -260,6 +276,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen09"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -288,6 +306,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:id="@+id/reMen10"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="match_parent"

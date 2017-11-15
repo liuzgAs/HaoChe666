@@ -20,6 +20,10 @@ public class Constant {
          */
         public static final String CHE_XUN = "http://auto.chexun.com/api/car/brand.do";
         /**
+         * 车系查询
+         */
+        public static final String CHE_XI_CX = "http://auto.chexun.com/api/car/seriesByLetter.do?letter=";
+        /**
          * 升级
          */
         public static final String INDEX_VERSION = "";

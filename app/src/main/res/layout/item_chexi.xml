@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:textSize="@dimen/bigText"
+        android:textColor="@color/light_black"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="一汽大众"
+        android:id="@+id/textTitle" />
+
+    <LinearLayout
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/aodi"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageImg" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:text="A3"
+            android:textSize="@dimen/bigText"
+            android:textColor="@color/light_black"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>
