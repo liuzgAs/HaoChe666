@@ -46,8 +46,6 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.HashMap;
 
-import okhttp3.Response;
-
 
 public class UpgradeUtils extends Activity {
     public static final String APK_UPGRADE = Environment
@@ -85,7 +83,7 @@ public class UpgradeUtils extends Activity {
             }
 
             @Override
-            public void onError(Response response) {
+            public void onError() {
 
             }
         });
@@ -101,7 +99,7 @@ public class UpgradeUtils extends Activity {
             }
 
             @Override
-            public void onError(Response response) {
+            public void onError() {
 
             }
         });
@@ -183,6 +181,7 @@ public class UpgradeUtils extends Activity {
                     .setMessage(upgrade.feature)
                     .setPositiveButton("升级",
                             new DialogInterface.OnClickListener() {
+                                @Override
                                 public void onClick(DialogInterface dialog,
                                                     int which) {
                                     if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)

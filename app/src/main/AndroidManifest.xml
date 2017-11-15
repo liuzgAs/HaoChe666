@@ -39,7 +39,8 @@
         <activity android:name=".avtivity.CheHangXXActivity" />
         <activity android:name=".avtivity.ZhuCeActivity" />
         <activity android:name=".avtivity.WangJiMMActivity" />
-        <activity android:name=".avtivity.DingDanGLActivity"></activity>
+        <activity android:name=".avtivity.DingDanGLActivity" />
+        <activity android:name=".avtivity.PinPaiXCActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="热门品牌"
+        android:textColor="@color/light_black"
+        android:paddingLeft="10dp"
+        android:background="@color/white"
+        android:textSize="@dimen/bigText"
+        android:id="@+id/textView55" />
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:src="@mipmap/dazhong"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/image01"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大众"
+                    android:id="@+id/textView143"
+                    android:layout_below="@+id/image01"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/woerwo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView77"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="沃尔沃"
+                    android:id="@+id/textView166"
+                    android:layout_below="@+id/imageView77"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/richan"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView92"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日产"
+                    android:id="@+id/textView175"
+                    android:layout_below="@+id/imageView92"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/bentian"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView93"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本田"
+                    android:id="@+id/textView176"
+                    android:layout_below="@+id/imageView93"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/fengtian"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView94"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="丰田"
+                    android:id="@+id/textView177"
+                    android:layout_below="@+id/imageView94"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" >
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/aodilogo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView95"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="奥迪"
+                    android:id="@+id/textView178"
+                    android:layout_below="@+id/imageView95"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/bieke"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView96"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="别克"
+                    android:id="@+id/textView179"
+                    android:layout_below="@+id/imageView96"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/fute"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView97"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="福特"
+                    android:id="@+id/textView180"
+                    android:layout_below="@+id/imageView97"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/baoma"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView98"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="宝马"
+                    android:id="@+id/textView181"
+                    android:layout_below="@+id/imageView98"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:src="@mipmap/benchi"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView99"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/normal_textsize"
+                    android:textColor="@color/light_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="奔驰"
+                    android:id="@+id/textView182"
+                    android:layout_below="@+id/imageView99"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="★"
+        android:textColor="@color/light_black"
+        android:paddingLeft="10dp"
+        android:background="@color/white"
+        android:textSize="@dimen/bigText"
+        android:id="@+id/textView183" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="1dp"
+        android:id="@+id/textView184" />
+
+    <TextView
+        android:textColor="@color/light_black"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="不限品牌"
+        android:textSize="@dimen/bigText"
+        android:id="@+id/textView185" />
+</LinearLayout>

@@ -18,6 +18,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
@@ -180,6 +181,14 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     }
                 });
+                header_shou_ye.findViewById(R.id.viewPinPaiXC).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), PinPaiXCActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 return header_shou_ye;
             }
 
@@ -191,7 +200,6 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         return new LocalImageHolderView();
                     }
                 }, imgList);
-//                banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
                 id_viewpager.setAdapter(new BannerAdapter(getActivity(), imgList));
                 id_viewpager.setCurrentItem(50);
                 id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), imgList));

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.haoche666.buyer.avtivity.PinPaiXCActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/view_bar_white" />
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:layout_marginRight="36dp"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/include"
+            app:layout_empty="@layout/view_empty"
+            app:layout_progress="@layout/view_progress"
+            app:scrollbarStyle="insideOverlay" />
+
+        <com.haoche666.buyer.customview.SideLetterBar
+            android:id="@+id/side_letter_bar"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/include"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/tv_letter_overlay"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/overlay_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/recyclerViewRight"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginLeft="100dp"
+        android:background="@color/white"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
+</android.support.v4.widget.DrawerLayout>
