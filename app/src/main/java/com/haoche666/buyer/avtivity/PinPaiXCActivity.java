@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.base.ZjbBaseNotLeftActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.customview.SideLetterBar;
 import com.haoche666.buyer.model.CheXi;
@@ -43,7 +43,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private EasyRecyclerView recyclerViewRight;
     private EasyRecyclerView recyclerView;
@@ -101,25 +101,25 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
-        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-            }
-        });
+//        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+//            @Override
+//            public void onDrawerSlide(View drawerView, float slideOffset) {
+//            }
+//
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//            }
+//
+//            @Override
+//            public void onDrawerStateChanged(int newState) {
+//            }
+//        });
         mLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
             @Override
             public void onLetterChanged(String letter, int position) {
@@ -299,7 +299,7 @@ public class PinPaiXCActivity extends ZjbBaseActivity implements View.OnClickLis
         adapterRight.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                drawerLayout.closeDrawer(recyclerViewRight);
             }
         });
         adapterRight.addHeader(new RecyclerArrayAdapter.ItemView() {
