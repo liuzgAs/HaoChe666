@@ -1,12 +1,19 @@
 package com.haoche666.buyer.avtivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.application.MyApplication;
 import com.haoche666.buyer.base.ZjbBaseNotLeftActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.fragment.MaiCheFragment;
@@ -14,8 +21,10 @@ import com.haoche666.buyer.fragment.SellCheFragment;
 import com.haoche666.buyer.fragment.ShouYeFragment;
 import com.haoche666.buyer.fragment.WoDeFragment;
 import com.haoche666.buyer.fragment.XiaoXiFragment;
+import com.haoche666.buyer.interfacepage.OnPatchLister;
 import com.haoche666.buyer.util.DpUtils;
 import com.haoche666.buyer.util.UpgradeUtils;
+import com.taobao.sophix.SophixManager;
 
 public class MainActivity extends ZjbBaseNotLeftActivity {
     private String[] tabsItem = new String[5];
@@ -45,7 +54,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
 
     @Override
     protected void initSP() {
-
+        SophixManager.getInstance().queryAndLoadNewPatch();
     }
 
     @Override
@@ -82,7 +91,33 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
 
     @Override
     protected void setListeners() {
-
+        MyApplication.setOnPatchLister(new OnPatchLister() {
+            @Override
+            public void patchSuccess() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("提示")
+                                .setMessage("发现新的补丁，是否立即生效,需重启应用")
+                                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent mStartActivity = new Intent(MainActivity.this, MainActivity.class);
+                                        int mPendingIntentId = 123456;
+                                        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                                        AlarmManager mgr = (AlarmManager)MainActivity.this.getSystemService(Context.ALARM_SERVICE);
+                                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                                        SophixManager.getInstance().killProcessSafely();
+                                    }
+                                })
+                                .setNegativeButton("否",null)
+                                .create()
+                                .show();
+                    }
+                });
+            }
+        });
     }
 
     @Override
