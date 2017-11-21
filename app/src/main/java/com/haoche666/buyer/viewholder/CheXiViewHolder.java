@@ -31,11 +31,19 @@ public class CheXiViewHolder extends BaseViewHolder<CheXi.SeriesBean> {
     @Override
     public void setData(CheXi.SeriesBean data) {
         super.setData(data);
-        Glide.with(getContext())
-                .load(data.getSeriesFirstImage())
-                .asBitmap()
-                .placeholder(R.mipmap.ic_empty)
-                .into(imageImg);
+        if (TextUtils.equals("http://file.chexun.com/images_index/album_h_12080.gif",data.getSeriesFirstImage())){
+            Glide.with(getContext())
+                    .load(R.mipmap.logo)
+                    .asBitmap()
+                    .placeholder(R.mipmap.ic_empty)
+                    .into(imageImg);
+        }else {
+            Glide.with(getContext())
+                    .load(data.getSeriesFirstImage())
+                    .asBitmap()
+                    .placeholder(R.mipmap.ic_empty)
+                    .into(imageImg);
+        }
         textName.setText(data.getSeriesName());
         if (TextUtils.isEmpty(data.getCompanyName())){
             textTitle.setVisibility(View.GONE);
