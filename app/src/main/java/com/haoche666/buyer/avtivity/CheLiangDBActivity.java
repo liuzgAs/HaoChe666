@@ -18,6 +18,9 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+/**
+ * @author Administrator
+ */
 public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;

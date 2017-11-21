@@ -26,6 +26,9 @@ import com.haoche666.buyer.util.DpUtils;
 import com.haoche666.buyer.util.UpgradeUtils;
 import com.taobao.sophix.SophixManager;
 
+/**
+ * @author Administrator
+ */
 public class MainActivity extends ZjbBaseNotLeftActivity {
     private String[] tabsItem = new String[5];
     private Class[] fragment = new Class[]{
@@ -64,7 +67,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
 
     @Override
     protected void findID() {
-        mTabHost = (FragmentTabHost) findViewById(R.id.tabHost);
+        mTabHost = findViewById(R.id.tabHost);
     }
 
     @Override
@@ -77,13 +80,13 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtab);
         for (int i = 0; i < tabsItem.length; i++) {
             View inflate = getLayoutInflater().inflate(R.layout.tabs_item, null);
-            TextView tabs_text =  inflate.findViewById(R.id.tabs_text);
-            ImageView tabs_img =  inflate.findViewById(R.id.tabs_img);
+            TextView tabsText =  inflate.findViewById(R.id.tabs_text);
+            ImageView tabsImg =  inflate.findViewById(R.id.tabs_img);
             if (i==1||i==2){
-                tabs_img.setPadding(0,(int) DpUtils.convertDpToPixel(1f,this),0,(int) DpUtils.convertDpToPixel(1f,this));
+                tabsImg.setPadding(0,(int) DpUtils.convertDpToPixel(1f,this),0,(int) DpUtils.convertDpToPixel(1f,this));
             }
-            tabs_text.setText(tabsItem[i]);
-            tabs_img.setImageResource(imgRes[i]);
+            tabsText.setText(tabsItem[i]);
+            tabsImg.setImageResource(imgRes[i]);
             mTabHost.addTab(mTabHost.newTabSpec(tabsItem[i]).setIndicator(inflate), fragment[i], null);
         }
 //        mTabHost.setCurrentTab(0);
@@ -107,7 +110,9 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
                                         int mPendingIntentId = 123456;
                                         PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
                                         AlarmManager mgr = (AlarmManager)MainActivity.this.getSystemService(Context.ALARM_SERVICE);
-                                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                                        if (mgr != null) {
+                                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                                        }
                                         SophixManager.getInstance().killProcessSafely();
                                     }
                                 })

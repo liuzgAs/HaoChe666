@@ -93,7 +93,7 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
 
     class MyPageAdapter extends FragmentPagerAdapter{
 
-        public MyPageAdapter(FragmentManager fm) {
+        MyPageAdapter(FragmentManager fm) {
             super(fm);
         }
 

@@ -26,6 +26,9 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;

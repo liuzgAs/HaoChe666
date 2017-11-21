@@ -17,6 +17,9 @@ import com.haoche666.buyer.fragment.ChaXunLSFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class ChaXunLSActivity extends ZjbBaseActivity implements View.OnClickListener {
     private TabLayout tablayout;
     private ViewPager viewPager;

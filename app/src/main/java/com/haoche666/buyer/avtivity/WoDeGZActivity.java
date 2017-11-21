@@ -18,6 +18,9 @@ import com.haoche666.buyer.fragment.GuanZhuCLFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListener {
     private TabLayout tablayout;
     private ViewPager viewPager;
@@ -95,7 +98,7 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
 
     class MyPageAdapter extends FragmentPagerAdapter {
 
-        public MyPageAdapter(FragmentManager fm) {
+        private MyPageAdapter(FragmentManager fm) {
             super(fm);
         }
 

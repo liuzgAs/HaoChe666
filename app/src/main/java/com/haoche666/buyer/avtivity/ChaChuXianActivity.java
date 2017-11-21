@@ -7,6 +7,9 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
+/**
+ * @author Administrator
+ */
 public class ChaChuXianActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     @Override
@@ -55,10 +58,5 @@ public class ChaChuXianActivity extends ZjbBaseActivity implements View.OnClickL
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

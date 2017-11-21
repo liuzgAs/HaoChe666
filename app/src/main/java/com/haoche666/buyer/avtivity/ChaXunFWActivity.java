@@ -8,6 +8,9 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
+/**
+ * @author Administrator
+ */
 public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     @Override

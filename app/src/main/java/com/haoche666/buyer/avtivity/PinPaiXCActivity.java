@@ -78,9 +78,9 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
     @Override
     protected void findID() {
-        recyclerViewRight = (EasyRecyclerView) findViewById(R.id.recyclerViewRight);
-        recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        recyclerViewRight = findViewById(R.id.recyclerViewRight);
+        recyclerView = findViewById(R.id.recyclerView);
+        drawerLayout = findViewById(R.id.drawerLayout);
     }
 
     @Override
@@ -91,8 +91,8 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         layoutParams.width = (int) ((float) screenWidth / 4 * 3);
         recyclerViewRight.setLayoutParams(layoutParams);
         initRecycler();
-        TextView overlay = (TextView) findViewById(R.id.tv_letter_overlay);
-        mLetterBar = (SideLetterBar) findViewById(R.id.side_letter_bar);
+        TextView overlay = findViewById(R.id.tv_letter_overlay);
+        mLetterBar = findViewById(R.id.side_letter_bar);
         mLetterBar.setOverlay(overlay);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         initRecyclerViewRight();
@@ -101,25 +101,6 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
-//        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-//            @Override
-//            public void onDrawerSlide(View drawerView, float slideOffset) {
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//            }
-//
-//            @Override
-//            public void onDrawerStateChanged(int newState) {
-//            }
-//        });
         mLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
             @Override
             public void onLetterChanged(String letter, int position) {
@@ -149,6 +130,9 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         onRefresh();
     }
 
+    /**
+     * 初始化recyclerview
+     */
     private void initRecycler() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
@@ -213,7 +197,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
             }
         });
-        /**StickyHeader*/
+        /*StickyHeader*/
         StickyHeaderDecoration decoration = new StickyHeaderDecoration(new StickyHeaderAdapter(this));
         decoration.setIncludeHeader(false);
         recyclerView.addItemDecoration(decoration);
@@ -266,7 +250,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 showError("网络出错");
             }
 
-            public void showError(String msg) {
+            private void showError(String msg) {
                 View viewLoader = LayoutInflater.from(PinPaiXCActivity.this).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
@@ -283,6 +267,9 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         });
     }
 
+    /**
+     * 初始化右边侧出recyclerview
+     */
     private void initRecyclerViewRight() {
         recyclerViewRight.setLayoutManager(new LinearLayoutManager(this));
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
@@ -321,7 +308,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
             @Override
             public void onBindView(View headerView) {
-                if (!TextUtils.isEmpty(logoPath)){
+                if (!TextUtils.isEmpty(logoPath)) {
                     Glide.with(PinPaiXCActivity.this)
                             .load(logoPath.replace("50_50", "100_100"))
                             .asBitmap()
@@ -540,7 +527,11 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 showError("网络出错");
             }
 
-            public void showError(String msg) {
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
                 View viewLoader = LayoutInflater.from(PinPaiXCActivity.this).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
@@ -557,12 +548,15 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         });
     }
 
+    /**
+     * 磁贴adapter
+     */
     public class StickyHeaderAdapter implements StickyHeaderDecoration.IStickyHeaderAdapter<StickyHeaderAdapter.HeaderHolder> {
 
         private LayoutInflater mInflater;
         private Context context;
 
-        public StickyHeaderAdapter(Context context) {
+        private StickyHeaderAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
             this.context = context;
         }
@@ -586,7 +580,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         class HeaderHolder extends RecyclerView.ViewHolder {
             public TextView textTitle;
 
-            public HeaderHolder(View itemView) {
+            private HeaderHolder(View itemView) {
                 super(itemView);
                 textTitle = itemView.findViewById(R.id.textTitle);
             }

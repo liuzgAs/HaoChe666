@@ -8,6 +8,9 @@ import android.widget.EditText;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
+/**
+ * @author Administrator
+ */
 public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListener {
     private EditText[] editView = new EditText[5];
     private View[] lineView = new View[5];
@@ -57,8 +60,8 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (hasFocus) {
-                        for (int j = 0; j < lineView.length; j++) {
-                            lineView[j].setBackgroundColor(getResources().getColor(R.color.text_gray));
+                        for (View aLineView : lineView) {
+                            aLineView.setBackgroundColor(getResources().getColor(R.color.text_gray));
                         }
                         lineView[finalI].setBackgroundColor(getResources().getColor(R.color.basic_color));
                     }
