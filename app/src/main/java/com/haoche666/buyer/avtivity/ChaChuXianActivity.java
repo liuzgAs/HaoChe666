@@ -37,7 +37,7 @@ public class ChaChuXianActivity extends ZjbBaseActivity implements View.OnClickL
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("查出险");
+        ((TextView) findViewById(R.id.textViewTitle)).setText(R.string.chaChuXian);
     }
 
     @Override

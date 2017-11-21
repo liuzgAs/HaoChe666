@@ -8,6 +8,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 我要卖车
  * @author Administrator
  */
 public class WoYaoMcActivity extends ZjbBaseActivity implements View.OnClickListener {
