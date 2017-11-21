@@ -8,6 +8,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 忘记密码
  * @author Administrator
  */
 public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickListener {

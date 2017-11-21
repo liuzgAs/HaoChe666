@@ -9,6 +9,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 注册
  * @author Administrator
  */
 public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -54,6 +55,7 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
     protected void setListeners() {
         findViewById(R.id.buttonZhuCe).setOnClickListener(this);
         findViewById(R.id.imageBack).setOnClickListener(this);
+        /*下划线监听*/
         for (int i = 0; i < editView.length; i++) {
             final int finalI = i;
             editView[i].setOnFocusChangeListener(new View.OnFocusChangeListener() {

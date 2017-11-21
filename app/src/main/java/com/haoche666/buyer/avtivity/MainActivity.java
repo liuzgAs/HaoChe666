@@ -27,6 +27,7 @@ import com.haoche666.buyer.util.UpgradeUtils;
 import com.taobao.sophix.SophixManager;
 
 /**
+ * 主界面
  * @author Administrator
  */
 public class MainActivity extends ZjbBaseNotLeftActivity {

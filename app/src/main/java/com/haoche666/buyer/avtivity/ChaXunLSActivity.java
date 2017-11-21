@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 查询历史
  * @author Administrator
  */
 public class ChaXunLSActivity extends ZjbBaseActivity implements View.OnClickListener {

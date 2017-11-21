@@ -8,6 +8,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 查维保
  * @author Administrator
  */
 public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickListener {

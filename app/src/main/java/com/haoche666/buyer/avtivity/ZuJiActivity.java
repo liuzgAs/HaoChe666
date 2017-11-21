@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 足迹
  * @author Administrator
  */
 public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -51,15 +52,16 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
 
     @Override
     protected void initViews() {
-        ((TextView)findViewById(R.id.textViewTitle)).setText("足迹");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("足迹");
         list.add("车辆");
         list.add("内容");
         viewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager()));
         tablayout.setupWithViewPager(viewPager);
         tablayout.removeAllTabs();
+        /*下划线监听*/
         for (int i = 0; i < list.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.item_tablayout, null);
-            TextView textTitle =  view.findViewById(R.id.textTitle);
+            TextView textTitle = view.findViewById(R.id.textTitle);
             textTitle.setText(list.get(i));
             if (i == 0) {
                 tablayout.addTab(tablayout.newTab().setCustomView(view), true);
@@ -81,7 +83,7 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageBack:
                 finish();
                 break;
@@ -91,7 +93,10 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
         }
     }
 
-    class MyPageAdapter extends FragmentPagerAdapter{
+    /**
+     * fragmentadapter
+     */
+    class MyPageAdapter extends FragmentPagerAdapter {
 
         MyPageAdapter(FragmentManager fm) {
             super(fm);

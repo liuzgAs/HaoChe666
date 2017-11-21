@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * 品牌选车
  * @author Administrator
  */
 public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {

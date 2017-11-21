@@ -9,6 +9,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 查询服务
  * @author Administrator
  */
 public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickListener {

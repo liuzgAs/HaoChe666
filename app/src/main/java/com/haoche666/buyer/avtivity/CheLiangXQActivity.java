@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 车辆详情
  * @author Administrator
  */
 public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {

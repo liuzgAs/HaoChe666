@@ -13,6 +13,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
+ * 登录
  * @author Administrator
  */
 public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListener {
