@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MyApplication"
@@ -25,6 +25,7 @@
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
             android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCMK+ZwZqyFu/yJiue9FUsOvzqyJGkmSZwkw/qqVPDil7FgO9V1XCWnvPq/F6SSmjyC9N0kkkiWKmyrFJIr1TiuYS6+kZ15s9SP5jBk+j05Yr7LBs9Qi56/8f7lzh57WSLNnFg/1TYdy3YE9jXVAPHqxx+Td5qBAJQBUDB7z4gZb6odH+RicjwJY79ifY2QjWNh4TFT4otCVu08I5MGmECTKHiVtyhDi1NfekSwFEPBNlWNrL/XKP6zXHsVYvg8Uq719ai2SkFSE8+oZAiF/Cwz2JGgSf0tiglpiCoOkm7CKDwVSYx77IOP56zD/EjRtEedBwRgQAbGx8SOINKnjR1TAgMBAAECggEAHs0SwQY+yNBLKOomDA2exanNuxF3LZulPQr3jPBHUnNk3bGoMTbDa32CV/VZC4Hq5BfsdDnUy3KdGGbXy9v5rY/bVrLmuLSEc+5wGfBG/dIt/K0NZzSW+LSzf0nwtsgadrXxSm2Oi7OGxoZXw+uGPUHuNVhl0g0PeM5nKP2seXIV0EdMsCfWca+BmvQw+cHOgURvi6xS6uzGNwI2pscoqn5Ju95quJ8WA0AtHzEtDsDnOIa6FglaBDcg2S9R6vwdB0+IK9rbIu7Wd6aDTHib81ioEgvChVWa4v5bktaIGkogI1cWkq15adn3C0JwRNbAsEQkpqrlqSjcQo3uqe+XWQKBgQDEXpImflzTVVNfjTyc34pobmQsQ7INNE5ejO1lnD6LQQSFKH49QN1zjiNwkbXC2w6xwyHNG30KZDFfP3tuE5VhuO13YlAnF95TPFXXqcQbcQakCMy0TVhNpXlITL/Q46Fv3hfY3Yl/25LAVAKvbNVNGAl9Z4KEK2odpyHyxezGxQKBgQC2vJijriPnbE0KX3zZMRhzHobDwBKnIcnkfuMqv8UkTlZKPpd/Gy2/Wg4iOOLvL5u0DJDWz3L/UhTHvzf1fQ2UkXFeMGxjVAnomfj7/jon1fRfIsWJR0vFrK15XqnNg3iWLzVdekyvfbu1nE0WEuKdCEXqL5bE7h/IOdlBZ+NVNwKBgBantoLcZ0c2e+T1PX33yFceDU6SDNO7KiN8bNMhQJH+UVAviMj2V9ZCGtKc7PRrI3ncwmSQfE+bmZqcj1f2yHA6zqLMY+TuuwatWlYETwy/cH2ySjOvDLYAlkqCGEs4R+LJI8UwYfGvWnH3/0tP6hf34vhl3cfz3k1HgAIrVZLlAoGAOGEfxwBnW3NyoYysfGZFYN8+PQ75sk8edz0e4YWhUX5J6UY+f5znFG64hZ5/hcRuibKGzX/bvyKX/rjkjv0yP3BQRfsytcKr+/PlefoJ/1hnuSKFR8GTgz2vmA643Qt/HPcbw+eD2XE1hObgcbsJ5+ExkPt1zPSbIa+XdDKVVSkCgYBw+dAvAKL6e1Di3un0jEHN86+6y25MXH1VgXys6kHA+OirtHV9bKKmdUw4nGOgh9RfYcTGqLoeCWcWQRLCdzN0kg4rjvibMzU++E6P4D3xtT8gyd1fPEKhe/7Stn/ww9DZYdSsymHF07aNkA+Lcw49TwNBwpqv3snuKPIhZSg0vg==" />
+
         <activity
             android:name=".avtivity.MainActivity"
             android:launchMode="singleTask"
@@ -54,7 +55,8 @@
         <activity android:name=".avtivity.ZhuCeActivity" />
         <activity android:name=".avtivity.WangJiMMActivity" />
         <activity android:name=".avtivity.DingDanGLActivity" />
-        <activity android:name=".avtivity.PinPaiXCActivity"></activity>
+        <activity android:name=".avtivity.PinPaiXCActivity" />
+        <activity android:name=".avtivity.Main2Activity"></activity>
     </application>
 
 </manifest>
