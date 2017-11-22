@@ -5,13 +5,14 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.haoche666.buyer.interfacepage.OnPatchLister;
-import com.haoche666.buyer.util.LogUtil;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 
 /**

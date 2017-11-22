@@ -1,13 +1,13 @@
 package com.haoche666.buyer.constant;
 
 
-import com.haoche666.buyer.util.AppUtil;
+import huisedebi.zjb.mylibrary.util.MD5Util;
 
 /**
  * Created by zjb on 2016/6/12.
  */
 public class Constant {
-    public static String HOST = "http://" + AppUtil.getMD5Time();
+    public static String HOST = "http://" + MD5Util.getMD5Time();
     public static int changeControl = 2017;//判断数据是否有改变
     public static String WXAPPID = "wxfef0031f5d8f3ed0";//微信appid
     public static String WXSCRENT = "02d7e0ca570f95630b552bd055fdd14a";//微信scrent

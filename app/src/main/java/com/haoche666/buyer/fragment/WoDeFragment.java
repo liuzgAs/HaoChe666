@@ -17,7 +17,8 @@ import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
-import com.haoche666.buyer.util.ScreenUtils;
+
+import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.

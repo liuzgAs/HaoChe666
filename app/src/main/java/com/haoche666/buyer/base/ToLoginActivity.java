@@ -6,7 +6,8 @@ import android.os.Process;
 
 import com.haoche666.buyer.avtivity.DengLuActivity;
 import com.haoche666.buyer.constant.Constant;
-import com.haoche666.buyer.util.ACache;
+
+import huisedebi.zjb.mylibrary.util.ACache;
 
 
 /**

@@ -27,7 +27,7 @@
             app:layout_progress="@layout/view_progress"
             app:scrollbarStyle="insideOverlay" />
 
-        <com.haoche666.buyer.customview.SideLetterBar
+        <huisedebi.zjb.mylibrary.customview.SideLetterBar
             android:id="@+id/side_letter_bar"
             android:layout_width="36dp"
             android:layout_height="match_parent"

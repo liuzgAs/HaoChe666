@@ -111,7 +111,7 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <com.haoche666.buyer.customview.ConnerView
+        <huisedebi.zjb.mylibrary.customview.ConnerView
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="20dp"

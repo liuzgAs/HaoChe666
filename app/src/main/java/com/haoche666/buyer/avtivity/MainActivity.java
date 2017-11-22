@@ -22,9 +22,10 @@ import com.haoche666.buyer.fragment.ShouYeFragment;
 import com.haoche666.buyer.fragment.WoDeFragment;
 import com.haoche666.buyer.fragment.XiaoXiFragment;
 import com.haoche666.buyer.interfacepage.OnPatchLister;
-import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.util.UpgradeUtils;
 import com.taobao.sophix.SophixManager;
+
+import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.UpgradeUtils;
 
 /**
  * 主界面

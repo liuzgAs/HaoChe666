@@ -101,7 +101,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/denglu_shouji" />
 
-            <com.haoche666.buyer.customview.EditTextWithDel
+            <huisedebi.zjb.mylibrary.customview.EditTextWithDel
                 android:id="@+id/edit01"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normalItemHeight"
@@ -159,7 +159,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/denglu_mima" />
 
-            <com.haoche666.buyer.customview.EditTextWithDel
+            <huisedebi.zjb.mylibrary.customview.EditTextWithDel
                 android:id="@+id/edit02"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normalItemHeight"
@@ -216,7 +216,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/denglu_mima" />
 
-            <com.haoche666.buyer.customview.EditTextWithDel
+            <huisedebi.zjb.mylibrary.customview.EditTextWithDel
                 android:id="@+id/edit03"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normalItemHeight"

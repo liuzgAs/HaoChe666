@@ -18,16 +18,10 @@ import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseNotLeftActivity;
 import com.haoche666.buyer.constant.Constant;
-import com.haoche666.buyer.customview.SideLetterBar;
 import com.haoche666.buyer.model.CheXi;
-import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.PinPaiBean;
 import com.haoche666.buyer.model.PinPaiXC;
 import com.haoche666.buyer.model.ReMen;
-import com.haoche666.buyer.util.ApiClient;
-import com.haoche666.buyer.util.GsonUtils;
-import com.haoche666.buyer.util.LogUtil;
-import com.haoche666.buyer.util.ScreenUtils;
 import com.haoche666.buyer.viewholder.CheXiViewHolder;
 import com.haoche666.buyer.viewholder.PinPaiXCViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -39,6 +33,13 @@ import com.jude.easyrecyclerview.decoration.StickyHeaderDecoration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import huisedebi.zjb.mylibrary.customview.SideLetterBar;
+import huisedebi.zjb.mylibrary.model.OkObject;
+import huisedebi.zjb.mylibrary.util.ApiClient;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
+import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * 品牌选车

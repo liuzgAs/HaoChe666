@@ -14,9 +14,6 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.provider.DataProvider;
-import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.util.RecycleViewDistancaUtil;
-import com.haoche666.buyer.util.ScreenUtils;
 import com.haoche666.buyer.viewholder.CheHangViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -25,6 +22,10 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.RecycleViewDistancaUtil;
+import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * 车行信息

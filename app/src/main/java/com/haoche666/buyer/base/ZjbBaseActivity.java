@@ -16,9 +16,9 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.application.MyApplication;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.UserInfo;
-import com.haoche666.buyer.util.ACache;
 import com.umeng.analytics.MobclickAgent;
 
+import huisedebi.zjb.mylibrary.util.ACache;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 

@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
-import com.haoche666.buyer.util.ScreenUtils;
+
+import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.

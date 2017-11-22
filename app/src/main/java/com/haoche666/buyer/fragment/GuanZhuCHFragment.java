@@ -14,12 +14,13 @@ import android.view.ViewGroup;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
-import com.haoche666.buyer.util.DpUtils;
 import com.haoche666.buyer.viewholder.GuanZuCHViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
+
+import huisedebi.zjb.mylibrary.util.DpUtils;
 
 /**
  * A simple {@link Fragment} subclass.

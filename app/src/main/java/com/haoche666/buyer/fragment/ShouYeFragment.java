@@ -22,9 +22,6 @@ import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.provider.DataProvider;
-import com.haoche666.buyer.util.BannerSettingUtil;
-import com.haoche666.buyer.util.DpUtils;
-import com.haoche666.buyer.util.ScreenUtils;
 import com.haoche666.buyer.viewholder.LocalImageHolderView;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -36,6 +33,10 @@ import com.rd.animation.AnimationType;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import huisedebi.zjb.mylibrary.util.BannerSettingUtil;
+import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.

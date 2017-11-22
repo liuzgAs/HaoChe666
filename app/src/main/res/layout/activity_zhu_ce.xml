@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.haoche666.buyer.customview.EditTextWithDel
+        <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="number"
             android:maxLength="11"
             android:singleLine="true"
@@ -118,7 +118,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp">
 
-            <com.haoche666.buyer.customview.EditTextWithDel
+            <huisedebi.zjb.mylibrary.customview.EditTextWithDel
                 android:layout_weight="1"
                 android:paddingRight="10dp"
                 android:inputType="number"
@@ -161,7 +161,7 @@
             android:layout_marginRight="20dp"
             android:background="@color/basic_color" />
 
-        <com.haoche666.buyer.customview.EditTextWithDel
+        <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="textPassword"
             android:maxLength="17"
             android:singleLine="true"
@@ -187,7 +187,7 @@
             android:layout_marginRight="20dp"
             android:background="@color/basic_color" />
 
-        <com.haoche666.buyer.customview.EditTextWithDel
+        <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="textPassword"
             android:maxLength="17"
             android:singleLine="true"
@@ -213,7 +213,7 @@
             android:layout_marginRight="20dp"
             android:background="@color/basic_color" />
 
-        <com.haoche666.buyer.customview.EditTextWithDel
+        <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="number"
             android:maxLength="11"
             android:singleLine="true"
