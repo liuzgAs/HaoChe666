@@ -76,84 +76,74 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/relativeLayout3">
 
-        <RelativeLayout
-            android:background="@color/white"
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:src="@mipmap/mine_guanzhu"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:id="@+id/imageView60"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="关注"
-                android:id="@+id/textView110"
-                android:layout_below="@+id/imageView60"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_marginLeft="1dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent" >
-
-            <ImageView
-                android:src="@mipmap/mine_duibi"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:id="@+id/imageView61"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="对比"
-                android:id="@+id/textView111"
-                android:layout_below="@+id/imageView61"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:textColor="@color/light_black"
-                android:textStyle="bold"
+            <RelativeLayout
                 android:layout_weight="1"
-                android:background="@color/basic_color"
+                android:background="@color/white"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="电话咨询"
-                android:textSize="@dimen/bigText"
-                android:id="@+id/textView112" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:textColor="@color/basic_color"
-                android:textStyle="bold"
+                <ImageView
+                    android:src="@mipmap/mine_guanzhu"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/imageView60"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="关注"
+                    android:id="@+id/textView110"
+                    android:layout_below="@+id/imageView60"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_weight="1"
-                android:background="@color/basic_color01"
+                android:layout_marginLeft="1dp"
+                android:background="@color/white"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="立即订购"
-                android:textSize="@dimen/bigText"
-                android:id="@+id/textView113" />
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:src="@mipmap/mine_duibi"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/imageView61"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="对比"
+                    android:id="@+id/textView111"
+                    android:layout_below="@+id/imageView61"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
         </LinearLayout>
+        <TextView
+            android:textColor="@color/basic_color"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:background="@color/basic_color01"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="电话咨询"
+            android:textSize="@dimen/bigText"
+            android:id="@+id/textView113" />
     </LinearLayout>
 </RelativeLayout>

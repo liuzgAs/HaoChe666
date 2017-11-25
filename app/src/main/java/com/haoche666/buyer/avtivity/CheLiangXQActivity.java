@@ -2,6 +2,7 @@ package com.haoche666.buyer.avtivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * 车辆详情
+ *
  * @author Administrator
  */
 public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
@@ -102,6 +104,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private TextView textZhiShiQi;
             private ConvenientBanner banner;
             private List<Integer> imgList = new ArrayList<>();
 
@@ -111,7 +114,29 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 banner = header_che_liang_xq.findViewById(R.id.banner);
                 banner.setScrollDuration(1000);
                 banner.startTurning(3000);
-//                imgList.add(R.mipmap.)
+                imgList.add(R.mipmap.videofengmain);
+                imgList.add(R.mipmap.videofengmain);
+                imgList.add(R.mipmap.videofengmain);
+                imgList.add(R.mipmap.videofengmain);
+                imgList.add(R.mipmap.videofengmain);
+                imgList.add(R.mipmap.videofengmain);
+                textZhiShiQi = header_che_liang_xq.findViewById(R.id.textZhiShiQi);
+                banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        textZhiShiQi.setText((position+1) + "/" + imgList.size());
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
                 return header_che_liang_xq;
             }
 
@@ -170,7 +195,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageBack:
                 finish();
                 break;
