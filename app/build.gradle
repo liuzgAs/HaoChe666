@@ -37,5 +37,5 @@ dependencies {
     compile 'com.iarcuschin:simpleratingbar:0.1.2'
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.6'
     implementation project(':library')
-    compile 'com.github.huisedebi:ZjbLibrary:0.1.6'
+    compile 'com.github.huisedebi:ZjbLibrary:0.1.8'
 }

@@ -79,7 +79,7 @@
             android:textSize="@dimen/litterText" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonVR"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="观看视频"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/MoreBigText" />
+
+        <ImageView
+            android:id="@+id/imageCancle"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/cha" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <huisedebi.zjb.mylibrary.customview.SquareLayout
+            android:id="@+id/viewVip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_basic1dp_5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textVip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="开通会员"
+                android:textColor="@color/textGold"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/textView186"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textVip"
+                android:layout_centerHorizontal="true"
+                android:text="视频不限量免费看"
+                android:textColor="@color/text_gray"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/textView187"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView186"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="¥76.00"
+                android:textColor="@color/light_black"
+                android:textSize="20dp" />
+        </huisedebi.zjb.mylibrary.customview.SquareLayout>
+
+        <huisedebi.zjb.mylibrary.customview.SquareLayout
+            android:id="@+id/viewSingle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_gray1dp_5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textSingle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="单个视频"
+                android:textColor="@color/light_black"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/textView189"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textSingle"
+                android:layout_centerHorizontal="true"
+                android:text="单个视频查看权限"
+                android:textColor="@color/text_gray"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/textView188"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView189"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="¥2.00"
+                android:textColor="@color/light_black"
+                android:textSize="20dp" />
+        </huisedebi.zjb.mylibrary.customview.SquareLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_width"
+        android:background="@color/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:orientation="horizontal">
+        <TextView
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:text="¥76.00"
+            android:textSize="20dp"
+            android:textColor="@color/light_black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="立即支付"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:textColor="@color/basic_color"
+            android:background="@color/basic_color01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>
