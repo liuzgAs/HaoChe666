@@ -405,7 +405,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/rementuijianche" />
+                android:src="@mipmap/rementuijianche04" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -458,7 +458,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/rementuijianche" />
+                android:src="@mipmap/rementuijianche04" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -515,7 +515,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/rementuijianche" />
+                android:src="@mipmap/rementuijianche04" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -569,7 +569,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/rementuijianche" />
+                android:src="@mipmap/rementuijianche04" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
