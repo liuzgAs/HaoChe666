@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.viewholder.CheLiangXQImgHolderView;
 import com.haoche666.buyer.viewholder.CheLiangXQViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -99,15 +102,27 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private ConvenientBanner banner;
+            private List<Integer> imgList = new ArrayList<>();
+
             @Override
             public View onCreateView(ViewGroup parent) {
                 View header_che_liang_xq = LayoutInflater.from(CheLiangXQActivity.this).inflate(R.layout.header_che_liang_xq, null);
+                banner = header_che_liang_xq.findViewById(R.id.banner);
+                banner.setScrollDuration(1000);
+                banner.startTurning(3000);
+//                imgList.add(R.mipmap.)
                 return header_che_liang_xq;
             }
 
             @Override
             public void onBindView(View headerView) {
-
+                banner.setPages(new CBViewHolderCreator() {
+                    @Override
+                    public Object createHolder() {
+                        return new CheLiangXQImgHolderView();
+                    }
+                }, imgList);
             }
 
         });
