@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:gravity="center">
 
                         <ImageView
@@ -93,16 +93,16 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center_vertical">
 
                         <ImageView
+                            android:layout_marginLeft="10dp"
                             android:id="@+id/imageView27"
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
-                            android:layout_marginLeft="10dp"
                             android:paddingTop="10dp"
                             android:src="@mipmap/haochehuiyuan" />
 
@@ -113,7 +113,7 @@
                             android:layout_alignLeft="@+id/imageView27"
                             android:layout_alignStart="@+id/imageView27"
                             android:layout_below="@+id/imageView27"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="35dp"
                             android:text="账户余额"
                             android:textColor="@color/mineYuE"
                             android:textSize="@dimen/bigText" />
@@ -125,10 +125,9 @@
                             android:layout_alignLeft="@+id/textView46"
                             android:layout_alignStart="@+id/textView46"
                             android:layout_below="@+id/textView46"
-                            android:layout_marginTop="-5dp"
-                            android:text="8.57"
+                            android:text="188.08"
                             android:textColor="@color/white"
-                            android:textSize="50dp"
+                            android:textSize="30dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -142,6 +141,21 @@
                             android:text="元"
                             android:textColor="@color/mineYuE"
                             android:textSize="20dp" />
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:background="@drawable/shape_white1dp_15dp"
+                            android:text="充值"
+                            android:textSize="@dimen/bigText"
+                            android:textColor="@color/white"
+                            android:layout_alignBottom="@+id/textView48"
+                            android:layout_toEndOf="@id/textView48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/textView48" />
                     </RelativeLayout>
                 </LinearLayout>
 
