@@ -17,6 +17,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:textStyle="bold"
         android:layout_marginTop="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
         android:layout_marginRight="10dp"
         android:textSize="@dimen/bigText"
         android:textColor="@color/light_black"
-        android:lines="2"
+        android:maxLines="2"
         android:ellipsize="end"
         android:id="@+id/textView2"
         android:layout_alignTop="@+id/imageView4"

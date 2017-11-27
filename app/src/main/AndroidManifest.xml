@@ -56,7 +56,14 @@
         <activity android:name=".avtivity.WangJiMMActivity" />
         <activity android:name=".avtivity.DingDanGLActivity" />
         <activity android:name=".avtivity.PinPaiXCActivity" />
-        <activity android:name=".avtivity.PayVipActivity"/>
+        <activity android:name=".avtivity.PayVipActivity" />
+        <activity android:name=".avtivity.PayVideoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

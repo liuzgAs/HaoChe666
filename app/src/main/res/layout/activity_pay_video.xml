@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.haoche666.buyer.avtivity.PayVideoActivity">
+
+    <include layout="@layout/view_bar_white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/layout_selector_white_system_gray">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/viewImg"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/viewImg"
+            android:layout_toRightOf="@+id/viewImg"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="现代瑞纳2010款 三厢 1.4L 手动舒适型GS"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/bigText" />
+
+        <RelativeLayout
+            android:id="@+id/viewImg"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/videofengmain" />
+            <ImageView
+                android:layout_centerInParent="true"
+                android:src="@mipmap/bofang"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView112"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/viewImg"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2"
+            android:textColor="@color/textGold"
+            android:textSize="@dimen/bigText"
+            android:text="¥2.00" />
+
+
+    </RelativeLayout>
+    <include layout="@layout/view_zhifu"/>
+    <RelativeLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normalItemHeight"
+            android:orientation="horizontal">
+            <TextView
+                android:paddingRight="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="应付：¥2.00"
+                android:textSize="20dp"
+                android:textColor="@color/light_black"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/textPayVideo"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="立即支付"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:textColor="@color/basic_color"
+                android:background="@color/basic_color01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

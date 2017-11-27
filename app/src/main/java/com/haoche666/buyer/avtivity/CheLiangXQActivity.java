@@ -1,5 +1,6 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -187,6 +188,14 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     public void onClick(View view) {
                         isVip = false;
                         vipRadio();
+                    }
+                });
+                dialog_chan_pin.findViewById(R.id.textPayVideo).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(CheLiangXQActivity.this,PayVideoActivity.class);
+                        startActivity(intent);
                     }
                 });
                 vipRadio();
