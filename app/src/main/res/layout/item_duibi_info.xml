@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/duiBiWidth"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="29dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="18.30万" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="20.82万" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="0.1万公里" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="2个月" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="厦门" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="国五" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="自动" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="广汽三菱" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="紧凑型SUV" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="2.4L 192马力L4" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="6档无级变速箱" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="5门5座SUV" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="4705/1810/1710" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="2670" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="-" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="1585" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="咖啡色" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="2.4" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="自然吸气" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="L4" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="192" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="235" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="汽油" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="92号" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="多点电喷" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="国五" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="前置四驱" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="电动助力" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="麦弗逊式独立悬架" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="多连杆独立悬架" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="通风盘式" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="盘式" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="-" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="255/55/R18" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="255/55/R18" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配/标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配/无" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配/标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="无" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="无" />
+
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="无" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配/标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配" />
+    <TextView
+        style="@style/duiBiInfoItem"
+        android:text="标配/无" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:background="@color/duiBiItem"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/jiance_true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/light_black"
+            android:text="1项"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:background="@color/duiBiItem"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/jiance_true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/light_black"
+            android:text="1项"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:background="@color/duiBiItem"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/jiance_false"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/light_black"
+            android:text="1项"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:background="@color/duiBiItem"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/jiance_true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/light_black"
+            android:text="1项"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

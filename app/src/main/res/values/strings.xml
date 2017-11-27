@@ -5,4 +5,91 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vin">VIN码</string>
     <string name="chaChuXian">查出险</string>
+    <string-array name="duiBiTitle">
+        <item>主要信息</item>
+    </string-array>
+
+    <string name="duiBiTitle01">主要信息</string>
+    <string name="duiBiTitle02">基本参数</string>
+    <string name="duiBiTitle03">发动机参数</string>
+    <string name="duiBiTitle04">底盘及制动</string>
+    <string name="duiBiTitle05">安全配置</string>
+    <string name="duiBiTitle06">外部配置</string>
+    <string name="duiBiTitle07">内部配置</string>
+    <string name="duiBiTitle08">检测报告</string>
+    <!--主要信息-->
+    <string name="duiBi0101">车主报价</string>
+    <string name="duiBi0102">新车含税</string>
+    <string name="duiBi0103">行驶里程</string>
+    <string name="duiBi0104">车龄</string>
+    <string name="duiBi0105">车牌所在地</string>
+    <string name="duiBi0106">排放标准</string>
+    <string name="duiBi0107">变速箱</string>
+    <!--基本参数-->
+    <string name="duiBi0201">厂商</string>
+    <string name="duiBi0202">级别</string>
+    <string name="duiBi0203">发动机</string>
+    <string name="duiBi0204">变速箱</string>
+    <string name="duiBi0205">车身结构</string>
+    <string name="duiBi0206">长*宽*高(mm)</string>
+    <string name="duiBi0207">轴距</string>
+    <string name="duiBi0208">行李箱容积(L)</string>
+    <string name="duiBi0209">整备质量(kg)</string>
+    <string name="duiBi0210">车身颜色</string>
+    <!--发动机参数-->
+    <string name="duiBi0301">排量(L)</string>
+    <string name="duiBi0302">进气方式</string>
+    <string name="duiBi0303">气缸</string>
+    <string name="duiBi0304">最大马力(Ps)</string>
+    <string name="duiBi0305">最大扭矩(N*m)</string>
+    <string name="duiBi0306">燃料类型</string>
+    <string name="duiBi0307">燃油标号</string>
+    <string name="duiBi0308">供油方式</string>
+    <string name="duiBi0309">排放标准</string>
+    <!--底盘及制动-->
+    <string name="duiBi0401">驱动方式</string>
+    <string name="duiBi0402">助力类型</string>
+    <string name="duiBi0403">前悬挂类型</string>
+    <string name="duiBi0404">后悬挂类型</string>
+    <string name="duiBi0405">前制动类型</string>
+    <string name="duiBi0406">后制动类型</string>
+    <string name="duiBi0407">驻车制动类型</string>
+    <string name="duiBi0408">前轮胎规格</string>
+    <string name="duiBi0409">后轮胎规格</string>
+    <!--安全配置-->
+    <string name="duiBi0501">主副驾驶安全气囊</string>
+    <string name="duiBi0502">前后排侧气囊</string>
+    <string name="duiBi0503">前后排头部气囊</string>
+    <string name="duiBi0504">胎压监测</string>
+    <string name="duiBi0505">车内中控锁</string>
+    <string name="duiBi0506">儿童座椅接口</string>
+    <string name="duiBi0507">无钥匙启动</string>
+    <string name="duiBi0508">防抱死系统(ABS)</string>
+    <string name="duiBi0509">车身稳定控制(ESP)</string>
+    <!--外部配置-->
+    <string name="duiBi0601">电动天窗</string>
+    <string name="duiBi0602">全景天窗</string>
+    <string name="duiBi0603">电动吸合门</string>
+    <string name="duiBi0604">感应后备箱</string>
+    <string name="duiBi0605">感应雨刷</string>
+    <string name="duiBi0606">后雨刷</string>
+    <string name="duiBi0607">前后电动车窗</string>
+    <string name="duiBi0608">后视镜电动调节</string>
+    <string name="duiBi0609">后视镜加热</string>
+    <!--内部配置-->
+    <string name="duiBi0701">多功能方向盘</string>
+    <string name="duiBi0702">定速巡航</string>
+    <string name="duiBi0703">空调</string>
+    <string name="duiBi0704">自动空调</string>
+    <string name="duiBi0705">GPS导航</string>
+    <string name="duiBi0706">倒车雷达</string>
+    <string name="duiBi0707">倒车影像系统</string>
+    <string name="duiBi0708">真皮座椅</string>
+    <string name="duiBi0709">前后排座椅加热</string>
+    <!--检测报告-->
+    <string name="duiBi0801">事故检测</string>
+    <string name="duiBi0802">外观内饰</string>
+    <string name="duiBi0803">安全检测</string>
+    <string name="duiBi0804">驾驶检测</string>
+    <string name="duiBiTip">以上数据仅供参考，实际情况以看车为准</string>
 </resources>

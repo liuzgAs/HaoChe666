@@ -1,5 +1,6 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -127,6 +128,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.buttonDuiBi).setOnClickListener(this);
     }
 
     @Override
@@ -137,6 +139,11 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.buttonDuiBi:
+                Intent intent = new Intent();
+                intent.setClass(CheLiangDBActivity.this,DuiBiActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageBack:
                 finish();
                 break;
