@@ -56,7 +56,7 @@
         <activity android:name=".avtivity.WangJiMMActivity" />
         <activity android:name=".avtivity.DingDanGLActivity" />
         <activity android:name=".avtivity.PinPaiXCActivity" />
-        <activity android:name=".avtivity.Main2Activity"></activity>
+        <activity android:name=".avtivity.PayVipActivity"/>
     </application>
 
 </manifest>

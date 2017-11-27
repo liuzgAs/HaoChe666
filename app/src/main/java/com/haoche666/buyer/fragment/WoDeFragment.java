@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
 import com.haoche666.buyer.avtivity.DingDanGLActivity;
+import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -31,6 +33,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private HeaderWaveHelper mHeaderWaveHelper;
     private View viewBar;
     private View viewBar01;
+    private ImageView imageVip;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -68,6 +71,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         waveView = mInflate.findViewById(R.id.header_wave_view);
         viewBar = mInflate.findViewById(R.id.viewBar);
         viewBar01 = mInflate.findViewById(R.id.viewBar01);
+        imageVip = mInflate.findViewById(R.id.imageVip);
     }
 
     @Override
@@ -90,6 +94,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewWoDeDD).setOnClickListener(this);
         mInflate.findViewById(R.id.viewChaXunFW).setOnClickListener(this);
         mInflate.findViewById(R.id.imageSheZhi).setOnClickListener(this);
+        imageVip.setOnClickListener(this);
     }
 
     @Override
@@ -113,6 +118,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.imageVip:
+                intent.setClass(getActivity(), PayVipActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageSheZhi:
                 intent.setClass(getActivity(), SheZhiActivity.class);
                 startActivity(intent);

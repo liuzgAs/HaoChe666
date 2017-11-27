@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#484744</color>
-    <color name="colorPrimaryDark">#484744</color>
-    <color name="colorAccent">#484744</color>
+    <color name="colorPrimary">#e3c787</color>
+    <color name="colorPrimaryDark">#e3c787</color>
+    <color name="colorAccent">#e3c787</color>
     <color name="basic_color">#e3c787</color>
     <color name="basic_color01">#484744</color>
     <color name="textGold">#c29b43</color>

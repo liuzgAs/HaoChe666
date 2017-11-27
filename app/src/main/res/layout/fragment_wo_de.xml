@@ -97,22 +97,22 @@
 
                         <ImageView
                             android:layout_marginLeft="10dp"
-                            android:id="@+id/imageView27"
+                            android:id="@+id/imageVip"
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:paddingTop="10dp"
-                            android:src="@mipmap/haochehuiyuan" />
+                            android:src="@mipmap/pay_vip" />
 
                         <TextView
                             android:id="@+id/textView46"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/imageView27"
-                            android:layout_alignStart="@+id/imageView27"
-                            android:layout_below="@+id/imageView27"
+                            android:layout_alignLeft="@+id/imageVip"
+                            android:layout_alignStart="@+id/imageVip"
+                            android:layout_below="@+id/imageVip"
                             android:layout_marginTop="35dp"
                             android:text="账户余额"
                             android:textColor="@color/mineYuE"
