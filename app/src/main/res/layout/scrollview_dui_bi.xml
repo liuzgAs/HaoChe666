@@ -21,6 +21,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textCeiling01"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle01" />
 
@@ -53,6 +54,7 @@
                     android:text="@string/duiBi0107" />
 
                 <TextView
+                    android:id="@+id/textCeiling02"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle02" />
 
@@ -97,6 +99,7 @@
                     android:text="@string/duiBi0210" />
 
                 <TextView
+                    android:id="@+id/textCeiling03"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle03" />
 
@@ -137,6 +140,7 @@
                     android:text="@string/duiBi0309" />
 
                 <TextView
+                    android:id="@+id/textCeiling04"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle04" />
 
@@ -177,6 +181,7 @@
                     android:text="@string/duiBi0409" />
 
                 <TextView
+                    android:id="@+id/textCeiling05"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle05" />
 
@@ -217,6 +222,7 @@
                     android:text="@string/duiBi0509" />
 
                 <TextView
+                    android:id="@+id/textCeiling06"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle06" />
 
@@ -257,6 +263,7 @@
                     android:text="@string/duiBi0609" />
 
                 <TextView
+                    android:id="@+id/textCeiling07"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle07" />
 
@@ -297,6 +304,7 @@
                     android:text="@string/duiBi0709" />
 
                 <TextView
+                    android:id="@+id/textCeiling08"
                     style="@style/itemDuiBiTitle"
                     android:text="@string/duiBiTitle08" />
 

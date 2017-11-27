@@ -31,6 +31,8 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
     private RecyclerArrayAdapter<Integer> adapter;
     private RecyclerArrayAdapter<Integer> adapterInfo;
     private MyScrollView scrollView;
+    private TextView textCeiling;
+    private TextView[] textCeillingArr = new TextView[8];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,15 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
         recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
         recyclerViewInfo = (EasyRecyclerView) findViewById(R.id.recyclerViewInfo);
         scrollView = (MyScrollView) findViewById(R.id.scrollView);
+        textCeiling = (TextView) findViewById(R.id.textCeiling);
+        textCeillingArr[0] = (TextView) findViewById(R.id.textCeiling01);
+        textCeillingArr[1] = (TextView) findViewById(R.id.textCeiling02);
+        textCeillingArr[2] = (TextView) findViewById(R.id.textCeiling03);
+        textCeillingArr[3] = (TextView) findViewById(R.id.textCeiling04);
+        textCeillingArr[4] = (TextView) findViewById(R.id.textCeiling05);
+        textCeillingArr[5] = (TextView) findViewById(R.id.textCeiling06);
+        textCeillingArr[6] = (TextView) findViewById(R.id.textCeiling07);
+        textCeillingArr[7] = (TextView) findViewById(R.id.textCeiling08);
     }
 
     @Override
@@ -91,9 +102,12 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
         recyclerView.getRecyclerView().addOnScrollListener(new MyOnScrollListener());
         recyclerViewInfo.getRecyclerView().addOnScrollListener(new MyInfoOnScrollListener());
         scrollView.setOnScrollChangedListener(new MyScrollView.OnScrollChangedListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onScrollChanged(int i) {
-                LogUtil.LogShitou("DuiBiActivity--onScrollChanged", "i");
+                LogUtil.LogShitou("DuiBiActivity--onScrollChanged", ""+i);
+                LogUtil.LogShitou("DuiBiActivity--onScrollChanged", "Y"+textCeillingArr[1].getY());
+                LogUtil.LogShitou("DuiBiActivity--onScrollChanged", "ScrollY"+textCeillingArr[1].getScrollY());
             }
         });
     }
@@ -117,14 +131,14 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
             super.onScrollStateChanged(recyclerView, newState);
             if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                 isDrag = true;
-                isInfoDrag =false;
+                isInfoDrag = false;
             }
         }
 
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            if (!isInfoDrag){
+            if (!isInfoDrag) {
                 recyclerViewInfo.getRecyclerView().scrollBy(dx, dy);
             }
         }
@@ -140,14 +154,14 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
             super.onScrollStateChanged(recyclerView1, newState);
             if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                 isDrag = false;
-                isInfoDrag =true;
+                isInfoDrag = true;
             }
         }
 
         @Override
         public void onScrolled(RecyclerView recyclerView1, int dx, int dy) {
             super.onScrolled(recyclerView1, dx, dy);
-            if (!isDrag){
+            if (!isDrag) {
                 recyclerView.getRecyclerView().scrollBy(dx, dy);
             }
         }
