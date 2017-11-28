@@ -33,6 +33,8 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
     private MyScrollView scrollView;
     private TextView textCeiling;
     private TextView[] textCeillingArr = new TextView[8];
+    private float celilingHeight;
+    private View viewCeilling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,8 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
         textCeillingArr[5] = (TextView) findViewById(R.id.textCeiling06);
         textCeillingArr[6] = (TextView) findViewById(R.id.textCeiling07);
         textCeillingArr[7] = (TextView) findViewById(R.id.textCeiling08);
+        celilingHeight = DpUtils.convertDpToPixel(30, DuiBiActivity.this);
+        viewCeilling = findViewById(R.id.viewCeilling);
     }
 
     @Override
@@ -107,7 +111,53 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
             public void onScrollChanged(int i) {
                 LogUtil.LogShitou("DuiBiActivity--onScrollChanged", ""+i);
                 LogUtil.LogShitou("DuiBiActivity--onScrollChanged", "Y"+textCeillingArr[1].getY());
-                LogUtil.LogShitou("DuiBiActivity--onScrollChanged", "ScrollY"+textCeillingArr[1].getScrollY());
+                if (i>textCeillingArr[7].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle08));
+                    return;
+                }
+                if (i>textCeillingArr[6].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle07));
+                    setCeiling(i,7);
+                    return;
+                }
+                if (i>textCeillingArr[5].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle06));
+                    setCeiling(i,6);
+                    return;
+                }
+                if (i>textCeillingArr[4].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle05));
+                    setCeiling(i,5);
+                    return;
+                }
+                if (i>textCeillingArr[3].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle04));
+                    setCeiling(i,4);
+                    return;
+                }
+                if (i>textCeillingArr[2].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle03));
+                    setCeiling(i,3);
+                    return;
+                }
+                if (i>textCeillingArr[1].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle02));
+                    setCeiling(i,2);
+                    return;
+                }
+                if (i>textCeillingArr[0].getY()){
+                    textCeiling.setText(getResources().getText(R.string.duiBiTitle01));
+                    setCeiling(i,1);
+                    return;
+                }
+            }
+
+            private void setCeiling(int i,int position) {
+                if (i>(textCeillingArr[position].getY()-celilingHeight)&&i<textCeillingArr[position].getY()){
+                    viewCeilling.setTranslationY(-1*(i-(textCeillingArr[position].getY()-celilingHeight)));
+                }else {
+                    viewCeilling.setTranslationY(0);
+                }
             }
         });
     }

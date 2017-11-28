@@ -41,6 +41,7 @@
         <include layout="@layout/scrollview_dui_bi" />
 
         <LinearLayout
+            android:id="@+id/viewCeilling"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/line_gray">
