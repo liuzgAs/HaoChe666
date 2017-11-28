@@ -57,8 +57,9 @@
         <activity android:name=".avtivity.DingDanGLActivity" />
         <activity android:name=".avtivity.PinPaiXCActivity" />
         <activity android:name=".avtivity.PayVipActivity" />
-        <activity android:name=".avtivity.PayVideoActivity"/>
-        <activity android:name=".avtivity.DuiBiActivity"/>
+        <activity android:name=".avtivity.PayVideoActivity" />
+        <activity android:name=".avtivity.DuiBiActivity" />
+        <activity android:name=".avtivity.ChongZhiActivity"></activity>
     </application>
 
 </manifest>

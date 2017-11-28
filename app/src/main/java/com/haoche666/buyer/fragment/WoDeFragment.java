@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
+import com.haoche666.buyer.avtivity.ChongZhiActivity;
 import com.haoche666.buyer.avtivity.DingDanGLActivity;
 import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
@@ -94,6 +95,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewWoDeDD).setOnClickListener(this);
         mInflate.findViewById(R.id.viewChaXunFW).setOnClickListener(this);
         mInflate.findViewById(R.id.imageSheZhi).setOnClickListener(this);
+        mInflate.findViewById(R.id.textChongZhi).setOnClickListener(this);
         imageVip.setOnClickListener(this);
     }
 
@@ -118,6 +120,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.textChongZhi:
+                intent.setClass(getActivity(), ChongZhiActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageVip:
                 intent.setClass(getActivity(), PayVipActivity.class);
                 startActivity(intent);
