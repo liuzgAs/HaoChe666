@@ -2,7 +2,6 @@ package com.haoche666.buyer.avtivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +18,6 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.RecycleViewDistancaUtil;
@@ -87,32 +83,32 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
-            private TabLayout tablayout;
-            List<String> list = new ArrayList<>();
+//            private TabLayout tablayout;
+//            List<String> list = new ArrayList<>();
             @Override
             public View onCreateView(ViewGroup parent) {
                 View view = LayoutInflater.from(CheHangXXActivity.this).inflate(R.layout.header_che_hang, null);
-                tablayout = view.findViewById(R.id.tablayout);
+//                tablayout = view.findViewById(R.id.tablayout);
                 return view;
             }
 
             @Override
             public void onBindView(View headerView) {
-                list.clear();
-                list.add("在售车辆");
-                list.add("动态");
-                list.add("销售顾问");
-                tablayout.removeAllTabs();
-                for (int i = 0; i < list.size(); i++) {
-                    View view = LayoutInflater.from(CheHangXXActivity.this).inflate(R.layout.item_tablayout, null);
-                    TextView textTitle =  view.findViewById(R.id.textTitle);
-                    textTitle.setText(list.get(i));
-                    if (i == 0) {
-                        tablayout.addTab(tablayout.newTab().setCustomView(view), true);
-                    } else {
-                        tablayout.addTab(tablayout.newTab().setCustomView(view), false);
-                    }
-                }
+//                list.clear();
+//                list.add("在售车辆");
+//                list.add("动态");
+//                list.add("销售顾问");
+//                tablayout.removeAllTabs();
+//                for (int i = 0; i < list.size(); i++) {
+//                    View view = LayoutInflater.from(CheHangXXActivity.this).inflate(R.layout.item_tablayout, null);
+//                    TextView textTitle =  view.findViewById(R.id.textTitle);
+//                    textTitle.setText(list.get(i));
+//                    if (i == 0) {
+//                        tablayout.addTab(tablayout.newTab().setCustomView(view), true);
+//                    } else {
+//                        tablayout.addTab(tablayout.newTab().setCustomView(view), false);
+//                    }
+//                }
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
