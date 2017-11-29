@@ -150,7 +150,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
                     }
                 });
-                header_che_liang_xq.findViewById(R.id.buttonVR).setOnClickListener(new View.OnClickListener() {
+                header_che_liang_xq.findViewById(R.id.viewVideo).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         payVideo();
