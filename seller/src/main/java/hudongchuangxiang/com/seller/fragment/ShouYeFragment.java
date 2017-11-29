@@ -1,6 +1,7 @@
 package hudongchuangxiang.com.seller.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.YuYueSJActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShouYeFragment extends ZjbBaseFragment{
+public class ShouYeFragment extends ZjbBaseFragment implements View.OnClickListener {
 
 
     private View mInflate;
@@ -58,16 +60,29 @@ public class ShouYeFragment extends ZjbBaseFragment{
 
     @Override
     protected void initViews() {
-        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()),0,0);
+        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
     }
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewYuYueSJ).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.viewYuYueSJ:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), YuYueSJActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }

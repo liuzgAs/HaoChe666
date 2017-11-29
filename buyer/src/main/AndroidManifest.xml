@@ -59,7 +59,7 @@
         <activity android:name=".avtivity.PayVipActivity" />
         <activity android:name=".avtivity.PayVideoActivity" />
         <activity android:name=".avtivity.DuiBiActivity" />
-        <activity android:name=".avtivity.ChongZhiActivity"/>
+        <activity android:name=".avtivity.ChongZhiActivity" />
     </application>
 
 </manifest>

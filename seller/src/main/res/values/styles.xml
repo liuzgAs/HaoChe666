@@ -14,4 +14,12 @@
         <item name="android:windowIsTranslucent">false</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+
+    <style name="YuYueText">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textSize">@dimen/normal_textsize</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
