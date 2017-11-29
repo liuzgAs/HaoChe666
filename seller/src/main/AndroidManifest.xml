@@ -11,7 +11,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppThemeNoTranslucent"></activity>
+            android:theme="@style/AppThemeNoTranslucent" />
         <activity
             android:name=".activity.DengLuActivity"
             android:launchMode="singleTask">
@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".activity.WangJiMMActivity" />
         <activity android:name=".activity.ZhuCeActivity" />
-        <activity android:name=".activity.YuYueSJActivity"></activity>
+        <activity android:name=".activity.YuYueSJActivity" />
+        <activity android:name=".activity.CheLiangGLActivity"></activity>
     </application>
 
 </manifest>

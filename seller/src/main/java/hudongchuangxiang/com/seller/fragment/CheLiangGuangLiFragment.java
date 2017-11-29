@@ -13,12 +13,12 @@ import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChaXunFWFragment extends ZjbBaseFragment {
+public class CheLiangGuangLiFragment extends ZjbBaseFragment {
 
 
     private View mInflate;
 
-    public ChaXunFWFragment() {
+    public CheLiangGuangLiFragment() {
         // Required empty public constructor
     }
 
@@ -28,7 +28,7 @@ public class ChaXunFWFragment extends ZjbBaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (mInflate == null) {
-            mInflate = inflater.inflate(R.layout.fragment_cha_xun_fw, container, false);
+            mInflate = inflater.inflate(R.layout.fragment_che_liang_guang_li, container, false);
             init();
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
