@@ -84,7 +84,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
             View inflate = getLayoutInflater().inflate(R.layout.tabs_item, null);
             TextView tabsText =  inflate.findViewById(R.id.tabs_text);
             ImageView tabsImg =  inflate.findViewById(R.id.tabs_img);
-            if (i==1||i==2){
+            if (i==1){
                 tabsImg.setPadding(0,(int) DpUtils.convertDpToPixel(1f,this),0,(int) DpUtils.convertDpToPixel(1f,this));
             }
             tabsText.setText(tabsItem[i]);
