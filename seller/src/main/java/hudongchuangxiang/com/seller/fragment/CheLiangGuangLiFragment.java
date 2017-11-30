@@ -32,6 +32,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.BianJiCLActivity;
 import hudongchuangxiang.com.seller.activity.CheLiangXQActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import hudongchuangxiang.com.seller.constant.Constant;
@@ -212,6 +213,15 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
             public void onClick(View view) {
                 guanLiDialog.dismiss();
                 showFenXiangDialog();
+            }
+        });
+        dialog_chan_pin.findViewById(R.id.viewBianJi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), BianJiCLActivity.class);
+                startActivity(intent);
+                guanLiDialog.dismiss();
             }
         });
         Window dialogWindow = guanLiDialog.getWindow();

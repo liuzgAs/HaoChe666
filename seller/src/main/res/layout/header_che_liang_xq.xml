@@ -98,16 +98,8 @@
         android:background="@color/white" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
         android:text="视频看车"
-        android:textColor="@color/light_black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        style="@style/textItemTitle" />
     <RelativeLayout
         android:id="@+id/viewVideo"
         android:background="@color/white"
