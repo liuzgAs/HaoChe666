@@ -89,11 +89,6 @@ public class CheLiangGLActivity extends ZjbBaseActivity implements View.OnClickL
         }
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
     class MyPageAdapter extends FragmentPagerAdapter {
 
         private MyPageAdapter(FragmentManager fm) {

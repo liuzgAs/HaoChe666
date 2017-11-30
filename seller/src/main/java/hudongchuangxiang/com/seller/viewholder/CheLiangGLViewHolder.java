@@ -1,5 +1,6 @@
 package hudongchuangxiang.com.seller.viewholder;
 
+import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.constant.Constant;
 
 /**
  * Created by Administrator on 2017/3/28 0028.
@@ -21,10 +23,10 @@ public class CheLiangGLViewHolder extends BaseViewHolder<Integer> {
     private final TextView textPrice;
     private final ImageView imageBianJi;
 
-    public CheLiangGLViewHolder(ViewGroup parent, @LayoutRes int res,int position) {
+    public CheLiangGLViewHolder(ViewGroup parent, @LayoutRes int res, final int type) {
         super(parent, res);
         imageBianJi = $(R.id.imageBianJi);
-        switch (position) {
+        switch (type) {
             case 2:
                 imageBianJi.setVisibility(View.GONE);
                 break;
@@ -33,6 +35,16 @@ public class CheLiangGLViewHolder extends BaseViewHolder<Integer> {
                 break;
         }
         textPrice = $(R.id.textPrice);
+        imageBianJi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra(Constant.INTENT_KEY.position,getDataPosition());
+                intent.putExtra(Constant.INTENT_KEY.type,type);
+                intent.setAction(Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG);
+                getContext().sendBroadcast(intent);
+            }
+        });
     }
 
     @Override

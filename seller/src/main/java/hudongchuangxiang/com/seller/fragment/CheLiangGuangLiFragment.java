@@ -3,7 +3,11 @@ package hudongchuangxiang.com.seller.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +33,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import hudongchuangxiang.com.seller.R;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
+import hudongchuangxiang.com.seller.constant.Constant;
 import hudongchuangxiang.com.seller.viewholder.CheLiangGLViewHolder;
 import huisedebi.zjb.mylibrary.provider.DataProvider;
 import huisedebi.zjb.mylibrary.util.DpUtils;
@@ -46,6 +51,23 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
     private AlertDialog guanLiDialog;
     private Dialog fenXiangDialog;
     private int positionType;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG:
+                    int position = intent.getIntExtra(Constant.INTENT_KEY.position, -1);
+                    int type = intent.getIntExtra(Constant.INTENT_KEY.type, -1);
+                    if (type==positionType){
+                        cheLiangGLDialog(position);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     public CheLiangGuangLiFragment() {
         // Required empty public constructor
@@ -106,7 +128,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_che_liang_gl;
-                return new CheLiangGLViewHolder(parent, layout,positionType);
+                return new CheLiangGLViewHolder(parent, layout, positionType);
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
@@ -145,7 +167,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                cheLiangGLDialog();
+
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -169,7 +191,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
      * author： ZhangJieBo
      * date： 2017/11/30 0030 上午 9:56
      */
-    private void cheLiangGLDialog() {
+    private void cheLiangGLDialog(int position) {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View dialog_chan_pin = inflater.inflate(R.layout.dialog_che_liang_gl, null);
         dialog_chan_pin.findViewById(R.id.btnCancle).setOnClickListener(new View.OnClickListener() {
@@ -271,5 +293,19 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         page++;
         adapter.clear();
         adapter.addAll(DataProvider.getPersonList(page));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG);
+        getActivity().registerReceiver(receiver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(receiver);
     }
 }

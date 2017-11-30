@@ -98,27 +98,7 @@ public class Constant {
     }
 
     public static class BROADCASTCODE {
-        public static final String NearFilter01 = "NearFilter01";
-        public static final String PAY_RECEIVER = "pay_receiver";
-        public static final String WX_LOGIN = "wxLogin";
-        public static final String WX_SHARE = "wxShare";
-        public static final String WX_LOGIN_FAIL = "wxLoginFail";
-        public static final String WX_SHARE_FAIL = "wxShareFail";
-        public static final String EXTRAMAP = "extramap";
-        public static final String CITY_CHOOSE = "cityChoose";
-        public static final String ShangJia01 = "ShangJia01";
-        public static final String ShangJia02 = "ShangJia02";
-        public static final String address = "address";
-        public static final String zhiFuGuanBi = "zhiFuGuanBi";
-        public static final String ShuaXinDingDan = "ShuaXinDingDan";
-        public static final String ShuaXinYongJin = "ShuaXinYongJin";
-        public static final String ShuaXinWoDeDP = "ShuaXinWoDeDP";
-        public static final String FenXiangZCLJ = "FenXiangZCLJ";
-        public static final String GouWuCheNum = "GouWuCheNum";
-        public static final String GuanBiShouKuan = "GuanBiShouKuan";
-        public static final String ShaiXuan = "ShaiXuan";
-        public static final String FenXiangXiaZaiLJ = "FenXiangXiaZaiLJ";
-        public static final String VIP = "VIP";
+        public static final String CHE_LIANG_BIAN_JI_DIALOG = "che_liang_bian_ji_dialog";
     }
 
 }
