@@ -102,7 +102,7 @@ public class CheLiangGLActivity extends ZjbBaseActivity implements View.OnClickL
 
         @Override
         public Fragment getItem(int position) {
-            return new CheLiangGuangLiFragment();
+            return new CheLiangGuangLiFragment(position);
         }
 
         @Override

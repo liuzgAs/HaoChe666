@@ -1,6 +1,7 @@
 package hudongchuangxiang.com.seller.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -44,9 +45,15 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
     private int page = 1;
     private AlertDialog guanLiDialog;
     private Dialog fenXiangDialog;
+    private int positionType;
 
     public CheLiangGuangLiFragment() {
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public CheLiangGuangLiFragment(int position) {
+        this.positionType = position;
     }
 
 
@@ -99,7 +106,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_che_liang_gl;
-                return new CheLiangGLViewHolder(parent, layout);
+                return new CheLiangGLViewHolder(parent, layout,positionType);
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {

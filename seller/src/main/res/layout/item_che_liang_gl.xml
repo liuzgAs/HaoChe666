@@ -61,6 +61,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/imageBianJi"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
