@@ -5,11 +5,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -32,6 +37,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
+    private AlertDialog guanLiDialog;
 
     public CheLiangGuangLiFragment() {
         // Required empty public constructor
@@ -126,6 +132,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                cheLiangGLDialog();
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -142,6 +149,33 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
             }
         });
         recyclerView.setRefreshListener(this);
+    }
+
+    /**
+     * des： 车辆管理dialog
+     * author： ZhangJieBo
+     * date： 2017/11/30 0030 上午 9:56
+     */
+    private void cheLiangGLDialog() {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View dialog_chan_pin = inflater.inflate(R.layout.dialog_che_liang_gl, null);
+        dialog_chan_pin.findViewById(R.id.btnCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guanLiDialog.dismiss();
+            }
+        });
+        guanLiDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
+                .setView(dialog_chan_pin)
+                .create();
+        guanLiDialog.show();
+        Window dialogWindow = guanLiDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        DisplayMetrics d = CheLiangGuangLiFragment.this.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+        lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
+        dialogWindow.setAttributes(lp);
     }
 
     @Override
