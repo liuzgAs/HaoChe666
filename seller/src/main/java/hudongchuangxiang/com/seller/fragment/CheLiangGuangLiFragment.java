@@ -1,6 +1,8 @@
 package hudongchuangxiang.com.seller.fragment;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +12,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -38,6 +43,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
     private AlertDialog guanLiDialog;
+    private Dialog fenXiangDialog;
 
     public CheLiangGuangLiFragment() {
         // Required empty public constructor
@@ -169,6 +175,13 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
                 .setView(dialog_chan_pin)
                 .create();
         guanLiDialog.show();
+        dialog_chan_pin.findViewById(R.id.viewFenXiang).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guanLiDialog.dismiss();
+                showFenXiangDialog();
+            }
+        });
         Window dialogWindow = guanLiDialog.getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);
         dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
@@ -176,6 +189,64 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         DisplayMetrics d = CheLiangGuangLiFragment.this.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
         lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
         dialogWindow.setAttributes(lp);
+    }
+
+    /**
+     * des： 分享dilog
+     * author： ZhangJieBo
+     * date： 2017/11/30 0030 上午 10:38
+     */
+    private void showFenXiangDialog() {
+        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_fen_xiang_cl, null);
+        final View viewDialog = inflate.findViewById(R.id.viewDialog);
+        fenXiangDialog = new Dialog(getActivity(), R.style.FullScreendialog);
+        fenXiangDialog.setContentView(inflate);
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.wangshanghuitan);
+        animation.setFillAfter(true);
+        if (animation != null) {
+            viewDialog.startAnimation(animation);
+        }
+        inflate.findViewById(R.id.imageCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fenXiangDialogDismiss(viewDialog);
+            }
+        });
+        fenXiangDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                    fenXiangDialogDismiss(viewDialog);
+                }
+                return false;
+            }
+        });
+        fenXiangDialog.show();
+    }
+
+    private void fenXiangDialogDismiss(View viewDialog) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.wangshanghuitan_ni);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                fenXiangDialog.dismiss();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        if (animation != null) {
+            viewDialog.startAnimation(animation);
+        }
     }
 
     @Override
