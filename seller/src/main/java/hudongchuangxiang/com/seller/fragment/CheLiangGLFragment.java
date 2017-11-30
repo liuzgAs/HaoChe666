@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class CheLiangGLFragment extends ZjbBaseFragment {
 
     private View mInflate;
     private View viewBar;
+    private ImageView imageBack;
 
     public CheLiangGLFragment() {
         // Required empty public constructor
@@ -63,14 +65,16 @@ public class CheLiangGLFragment extends ZjbBaseFragment {
 
     @Override
     protected void findID() {
-        tablayout = (TabLayout) mInflate.findViewById(R.id.tablayout);
-        viewPager = (ViewPager) mInflate.findViewById(R.id.viewPager);
+        tablayout = mInflate.findViewById(R.id.tablayout);
+        viewPager = mInflate.findViewById(R.id.viewPager);
+        imageBack = mInflate.findViewById(R.id.imageBack);
         viewBar = mInflate.findViewById(R.id.viewBar);
     }
 
     @Override
     protected void initViews() {
-        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()),0,0);
+        imageBack.setVisibility(View.GONE);
+        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
         ((TextView) mInflate.findViewById(R.id.textViewTitle)).setText("车辆管理");
         list.add("在售");
         list.add("待发布");

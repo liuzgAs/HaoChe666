@@ -24,7 +24,8 @@
         <activity android:name=".activity.WangJiMMActivity" />
         <activity android:name=".activity.ZhuCeActivity" />
         <activity android:name=".activity.YuYueSJActivity" />
-        <activity android:name=".activity.CheLiangGLActivity"></activity>
+        <activity android:name=".activity.CheLiangXQActivity" />
+        <activity android:name=".activity.PayVideoActivity" />
     </application>
 
 </manifest>

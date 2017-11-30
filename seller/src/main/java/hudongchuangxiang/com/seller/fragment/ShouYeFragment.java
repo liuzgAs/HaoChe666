@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hudongchuangxiang.com.seller.R;
-import hudongchuangxiang.com.seller.activity.CheLiangGLActivity;
+import hudongchuangxiang.com.seller.activity.MainActivity;
 import hudongchuangxiang.com.seller.activity.YuYueSJActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
@@ -80,8 +80,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements View.OnClickListe
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewCheLiang:
-                intent.setClass(getActivity(), CheLiangGLActivity.class);
-                startActivity(intent);
+                ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
                 break;
             case R.id.viewYuYueSJ:
                 intent.setClass(getActivity(), YuYueSJActivity.class);

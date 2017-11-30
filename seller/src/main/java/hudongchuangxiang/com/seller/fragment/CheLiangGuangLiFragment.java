@@ -32,6 +32,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.CheLiangXQActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import hudongchuangxiang.com.seller.constant.Constant;
 import hudongchuangxiang.com.seller.viewholder.CheLiangGLViewHolder;
@@ -59,7 +60,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
                 case Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG:
                     int position = intent.getIntExtra(Constant.INTENT_KEY.position, -1);
                     int type = intent.getIntExtra(Constant.INTENT_KEY.type, -1);
-                    if (type==positionType){
+                    if (type == positionType) {
                         cheLiangGLDialog(position);
                     }
                     break;
@@ -167,7 +168,9 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), CheLiangXQActivity.class);
+                startActivity(intent);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
