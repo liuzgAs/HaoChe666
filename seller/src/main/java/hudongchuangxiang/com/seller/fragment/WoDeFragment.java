@@ -16,6 +16,7 @@ import hudongchuangxiang.com.seller.activity.SheZhiActivity;
 import hudongchuangxiang.com.seller.activity.WoDeFSActivity;
 import hudongchuangxiang.com.seller.activity.WoDeQianBaoActivity;
 import hudongchuangxiang.com.seller.activity.XiaoXiZXActivity;
+import hudongchuangxiang.com.seller.activity.YiJianFKActivity;
 import hudongchuangxiang.com.seller.activity.ZhangHaoGLActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.customview.HeadZoomScrollView;
@@ -86,6 +87,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewXiaoXi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewWoDeFS).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSheZhi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewYiJianFK).setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +99,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewYiJianFK:
+                intent.setClass(getActivity(), YiJianFKActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewSheZhi:
                 intent.setClass(getActivity(), SheZhiActivity.class);
                 startActivity(intent);

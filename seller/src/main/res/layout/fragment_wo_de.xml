@@ -413,6 +413,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/viewYiJianFK"
                     android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -75,7 +75,8 @@
         <activity
             android:name=".activity.ChaChuXianActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.ShenQingSYActivity"></activity>
+        <activity android:name=".activity.ShenQingSYActivity" />
+        <activity android:name=".activity.YiJianFKActivity"></activity>
     </application>
 
 </manifest>
