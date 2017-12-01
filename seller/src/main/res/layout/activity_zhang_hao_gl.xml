@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="hudongchuangxiang.com.seller.activity.ZhangHaoGLActivity">
+
+    <include
+        android:id="@+id/includeViewBar"
+        layout="@layout/view_bar_white" />
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:layout_below="@+id/includeViewBar"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
+    <Button
+        android:text="新增子账户"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        style="@style/btnYuanJiao" />
+</RelativeLayout>

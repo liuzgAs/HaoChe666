@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/layout_selector_white_system_gray"
+    android:layout_height="80dp">
+    <ImageView
+        android:id="@+id/imageHead"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/zizhanghao"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_alignTop="@+id/imageHead"
+        android:layout_toRightOf="@+id/imageHead"
+        android:textSize="@dimen/normal_textsize"
+        android:textColor="@color/light_black"
+        android:text="李大大"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignBottom="@+id/imageHead"
+        android:layout_toRightOf="@+id/imageHead"
+        android:textSize="@dimen/normal_textsize"
+        android:text="账号：15871105320"
+        android:textColor="@color/text_gray"
+        android:id="@+id/textZhangHao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_alignBaseline="@+id/textZhangHao"
+        android:textSize="@dimen/normal_textsize"
+        android:text="密码：484532"
+        android:textColor="@color/text_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

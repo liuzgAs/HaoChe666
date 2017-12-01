@@ -131,6 +131,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -155,6 +156,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -179,6 +181,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -210,6 +213,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -234,6 +238,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -260,6 +265,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -292,6 +298,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -316,6 +323,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -340,6 +348,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -371,6 +380,8 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
+                    android:id="@+id/viewZhangHaoGL"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -395,6 +406,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -421,6 +433,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

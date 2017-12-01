@@ -1,6 +1,7 @@
 package hudongchuangxiang.com.seller.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.ZhangHaoGLActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.customview.HeadZoomScrollView;
 import huisedebi.zjb.mylibrary.util.DpUtils;
@@ -16,7 +18,7 @@ import huisedebi.zjb.mylibrary.util.ScreenUtils;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WoDeFragment extends ZjbBaseFragment {
+public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListener {
 
 
     private View mInflate;
@@ -70,11 +72,24 @@ public class WoDeFragment extends ZjbBaseFragment {
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewZhangHaoGL).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.viewZhangHaoGL:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ZhangHaoGLActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }

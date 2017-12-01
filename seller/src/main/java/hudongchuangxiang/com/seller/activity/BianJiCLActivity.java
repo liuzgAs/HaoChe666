@@ -77,7 +77,7 @@ public class BianJiCLActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textTitle)).setText("编辑车辆");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("编辑车辆");
         picAdapter = new MyAdapter();
         gridView.setAdapter(picAdapter);
         if (picList.size() == 0) {
