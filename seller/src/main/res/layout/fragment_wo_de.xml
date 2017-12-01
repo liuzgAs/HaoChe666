@@ -293,12 +293,14 @@
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/viewDianPuShuJu"
                     android:background="@drawable/layout_selector_white_system_gray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -374,6 +376,7 @@
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="1dp"
                 android:layout_marginBottom="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"

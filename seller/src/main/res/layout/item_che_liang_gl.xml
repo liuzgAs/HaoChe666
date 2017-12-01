@@ -32,13 +32,13 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginTop="5dp"
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
+        android:layout_marginTop="5dp"
         android:text="上牌时间：2017年4月 公里数：5万"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/litterText" />
@@ -70,5 +70,11 @@
             android:src="@mipmap/bian_ji" />
     </RelativeLayout>
 
-
+    <hudongchuangxiang.com.seller.customview.JiaoBiao
+        android:id="@+id/viewJiaoBiao"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
 </RelativeLayout>

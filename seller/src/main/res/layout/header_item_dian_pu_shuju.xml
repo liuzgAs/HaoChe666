@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight">
+
+        <TextView
+            style="@style/textItemTitle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="TOP3浏览" />
+        <TextView
+            android:id="@+id/textTip"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/textGold"
+            android:text="要加大分享力度哦！"
+            android:background="@drawable/shape_gold1dp_topleft_butleft_butrigth_20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp" />
+    </RelativeLayout>
+</RelativeLayout>

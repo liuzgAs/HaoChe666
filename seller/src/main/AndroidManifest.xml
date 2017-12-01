@@ -28,7 +28,8 @@
         <activity android:name=".activity.PayVideoActivity" />
         <activity android:name=".activity.BianJiCLActivity" />
         <activity android:name=".activity.ZhangHaoGLActivity" />
-        <activity android:name=".activity.BianJiDPActivity"></activity>
+        <activity android:name=".activity.BianJiDPActivity" />
+        <activity android:name=".activity.DianPuShuJuActivity"></activity>
     </application>
 
 </manifest>
