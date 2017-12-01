@@ -53,7 +53,7 @@ public class YuYueSJActivity extends ZjbBaseActivity implements View.OnClickList
         Intent intent =new Intent();
         switch (view.getId()) {
             case R.id.buttonTiJiao:
-                intent.setClass(this,YuYueSJActivity.class);
+                intent.setClass(this,YuYueCGActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageBack:
