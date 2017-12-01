@@ -20,6 +20,7 @@
         app:layout_progress="@layout/view_progress"
         app:scrollbarStyle="insideOverlay" />
     <Button
+        android:id="@+id/btnXinZengZH"
         android:text="新增子账户"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

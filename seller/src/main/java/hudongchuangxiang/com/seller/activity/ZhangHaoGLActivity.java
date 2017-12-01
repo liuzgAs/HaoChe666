@@ -2,10 +2,15 @@ package hudongchuangxiang.com.seller.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -19,11 +24,13 @@ import java.util.List;
 import hudongchuangxiang.com.seller.R;
 import hudongchuangxiang.com.seller.base.ZjbBaseActivity;
 import hudongchuangxiang.com.seller.viewholder.MyBaseViewHolder;
+import huisedebi.zjb.mylibrary.util.DpUtils;
 
 public class ZhangHaoGLActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
+    private AlertDialog xinZengDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,7 @@ public class ZhangHaoGLActivity extends ZjbBaseActivity implements View.OnClickL
 
     @Override
     protected void initViews() {
-        ((TextView)findViewById(R.id.textViewTitle)).setText("账号管理");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("账号管理");
         initRecycler();
     }
 
@@ -86,16 +93,32 @@ public class ZhangHaoGLActivity extends ZjbBaseActivity implements View.OnClickL
 
             }
         });
+        adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = new View(ZhangHaoGLActivity.this);
+                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(60f, ZhangHaoGLActivity.this)));
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        });
     }
 
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.btnXinZengZH).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
         list.add(1);
         list.add(1);
         list.add(1);
@@ -105,7 +128,22 @@ public class ZhangHaoGLActivity extends ZjbBaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
+            case R.id.btnXinZengZH:
+                LayoutInflater inflater = LayoutInflater.from(ZhangHaoGLActivity.this);
+                View dialog_chan_pin = inflater.inflate(R.layout.dialog_xing_zeng_zh, null);
+                xinZengDialog = new AlertDialog.Builder(ZhangHaoGLActivity.this, R.style.dialog)
+                        .setView(dialog_chan_pin)
+                        .create();
+                xinZengDialog.show();
+                Window dialogWindow = xinZengDialog.getWindow();
+                dialogWindow.setGravity(Gravity.BOTTOM);
+                dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
+                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+                DisplayMetrics d = ZhangHaoGLActivity.this.getResources().getDisplayMetrics();
+                lp.width = (int) (d.widthPixels * 1);
+                dialogWindow.setAttributes(lp);
+                break;
             case R.id.imageBack:
                 finish();
                 break;
