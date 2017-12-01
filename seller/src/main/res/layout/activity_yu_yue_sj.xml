@@ -268,11 +268,6 @@
 
     <Button
         android:id="@+id/buttonTiJiao"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normalItemHeight"
-        android:layout_alignParentBottom="true"
-        android:background="@color/basic_color01"
         android:text="提交"
-        android:textColor="@color/white"
-        android:textSize="@dimen/bigText" />
+        style="@style/btnDiBu" />
 </RelativeLayout>

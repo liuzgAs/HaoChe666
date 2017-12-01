@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.BianJiDPActivity;
 import hudongchuangxiang.com.seller.activity.ZhangHaoGLActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.customview.HeadZoomScrollView;
@@ -73,6 +74,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     @Override
     protected void setListeners() {
         mInflate.findViewById(R.id.viewZhangHaoGL).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewDianPuBianJi).setOnClickListener(this);
     }
 
     @Override
@@ -82,9 +84,13 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewDianPuBianJi:
+                intent.setClass(getActivity(), BianJiDPActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewZhangHaoGL:
-                Intent intent = new Intent();
                 intent.setClass(getActivity(), ZhangHaoGLActivity.class);
                 startActivity(intent);
                 break;

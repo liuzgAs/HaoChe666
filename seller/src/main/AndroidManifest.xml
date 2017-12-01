@@ -27,7 +27,8 @@
         <activity android:name=".activity.CheLiangXQActivity" />
         <activity android:name=".activity.PayVideoActivity" />
         <activity android:name=".activity.BianJiCLActivity" />
-        <activity android:name=".activity.ZhangHaoGLActivity"></activity>
+        <activity android:name=".activity.ZhangHaoGLActivity" />
+        <activity android:name=".activity.BianJiDPActivity"></activity>
     </application>
 
 </manifest>
