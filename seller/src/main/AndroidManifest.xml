@@ -63,6 +63,18 @@
         <activity
             android:name=".activity.SheZhiActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ChaWeiBaoActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ChaWeiZhangActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ChaXunLSActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ChaChuXianActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

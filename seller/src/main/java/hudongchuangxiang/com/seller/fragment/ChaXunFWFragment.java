@@ -1,6 +1,7 @@
 package hudongchuangxiang.com.seller.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,13 +10,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.ChaChuXianActivity;
+import hudongchuangxiang.com.seller.activity.ChaWeiBaoActivity;
+import hudongchuangxiang.com.seller.activity.ChaWeiZhangActivity;
+import hudongchuangxiang.com.seller.activity.ChaXunLSActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChaXunFWFragment extends ZjbBaseFragment {
+public class ChaXunFWFragment extends ZjbBaseFragment implements View.OnClickListener {
 
 
     private View mInflate;
@@ -55,7 +60,7 @@ public class ChaXunFWFragment extends ZjbBaseFragment {
     @Override
     protected void findID() {
         mRelaTitleStatue = mInflate.findViewById(R.id.relaTitleStatue);
-        ((TextView)mInflate.findViewById(R.id.textViewTitle)).setText("服务查询");
+        ((TextView) mInflate.findViewById(R.id.textViewTitle)).setText("服务查询");
     }
 
     @Override
@@ -68,11 +73,39 @@ public class ChaXunFWFragment extends ZjbBaseFragment {
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewChaWeiXiu).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewChaWeiZhang).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewChaChuXian).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewChaXunLS).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()) {
+            case R.id.viewChaXunLS:
+                intent.setClass(getActivity(), ChaXunLSActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.viewChaChuXian:
+                intent.setClass(getActivity(), ChaChuXianActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.viewChaWeiXiu:
+                intent.setClass(getActivity(), ChaWeiBaoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.viewChaWeiZhang:
+                intent.setClass(getActivity(), ChaWeiZhangActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }
