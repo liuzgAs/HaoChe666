@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="hudongchuangxiang.com.seller.activity.YuYueCGActivity">
+
+    <include layout="@layout/view_bar_white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_marginTop="80dp"
+            android:id="@+id/image0000"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/chenggong" />
+
+        <TextView
+            android:id="@+id/text0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image0000"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="恭喜您预约成功"
+            android:textColor="@color/light_black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text0001"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text0000"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="我们的工作人员将在第一时间上门安排拍摄时间"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <LinearLayout
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text0001">
+
+            <Button
+                android:text="继续预约"
+                android:layout_marginRight="10dp"
+                style="@style/btnYuanJiao"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="我的预约"
+                android:layout_marginLeft="10dp"
+                style="@style/btnYuanJiao"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
