@@ -17,6 +17,7 @@ import java.util.List;
 import hudongchuangxiang.com.seller.R;
 import hudongchuangxiang.com.seller.base.ZjbBaseActivity;
 import hudongchuangxiang.com.seller.viewholder.DianPuShuJuViewHolder;
+import huisedebi.zjb.mylibrary.util.DpUtils;
 
 public class DianPuShuJuActivity extends ZjbBaseActivity implements View.OnClickListener {
 
@@ -74,6 +75,19 @@ public class DianPuShuJuActivity extends ZjbBaseActivity implements View.OnClick
             public View onCreateView(ViewGroup parent) {
                 View view = LayoutInflater.from(DianPuShuJuActivity.this).inflate(R.layout.header_dian_pu_shu_ju, null);
                 return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        });
+        adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = new View(DianPuShuJuActivity.this);
+                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(40f,DianPuShuJuActivity.this)));
+                return null;
             }
 
             @Override
