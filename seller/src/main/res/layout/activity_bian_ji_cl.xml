@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginTop="5dp"
                 style="@style/textItemTitle"
                 android:text="车辆照片" />
 
