@@ -60,6 +60,9 @@
         <activity
             android:name=".activity.WoDeFSActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.SheZhiActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

@@ -49,6 +49,7 @@
             android:textSize="@dimen/titleSize" />
 
         <RelativeLayout
+            android:id="@+id/viewSheZhi"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true">
