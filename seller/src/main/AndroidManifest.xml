@@ -21,18 +21,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WangJiMMActivity" />
-        <activity android:name=".activity.ZhuCeActivity" />
-        <activity android:name=".activity.YuYueSJActivity" />
-        <activity android:name=".activity.CheLiangXQActivity" />
-        <activity android:name=".activity.PayVideoActivity" />
-        <activity android:name=".activity.BianJiCLActivity" />
-        <activity android:name=".activity.ZhangHaoGLActivity" />
-        <activity android:name=".activity.BianJiDPActivity" />
-        <activity android:name=".activity.DianPuShuJuActivity" />
-        <activity android:name=".activity.DingDanGLActivity" />
-        <activity android:name=".activity.WoDeQianBaoActivity"></activity>
-        <activity android:name=".activity.XiaoXiZXActivity"></activity>
+        <activity
+            android:name=".activity.WangJiMMActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ZhuCeActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.YuYueSJActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.CheLiangXQActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.PayVideoActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.BianJiCLActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.ZhangHaoGLActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.BianJiDPActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.DianPuShuJuActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.DingDanGLActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.WoDeQianBaoActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".activity.XiaoXiZXActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".activity.WoDeFSActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

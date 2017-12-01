@@ -12,6 +12,7 @@ import hudongchuangxiang.com.seller.R;
 import hudongchuangxiang.com.seller.activity.BianJiDPActivity;
 import hudongchuangxiang.com.seller.activity.DianPuShuJuActivity;
 import hudongchuangxiang.com.seller.activity.DingDanGLActivity;
+import hudongchuangxiang.com.seller.activity.WoDeFSActivity;
 import hudongchuangxiang.com.seller.activity.WoDeQianBaoActivity;
 import hudongchuangxiang.com.seller.activity.XiaoXiZXActivity;
 import hudongchuangxiang.com.seller.activity.ZhangHaoGLActivity;
@@ -83,6 +84,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewDiangDanGL).setOnClickListener(this);
         mInflate.findViewById(R.id.viewWoDeQianBao).setOnClickListener(this);
         mInflate.findViewById(R.id.viewXiaoXi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewWoDeFS).setOnClickListener(this);
     }
 
     @Override
@@ -94,6 +96,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewWoDeFS:
+                intent.setClass(getActivity(), WoDeFSActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewXiaoXi:
                 intent.setClass(getActivity(), XiaoXiZXActivity.class);
                 startActivity(intent);
@@ -105,7 +111,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
             case R.id.viewDiangDanGL:
                 intent.setClass(getActivity(), DingDanGLActivity.class);
                 startActivity(intent);
-                break; case R.id.viewDianPuShuJu:
+                break;
+            case R.id.viewDianPuShuJu:
                 intent.setClass(getActivity(), DianPuShuJuActivity.class);
                 startActivity(intent);
                 break;

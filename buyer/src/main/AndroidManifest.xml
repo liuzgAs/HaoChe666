@@ -39,28 +39,69 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".avtivity.ZuJiActivity" />
-        <activity android:name=".avtivity.WoYaoMcActivity" />
-        <activity android:name=".avtivity.CheLiangXQActivity" />
-        <activity android:name=".avtivity.WoDeGZActivity" />
-        <activity android:name=".avtivity.CheLiangDBActivity" />
-        <activity android:name=".avtivity.WoDeDDActivity" />
-        <activity android:name=".avtivity.ChaXunFWActivity" />
-        <activity android:name=".avtivity.SheZhiActivity" />
-        <activity android:name=".avtivity.ChaWeiBaoActivity" />
-        <activity android:name=".avtivity.ChaWeiZhangActivity" />
-        <activity android:name=".avtivity.ChaXunLSActivity" />
-        <activity android:name=".avtivity.ChaChuXianActivity" />
-        <activity android:name=".avtivity.CheHangXXActivity" />
-        <activity android:name=".avtivity.ZhuCeActivity" />
-        <activity android:name=".avtivity.WangJiMMActivity" />
-        <activity android:name=".avtivity.DingDanGLActivity" />
-        <activity android:name=".avtivity.PinPaiXCActivity" />
-        <activity android:name=".avtivity.PayVipActivity" />
-        <activity android:name=".avtivity.PayVideoActivity" />
-        <activity android:name=".avtivity.DuiBiActivity" />
-        <activity android:name=".avtivity.ChongZhiActivity" />
-        <activity android:name=".avtivity.XiaoXiZXActivity"></activity>
+        <activity
+            android:name=".avtivity.ZuJiActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WoYaoMcActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.CheLiangXQActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WoDeGZActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.CheLiangDBActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WoDeDDActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChaXunFWActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.SheZhiActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChaWeiBaoActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChaWeiZhangActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChaXunLSActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChaChuXianActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.CheHangXXActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ZhuCeActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WangJiMMActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.DingDanGLActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.PinPaiXCActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.PayVipActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.PayVideoActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.DuiBiActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChongZhiActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
