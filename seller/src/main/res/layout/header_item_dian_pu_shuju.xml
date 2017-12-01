@@ -8,7 +8,6 @@
         android:layout_height="@dimen/normalItemHeight">
 
         <TextView
-            android:layout_marginTop="5dp"
             style="@style/textItemTitle"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"

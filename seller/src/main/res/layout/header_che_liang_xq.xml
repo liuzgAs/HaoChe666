@@ -98,7 +98,6 @@
         android:background="@color/white" />
 
     <TextView
-        android:layout_marginTop="5dp"
         android:text="视频看车"
         style="@style/textItemTitle" />
     <RelativeLayout
