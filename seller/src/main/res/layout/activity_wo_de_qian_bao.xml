@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".activity.WoDeQianBaoActivity">
+
+    <include layout="@layout/view_bar_white" />
+
+    <android.support.v7.widget.CardView
+        app:cardPreventCornerOverlap="true"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@mipmap/wo_de_qian_bao_top">
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/MoreBigText"
+                android:text="我的余额"
+                android:id="@+id/text0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:textColor="@color/textGold"
+                android:layout_below="@+id/text0000"
+                android:layout_centerHorizontal="true"
+                android:text="468.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/basic_color"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

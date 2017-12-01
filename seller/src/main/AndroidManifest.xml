@@ -29,8 +29,9 @@
         <activity android:name=".activity.BianJiCLActivity" />
         <activity android:name=".activity.ZhangHaoGLActivity" />
         <activity android:name=".activity.BianJiDPActivity" />
-        <activity android:name=".activity.DianPuShuJuActivity"/>
+        <activity android:name=".activity.DianPuShuJuActivity" />
         <activity android:name=".activity.DingDanGLActivity" />
+        <activity android:name=".activity.WoDeQianBaoActivity"></activity>
     </application>
 
 </manifest>
