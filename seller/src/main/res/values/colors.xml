@@ -11,4 +11,8 @@
     <color name="light_black">#333333</color>
     <color name="index_top">#7c7c7c</color>
     <color name="zhangHaoGLText">#534526</color>
+    <color name="dingDanChaWeiXiu">#e78888</color>
+    <color name="dingDanChaWeiZhang">#85b466</color>
+    <color name="dingDanChaLiShi">#838fe6</color>
+    <color name="dingDanChaChuXian">#7cc5c3</color>
 </resources>
