@@ -53,10 +53,10 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.WoDeQianBaoActivity"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.XiaoXiZXActivity"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.WoDeFSActivity"
             android:launchMode="singleTop" />
@@ -75,6 +75,7 @@
         <activity
             android:name=".activity.ChaChuXianActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".activity.ShenQingSYActivity"></activity>
     </application>
 
 </manifest>

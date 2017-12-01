@@ -106,9 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normalItemHeight"
                 android:layout_toEndOf="@+id/imageView55"
-                android:layout_toLeftOf="@+id/textLoginType"
                 android:layout_toRightOf="@+id/imageView55"
-                android:layout_toStartOf="@+id/textLoginType"
                 android:background="@null"
                 android:hint="请输入手机号"
                 android:inputType="number"
@@ -119,17 +117,6 @@
                 android:textCursorDrawable="@drawable/mycursor"
                 android:textSize="@dimen/normal_textsize" />
 
-            <TextView
-                android:id="@+id/textLoginType"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:text="验证码登录"
-                android:textColor="@color/textGold"
-                android:textSize="@dimen/normal_textsize" />
         </RelativeLayout>
 
         <TextView
@@ -164,9 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normalItemHeight"
                 android:layout_toEndOf="@+id/imageView56"
-                android:layout_toLeftOf="@+id/textWangJiMM"
                 android:layout_toRightOf="@+id/imageView56"
-                android:layout_toStartOf="@+id/textWangJiMM"
                 android:background="@null"
                 android:hint="请输入密码"
                 android:inputType="textPassword"
@@ -176,17 +161,6 @@
                 android:textCursorDrawable="@drawable/mycursor"
                 android:textSize="@dimen/normal_textsize" />
 
-            <TextView
-                android:id="@+id/textWangJiMM"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:text="忘记密码"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/normal_textsize" />
         </RelativeLayout>
 
         <TextView
@@ -197,91 +171,19 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@color/basic_color" />
-
-        <RelativeLayout
-            android:id="@+id/viewMsg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/normalItemHeight"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp">
-
-            <ImageView
-                android:id="@+id/imageView57"
-                android:layout_width="15dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/denglu_mima" />
-
-            <huisedebi.zjb.mylibrary.customview.EditTextWithDel
-                android:id="@+id/edit03"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/normalItemHeight"
-                android:layout_toEndOf="@+id/imageView57"
-                android:layout_toLeftOf="@+id/textMsg"
-                android:layout_toRightOf="@+id/imageView57"
-                android:layout_toStartOf="@+id/textMsg"
-                android:background="@null"
-                android:hint="请输入验证码"
-                android:inputType="number"
-                android:maxLength="6"
-                android:paddingLeft="15dp"
-                android:singleLine="true"
-                android:textColorHint="@color/light_black"
-                android:textCursorDrawable="@drawable/mycursor"
-                android:textSize="@dimen/normal_textsize" />
-
-            <TextView
-                android:id="@+id/textMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:text="发送验证码"
-                android:textColor="@color/textGold"
-                android:textSize="@dimen/normal_textsize" />
-        </RelativeLayout>
-
         <TextView
-            android:id="@+id/line03"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/textWangJiMM"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
             android:layout_marginRight="20dp"
-            android:background="@color/basic_color" />
+            android:gravity="center_vertical"
+            android:text="忘记密码"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/normal_textsize" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="8dp">
 
-            <ImageView
-                android:id="@+id/imageAgreement"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:padding="10dp"
-                android:src="@mipmap/xuanzhong" />
-
-            <TextView
-                android:id="@+id/textView155"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/imageAgreement"
-                android:layout_toRightOf="@+id/imageAgreement"
-                android:text="同意《好车666用户协议》"
-                android:textSize="@dimen/litterText" />
-        </RelativeLayout>
 
         <Button
             android:id="@+id/buttonLogin"
@@ -304,9 +206,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/shape_basic01_1dp_25dp"
-            android:text="新用户注册"
-            android:textColor="@color/light_black"
+            android:background="@drawable/shape_basic_1dp_25dp"
+            android:text="没有账号？申请使用"
+            android:textColor="@color/textGold"
             android:textSize="16dp" />
 
         <RelativeLayout
