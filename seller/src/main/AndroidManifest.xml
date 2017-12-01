@@ -32,6 +32,7 @@
         <activity android:name=".activity.DianPuShuJuActivity" />
         <activity android:name=".activity.DingDanGLActivity" />
         <activity android:name=".activity.WoDeQianBaoActivity"></activity>
+        <activity android:name=".activity.XiaoXiZXActivity"></activity>
     </application>
 
 </manifest>

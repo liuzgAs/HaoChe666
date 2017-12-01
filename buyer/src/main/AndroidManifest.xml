@@ -60,6 +60,7 @@
         <activity android:name=".avtivity.PayVideoActivity" />
         <activity android:name=".avtivity.DuiBiActivity" />
         <activity android:name=".avtivity.ChongZhiActivity" />
+        <activity android:name=".avtivity.XiaoXiZXActivity"></activity>
     </application>
 
 </manifest>
