@@ -1,10 +1,11 @@
 
 package me.imid.swipebacklayout.lib.app;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.View;
+
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 public class SwipeBackPreferenceActivity extends PreferenceActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
@@ -25,8 +26,9 @@ public class SwipeBackPreferenceActivity extends PreferenceActivity implements S
     @Override
     public View findViewById(int id) {
         View v = super.findViewById(id);
-        if (v == null && mHelper != null)
+        if (v == null && mHelper != null) {
             return mHelper.findViewById(id);
+        }
         return v;
     }
     
