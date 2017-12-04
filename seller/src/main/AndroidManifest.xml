@@ -78,7 +78,8 @@
         <activity android:name=".activity.ShenQingSYActivity" />
         <activity android:name=".activity.YiJianFKActivity" />
         <activity android:name=".activity.YuYueCGActivity" />
-        <activity android:name=".activity.GuanLiDYActivity"></activity>
+        <activity android:name=".activity.GuanLiDYActivity" />
+        <activity android:name=".activity.TianJiaDingYueActivity"></activity>
     </application>
 
 </manifest>

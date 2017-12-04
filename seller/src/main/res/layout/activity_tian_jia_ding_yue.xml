@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="hudongchuangxiang.com.seller.activity.TianJiaDingYueActivity">
+    <include layout="@layout/view_bar_white"/>
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:divider="@drawable/line"
+                app:dividerPadding="10dp"
+                app:showDividers="middle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normalItemHeight"
+                    android:background="@drawable/layout_selector_white_system_gray">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="品牌"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/normal_textsize" />
+
+                    <ImageView
+                        android:id="@+id/image0000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/image0000"
+                        android:text="大众尚酷"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/normal_textsize" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normalItemHeight"
+                    android:background="@drawable/layout_selector_white_system_gray">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="上牌年限"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/normal_textsize" />
+
+                    <ImageView
+                        android:id="@+id/image0100"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/image0100"
+                        android:text="不限年限"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/normal_textsize" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normalItemHeight"
+                    android:background="@drawable/layout_selector_white_system_gray">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="排放"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/normal_textsize" />
+
+                    <ImageView
+                        android:id="@+id/image0200"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/image0200"
+                        android:text="国三"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/normal_textsize" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normalItemHeight"
+                    android:background="@drawable/layout_selector_white_system_gray">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="品牌"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/normal_textsize" />
+
+                    <EditText
+                        android:id="@+id/edit0000"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/background"
+                        android:inputType="number"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:id="@+id/text0300"
+                        android:layout_width="10dp"
+                        android:layout_height="2dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/edit0000"
+                        android:background="@color/text_gray" />
+
+                    <EditText
+                        android:id="@+id/edit0001"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/text0300"
+                        android:background="@color/background"
+                        android:inputType="number"
+                        android:maxLines="1" />
+                </RelativeLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:background="@color/white"
+                app:divider="@drawable/line"
+                app:dividerPadding="10dp"
+                app:showDividers="middle"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normalItemHeight"
+                    android:background="@drawable/layout_selector_white_system_gray">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="收车区域"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/normal_textsize" />
+
+                    <ImageView
+                        android:id="@+id/image0400"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/image0400"
+                        android:text="添加"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/normal_textsize" />
+                </RelativeLayout>
+                <huisedebi.zjb.mylibrary.customview.GridView4ScrollView
+                    android:numColumns="4"
+                    android:id="@+id/gridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </huisedebi.zjb.mylibrary.customview.GridView4ScrollView>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:text="立即添加"
+        style="@style/btnDiBu"/>
+</LinearLayout>

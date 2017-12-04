@@ -1,5 +1,6 @@
 package hudongchuangxiang.com.seller.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -78,6 +79,7 @@ public class GuanLiDYActivity extends ZjbBaseActivity implements View.OnClickLis
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.viewAddDingYue).setOnClickListener(this);
     }
 
     @Override
@@ -87,7 +89,12 @@ public class GuanLiDYActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewAddDingYue:
+                intent.setClass(this, TianJiaDingYueActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageBack:
                 finish();
                 break;
