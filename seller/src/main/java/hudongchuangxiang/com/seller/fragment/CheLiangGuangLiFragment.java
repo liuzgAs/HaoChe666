@@ -58,9 +58,9 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             switch (action) {
-                case Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG:
-                    int position = intent.getIntExtra(Constant.INTENT_KEY.position, -1);
-                    int type = intent.getIntExtra(Constant.INTENT_KEY.TYPE, -1);
+                case Constant.BroadcastCode.CHE_LIANG_BIAN_JI_DIALOG:
+                    int position = intent.getIntExtra(Constant.IntentKey.position, -1);
+                    int type = intent.getIntExtra(Constant.IntentKey.TYPE, -1);
                     if (type == positionType) {
                         cheLiangGLDialog(position);
                     }
@@ -312,7 +312,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
     public void onStart() {
         super.onStart();
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG);
+        filter.addAction(Constant.BroadcastCode.CHE_LIANG_BIAN_JI_DIALOG);
         getActivity().registerReceiver(receiver, filter);
     }
 

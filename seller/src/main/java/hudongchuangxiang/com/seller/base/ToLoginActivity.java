@@ -21,7 +21,7 @@ public class ToLoginActivity {
      */
     public static void toLoginActivity(Context context) {
 //        MyApplication.getInstance().exit();
-        ACache aCache = ACache.get(context, Constant.ACACHE.APP);
+        ACache aCache = ACache.get(context, Constant.Acache.APP);
         aCache.clear();
         Intent intent = new Intent(context, DengLuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

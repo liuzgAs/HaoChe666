@@ -4,15 +4,21 @@ package hudongchuangxiang.com.seller.constant;
 import huisedebi.zjb.mylibrary.util.MD5Util;
 
 /**
- * Created by zjb on 2016/6/12.
+ *
+ * @author zjb
+ * @date 2016/6/12
  */
 public class Constant {
     public static String HOST = "http://" + MD5Util.getMD5Time();
-    public static int changeControl = 2017;//判断数据是否有改变
-    public static String WXAPPID = "wxfef0031f5d8f3ed0";//微信appid
-    public static String WXSCRENT = "02d7e0ca570f95630b552bd055fdd14a";//微信scrent
-    public static String QQ_ID = "1106239952";//qq
-    public static String QQ_KEY = "HcA9s2rpKkLO2M5w";//qq
+    /**判断数据是否有改变*/
+    public static int changeControl = 2017;
+    /**微信appid*/
+    public static String WXAPPID = "wxfef0031f5d8f3ed0";
+    /**微信scrent*/
+    public static String WXSCRENT = "02d7e0ca570f95630b552bd055fdd14a";
+    /**qq*/
+    public static String QQ_ID = "1106239952";
+    public static String QQ_KEY = "HcA9s2rpKkLO2M5w";
 
     public static class Url {
         /**
@@ -29,22 +35,22 @@ public class Constant {
         public static final String INDEX_VERSION = "";
     }
 
-    public static class INTENT_KEY {
+    public static class IntentKey {
         public static final String TYPE = "type";
         public static final String POSITION = "position";
     }
 
-    public static class REQUEST_RESULT_CODE {
+    public static class RequestResultCode {
         public static final int IMAGE_PICKER = 2029;
     }
 
-    public static class ACACHE {
+    public static class Acache {
         public static final String APP = "app";
         public static final String USER_INFO = "userInfo";
         public static final String TOKENTIME = "tokentime";
     }
 
-    public static class BROADCASTCODE {
+    public static class BroadcastCode {
         public static final String CHE_LIANG_BIAN_JI_DIALOG = "che_liang_bian_ji_dialog";
     }
 

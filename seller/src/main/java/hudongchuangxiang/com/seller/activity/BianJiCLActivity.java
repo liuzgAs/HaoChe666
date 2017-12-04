@@ -101,7 +101,7 @@ public class BianJiCLActivity extends ZjbBaseActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-            if (data != null && requestCode == Constant.REQUEST_RESULT_CODE.IMAGE_PICKER) {
+            if (data != null && requestCode == Constant.RequestResultCode.IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 picList.addAll(images);
                 if (picList.size() > 0) {
@@ -125,7 +125,7 @@ public class BianJiCLActivity extends ZjbBaseActivity implements View.OnClickLis
                 /*选中数量限制*/
                 mImagePicker.setSelectLimit(photoNum - picList.size());
                 intent.setClass(BianJiCLActivity.this, ImageGridActivity.class);
-                startActivityForResult(intent, Constant.REQUEST_RESULT_CODE.IMAGE_PICKER);
+                startActivityForResult(intent, Constant.RequestResultCode.IMAGE_PICKER);
                 break;
             default:
                 break;
