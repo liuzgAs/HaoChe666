@@ -27,7 +27,7 @@
             android:src="@mipmap/wang_ji_mm_phone" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -59,14 +59,14 @@
             android:src="@mipmap/wang_ji_mm_duanxin" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/editSms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/imageView82"
-            android:layout_toLeftOf="@+id/textView144"
+            android:layout_toLeftOf="@+id/textSms"
             android:layout_toRightOf="@+id/imageView82"
-            android:layout_toStartOf="@+id/textView144"
+            android:layout_toStartOf="@+id/textSms"
             android:background="@null"
             android:hint="请输入短信验证码"
             android:inputType="number"
@@ -74,7 +74,7 @@
             android:textSize="@dimen/normal_textsize" />
 
         <TextView
-            android:id="@+id/textView144"
+            android:id="@+id/textSms"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -89,7 +89,6 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-
         android:layout_height="@dimen/normalItemHeight"
         android:layout_marginTop="1dp"
         android:background="@color/white">
@@ -106,7 +105,7 @@
             android:src="@mipmap/wang_ji_mm_mima" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/editPsw01"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -114,6 +113,7 @@
             android:layout_toRightOf="@+id/imageView83"
             android:background="@null"
             android:hint="设置新密码"
+            android:inputType="textPassword"
             android:textSize="@dimen/normal_textsize" />
     </RelativeLayout>
 
@@ -135,7 +135,7 @@
             android:src="@mipmap/wang_ji_mm_mima" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/editPsw02"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -143,6 +143,7 @@
             android:layout_toRightOf="@+id/imageView84"
             android:background="@null"
             android:hint="确认密码"
+            android:inputType="textPassword"
             android:textSize="@dimen/normal_textsize" />
     </RelativeLayout>
 
@@ -151,15 +152,15 @@
         android:layout_height="match_parent">
 
         <Button
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:background="@color/basic_color01"
+            android:id="@+id/buttonTiJiao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/normalItemHeight"
-            android:text="提交"
-            android:id="@+id/button9"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@color/basic_color01"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
     </RelativeLayout>
 
 

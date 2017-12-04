@@ -3,11 +3,13 @@ package hudongchuangxiang.com.seller.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import hudongchuangxiang.com.seller.R;
 import hudongchuangxiang.com.seller.base.ZjbBaseActivity;
+import hudongchuangxiang.com.seller.constant.Constant;
 
 /**
  * 登录
@@ -27,6 +29,17 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     @Override
     protected void initSP() {
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String phone = intent.getStringExtra(Constant.IntentKey.VALUE);
+        if (!TextUtils.isEmpty(phone)){
+            editView[0].setText(phone);
+            editView[1].requestFocus();
+        }
     }
 
     @Override

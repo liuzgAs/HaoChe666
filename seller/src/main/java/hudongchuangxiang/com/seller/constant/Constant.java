@@ -45,6 +45,7 @@ public class Constant {
     public static class IntentKey {
         public static final String TYPE = "type";
         public static final String POSITION = "position";
+        public static final String VALUE = "value";
     }
 
     public static class RequestResultCode {
