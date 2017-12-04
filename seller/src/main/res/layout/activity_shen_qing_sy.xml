@@ -237,6 +237,8 @@
                     </RelativeLayout>
 
                     <ImageView
+                        android:scaleType="centerCrop"
+                        android:id="@+id/imageYingYeZZ"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </huisedebi.zjb.mylibrary.customview.SquareLayout>
@@ -273,6 +275,8 @@
                     </RelativeLayout>
 
                     <ImageView
+                        android:scaleType="centerCrop"
+                        android:id="@+id/imageMenTouZP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </huisedebi.zjb.mylibrary.customview.SquareLayout>

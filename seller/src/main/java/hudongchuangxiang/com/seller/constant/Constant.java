@@ -50,6 +50,7 @@ public class Constant {
 
     public static class RequestResultCode {
         public static final int IMAGE_PICKER = 2029;
+        public static final int IMAGE_PICKER01 = 2030;
     }
 
     public static class Acache {
