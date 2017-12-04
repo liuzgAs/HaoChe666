@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.haoche666.buyer.R;
@@ -39,9 +40,9 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
     public void init() {
         //添加当前界面到容器中
         changeControl = Constant.changeControl - 1;
-        ACache aCache = ACache.get(getActivity(), Constant.ACACHE.App);
-        userInfo = (UserInfo) aCache.getAsObject(Constant.ACACHE.USER_INFO);
-        tokenTime = aCache.getAsString(Constant.ACACHE.TOKENTIME);
+        ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
+        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
+        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         initSP();
         initIntent();
         findID();
@@ -81,7 +82,7 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
 
     public void showLoadingDialog() {
         if (mAlertDialog == null) {
-            View dialog_progress = getLayoutInflater(getArguments()).inflate(R.layout.view_progress01, null);
+            View dialog_progress = LayoutInflater.from(getActivity()).inflate(R.layout.view_progress01, null);
             mAlertDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
                     .setView(dialog_progress)
                     .setCancelable(false)

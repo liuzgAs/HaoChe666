@@ -1,7 +1,5 @@
 package com.haoche666.buyer.base;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -46,9 +44,9 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
 
     public void init() {
         MyApplication.getInstance().addActivity(this);
-        ACache aCache = ACache.get(this, Constant.ACACHE.App);
-        userInfo = (UserInfo) aCache.getAsObject(Constant.ACACHE.USER_INFO);
-        tokenTime = aCache.getAsString(Constant.ACACHE.TOKENTIME);
+        ACache aCache = ACache.get(this, Constant.Acache.APP);
+        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
+        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         changeControl = Constant.changeControl-1;
         initSP();
         initIntent();
@@ -141,17 +139,6 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
             } catch (Exception e) {
             }
         }
-    }
-
-    /**
-     *
-     * 判断某activity是否处于栈顶
-     * @return  true在栈顶 false不在栈顶
-     */
-    private boolean isActivityTop(Class cls, Context context){
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        String name = manager.getRunningTasks(1).get(0).topActivity.getClassName();
-        return name.equals(cls.getName());
     }
 
 }

@@ -2,6 +2,7 @@ package com.haoche666.buyer.avtivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 
@@ -63,9 +64,9 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (hasFocus) {
                         for (View aLineView : lineView) {
-                            aLineView.setBackgroundColor(getResources().getColor(R.color.text_gray));
+                            aLineView.setBackgroundColor(ContextCompat.getColor(ZhuCeActivity.this,R.color.text_gray));
                         }
-                        lineView[finalI].setBackgroundColor(getResources().getColor(R.color.basic_color));
+                        lineView[finalI].setBackgroundColor(ContextCompat.getColor(ZhuCeActivity.this,R.color.basic_color));
                     }
                 }
             });

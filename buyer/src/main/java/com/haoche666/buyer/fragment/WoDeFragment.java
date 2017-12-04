@@ -4,6 +4,7 @@ package com.haoche666.buyer.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
     @Override
     protected void initViews() {
-        mHeaderWaveHelper = new HeaderWaveHelper(waveView, getResources().getColor(R.color.waveBgLigth), getResources().getColor(R.color.waveBg));
+        mHeaderWaveHelper = new HeaderWaveHelper(waveView, ContextCompat.getColor(getActivity(),R.color.waveBgLigth),  ContextCompat.getColor(getActivity(),R.color.waveBg));
         ViewGroup.LayoutParams layoutParams = viewBar.getLayoutParams();
         layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
         viewBar.setLayoutParams(layoutParams);
