@@ -99,8 +99,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         DividerDecoration itemDecoration = new DividerDecoration(Color.WHITE, (int) DpUtils.convertDpToPixel(10f, this), 0, 0);
         itemDecoration.setDrawLastItem(true);
         recyclerView.addItemDecoration(itemDecoration);
-        int red = getResources().getColor(R.color.basic_color01);
-        recyclerView.setRefreshingColor(red);
+        recyclerView.setRefreshingColorResources(R.color.basic_color);
         recyclerView.getSwipeToRefresh().setProgressViewOffset(true, 30, 220);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(this) {
             @Override

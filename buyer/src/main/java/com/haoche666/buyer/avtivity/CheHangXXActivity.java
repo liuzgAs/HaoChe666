@@ -71,8 +71,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, CheHangXXActivity.this), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
-        int red = getResources().getColor(R.color.basic_color01);
-        recyclerView.setRefreshingColor(red);
+        recyclerView.setRefreshingColorResources(R.color.basic_color);
         recyclerView.getSwipeToRefresh().setProgressViewOffset(true, 30, 220);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(CheHangXXActivity.this) {
             @Override

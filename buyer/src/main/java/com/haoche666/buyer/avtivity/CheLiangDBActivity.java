@@ -61,8 +61,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, CheLiangDBActivity.this), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
-        int red = getResources().getColor(R.color.basic_color);
-        recyclerView.setRefreshingColor(red);
+        recyclerView.setRefreshingColorResources(R.color.basic_color);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(CheLiangDBActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
