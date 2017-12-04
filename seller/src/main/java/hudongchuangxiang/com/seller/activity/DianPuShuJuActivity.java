@@ -87,7 +87,7 @@ public class DianPuShuJuActivity extends ZjbBaseActivity implements View.OnClick
             public View onCreateView(ViewGroup parent) {
                 View view = new View(DianPuShuJuActivity.this);
                 view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(40f,DianPuShuJuActivity.this)));
-                return null;
+                return view;
             }
 
             @Override
