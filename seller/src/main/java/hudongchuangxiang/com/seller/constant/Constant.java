@@ -4,19 +4,26 @@ package hudongchuangxiang.com.seller.constant;
 import huisedebi.zjb.mylibrary.util.MD5Util;
 
 /**
- *
  * @author zjb
  * @date 2016/6/12
  */
 public class Constant {
     public static String HOST = "http://" + MD5Util.getMD5Time();
-    /**判断数据是否有改变*/
+    /**
+     * 判断数据是否有改变
+     */
     public static int changeControl = 2017;
-    /**微信appid*/
+    /**
+     * 微信appid
+     */
     public static String WXAPPID = "wxfef0031f5d8f3ed0";
-    /**微信scrent*/
+    /**
+     * 微信scrent
+     */
     public static String WXSCRENT = "02d7e0ca570f95630b552bd055fdd14a";
-    /**qq*/
+    /**
+     * qq
+     */
     public static String QQ_ID = "1106239952";
     public static String QQ_KEY = "HcA9s2rpKkLO2M5w";
 
