@@ -39,7 +39,7 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
     public void init() {
         //添加当前界面到容器中
         changeControl = Constant.changeControl - 1;
-        ACache aCache = ACache.get(getActivity(), Constant.ACACHE.App);
+        ACache aCache = ACache.get(getActivity(), Constant.ACACHE.APP);
         userInfo = (UserInfo) aCache.getAsObject(Constant.ACACHE.USER_INFO);
         tokenTime = aCache.getAsString(Constant.ACACHE.TOKENTIME);
         initSP();

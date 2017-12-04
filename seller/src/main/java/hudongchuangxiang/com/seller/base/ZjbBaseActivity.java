@@ -50,7 +50,7 @@ public abstract class ZjbBaseActivity extends SwipeBackActivity {
     public void init() {
         MyApplication.getInstance().addActivity(this);
         changeControl = Constant.changeControl - 1;
-        ACache aCache = ACache.get(this, Constant.ACACHE.App);
+        ACache aCache = ACache.get(this, Constant.ACACHE.APP);
         userInfo = (UserInfo) aCache.getAsObject(Constant.ACACHE.USER_INFO);
         tokenTime = aCache.getAsString(Constant.ACACHE.TOKENTIME);
         initSP();

@@ -39,8 +39,8 @@ public class CheLiangGLViewHolder extends BaseViewHolder<Integer> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra(Constant.INTENT_KEY.position,getDataPosition());
-                intent.putExtra(Constant.INTENT_KEY.type,type);
+                intent.putExtra(Constant.INTENT_KEY.POSITION,getDataPosition());
+                intent.putExtra(Constant.INTENT_KEY.TYPE,type);
                 intent.setAction(Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG);
                 getContext().sendBroadcast(intent);
             }

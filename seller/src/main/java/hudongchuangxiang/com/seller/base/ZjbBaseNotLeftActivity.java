@@ -44,7 +44,7 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
 
     public void init() {
         MyApplication.getInstance().addActivity(this);
-        ACache aCache = ACache.get(this, Constant.ACACHE.App);
+        ACache aCache = ACache.get(this, Constant.ACACHE.APP);
         userInfo = (UserInfo) aCache.getAsObject(Constant.ACACHE.USER_INFO);
         tokenTime = aCache.getAsString(Constant.ACACHE.TOKENTIME);
         changeControl = Constant.changeControl-1;

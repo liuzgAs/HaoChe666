@@ -60,7 +60,7 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
             switch (action) {
                 case Constant.BROADCASTCODE.CHE_LIANG_BIAN_JI_DIALOG:
                     int position = intent.getIntExtra(Constant.INTENT_KEY.position, -1);
-                    int type = intent.getIntExtra(Constant.INTENT_KEY.type, -1);
+                    int type = intent.getIntExtra(Constant.INTENT_KEY.TYPE, -1);
                     if (type == positionType) {
                         cheLiangGLDialog(position);
                     }
