@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import hudongchuangxiang.com.seller.R;
@@ -80,7 +81,7 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
 
     public void showLoadingDialog() {
         if (mAlertDialog == null) {
-            View dialog_progress = getLayoutInflater(getArguments()).inflate(R.layout.view_progress01, null);
+            View dialog_progress = LayoutInflater.from(getActivity()).inflate(R.layout.view_progress01, null);
             mAlertDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
                     .setView(dialog_progress)
                     .setCancelable(false)
