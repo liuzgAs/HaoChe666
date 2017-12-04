@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="hudongchuangxiang.com.seller.activity.GuanLiDYActivity">
+
+    <include layout="@layout/view_bar_white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="+添加订阅条件"
+        android:textColor="@color/textGold"
+        android:textSize="@dimen/normal_textsize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="最多可订阅10条"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/moreLitterText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.46"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="品牌"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/litterText" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.23"
+            android:gravity="center_vertical"
+            android:text="排放"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/litterText" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.19"
+            android:gravity="center_vertical"
+            android:text="区域"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/litterText" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.10"
+            android:gravity="center_vertical"
+            android:text="操作"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/litterText" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/basic_color" />
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
+</LinearLayout>

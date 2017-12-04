@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hudongchuangxiang.com.seller.R;
+import hudongchuangxiang.com.seller.activity.GuanLiDYActivity;
 import hudongchuangxiang.com.seller.activity.MainActivity;
 import hudongchuangxiang.com.seller.activity.YuYueSJActivity;
 import hudongchuangxiang.com.seller.base.ZjbBaseFragment;
@@ -68,6 +69,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements View.OnClickListe
     protected void setListeners() {
         mInflate.findViewById(R.id.viewYuYueSJ).setOnClickListener(this);
         mInflate.findViewById(R.id.viewCheLiang).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewDingYueCY).setOnClickListener(this);
     }
 
     @Override
@@ -80,7 +82,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements View.OnClickListe
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewCheLiang:
-                ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                break;
+            case R.id.viewDingYueCY:
+                intent.setClass(getActivity(), GuanLiDYActivity.class);
+                startActivity(intent);
                 break;
             case R.id.viewYuYueSJ:
                 intent.setClass(getActivity(), YuYueSJActivity.class);

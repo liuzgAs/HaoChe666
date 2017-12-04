@@ -329,6 +329,7 @@
                 android:background="@color/background" />
 
             <RelativeLayout
+                android:id="@+id/viewDingYueCY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

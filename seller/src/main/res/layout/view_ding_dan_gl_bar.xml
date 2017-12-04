@@ -34,6 +34,7 @@
                 android:layout_alignParentLeft="true"/>
 
             <TextView
+                android:textStyle="bold"
                 tools:text="标题"
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
