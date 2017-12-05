@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "hudongchuangxiang.com.seller"
+        applicationId "com.haoche666.seller"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

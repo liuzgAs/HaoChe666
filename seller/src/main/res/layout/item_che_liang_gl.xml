@@ -70,7 +70,7 @@
             android:src="@mipmap/bian_ji" />
     </RelativeLayout>
 
-    <hudongchuangxiang.com.seller.customview.JiaoBiao
+    <hudongchuangxiang.haoche666.seller.customview.JiaoBiao
         android:id="@+id/viewJiaoBiao"
         android:visibility="gone"
         android:layout_marginLeft="10dp"

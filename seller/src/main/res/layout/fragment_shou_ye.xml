@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/shouye_background"
     android:orientation="vertical"
-    tools:context="hudongchuangxiang.com.seller.fragment.ShouYeFragment">
+    tools:context="hudongchuangxiang.haoche666.seller.fragment.ShouYeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
