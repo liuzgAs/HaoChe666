@@ -111,7 +111,12 @@
         <activity
             android:name=".avtivity.YiJianFKActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".avtivity.XiTongXXActivity"></activity>
+        <activity
+            android:name=".avtivity.XiTongXXActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChangJianWenTiActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

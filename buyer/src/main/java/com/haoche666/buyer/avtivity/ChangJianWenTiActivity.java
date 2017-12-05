@@ -1,4 +1,4 @@
-package hudongchuangxiang.haoche666.seller.activity;
+package com.haoche666.buyer.avtivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,14 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.viewholder.ChangJianWenTiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
-import hudongchuangxiang.haoche666.seller.R;
-import hudongchuangxiang.haoche666.seller.base.ZjbBaseActivity;
-import hudongchuangxiang.haoche666.seller.viewholder.ChangJianWenTiViewHolder;
 import huisedebi.zjb.mylibrary.provider.DataProvider;
 import huisedebi.zjb.mylibrary.util.DpUtils;
 
