@@ -69,12 +69,12 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:src="@mipmap/mine_head"
                             android:id="@+id/imageHead"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/mine_head" />
 
                         <TextView
                             android:id="@+id/textView45"
@@ -96,13 +96,13 @@
                         android:gravity="center_vertical">
 
                         <ImageView
-                            android:layout_marginLeft="10dp"
                             android:id="@+id/imageVip"
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
+                            android:layout_marginLeft="10dp"
                             android:paddingTop="10dp"
                             android:src="@mipmap/pay_vip" />
 
@@ -130,34 +130,34 @@
                             android:textSize="30dp"
                             android:textStyle="bold" />
 
+                        <!--<TextView-->
+                        <!--android:id="@+id/textView48"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBaseline="@+id/textView47"-->
+                        <!--android:layout_marginBottom="6dp"-->
+                        <!--android:layout_toEndOf="@+id/textView47"-->
+                        <!--android:layout_toRightOf="@+id/textView47"-->
+                        <!--android:text="元"-->
+                        <!--android:textColor="@color/mineYuE"-->
+                        <!--android:textSize="20dp" />-->
                         <TextView
-                            android:id="@+id/textView48"
+                            android:id="@+id/textChongZhi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBaseline="@+id/textView47"
+                            android:layout_alignBottom="@+id/textView47"
                             android:layout_marginBottom="6dp"
-                            android:layout_toEndOf="@+id/textView47"
-                            android:layout_toRightOf="@+id/textView47"
-                            android:text="元"
-                            android:textColor="@color/mineYuE"
-                            android:textSize="20dp" />
-                        <TextView
-                            android:layout_marginBottom="2dp"
-                            android:id="@+id/textChongZhi"
                             android:layout_marginLeft="10dp"
+                            android:layout_toEndOf="@id/textView47"
+                            android:layout_toRightOf="@id/textView47"
+                            android:background="@drawable/shape_mineye1dp_15dp"
+                            android:paddingBottom="3dp"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:paddingTop="3dp"
-                            android:paddingBottom="3dp"
-                            android:background="@drawable/shape_white1dp_15dp"
                             android:text="充值"
-                            android:textSize="@dimen/bigText"
                             android:textColor="@color/white"
-                            android:layout_alignBottom="@+id/textView48"
-                            android:layout_toEndOf="@id/textView48"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/textView48" />
+                            android:textSize="@dimen/bigText" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -359,7 +359,6 @@
             android:layout_height="@dimen/titleHeight">
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/imageBack"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -371,10 +370,10 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp"
-                android:src="@mipmap/left" />
+                android:src="@mipmap/left"
+                android:visibility="gone" />
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -382,6 +381,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/titleSize"
+                android:textStyle="bold"
                 tools:text="标题" />
 
             <ImageView
