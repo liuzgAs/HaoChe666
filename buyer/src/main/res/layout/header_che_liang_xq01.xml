@@ -172,6 +172,7 @@
                     android:src="@mipmap/fuwu01" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -212,6 +213,7 @@
                     android:src="@mipmap/fuwu02" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView104"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -252,6 +254,7 @@
                     android:src="@mipmap/fuwu03" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView106"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -292,6 +295,7 @@
                     android:src="@mipmap/fuwu04" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView108"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
