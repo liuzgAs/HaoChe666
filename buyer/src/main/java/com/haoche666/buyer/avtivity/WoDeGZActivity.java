@@ -14,18 +14,21 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.fragment.GuanZhuCHFragment;
 import com.haoche666.buyer.fragment.GuanZhuCLFragment;
+import com.haoche666.buyer.fragment.GuanZhuJJFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 我的关注
+ *
  * @author Administrator
  */
 public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListener {
     private TabLayout tablayout;
     private ViewPager viewPager;
     List<String> list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +54,7 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
 
     @Override
     protected void initViews() {
-        ((TextView)findViewById(R.id.textViewTitle)).setText("我的关注");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("我的关注");
         list.add("车辆");
         list.add("降价");
         list.add("车行");
@@ -60,7 +63,7 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
         tablayout.removeAllTabs();
         for (int i = 0; i < list.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.item_tablayout, null);
-            TextView textTitle =  view.findViewById(R.id.textTitle);
+            TextView textTitle = view.findViewById(R.id.textTitle);
             textTitle.setText(list.get(i));
             if (i == 0) {
                 tablayout.addTab(tablayout.newTab().setCustomView(view), true);
@@ -82,7 +85,7 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageBack:
                 finish();
                 break;
@@ -100,7 +103,11 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
+                case 0:
+                    return new GuanZhuCLFragment();
+                case 1:
+                    return new GuanZhuJJFragment();
                 case 2:
                     return new GuanZhuCHFragment();
                 default:

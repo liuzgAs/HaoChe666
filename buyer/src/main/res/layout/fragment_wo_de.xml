@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/textView47"
                             android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="15dp"
                             android:layout_toEndOf="@id/textView47"
                             android:layout_toRightOf="@id/textView47"
                             android:background="@drawable/shape_mineye1dp_15dp"
