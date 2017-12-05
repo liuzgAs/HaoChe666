@@ -17,7 +17,6 @@
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
             android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/ufGr/Y45U2mohkirDryVeRS+40UbqgFbvXJaiGB3uurE9ZSa7iut5dju7PAQKK9lLA7GiEmu0+Var6mExz7eSoH+jGkGjW3uH6J5lhsOUcjB1A87SQKt3N3uRWuz0KCTMcSFnv+/VDwt2w2Xpl64lu0n9hvISWOD+okM+ZeYEKE/DQOFsHihH/BJyMIEyj3y4YtztwZlg2UpvDFnuThyMTCg2GNaIse/Egj96QUlWzPxbfbXht5FHP/DW6tk/nfxAgWKhnZ/MkqEQ5pFfkdtj8FHUMLQfe7YUBZaExcvS+/q6Gpo53T4R+NTOkiGXSIfJ5+w/lV5lfmO4smBIcMVAgMBAAECggEAfYmjVJqRpbeYV2CV9GuRz82YZ+UoOxT2DrvdRKpHgB5D2vNyen+42gTGJqu+BNafAf/3LMfQd0kHxHmA5hAQej0PIT2PB1tTv7e3CyXeUWH7se7Iimkj9/PG3V1XSEYy3i6YH2Ycz4q4XM4x+DpXi0ZHwwLC7kIfhytk0bocKNSYiBSppLymV3d1FbHgSHTj4SNqNHa5Ba8p1lH4sE43ZcRXlL+EJvnpfra8a7khBYEJ1HbqHtt/1lm/fOdcSWKwGpF5bnZive1tUqiEKSZ2T4/gXbCN90iq0VMWEXp4V55Hay3qA0YEMEv+JDTA0p7LiWqPga/bp8DokJ58gkFgAQKBgQDjLsTRGZDvplxGpJYD6638kF8RDHgcmu6EO2W6A31O14FCQ3BbFRYGY2Dep0qv7e+na8r9VKVSMubOEqn7QqgrlBu+luY2bvm3ekupIrOLFRkmB+5l1P1XWBwfaX7gZqyIyb3Jzx5zCq12d8h81uZei7wxNGj8I8qF1k8sfvp0wQKBgQDYC9ADf/CBy9DCkzY9FPmg5Tv3rwT9SOj5VXMz/UvnANhrELd9cexlAWTVX0V8vc2Uyx7g8iTAp1g8PuAeL1MXf9NCLfKeDpjptUS9S8XGhdx0CBzOJAeMFR6KGSR6QVQxbfkOphkkWSzzun8g+YlK4GmQlclKTcweSHmSgR2/VQKBgQCTxccmEBAzoi2hkcs2r6WThEEiMM8sJCcDgjNQRJbMouckOAOsa1HRQ/EtwvmU6Bsb9sSp9dY3Wn7BCmjg0+HZvtQxK6yBObxa+USftr+8tzONhlkuidVkbB6W3CM4SfDuZPN7gqrWv9pHFfEmKw7b7t6xztp/L7S7S8RiOBInwQKBgQC36U5ZPFcTVtpOWJzqYGmkEp/6161qo99XKOuZzT0I14pjkeZxTkKLNSWOEb0IVFamHEcb/GVW7t3I40lLyMN2FKVVB+IptIltIZbzgYZJ2ffxelpzDO6zy+KkcoS/4c73CQPj+XcbnyIKFK9V9bZu3BxhLXEd5J4nBVEgavNUxQKBgBAPQEreEey7HAY1Tg7oKUF1+O6s7HKUpqUUTLCCPIOYswdGVHQKRfIdH0yiPXz+D6zEeeusGiQ1jrRhSD6XnVsBWn0zY0Gu4PdsC9Bfhl/ZU68mggwDXjbpc59cvSGsf+CmaXDvk00abLUxKHzhrXbHsZ5CkRxsc2rYkPbLudpj" />
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5a26009cf43e484f54000129" />
@@ -26,11 +25,11 @@
             android:value="hudongchuangxiang" />
 
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppThemeNoTranslucent" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.DengLuActivity"
+            android:name=".activity.DengLuActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,71 +38,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.WangJiMMActivity"
+            android:name=".activity.WangJiMMActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.YuYueSJActivity"
+            android:name=".activity.YuYueSJActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.CheLiangXQActivity"
+            android:name=".activity.CheLiangXQActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.PayVideoActivity"
+            android:name=".activity.PayVideoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.BianJiCLActivity"
+            android:name=".activity.BianJiCLActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ZhangHaoGLActivity"
+            android:name=".activity.ZhangHaoGLActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.BianJiDPActivity"
+            android:name=".activity.BianJiDPActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.DianPuShuJuActivity"
+            android:name=".activity.DianPuShuJuActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.DingDanGLActivity"
+            android:name=".activity.DingDanGLActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.WoDeQianBaoActivity"
+            android:name=".activity.WoDeQianBaoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.XiaoXiZXActivity"
+            android:name=".activity.XiaoXiZXActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.WoDeFSActivity"
+            android:name=".activity.WoDeFSActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.SheZhiActivity"
+            android:name=".activity.SheZhiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ChaWeiBaoActivity"
+            android:name=".activity.ChaWeiBaoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ChaWeiZhangActivity"
+            android:name=".activity.ChaWeiZhangActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ChaXunLSActivity"
+            android:name=".activity.ChaXunLSActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ChaChuXianActivity"
+            android:name=".activity.ChaChuXianActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.ShenQingSYActivity"
+            android:name=".activity.ShenQingSYActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity"
+            android:name=".activity.YiJianFKActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.YuYueCGActivity"
+            android:name=".activity.YuYueCGActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.GuanLiDYActivity"
+            android:name=".activity.GuanLiDYActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="hudongchuangxiang.haoche666.seller.activity.TianJiaDingYueActivity"
-            android:launchMode="singleTop"/>
+            android:name=".activity.TianJiaDingYueActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.ChangJianWenTiActivity"></activity>
     </application>
 
 </manifest>
