@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity">
+    tools:context=".avtivity.YiJianFKActivity">
 
     <include layout="@layout/view_bar_white" />
 
@@ -16,6 +16,7 @@
         android:hint="请输入您的邮箱地址"
         android:paddingLeft="15dp"
         android:textSize="@dimen/normal_textsize" />
+
     <TextView
         android:background="@color/line_gray"
         android:layout_width="match_parent"

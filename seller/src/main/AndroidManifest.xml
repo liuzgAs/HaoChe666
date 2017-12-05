@@ -89,11 +89,21 @@
         <activity
             android:name="hudongchuangxiang.haoche666.seller.activity.ChaChuXianActivity"
             android:launchMode="singleTop" />
-        <activity android:name="hudongchuangxiang.haoche666.seller.activity.ShenQingSYActivity" />
-        <activity android:name="hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity" />
-        <activity android:name="hudongchuangxiang.haoche666.seller.activity.YuYueCGActivity" />
-        <activity android:name="hudongchuangxiang.haoche666.seller.activity.GuanLiDYActivity" />
-        <activity android:name="hudongchuangxiang.haoche666.seller.activity.TianJiaDingYueActivity"></activity>
+        <activity
+            android:name="hudongchuangxiang.haoche666.seller.activity.ShenQingSYActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="hudongchuangxiang.haoche666.seller.activity.YuYueCGActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="hudongchuangxiang.haoche666.seller.activity.GuanLiDYActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="hudongchuangxiang.haoche666.seller.activity.TianJiaDingYueActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

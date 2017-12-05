@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="¥9.98万"
-        android:textColor="@color/basic_color"
+        android:textColor="@color/textGold"
         android:id="@+id/textJiaGe"
         android:layout_alignBottom="@+id/imageView4"
         android:layout_alignLeft="@+id/textView4"

@@ -108,6 +108,9 @@
         <activity
             android:name=".avtivity.ChongZhiActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.YiJianFKActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
