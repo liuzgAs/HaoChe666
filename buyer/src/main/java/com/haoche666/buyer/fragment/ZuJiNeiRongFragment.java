@@ -4,12 +4,14 @@ package com.haoche666.buyer.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -24,17 +26,15 @@ import huisedebi.zjb.mylibrary.util.DpUtils;
 
 /**
  * A simple {@link Fragment} subclass.
- * @author Administrator
  */
-public class ZuJiFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-
+public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener  {
 
     private View mInflate;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
 
-    public ZuJiFragment() {
+    public ZuJiNeiRongFragment() {
         // Required empty public constructor
     }
 
@@ -44,7 +44,7 @@ public class ZuJiFragment extends ZjbBaseFragment implements SwipeRefreshLayout.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (mInflate == null) {
-            mInflate = inflater.inflate(R.layout.fragment_zu_ji, container, false);
+            mInflate = inflater.inflate(R.layout.fragment_zu_ji_nei_rong, container, false);
             init();
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
@@ -78,23 +78,32 @@ public class ZuJiFragment extends ZjbBaseFragment implements SwipeRefreshLayout.
     private void initRecycle() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.WHITE, (int) DpUtils.convertDpToPixel(10f, getActivity()), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_zu_ji;
+                int layout = R.layout.item_jing_xuan_tu_wen;
                 return new ZuJiViewHolder(parent, layout);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
+                LinearLayout linearLayout = new LinearLayout(getActivity());
+                linearLayout.setOrientation(LinearLayout.VERTICAL);
+                linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 View view = new View(getActivity());
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,getActivity())));
-                return view;
+                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(10f,getActivity())));
+                view.setBackgroundColor(Color.WHITE);
+                View view01 = new View(getActivity());
+                view01.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,getActivity())));
+                view01.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.background));
+                linearLayout.addView(view01);
+                linearLayout.addView(view);
+                return linearLayout;
             }
 
             @Override
@@ -160,4 +169,5 @@ public class ZuJiFragment extends ZjbBaseFragment implements SwipeRefreshLayout.
         adapter.clear();
         adapter.addAll(DataProvider.getPersonList(page));
     }
+
 }

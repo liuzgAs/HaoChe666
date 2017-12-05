@@ -12,13 +12,15 @@ import android.widget.TextView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
-import com.haoche666.buyer.fragment.ZuJiFragment;
+import com.haoche666.buyer.fragment.ZuJiCheLiangFragment;
+import com.haoche666.buyer.fragment.ZuJiNeiRongFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 足迹
+ *
  * @author Administrator
  */
 public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -104,7 +106,14 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
 
         @Override
         public Fragment getItem(int position) {
-            return new ZuJiFragment();
+            switch (position) {
+                case 0:
+                    return new ZuJiCheLiangFragment();
+                case 1:
+                    return new ZuJiNeiRongFragment();
+                default:
+                    return new ZuJiCheLiangFragment();
+            }
         }
 
         @Override
