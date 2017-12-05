@@ -1,6 +1,5 @@
 package com.haoche666.buyer.avtivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,30 +10,21 @@ import android.widget.TextView;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.provider.DataProvider;
-import com.haoche666.buyer.viewholder.DingDanGLViewHolder;
+import com.haoche666.buyer.viewholder.XiTongXXViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
-import huisedebi.zjb.mylibrary.util.DpUtils;
-
-/**
- * 订单管理
- * @author Administrator
- */
-public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class XiTongXXActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ding_dan_gl);
+        setContentView(R.layout.activity_xi_tong_xx);
         init();
     }
-
     @Override
     protected void initSP() {
 
@@ -52,22 +42,19 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("订单管理");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("系统消息");
         initRecycle();
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(DingDanGLActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(XiTongXXActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, DingDanGLActivity.this), 0, 0);
-        itemDecoration.setDrawLastItem(false);
-        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(DingDanGLActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(XiTongXXActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_ding_dan_gl;
-                return new DingDanGLViewHolder(parent, layout,viewType);
+                int layout = R.layout.item_gonggao;
+                return new XiTongXXViewHolder(parent, layout);
             }
 
             @Override
@@ -146,4 +133,8 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
         adapter.addAll(DataProvider.getPersonList(page));
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

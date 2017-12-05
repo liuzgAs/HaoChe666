@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.XiTongXXActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
@@ -15,7 +17,7 @@ import huisedebi.zjb.mylibrary.util.ScreenUtils;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class XiaoXiFragment extends ZjbBaseFragment {
+public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListener {
 
 
     private View mInflate;
@@ -67,7 +69,7 @@ public class XiaoXiFragment extends ZjbBaseFragment {
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewXiTongXiaoXi).setOnClickListener(this);
     }
 
     @Override
@@ -75,4 +77,16 @@ public class XiaoXiFragment extends ZjbBaseFragment {
 
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()){
+            case R.id.viewXiTongXiaoXi:
+                intent.setClass(getActivity(), XiTongXXActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
 }

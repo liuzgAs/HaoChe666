@@ -17,6 +17,8 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:background="@drawable/layout_selector_white_system_gray"
+            android:id="@+id/viewXiTongXiaoXi"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal">
