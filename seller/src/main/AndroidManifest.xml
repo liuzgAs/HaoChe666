@@ -112,6 +112,7 @@
         <activity
             android:name=".activity.ChongZhiActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".activity.TiJiaoCGActivity"></activity>
     </application>
 
 </manifest>

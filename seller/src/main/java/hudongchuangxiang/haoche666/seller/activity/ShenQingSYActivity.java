@@ -73,6 +73,7 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.btnTiJiao).setOnClickListener(this);
         imageYingYeZZ.setOnClickListener(this);
         imageMenTouZP.setOnClickListener(this);
     }
@@ -115,6 +116,10 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.btnTiJiao:
+                intent.setClass(this,TiJiaoCGActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageMenTouZP:
                 intent.setClass(ShenQingSYActivity.this, ImageGridActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.IMAGE_PICKER);
