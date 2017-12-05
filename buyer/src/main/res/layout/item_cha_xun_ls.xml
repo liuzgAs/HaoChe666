@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="2017大众尚酷|闽D23298"
+        android:textSize="@dimen/bigText"
+        android:textStyle="bold"
+        android:textColor="@color/light_black"
+        android:layout_width="wrap_content"
+        android:id="@+id/text0000"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="@dimen/litterText"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/text0000"
+        android:textColor="@color/text_gray"
+        android:text="2017-12-5"
+        android:layout_width="wrap_content"
+        android:id="@+id/text0001"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="¥25"
+        android:layout_marginRight="10dp"
+        android:layout_alignBaseline="@+id/text0001"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/light_black"
+        android:textStyle="bold"
+        android:textSize="@dimen/MoreBigText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

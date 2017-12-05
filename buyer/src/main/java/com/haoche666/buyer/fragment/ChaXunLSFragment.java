@@ -13,14 +13,12 @@ import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.viewholder.ChaXunLSViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 
@@ -105,8 +103,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
             @Override
             public void onMoreShow() {
                 page++;
-                List<Integer> list= new ArrayList<>();
-                adapter.addAll(list);
+                adapter.addAll(DataProvider.getPersonList(page));
             }
 
             @Override
@@ -157,8 +154,8 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
     @Override
     public void onRefresh() {
         page = 1;
-        List<Integer> list= new ArrayList<>();
         adapter.clear();
-        adapter.addAll(list);
+        adapter.addAll(DataProvider.getPersonList(page));
+        page++;
     }
 }
