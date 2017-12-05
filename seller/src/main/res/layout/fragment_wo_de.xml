@@ -265,34 +265,58 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/normal_textsize" />
                 </RelativeLayout>
-
                 <RelativeLayout
-                    android:id="@+id/viewWoDeQianBao"
                     android:background="@drawable/layout_selector_white_system_gray"
+                    android:id="@+id/viewZhangHaoGL"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center">
 
                     <ImageView
-                        android:paddingBottom="1dp"
-                        android:paddingTop="1dp"
-                        android:id="@+id/image0202"
+                        android:id="@+id/image0400"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/mine_img_height"
                         android:layout_centerHorizontal="true"
-                        android:src="@mipmap/mine06" />
+                        android:src="@mipmap/mine10" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/image0202"
+                        android:layout_below="@+id/image0400"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="我的钱包"
+                        android:text="账号管理"
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/normal_textsize" />
                 </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/viewWoDeQianBao"-->
+                    <!--android:background="@drawable/layout_selector_white_system_gray"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center">-->
+
+                    <!--<ImageView-->
+                        <!--android:paddingBottom="1dp"-->
+                        <!--android:paddingTop="1dp"-->
+                        <!--android:id="@+id/image0202"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/mine_img_height"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:src="@mipmap/mine06" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/image0202"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="我的钱包"-->
+                        <!--android:textColor="@color/light_black"-->
+                        <!--android:textSize="@dimen/normal_textsize" />-->
+                <!--</RelativeLayout>-->
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="1dp"
@@ -352,66 +376,6 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/normal_textsize" />
                 </RelativeLayout>
-
-                <RelativeLayout
-                    android:background="@drawable/layout_selector_white_system_gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/image0302"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/mine_img_height"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/mine09" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/image0302"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="我的动态"
-                        android:textColor="@color/light_black"
-                        android:textSize="@dimen/normal_textsize" />
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:background="@drawable/layout_selector_white_system_gray"
-                    android:id="@+id/viewZhangHaoGL"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/image0400"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/mine_img_height"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/mine10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/image0400"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="账号管理"
-                        android:textColor="@color/light_black"
-                        android:textSize="@dimen/normal_textsize" />
-                </RelativeLayout>
-
                 <RelativeLayout
                     android:id="@+id/viewYiJianFK"
                     android:background="@drawable/layout_selector_white_system_gray"
@@ -439,34 +403,70 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/normal_textsize" />
                 </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:background="@drawable/layout_selector_white_system_gray"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center">-->
 
-                <RelativeLayout
-                    android:background="@drawable/layout_selector_white_system_gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    <!--<ImageView-->
+                        <!--android:id="@+id/image0302"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/mine_img_height"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:src="@mipmap/mine09" />-->
 
-                    <ImageView
-                        android:paddingBottom="2dp"
-                        android:paddingTop="2dp"
-                        android:id="@+id/image0402"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/mine_img_height"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/mine12" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/image0402"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="关于我们"
-                        android:textColor="@color/light_black"
-                        android:textSize="@dimen/normal_textsize" />
-                </RelativeLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/image0302"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="我的动态"-->
+                        <!--android:textColor="@color/light_black"-->
+                        <!--android:textSize="@dimen/normal_textsize" />-->
+                <!--</RelativeLayout>-->
             </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:layout_marginBottom="40dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="90dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="horizontal">-->
+
+                <!---->
+
+                <!---->
+
+                <!--<RelativeLayout-->
+                    <!--android:background="@drawable/layout_selector_white_system_gray"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="center">-->
+
+                    <!--<ImageView-->
+                        <!--android:paddingBottom="2dp"-->
+                        <!--android:paddingTop="2dp"-->
+                        <!--android:id="@+id/image0402"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/mine_img_height"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:src="@mipmap/mine12" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/image0402"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="关于我们"-->
+                        <!--android:textColor="@color/light_black"-->
+                        <!--android:textSize="@dimen/normal_textsize" />-->
+                <!--</RelativeLayout>-->
+            <!--</LinearLayout>-->
         </LinearLayout>
     </huisedebi.zjb.mylibrary.customview.HeadZoomScrollView>
     <include layout="@layout/view_bar_mine"/>

@@ -14,7 +14,6 @@ import hudongchuangxiang.haoche666.seller.activity.DianPuShuJuActivity;
 import hudongchuangxiang.haoche666.seller.activity.DingDanGLActivity;
 import hudongchuangxiang.haoche666.seller.activity.SheZhiActivity;
 import hudongchuangxiang.haoche666.seller.activity.WoDeFSActivity;
-import hudongchuangxiang.haoche666.seller.activity.WoDeQianBaoActivity;
 import hudongchuangxiang.haoche666.seller.activity.XiaoXiZXActivity;
 import hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity;
 import hudongchuangxiang.haoche666.seller.activity.ZhangHaoGLActivity;
@@ -83,7 +82,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewDianPuBianJi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewDianPuShuJu).setOnClickListener(this);
         mInflate.findViewById(R.id.viewDiangDanGL).setOnClickListener(this);
-        mInflate.findViewById(R.id.viewWoDeQianBao).setOnClickListener(this);
+//        mInflate.findViewById(R.id.viewWoDeQianBao).setOnClickListener(this);
         mInflate.findViewById(R.id.viewXiaoXi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewWoDeFS).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSheZhi).setOnClickListener(this);
@@ -115,10 +114,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 intent.setClass(getActivity(), XiaoXiZXActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.viewWoDeQianBao:
-                intent.setClass(getActivity(), WoDeQianBaoActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.viewWoDeQianBao:
+//                intent.setClass(getActivity(), WoDeQianBaoActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.viewDiangDanGL:
                 intent.setClass(getActivity(), DingDanGLActivity.class);
                 startActivity(intent);
