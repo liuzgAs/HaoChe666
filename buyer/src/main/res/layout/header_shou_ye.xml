@@ -356,15 +356,31 @@
                 android:layout_height="15dp"
                 android:background="@color/line_gray" />
 
-            <TextView
-                android:id="@+id/textView20"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="全部"
-                android:textColor="@color/textGold"
-                android:textSize="@dimen/normal_textsize" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="全部"
+                    android:textSize="@dimen/normal_textsize" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/textView20"
+                    android:src="@mipmap/right" />
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -428,7 +444,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textColor="@color/text_gray"
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -436,6 +451,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView21"
                     android:text="月供998元起"
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/litterText" />
             </RelativeLayout>
         </RelativeLayout>
@@ -481,7 +497,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textColor="@color/text_gray"
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -489,6 +504,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView23"
                     android:text="月供998元起"
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/litterText" />
             </RelativeLayout>
         </RelativeLayout>
@@ -538,7 +554,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textColor="@color/text_gray"
                     android:id="@+id/textView26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -546,6 +561,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView25"
                     android:text="月供998元起"
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/litterText" />
             </RelativeLayout>
         </RelativeLayout>
@@ -592,7 +608,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textColor="@color/text_gray"
                     android:id="@+id/textView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -600,6 +615,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView27"
                     android:text="月供998元起"
+                    android:textColor="@color/text_gray"
                     android:textSize="@dimen/litterText" />
             </RelativeLayout>
         </RelativeLayout>
