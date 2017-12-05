@@ -103,8 +103,10 @@
         <activity
             android:name=".activity.TianJiaDingYueActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.ChangJianWenTiActivity"
-            android:launchMode="singleTop"/>
+        <activity
+            android:name=".activity.ChangJianWenTiActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.JinRiXZActivity"></activity>
     </application>
 
 </manifest>

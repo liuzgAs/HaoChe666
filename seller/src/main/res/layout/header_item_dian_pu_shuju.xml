@@ -25,7 +25,7 @@
             android:textSize="@dimen/normal_textsize"
             android:textColor="@color/textGold"
             android:text="要加大分享力度哦！"
-            android:background="@drawable/shape_gold1dp_topleft_butleft_butrigth_20dp"
+            android:background="@drawable/shape_gold1dp_topleft_btnleft_btnrigth_20dp"
             android:layout_width="wrap_content"
             android:layout_height="25dp" />
     </RelativeLayout>
