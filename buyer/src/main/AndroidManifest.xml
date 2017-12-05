@@ -117,6 +117,8 @@
         <activity
             android:name=".avtivity.ChangJianWenTiActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".avtivity.GeRenXXActivity" />
+        <activity android:name=".avtivity.WoMaiDeCheActivity"></activity>
     </application>
 
 </manifest>

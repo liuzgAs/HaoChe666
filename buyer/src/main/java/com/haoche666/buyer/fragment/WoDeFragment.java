@@ -15,9 +15,11 @@ import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
 import com.haoche666.buyer.avtivity.ChongZhiActivity;
 import com.haoche666.buyer.avtivity.DingDanGLActivity;
+import com.haoche666.buyer.avtivity.GeRenXXActivity;
 import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
+import com.haoche666.buyer.avtivity.WoMaiDeCheActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
@@ -78,7 +80,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
     @Override
     protected void initViews() {
-        mHeaderWaveHelper = new HeaderWaveHelper(waveView, ContextCompat.getColor(getActivity(),R.color.waveBgLigth),  ContextCompat.getColor(getActivity(),R.color.waveBg));
+        mHeaderWaveHelper = new HeaderWaveHelper(waveView, ContextCompat.getColor(getActivity(), R.color.waveBgLigth), ContextCompat.getColor(getActivity(), R.color.waveBg));
         ViewGroup.LayoutParams layoutParams = viewBar.getLayoutParams();
         layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
         viewBar.setLayoutParams(layoutParams);
@@ -97,6 +99,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewChaXunFW).setOnClickListener(this);
         mInflate.findViewById(R.id.imageSheZhi).setOnClickListener(this);
         mInflate.findViewById(R.id.textChongZhi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewGeRenXX).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewWoMaiDeChe).setOnClickListener(this);
         imageVip.setOnClickListener(this);
     }
 
@@ -121,6 +125,14 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewWoMaiDeChe:
+                intent.setClass(getActivity(), WoMaiDeCheActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.viewGeRenXX:
+                intent.setClass(getActivity(), GeRenXXActivity.class);
+                startActivity(intent);
+                break;
             case R.id.textChongZhi:
                 intent.setClass(getActivity(), ChongZhiActivity.class);
                 startActivity(intent);
