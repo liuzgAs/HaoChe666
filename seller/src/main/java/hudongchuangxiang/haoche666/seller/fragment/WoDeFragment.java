@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.activity.BianJiDPActivity;
+import hudongchuangxiang.haoche666.seller.activity.ChongZhiActivity;
 import hudongchuangxiang.haoche666.seller.activity.DianPuShuJuActivity;
 import hudongchuangxiang.haoche666.seller.activity.DingDanGLActivity;
 import hudongchuangxiang.haoche666.seller.activity.SheZhiActivity;
@@ -87,6 +88,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewWoDeFS).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSheZhi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewYiJianFK).setOnClickListener(this);
+        mInflate.findViewById(R.id.textChongZhi).setOnClickListener(this);
     }
 
     @Override
@@ -98,6 +100,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.textChongZhi:
+                intent.setClass(getActivity(), ChongZhiActivity.class);
+                startActivity(intent);
+                break;
             case R.id.viewYiJianFK:
                 intent.setClass(getActivity(), YiJianFKActivity.class);
                 startActivity(intent);

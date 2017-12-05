@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_selector_white_system_gray"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/text0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="连续包月90天会员"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/normal_textsize" />
+
+    <TextView
+        android:id="@+id/text0001"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/text0000"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="¥25"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/text0002"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text0001"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="2017-12-5 15:41"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/litterText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/text0002"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="充值成功"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/litterText" />
+</RelativeLayout>
