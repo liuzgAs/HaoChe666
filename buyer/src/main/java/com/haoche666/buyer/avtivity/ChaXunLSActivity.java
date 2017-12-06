@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * 查询历史
+ *
  * @author Administrator
  */
 public class ChaXunLSActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -105,12 +106,12 @@ public class ChaXunLSActivity extends ZjbBaseActivity implements View.OnClickLis
 
         @Override
         public Fragment getItem(int position) {
-                return new ChaXunLSFragment();
-            }
+            return new ChaXunLSFragment();
+        }
 
-            @Override
-            public int getCount () {
-                return list.size();
-            }
+        @Override
+        public int getCount() {
+            return list.size();
         }
     }
+}
