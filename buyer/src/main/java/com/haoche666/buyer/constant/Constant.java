@@ -45,6 +45,10 @@ public class Constant {
          * 注册发送验证码
          */
         public static final String LOGIN_REGSMS = "/Login/regSms";
+        /**
+         * 验证码登录
+         */
+        public static final String LOGIN_SMS = "/Login/sms";
     }
 
     public static class IntentKey {

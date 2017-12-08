@@ -144,6 +144,8 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
         params.put("userPwd", MD5Util.getMD5(MD5Util.getMD5(editView[2].getText().toString().trim()) + "ad"));
         params.put("code", editView[1].getText().toString().trim());
         params.put("tx_mobile", editView[4].getText().toString().trim());
+        /*用户类型卖家注册时传1买家注册传0*/
+        params.put("type", "0");
         return new OkObject(params, url);
     }
 

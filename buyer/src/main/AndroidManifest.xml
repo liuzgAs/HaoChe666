@@ -35,16 +35,17 @@
         <activity
             android:name=".avtivity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppThemeNoTranslucent" />
-        <activity
-            android:name=".avtivity.DengLuActivity"
-            android:launchMode="singleTask">
+            android:theme="@style/AppThemeNoTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".avtivity.DengLuActivity"
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".avtivity.ZuJiActivity"
             android:launchMode="singleTop" />

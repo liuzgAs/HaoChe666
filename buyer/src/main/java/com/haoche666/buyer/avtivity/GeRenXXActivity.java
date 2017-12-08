@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
+
+import huisedebi.zjb.mylibrary.util.ACache;
 
 public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickListener {
 
@@ -39,6 +42,7 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.btnExit).setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +53,12 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btnExit:
+                ACache aCache = ACache.get(this, Constant.Acache.APP);
+                aCache.clear();
+                Constant.changeControl++;
+                finish();
+                break;
             case R.id.imageBack:
                 finish();
                 break;

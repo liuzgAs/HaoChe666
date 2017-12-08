@@ -3,6 +3,7 @@ package com.haoche666.buyer.avtivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +13,16 @@ import android.widget.Toast;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.UserInfo;
+import com.haoche666.buyer.util.ApiClient;
+
+import java.util.HashMap;
+
+import huisedebi.zjb.mylibrary.util.ACache;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
+import huisedebi.zjb.mylibrary.util.StringUtil;
 
 /**
  * 登录
@@ -157,13 +168,31 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.buttonLogin:
+
+                if (!StringUtil.isMobileNO(editView[0].getText().toString().trim())) {
+                    Toast.makeText(DengLuActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (isMsgLogin){
+                    if (TextUtils.isEmpty(editView[1].getText().toString().trim())) {
+                        Toast.makeText(DengLuActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }else {
+                    if (TextUtils.isEmpty(editView[2].getText().toString().trim())) {
+                        Toast.makeText(DengLuActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 if (!isAgreement) {
                     Toast.makeText(DengLuActivity.this, "请阅读并同意《好车666用户协议》", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                intent.setClass(this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if(isMsgLogin){
+                    loginSms();
+                }else {
+                    loginPsw();
+                }
                 break;
             case R.id.buttonZhuCe:
                 intent.setClass(this, ZhuCeActivity.class);
@@ -172,5 +201,68 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    /**
+     * 密码登录
+     */
+    private void loginPsw() {
+
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObjectSms(String tokenTime) {
+        String url = Constant.HOST + Constant.Url.LOGIN_SMS;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("uid",userInfo.getUid());
+        params.put("tokenTime",tokenTime);
+        return new OkObject(params, url);
+    }
+
+    /**
+     * 短信登录
+     */
+    private void loginSms() {
+        showLoadingDialog();
+        final String tokenTime = System.currentTimeMillis() + "";
+        ApiClient.post(this, getOkObjectSms(tokenTime), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("DengLuActivity--登录返回", "" + s);
+                cancelLoadingDialog();
+                try {
+                    loginSuccess(s, tokenTime);
+                } catch (Exception e) {
+                    Toast.makeText(DengLuActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(DengLuActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * des： 登录成功处理
+     * author： ZhangJieBo
+     * date： 2017/9/8 0008 下午 5:27
+     */
+    private void loginSuccess(String s, String tokenTime) {
+        final UserInfo userInfo = GsonUtils.parseJSON(s, UserInfo.class);
+        if (userInfo.getStatus() == 1) {
+            ACache aCache = ACache.get(DengLuActivity.this, Constant.Acache.APP);
+            aCache.put(Constant.Acache.USER_INFO, userInfo);
+            aCache.put(Constant.Acache.TOKENTIME, tokenTime);
+            Constant.changeControl++;
+            finish();
+        }
+        Toast.makeText(DengLuActivity.this, userInfo.getInfo(), Toast.LENGTH_SHORT).show();
     }
 }

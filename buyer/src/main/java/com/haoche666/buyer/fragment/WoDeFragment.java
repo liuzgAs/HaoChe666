@@ -20,6 +20,7 @@ import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.avtivity.WoMaiDeCheActivity;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
@@ -130,8 +131,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewGeRenXX:
-                intent.setClass(getActivity(), GeRenXXActivity.class);
-                startActivity(intent);
+                if (isLogin){
+                    intent.setClass(getActivity(), GeRenXXActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.textChongZhi:
                 intent.setClass(getActivity(), ChongZhiActivity.class);

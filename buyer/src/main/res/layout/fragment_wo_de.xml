@@ -84,7 +84,7 @@
                             android:layout_below="@+id/imageHead"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:text="李达达"
+                            android:text="登录"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
                     </RelativeLayout>
