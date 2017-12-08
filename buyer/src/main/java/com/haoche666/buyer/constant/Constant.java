@@ -1,13 +1,11 @@
 package com.haoche666.buyer.constant;
 
 
-import huisedebi.zjb.mylibrary.util.MD5Util;
-
 /**
  * Created by zjb on 2016/6/12.
  */
 public class Constant {
-    public static String HOST = "http://" + MD5Util.getMD5Time();
+    public static String HOST = "http://api.haoche666.com";
     /**
      * 判断数据是否有改变
      */

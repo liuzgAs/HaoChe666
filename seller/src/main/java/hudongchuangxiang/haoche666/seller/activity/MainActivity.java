@@ -23,8 +23,8 @@ import hudongchuangxiang.haoche666.seller.fragment.CheLiangGLFragment;
 import hudongchuangxiang.haoche666.seller.fragment.ShouYeFragment;
 import hudongchuangxiang.haoche666.seller.fragment.WoDeFragment;
 import hudongchuangxiang.haoche666.seller.interfacepage.OnPatchLister;
+import hudongchuangxiang.haoche666.seller.util.UpgradeUtils;
 import huisedebi.zjb.mylibrary.util.DpUtils;
-import huisedebi.zjb.mylibrary.util.UpgradeUtils;
 
 public class MainActivity extends ZjbBaseNotLeftActivity {
     private String[] tabsItem = new String[4];

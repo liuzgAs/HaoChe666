@@ -33,7 +33,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':library')
-    compile 'com.github.huisedebi:ZjbLibrary:0.2.4'
+    compile 'com.github.huisedebi:ZjbLibrary:0.2.7'
     compile 'com.android.support:multidex:1.0.2'
     compile 'com.jude:easyrecyclerview:4.4.2'
     compile 'com.umeng.analytics:analytics:6.1.2'
@@ -46,4 +46,5 @@ dependencies {
     compile 'com.iarcuschin:simpleratingbar:0.1.2'
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.6'
     compile 'com.lzy.widget:imagepicker:0.5.3'
+    compile 'com.lzy.net:okgo:3.0.4'
 }
