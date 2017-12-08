@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
 
 /**
  * 登录
+ *
  * @author Administrator
  */
 public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -36,6 +38,15 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     @Override
     protected void initSP() {
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String phone = intent.getStringExtra(Constant.IntentKey.PHONE);
+        editView[0].setText(phone);
+        editView[1].requestFocus();
     }
 
     @Override
@@ -69,13 +80,13 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
      * date： 2017/11/14 0014 上午 10:19
      */
     private void setLoginType() {
-        if (isMsgLogin){
+        if (isMsgLogin) {
             textLoginType.setText("切换密码登录");
             viewPsw.setVisibility(View.GONE);
             viewMsg.setVisibility(View.VISIBLE);
             lineView[1].setVisibility(View.GONE);
             lineView[2].setVisibility(View.VISIBLE);
-        }else {
+        } else {
             textLoginType.setText("切换验证码登录");
             viewPsw.setVisibility(View.VISIBLE);
             viewMsg.setVisibility(View.GONE);
@@ -90,9 +101,9 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
      * date： 2017/11/14 0014 上午 10:17
      */
     private void setAgreement() {
-        if (isAgreement){
+        if (isAgreement) {
             imageAgreement.setImageResource(R.mipmap.xuanzhong);
-        }else {
+        } else {
             imageAgreement.setImageResource(R.mipmap.weixuanzhong);
         }
     }
@@ -112,9 +123,9 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (hasFocus) {
                         for (View aLineView : lineView) {
-                            aLineView.setBackgroundColor(ContextCompat.getColor(DengLuActivity.this,R.color.text_gray));
+                            aLineView.setBackgroundColor(ContextCompat.getColor(DengLuActivity.this, R.color.text_gray));
                         }
-                        lineView[finalI].setBackgroundColor(ContextCompat.getColor(DengLuActivity.this,R.color.basic_color));
+                        lineView[finalI].setBackgroundColor(ContextCompat.getColor(DengLuActivity.this, R.color.basic_color));
                     }
                 }
             });
@@ -139,14 +150,14 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
                 setAgreement();
                 break;
             case R.id.textWangJiMM:
-                intent.setClass(this,WangJiMMActivity.class);
+                intent.setClass(this, WangJiMMActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageBack:
                 finish();
                 break;
             case R.id.buttonLogin:
-                if (!isAgreement){
+                if (!isAgreement) {
                     Toast.makeText(DengLuActivity.this, "请阅读并同意《好车666用户协议》", Toast.LENGTH_SHORT).show();
                     return;
                 }

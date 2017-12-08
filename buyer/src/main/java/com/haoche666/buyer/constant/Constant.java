@@ -37,11 +37,20 @@ public class Constant {
          * 升级
          */
         public static final String INDEX_VERSION = "";
+        /**
+         * 注册
+         */
+        public static final String LOGIN_REGISTER = "/Login/register";
+        /**
+         * 注册发送验证码
+         */
+        public static final String LOGIN_REGSMS = "/Login/regSms";
     }
 
     public static class IntentKey {
         public static final String TYPE = "type";
         public static final String POSITION = "position";
+        public static final String PHONE = "phone";
     }
 
     public static class RequestResultCode {
