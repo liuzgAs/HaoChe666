@@ -1,205 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/white" />
 
     <RelativeLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
 
         <TextView
+            android:id="@+id/textMore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColor="@color/text_gray"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/normal_textsize"
             android:text="更多"
-            android:id="@+id/textMore"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/normal_textsize" />
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical">
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/light_black"
+                android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="好车拍档"
-                android:id="@+id/textView31"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="好车拍档"
+                android:textColor="@color/light_black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_marginTop="2dp"
-                android:src="@mipmap/youqudeyouxijiemu"
+                android:id="@+id/imageView16"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:id="@+id/imageView16"
-                android:layout_below="@+id/textView31"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView31"
+                android:layout_marginTop="2dp"
+                android:src="@mipmap/youqudeyouxijiemu" />
         </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:clipChildren="false"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clipChildren="false">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/id_viewpager"
-            android:clipChildren="false"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lunBoShiPin"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/lunBoShiPin"/>
+            android:clipChildren="false" />
     </RelativeLayout>
 
     <TextView
-        android:textStyle="bold"
-        android:background="@color/white"
-        android:textSize="@dimen/bigText"
+        android:id="@+id/textView32"
         android:layout_width="match_parent"
-        android:paddingTop="10dp"
-        android:gravity="center_horizontal"
         android:layout_height="50dp"
-        android:textColor="@color/light_black"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
         android:text="标致207 2009款 三厢 1.6L 手动品乐版"
-        android:id="@+id/textView32" />
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_marginTop="5dp"
+        android:id="@+id/textView161"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/white"
-        android:id="@+id/textView161" />
+        android:layout_marginTop="5dp"
+        android:background="@color/white" />
 
     <RelativeLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_gravity="center_horizontal" >
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white">
 
         <TextView
-            android:textColor="@color/text_gray"
-            android:layout_marginRight="10dp"
+            android:id="@+id/textView33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/normal_textsize"
-            android:text="更多"
-            android:id="@+id/textView33"
-            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="更多"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/normal_textsize" />
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical">
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/light_black"
+                android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="精选图文"
-                android:id="@+id/textView34"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="精选图文"
+                android:textColor="@color/light_black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_marginTop="2dp"
-                android:src="@mipmap/jingcaineirongbuhuaiyun"
+                android:id="@+id/imageView19"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:id="@+id/imageView19"
-                android:layout_below="@+id/textView34"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView34"
+                android:layout_marginTop="2dp"
+                android:src="@mipmap/jingcaineirongbuhuaiyun" />
         </RelativeLayout>
     </RelativeLayout>
 
     <include layout="@layout/item_jing_xuan_tu_wen" />
 
     <TextView
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white" />
 
     <TextView
+        android:id="@+id/textView162"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/basic_color"
-        android:id="@+id/textView162" />
+        android:background="@color/basic_color" />
 
     <RelativeLayout
-        android:background="@color/basic_color"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_gravity="center_horizontal" >
+        android:layout_gravity="center_horizontal"
+        android:background="@color/basic_color">
 
         <TextView
-            android:layout_marginRight="10dp"
+            android:id="@+id/textMoreCheHang"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/normal_textsize"
-            android:text="更多"
-            android:id="@+id/textView37"
-            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="更多"
+            android:textSize="@dimen/normal_textsize" />
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical">
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/light_black"
+                android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="车行推荐"
-                android:id="@+id/textView38"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="车行推荐"
+                android:textColor="@color/light_black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_marginTop="2dp"
-                android:src="@mipmap/youzhichepin"
+                android:id="@+id/imageView21"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:id="@+id/imageView21"
-                android:layout_below="@+id/textView38"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView38"
+                android:layout_marginTop="2dp"
+                android:src="@mipmap/youzhichepin" />
         </RelativeLayout>
     </RelativeLayout>
-    <include layout="@layout/header_shou_ye02"/>
+
+    <include layout="@layout/header_shou_ye02" />
 </LinearLayout>

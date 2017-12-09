@@ -8,4 +8,5 @@
     <dimen name="MineHead">260dp</dimen>
     <dimen name="shouYeBanner">150dp</dimen>
     <dimen name="duiBiWidth">160dp</dimen>
+    <dimen name="CheHangLieBiaoImg">100dp</dimen>
 </resources>

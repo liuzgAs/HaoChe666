@@ -18,6 +18,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
+import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
@@ -200,10 +201,18 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         startActivity(intent);
                     }
                 });
+                header_shou_ye.findViewById(R.id.textMoreCheHang).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), CheHangLBActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 header_shou_ye.findViewById(R.id.textMore).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
                     }
                 });
                 return header_shou_ye;
@@ -302,7 +311,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         storeBeanList = buyer.getStore();
                         adapter.clear();
                         adapter.addAll(DataProvider.getPersonList(page));
-                    } else if (buyer.getStatus()== 3) {
+                    } else if (buyer.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
                         showError(buyer.getInfo());
@@ -316,6 +325,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             public void onError() {
                 showError("网络出错");
             }
+
             /**
              * 错误显示
              * @param msg
