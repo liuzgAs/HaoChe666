@@ -98,8 +98,16 @@
         android:background="@color/white" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
         android:text="视频看车"
-        style="@style/textItemTitle" />
+        android:textColor="@color/light_black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
     <RelativeLayout
         android:id="@+id/viewVideo"
         android:background="@color/white"
@@ -144,6 +152,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/textView83"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

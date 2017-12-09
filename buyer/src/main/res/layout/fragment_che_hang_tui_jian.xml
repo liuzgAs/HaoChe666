@@ -26,7 +26,7 @@
                 android:text="尼克斯品质车行"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/bigText"
-                android:id="@+id/textView39"
+                android:id="@+id/textName"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:text="简介：主营方向"
                 android:textSize="@dimen/litterText"
-                android:id="@+id/textView40"
-                android:layout_below="@+id/textView39"
+                android:id="@+id/textIntro"
+                android:layout_below="@+id/textName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="5651辆在售，5484辆已售"
             android:textSize="@dimen/normal_textsize"
-            android:id="@+id/textView41" />
+            android:id="@+id/textDes" />
 
         <LinearLayout
             android:layout_marginLeft="10dp"
@@ -72,7 +72,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView22" />
+                android:id="@+id/image01" />
 
             <TextView
                 android:layout_width="1dp"
@@ -85,7 +85,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView23" />
+                android:id="@+id/image02" />
 
             <TextView
                 android:layout_width="1dp"
@@ -98,7 +98,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView24" />
+                android:id="@+id/image03" />
         </LinearLayout>
 
         <RelativeLayout

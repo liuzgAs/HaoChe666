@@ -16,13 +16,15 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textColor="@color/text_gray"
-            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_height="match_parent"
             android:textSize="@dimen/normal_textsize"
             android:text="更多"
-            android:id="@+id/textView30"
+            android:id="@+id/textMore"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

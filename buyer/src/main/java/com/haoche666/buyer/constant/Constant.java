@@ -65,6 +65,10 @@ public class Constant {
          * 忘记密码
          */
         public static final String LOGIN_FORGET = "/Login/forget";
+        /**
+         * 买家版主页
+         */
+        public static final String BUYER = "/Buyer";
     }
 
     public static class IntentKey {

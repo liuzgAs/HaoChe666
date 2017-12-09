@@ -145,6 +145,7 @@
                     android:textSize="@dimen/bigText" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/textView99"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -254,6 +255,7 @@
                     android:src="@mipmap/fuwu03" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/textView106"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -267,7 +269,6 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/textView107"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -345,6 +346,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:visibility="gone"
             android:textColor="@color/text_gray"
             android:id="@+id/textView115"
             android:layout_width="wrap_content"

@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -18,10 +19,16 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Buyer;
+import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.provider.DataProvider;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.LocalImageHolderView;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -32,10 +39,13 @@ import com.rd.PageIndicatorView;
 import com.rd.animation.AnimationType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.BannerSettingUtil;
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
@@ -51,6 +61,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
+    private List<Buyer.StoreBean> storeBeanList = new ArrayList<>();
 
     public ShouYeFragment() {
         // Required empty public constructor
@@ -189,6 +200,12 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         startActivity(intent);
                     }
                 });
+                header_shou_ye.findViewById(R.id.textMore).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                    }
+                });
                 return header_shou_ye;
             }
 
@@ -202,7 +219,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 }, imgList);
                 id_viewpager.setAdapter(new BannerAdapter(getActivity(), imgList));
                 id_viewpager.setCurrentItem(50);
-                id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), imgList));
+                id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), storeBeanList));
                 id_viewpager01.setCurrentItem(50);
             }
         });
@@ -260,11 +277,64 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         onRefresh();
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.BUYER;
+        HashMap<String, String> params = new HashMap<>();
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("买家版主页", s);
+                try {
+                    page++;
+                    Buyer buyer = GsonUtils.parseJSON(s, Buyer.class);
+                    if (buyer.getStatus() == 1) {
+                        storeBeanList = buyer.getStore();
+                        adapter.clear();
+                        adapter.addAll(DataProvider.getPersonList(page));
+                    } else if (buyer.getStatus()== 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        showError(buyer.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 
     @Override
