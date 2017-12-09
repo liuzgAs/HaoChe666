@@ -289,7 +289,6 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
             getSms();
         } else {
             Toast.makeText(DengLuActivity.this, "输入正确的手机号", Toast.LENGTH_SHORT).show();
-            editView[0].setText("");
         }
     }
 

@@ -215,7 +215,6 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
             getSms();
         } else {
             Toast.makeText(ZhuCeActivity.this, "输入正确的手机号", Toast.LENGTH_SHORT).show();
-            editView[0].setText("");
         }
     }
 

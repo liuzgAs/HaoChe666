@@ -61,6 +61,10 @@ public class Constant {
          * 开机记录设备
          */
         public static final String INDEX_START = "/Index/start";
+        /**
+         * 忘记密码
+         */
+        public static final String LOGIN_FORGET = "/Login/forget";
     }
 
     public static class IntentKey {

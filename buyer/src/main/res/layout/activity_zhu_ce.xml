@@ -164,7 +164,7 @@
 
         <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="textPassword"
-            android:maxLength="17"
+            android:maxLength="18"
             android:singleLine="true"
             android:textColorHint="@color/light_black"
             android:textCursorDrawable="@drawable/mycursor"
@@ -190,7 +190,7 @@
 
         <huisedebi.zjb.mylibrary.customview.EditTextWithDel
             android:inputType="textPassword"
-            android:maxLength="17"
+            android:maxLength="18"
             android:singleLine="true"
             android:textColorHint="@color/light_black"
             android:textCursorDrawable="@drawable/mycursor"
