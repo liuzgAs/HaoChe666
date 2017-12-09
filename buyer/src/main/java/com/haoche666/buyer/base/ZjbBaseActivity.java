@@ -50,9 +50,6 @@ public abstract class ZjbBaseActivity extends SwipeBackActivity {
     public void init() {
         MyApplication.getInstance().addActivity(this);
         changeControl = Constant.changeControl - 1;
-        ACache aCache = ACache.get(this, Constant.Acache.APP);
-        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
-        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         initSP();
         initIntent();
         findID();
@@ -95,8 +92,8 @@ public abstract class ZjbBaseActivity extends SwipeBackActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        initLogin();
         if (changeControl != Constant.changeControl) {
+            initLogin();
             initData();
             changeControl++;
         }
@@ -104,6 +101,9 @@ public abstract class ZjbBaseActivity extends SwipeBackActivity {
     }
 
     private void initLogin() {
+        ACache aCache = ACache.get(this, Constant.Acache.APP);
+        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
+        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         if (userInfo != null) {
             isLogin = true;
         } else {

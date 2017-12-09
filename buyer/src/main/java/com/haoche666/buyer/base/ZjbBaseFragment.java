@@ -38,11 +38,7 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
     }
 
     public void init() {
-        //添加当前界面到容器中
         changeControl = Constant.changeControl - 1;
-        ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
-        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
-        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         initSP();
         initIntent();
         findID();
@@ -63,6 +59,9 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
     protected abstract void initData();
 
     private void initLogin() {
+        ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
+        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
+        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         if (userInfo != null) {
             isLogin = true;
         } else {
@@ -73,8 +72,8 @@ public abstract class ZjbBaseFragment extends Fragment implements FragmentBackHa
     @Override
     public void onResume() {
         super.onResume();
-        initLogin();
         if (changeControl != Constant.changeControl) {
+            initLogin();
             initData();
             changeControl++;
         }

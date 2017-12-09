@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
@@ -24,6 +23,7 @@ import java.util.HashMap;
 import huisedebi.zjb.mylibrary.util.ACache;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
+import huisedebi.zjb.mylibrary.util.MD5Util;
 import huisedebi.zjb.mylibrary.util.StringUtil;
 
 /**
@@ -44,6 +44,7 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     private Runnable mR;
     private int[] mI;
     private String mPhone_sms;
+    private String did;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
 
     @Override
     protected void initSP() {
-
+        ACache aCache = ACache.get(this, Constant.Acache.LOCATION);
+        did = aCache.getAsString(Constant.Acache.DID);
     }
 
     @Override
@@ -185,13 +187,13 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
                     return;
                 }
                 if (isMsgLogin){
-                    if (TextUtils.isEmpty(editView[1].getText().toString().trim())) {
-                        Toast.makeText(DengLuActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(editView[2].getText().toString().trim())) {
+                        Toast.makeText(DengLuActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }else {
-                    if (TextUtils.isEmpty(editView[2].getText().toString().trim())) {
-                        Toast.makeText(DengLuActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(editView[1].getText().toString().trim())) {
+                        Toast.makeText(DengLuActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -296,11 +298,13 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getOkObjectPsw() {
+    private OkObject getOkObjectPsw(String tokenTime) {
         String url = Constant.HOST + Constant.Url.LOGIN_INDEX;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid",userInfo.getUid());
+        params.put("userName",editView[0].getText().toString().trim());
         params.put("tokenTime",tokenTime);
+        params.put("userPwd", MD5Util.getMD5(MD5Util.getMD5(editView[1].getText().toString().trim()) + "ad"));
+        params.put("did",did);
         return new OkObject(params, url);
     }
 
@@ -309,21 +313,16 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
      */
     private void loginPsw() {
         showLoadingDialog();
-        ApiClient.post(DengLuActivity.this, getOkObjectPsw(), new ApiClient.CallBack() {
+        final String tokenTime = System.currentTimeMillis() + "";
+        ApiClient.post(DengLuActivity.this, getOkObjectPsw(tokenTime), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
+                LogUtil.LogShitou("DengLuActivity--登录返回", "" + s);
                 cancelLoadingDialog();
-                LogUtil.LogShitou("DengLuActivity--onSuccess",s+ "");
                 try {
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus()==1){
-                    }else if (simpleInfo.getStatus()==3){
-                        MyDialog.showReLoginDialog(DengLuActivity.this);
-                    }else {
-                        Toast.makeText(DengLuActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
-                    }
+                    loginSuccess(s, tokenTime);
                 } catch (Exception e) {
-                    Toast.makeText(DengLuActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DengLuActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -343,8 +342,10 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     private OkObject getOkObjectSms(String tokenTime) {
         String url = Constant.HOST + Constant.Url.LOGIN_SMS;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid",userInfo.getUid());
+        params.put("userName",editView[0].getText().toString().trim());
+        params.put("did",did);
         params.put("tokenTime",tokenTime);
+        params.put("code",editView[2].getText().toString().trim());
         return new OkObject(params, url);
     }
 

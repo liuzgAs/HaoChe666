@@ -44,9 +44,6 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
 
     public void init() {
         MyApplication.getInstance().addActivity(this);
-        ACache aCache = ACache.get(this, Constant.Acache.APP);
-        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
-        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         changeControl = Constant.changeControl-1;
         initSP();
         initIntent();
@@ -91,8 +88,8 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        initLogin();
         if (changeControl!= Constant.changeControl){
+            initLogin();
             initData();
             changeControl++;
         }
@@ -100,6 +97,9 @@ public abstract class ZjbBaseNotLeftActivity extends AppCompatActivity {
     }
 
     private void initLogin() {
+        ACache aCache = ACache.get(this, Constant.Acache.APP);
+        userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
+        tokenTime = aCache.getAsString(Constant.Acache.TOKENTIME);
         if (userInfo != null) {
             isLogin = true;
         } else {

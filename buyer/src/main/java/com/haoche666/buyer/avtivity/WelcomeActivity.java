@@ -24,7 +24,6 @@ import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.IndexStartad;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
-import com.luoxudong.app.threadpool.ThreadPoolHelp;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +41,6 @@ public class WelcomeActivity extends ZjbBaseNotLeftActivity implements EasyPermi
     private String isFirst = "1";
     private String lat;
     private String lng;
-    private long currentTimeMillis;
     private int GPS_REQUEST_CODE = 10;
     /**
      * 声明AMapLocationClient类对象
@@ -109,28 +107,11 @@ public class WelcomeActivity extends ZjbBaseNotLeftActivity implements EasyPermi
                 LogUtil.LogShitou("WelcomeActivity--onSuccess", "" + s);
                 try {
                     final IndexStartad indexStartad = GsonUtils.parseJSON(s, IndexStartad.class);
-                    if ((System.currentTimeMillis() - currentTimeMillis) < 1000) {
 
-                        if (indexStartad.getStatus() == 1) {
-                            ThreadPoolHelp.Builder
-                                    .cached()
-                                    .builder()
-                                    .execute(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                Thread.sleep(1000);
-                                                go(indexStartad);
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
-                        } else {
-                            MyDialog.dialogFinish(WelcomeActivity.this, indexStartad.getInfo());
-                        }
-                    } else {
+                    if (indexStartad.getStatus() == 1) {
                         go(indexStartad);
+                    } else {
+                        MyDialog.dialogFinish(WelcomeActivity.this, indexStartad.getInfo());
                     }
                 } catch (Exception e) {
                     MyDialog.dialogFinish(WelcomeActivity.this, "数据出错");
@@ -251,7 +232,6 @@ public class WelcomeActivity extends ZjbBaseNotLeftActivity implements EasyPermi
         mLocationClient.setLocationOption(mLocationOption);
         //启动定位
         mLocationClient.startLocation();
-        currentTimeMillis = System.currentTimeMillis();
     }
 
     @Override

@@ -7,7 +7,6 @@ public class UserInfo implements Serializable {
      * uid : 2
      * headImg : http://192.168.1.181/Uploads/avstar.png
      * userName : 15871105320
-     * nickName : 15871105320
      * status : 1
      * info : 操作成功！
      */
@@ -15,7 +14,6 @@ public class UserInfo implements Serializable {
     private String uid;
     private String headImg;
     private String userName;
-    private String nickName;
     private int status;
     private String info;
 
@@ -41,14 +39,6 @@ public class UserInfo implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public int getStatus() {

@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChaXunFWActivity;
 import com.haoche666.buyer.avtivity.CheLiangDBActivity;
@@ -39,6 +41,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private View viewBar;
     private View viewBar01;
     private ImageView imageVip;
+    private TextView textName;
+    private ImageView imageHead;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -77,6 +81,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         viewBar = mInflate.findViewById(R.id.viewBar);
         viewBar01 = mInflate.findViewById(R.id.viewBar01);
         imageVip = mInflate.findViewById(R.id.imageVip);
+        textName = mInflate.findViewById(R.id.textName);
+        imageHead = mInflate.findViewById(R.id.imageHead);
     }
 
     @Override
@@ -107,7 +113,23 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
     @Override
     protected void initData() {
-
+        if (isLogin){
+            textName.setText(userInfo.getUserName());
+            Glide.with(getActivity())
+                    .load(userInfo.getHeadImg())
+                    .asBitmap()
+                    .dontAnimate()
+                    .placeholder(R.mipmap.ic_empty)
+                    .into(imageHead);
+        }else {
+            textName.setText("未登录");
+            Glide.with(getActivity())
+                    .load(R.mipmap.mine_head)
+                    .asBitmap()
+                    .dontAnimate()
+                    .placeholder(R.mipmap.ic_empty)
+                    .into(imageHead);
+        }
     }
 
     @Override

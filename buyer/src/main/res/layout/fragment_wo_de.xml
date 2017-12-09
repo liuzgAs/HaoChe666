@@ -78,7 +78,7 @@
                             android:src="@mipmap/mine_head" />
 
                         <TextView
-                            android:id="@+id/textView45"
+                            android:id="@+id/textName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/imageHead"
