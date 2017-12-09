@@ -69,12 +69,17 @@ public class Constant {
          * 买家版主页
          */
         public static final String BUYER = "/Buyer";
+        /**
+         * 车行详情
+         */
+        public static final String STORE_DETAILS = "/Store/details";
     }
 
     public static class IntentKey {
         public static final String TYPE = "type";
         public static final String POSITION = "position";
         public static final String PHONE = "phone";
+        public static final String ID = "id";
     }
 
     public static class RequestResultCode {

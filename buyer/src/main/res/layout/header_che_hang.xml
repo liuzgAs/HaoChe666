@@ -41,7 +41,7 @@
                 android:src="@mipmap/che_hang_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:id="@+id/imageView86"
+                android:id="@+id/imageLogo"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
 
@@ -52,7 +52,7 @@
                 android:text="关注：198"
                 android:layout_margin="10dp"
                 android:textSize="@dimen/normal_textsize"
-                android:id="@+id/textView42"
+                android:id="@+id/textText1"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="粉丝：198"
                 android:textSize="@dimen/normal_textsize"
-                android:id="@+id/textView151"
+                android:id="@+id/textText2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -84,7 +84,7 @@
                 android:text="厦门中保世界精品车行"
                 android:textSize="@dimen/bigText"
                 android:textColor="@color/light_black"
-                android:id="@+id/textView152"
+                android:id="@+id/textName"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
@@ -95,8 +95,8 @@
                 android:textSize="@dimen/moreLitterText"
                 android:textColor="@color/text_gray"
                 android:layout_marginTop="5dp"
-                android:id="@+id/textView158"
-                android:layout_below="@+id/textView152"
+                android:id="@+id/textCompany"
+                android:layout_below="@+id/textName"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </LinearLayout>

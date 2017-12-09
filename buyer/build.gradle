@@ -37,10 +37,12 @@ dependencies {
     compile 'com.iarcuschin:simpleratingbar:0.1.2'
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.6'
     implementation project(':library')
-    compile 'com.github.huisedebi:ZjbLibrary:0.2.7'
+    compile 'com.github.huisedebi:ZjbLibrary:0.2.8'
     compile 'com.lzy.net:okgo:3.0.4'
     compile 'com.amap.api:location:latest.integration'
     compile 'pub.devrel:easypermissions:1.0.1'
-    compile 'com.aliyun.ams:alicloud-android-push:2.3.7'
+    compile 'com.aliyun.ams:alicloud-android-push:3.0.11@aar'
+    compile 'com.aliyun.ams:alicloud-android-utdid:1.1.5.3'
+    compile 'com.aliyun.ams:alicloud-android-ut:5.1.0'
     implementation files('libs/ThreadPoolHelp-2.0.jar')
 }

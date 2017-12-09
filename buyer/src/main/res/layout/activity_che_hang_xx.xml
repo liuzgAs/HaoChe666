@@ -75,7 +75,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:id="@+id/viewBottom">
 
         <RelativeLayout
             android:gravity="center"

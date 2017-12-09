@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 
 import java.util.List;
@@ -44,9 +45,12 @@ public class Banner02Adapter extends PagerAdapter {
         inflate.findViewById(R.id.textJinRuDP).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(mContext, CheHangXXActivity.class);
-                mContext.startActivity(intent);
+                if (imgList.size() > 0) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constant.IntentKey.ID, imgList.get(position % imgList.size()).getId());
+                    intent.setClass(mContext, CheHangXXActivity.class);
+                    mContext.startActivity(intent);
+                }
             }
         });
         TextView textName = inflate.findViewById(R.id.textName);
@@ -58,7 +62,7 @@ public class Banner02Adapter extends PagerAdapter {
         imageViews[0].setVisibility(View.INVISIBLE);
         imageViews[1].setVisibility(View.INVISIBLE);
         imageViews[2].setVisibility(View.INVISIBLE);
-        if (imgList.size()>0){
+        if (imgList.size() > 0) {
             textIntro.setText("简介：" + imgList.get(position % imgList.size()).getIntro());
             textName.setText(imgList.get(position % imgList.size()).getName());
             textDes.setText(imgList.get(position % imgList.size()).getDes());
