@@ -49,6 +49,18 @@ public class Constant {
          * 验证码登录
          */
         public static final String LOGIN_SMS = "/Login/sms";
+        /**
+         * 忘记验证码请求
+         */
+        public static final String LOGIN_FORGETSMS = "/Login/forgetSms";
+        /**
+         * 用户登录
+         */
+        public static final String LOGIN_INDEX = "/Login/index";
+        /**
+         * 开机记录设备
+         */
+        public static final String INDEX_START = "/Index/start";
     }
 
     public static class IntentKey {
@@ -65,6 +77,13 @@ public class Constant {
         public static final String APP = "app";
         public static final String USER_INFO = "userInfo";
         public static final String TOKENTIME = "tokentime";
+        public static final String LOCATION = "location";
+        public static final String LAT = "lat";
+        public static final String LNG = "lng";
+        public static final String CITY = "city";
+        public static final String CITY_ID = "city_id";
+        public static final String DID = "did";
+        public static final String FRIST = "frist";
     }
 
     public static class BroadcastCode {

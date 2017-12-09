@@ -92,4 +92,10 @@
     <string name="duiBi0803">安全检测</string>
     <string name="duiBi0804">驾驶检测</string>
     <string name="duiBiTip">以上数据仅供参考，实际情况以看车为准</string>
+
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="gpsNotifyMsg">当前应用需要打开定位功能。\n\n请点击\"设置\"-\"定位服务\"-打开定位功能。</string>
+    <string name="setting">设置</string>
+    <string name="cancel">取消</string>
 </resources>

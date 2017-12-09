@@ -2,12 +2,50 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haoche666.buyer">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 网络权限 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--用于访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--用于写入缓存数据到扩展存储卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!--阿里移动推送相关权限-->
+    <!--Android 6.0版本可去除，用于选举信息（通道复用）的同步-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--网络库使用，当网络操作时需要确保事务完成不被杀掉-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--用于读取手机硬件信息等，用于机型过滤-->
+    <!--选举使用，当应用有删除或者更新时需要重新选举，复用推送通道-->
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <!--补偿通道小米PUSH使用，不用可去除-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--补偿通道GCM使用，不使用可去除-->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!--允许监听启动完成事件-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--允许访问震动器-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 允许task重排序 -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:name=".application.MyApplication"
@@ -16,6 +54,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--测试推送-->
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="24697610" /> <!-- 请填写你自己的- appKey -->
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="d86c2b6e6f94f627159280f5d6e1ad61" /> <!-- 请填写你自己的appSecret -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="4b0ee254a06cf716acf1505fb5215566" />
+
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="24697610-1" />
@@ -32,20 +81,85 @@
             android:name="UMENG_CHANNEL"
             android:value="hudongchuangxiang" />
 
+        <!--消息接收监听器-->
+        <receiver android:name=".reciver.MyReciver">
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.intent.action.COMMAND" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 通道保持服务 -->
+        <service android:name="com.alibaba.sdk.android.push.ChannelService"
+            android:exported="true" android:process=":channel">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.PING_V4" />
+                <category android:name="taobao" />
+            </intent-filter>
+        </service>
+        <!-- 消息接收服务 -->
+        <service android:name="com.alibaba.sdk.android.push.MsgService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION" />
+            </intent-filter>
+        </service>
+        <!-- 消息接收增强服务（可提高通知/消息达到率）-->
+        <service android:name="com.alibaba.sdk.android.push.channel.TaobaoRecvService" android:exported="true">
+            <intent-filter>
+                <action android:name="org.android.agoo.client.MessageReceiverService"/>
+            </intent-filter>
+        </service>
+        <!--定位service-->
+        <service android:name="com.amap.api.location.APSService" />
+
         <activity
-            android:name=".avtivity.MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppThemeNoTranslucent">
+            android:name=".avtivity.WelcomeActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".avtivity.MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppThemeNoTranslucent"/>
 
         <activity
             android:name=".avtivity.DengLuActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".avtivity.ZuJiActivity"
             android:launchMode="singleTop" />
@@ -118,8 +232,12 @@
         <activity
             android:name=".avtivity.ChangJianWenTiActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".avtivity.GeRenXXActivity" />
-        <activity android:name=".avtivity.WoMaiDeCheActivity"></activity>
+        <activity
+            android:name=".avtivity.GeRenXXActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WoMaiDeCheActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

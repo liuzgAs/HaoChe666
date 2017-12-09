@@ -39,4 +39,8 @@ dependencies {
     implementation project(':library')
     compile 'com.github.huisedebi:ZjbLibrary:0.2.7'
     compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.amap.api:location:latest.integration'
+    compile 'pub.devrel:easypermissions:1.0.1'
+    compile 'com.aliyun.ams:alicloud-android-push:2.3.7'
+    implementation files('libs/ThreadPoolHelp-2.0.jar')
 }

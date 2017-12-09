@@ -11,9 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.model.UserInfo;
 import com.haoche666.buyer.util.ApiClient;
 
@@ -38,6 +40,10 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     private boolean isMsgLogin = true;
     private View viewPsw;
     private View viewMsg;
+    private TextView textSms;
+    private Runnable mR;
+    private int[] mI;
+    private String mPhone_sms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +83,7 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
         textLoginType = (TextView) findViewById(R.id.textLoginType);
         viewPsw = findViewById(R.id.viewPsw);
         viewMsg = findViewById(R.id.viewMsg);
+        textSms = (TextView) findViewById(R.id.textMsg);
     }
 
     @Override
@@ -121,6 +128,7 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
 
     @Override
     protected void setListeners() {
+        textSms.setOnClickListener(this);
         imageAgreement.setOnClickListener(this);
         textLoginType.setOnClickListener(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
@@ -152,6 +160,9 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.textMsg:
+                sendSMS();
+                break;
             case R.id.textLoginType:
                 isMsgLogin = !isMsgLogin;
                 setLoginType();
@@ -204,10 +215,124 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
     }
 
     /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.LOGIN_FORGETSMS;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userName", mPhone_sms);
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 获取短信
+     * author： ZhangJieBo
+     * date： 2017/7/6 0006 下午 2:45
+     */
+    private void getSms() {
+        showLoadingDialog();
+        ApiClient.post(this, getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ZhuCeActivity--获取短信", "" + s);
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    Toast.makeText(DengLuActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    if (simpleInfo.getStatus() == 1) {
+
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(DengLuActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(DengLuActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * des： 短信发送按钮状态
+     * author： ZhangJieBo
+     * date： 2017/8/22 0022 上午 10:26
+     */
+    private void sendSMS() {
+        textSms.removeCallbacks(mR);
+        boolean mobileNO = StringUtil.isMobileNO(editView[0].getText().toString().trim());
+        if (mobileNO) {
+            mPhone_sms = editView[0].getText().toString().trim();
+            textSms.setEnabled(false);
+            mI = new int[]{60};
+
+            mR = new Runnable() {
+                @Override
+                public void run() {
+                    textSms.setText((mI[0]--) + "秒后重发");
+                    if (mI[0] == 0) {
+                        textSms.setEnabled(true);
+                        textSms.setText("重新发送");
+                        return;
+                    } else {
+                    }
+                    textSms.postDelayed(mR, 1000);
+                }
+            };
+            textSms.postDelayed(mR, 0);
+            getSms();
+        } else {
+            Toast.makeText(DengLuActivity.this, "输入正确的手机号", Toast.LENGTH_SHORT).show();
+            editView[0].setText("");
+        }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObjectPsw() {
+        String url = Constant.HOST + Constant.Url.LOGIN_INDEX;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("uid",userInfo.getUid());
+        params.put("tokenTime",tokenTime);
+        return new OkObject(params, url);
+    }
+
+    /**
      * 密码登录
      */
     private void loginPsw() {
+        showLoadingDialog();
+        ApiClient.post(DengLuActivity.this, getOkObjectPsw(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("DengLuActivity--onSuccess",s+ "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus()==1){
+                    }else if (simpleInfo.getStatus()==3){
+                        MyDialog.showReLoginDialog(DengLuActivity.this);
+                    }else {
+                        Toast.makeText(DengLuActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(DengLuActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(DengLuActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
