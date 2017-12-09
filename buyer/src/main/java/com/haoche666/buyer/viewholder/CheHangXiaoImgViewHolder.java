@@ -23,7 +23,7 @@ public class CheHangXiaoImgViewHolder extends BaseViewHolder<Store.DataBean.CarB
     @Override
     public void setData(Store.DataBean.CarBean data) {
         super.setData(data);
-        textPrice.setText("报价："+data.getPrice());
+        textPrice.setText("报价："+data.getPrice()+"万");
     }
     
 }

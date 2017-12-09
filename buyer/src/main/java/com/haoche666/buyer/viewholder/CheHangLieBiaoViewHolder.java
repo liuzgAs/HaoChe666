@@ -47,7 +47,7 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IntentKey.ID,data.getId());
+                intent.putExtra(Constant.IntentKey.ID, data.getId());
                 intent.setClass(getContext(), CheHangXXActivity.class);
                 getContext().startActivity(intent);
             }
@@ -58,19 +58,19 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
     @Override
     public void setData(Store.DataBean data) {
         super.setData(data);
-        this.data=data;
+        this.data = data;
         Glide.with(getContext())
                 .load(data.getImg())
-                .bitmapTransform(new RoundedCornersTransformation(getContext(),(int) DpUtils.convertDpToPixel(8,getContext()),0))
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), (int) DpUtils.convertDpToPixel(8, getContext()), 0))
                 .placeholder(R.mipmap.ic_empty)
                 .into(imageLogo);
         textName.setText(data.getName());
         textText.setText(data.getText());
         List<Store.DataBean.CarBean> carBeanList = data.getCar();
-        if (carBeanList.size()>0){
+        if (carBeanList.size() > 0) {
             adapter.clear();
             adapter.addAll(carBeanList);
-        }else {
+        } else {
             viewHeng.setVisibility(View.GONE);
         }
     }
@@ -89,8 +89,21 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
             }
         });
         SpaceDecoration spaceDecoration = new SpaceDecoration((int) DpUtils.convertDpToPixel(10, getContext()));
-        spaceDecoration.setPaddingEdgeSide(true);
+        spaceDecoration.setPaddingEdgeSide(false);
         recyclerView.addItemDecoration(spaceDecoration);
+        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = new View(getContext());
+                view.setLayoutParams(new ViewGroup.LayoutParams((int) DpUtils.convertDpToPixel(10f, getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        });
     }
 
 }

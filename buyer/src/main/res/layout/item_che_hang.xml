@@ -24,7 +24,7 @@
         android:layout_marginRight="10dp"
         android:textSize="@dimen/bigText"
         android:textColor="@color/light_black"
-        android:lines="2"
+        android:lines="1"
         android:ellipsize="end"
         android:id="@+id/textTitle"
         android:layout_alignTop="@+id/imageImg"
@@ -32,6 +32,7 @@
         android:layout_toEndOf="@+id/imageImg" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:textSize="@dimen/litterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
