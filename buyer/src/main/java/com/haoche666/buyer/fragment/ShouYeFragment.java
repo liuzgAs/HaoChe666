@@ -22,6 +22,7 @@ import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
+import com.haoche666.buyer.avtivity.WenZhangLBActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -206,6 +207,14 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     public void onClick(View view) {
                         Intent intent = new Intent();
                         intent.setClass(getActivity(), CheHangLBActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                header_shou_ye.findViewById(R.id.textTuWenMore).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), WenZhangLBActivity.class);
                         startActivity(intent);
                     }
                 });

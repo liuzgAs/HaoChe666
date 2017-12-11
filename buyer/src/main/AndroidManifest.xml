@@ -124,7 +124,7 @@
         <service
             android:name="com.taobao.accs.ChannelService$KernelService"
             android:exported="false"
-            android:process=":channel"></service>
+            android:process=":channel" />
         <service
             android:name="com.taobao.accs.data.MsgDistributeService"
             android:exported="true">
@@ -228,7 +228,7 @@
             android:finishOnTaskLaunch="false"
             android:launchMode="singleInstance"
             android:process=":channel"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <!-- 定位service -->
         <service android:name="com.amap.api.location.APSService" />
 
@@ -326,7 +326,8 @@
         <activity
             android:name=".avtivity.WoMaiDeCheActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".avtivity.CheHangLBActivity"></activity>
+        <activity android:name=".avtivity.CheHangLBActivity" />
+        <activity android:name=".avtivity.WenZhangLBActivity"></activity>
     </application>
 
 </manifest>

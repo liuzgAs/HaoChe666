@@ -101,13 +101,15 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView33"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:id="@+id/textTuWenMore"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
             android:text="更多"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/normal_textsize" />
