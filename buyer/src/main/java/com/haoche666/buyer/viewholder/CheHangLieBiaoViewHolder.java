@@ -9,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Store;
+import com.haoche666.buyer.util.GlideRoundTransform;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -21,7 +23,6 @@ import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by Administrator on 2017/3/28 0028.
@@ -60,9 +61,10 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
         super.setData(data);
         this.data = data;
         Glide.with(getContext())
-                .load(data.getImg())
-                .bitmapTransform(new RoundedCornersTransformation(getContext(), (int) DpUtils.convertDpToPixel(8, getContext()), 0))
+                .load(data.getLogo())
+                .transform(new CenterCrop(getContext()), new GlideRoundTransform(getContext(),(int)DpUtils.convertDpToPixel(6f,getContext())))
                 .placeholder(R.mipmap.ic_empty)
+                .crossFade()
                 .into(imageLogo);
         textName.setText(data.getName());
         textText.setText(data.getText());
