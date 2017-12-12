@@ -60,6 +60,7 @@
         android:layout_height="wrap_content">
 
         <com.jude.easyrecyclerview.EasyRecyclerView
+            app:scrollbars="none"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/recyclerView"

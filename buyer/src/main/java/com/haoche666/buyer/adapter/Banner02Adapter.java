@@ -75,6 +75,12 @@ public class Banner02Adapter extends PagerAdapter {
                             .asBitmap()
                             .placeholder(R.mipmap.ic_empty)
                             .into(imageViews[i]);
+                    imageViews[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                 }
             }
         }

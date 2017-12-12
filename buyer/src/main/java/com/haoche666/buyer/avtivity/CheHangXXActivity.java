@@ -1,7 +1,9 @@
 package com.haoche666.buyer.avtivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,12 +36,15 @@ import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.RecycleViewDistancaUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 车行信息
+ *
  * @author Administrator
  */
-public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, EasyPermissions.PermissionCallbacks {
+    private static final int CALL_PHONE = 1991;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<StoreDetails.DataBean> adapter;
     private int page = 1;
@@ -49,6 +54,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     private StoreDetails.StoreBean storeDetailsStore;
     private TextView textViewTitle;
     private View viewBottom;
+    private String tel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +127,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
 
             @Override
             public void onBindView(View headerView) {
-                if (storeDetailsStore!=null){
+                if (storeDetailsStore != null) {
                     textText1.setText(storeDetailsStore.getText1());
                     textText2.setText(storeDetailsStore.getText2());
                     textName.setText(storeDetailsStore.getName());
@@ -198,11 +204,11 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int scrollY = RecycleViewDistancaUtil.getDistance(recyclerView, 0);
-                float guangGaoHeight = DpUtils.convertDpToPixel(220f,CheHangXXActivity.this);
+                float guangGaoHeight = DpUtils.convertDpToPixel(220f, CheHangXXActivity.this);
                 if (scrollY <= guangGaoHeight - viewBarHeight && scrollY >= 0) {
                     int i = (int) ((double) scrollY / (double) (guangGaoHeight - viewBar.getHeight()) * 255);
                     viewBar.getBackground().mutate().setAlpha(i);
-                    LogUtil.LogShitou("CheHangXXActivity--onScrolled", ""+i);
+                    LogUtil.LogShitou("CheHangXXActivity--onScrolled", "" + i);
                 } else {
                     viewBar.getBackground().mutate().setAlpha(255);
                     LogUtil.LogShitou("CheHangXXActivity--onScrolled", "255");
@@ -220,6 +226,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.viewDianHua).setOnClickListener(this);
     }
 
     @Override
@@ -229,7 +236,10 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
+            case R.id.viewDianHua:
+                requiresPermission();
+                break;
             case R.id.imageBack:
                 finish();
                 break;
@@ -246,8 +256,8 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.STORE_DETAILS;
         HashMap<String, String> params = new HashMap<>();
-        params.put("id",id+"");
-        params.put("p",page+"");
+        params.put("id", id + "");
+        params.put("p", page + "");
         return new OkObject(params, url);
     }
 
@@ -266,10 +276,11 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                         storeDetailsStore = storeDetails.getStore();
                         viewBar.getBackground().mutate().setAlpha(0);
                         textViewTitle.setText(storeDetailsStore.getName());
+                        tel = storeDetailsStore.getTel();
                         List<StoreDetails.DataBean> storeDetailsData = storeDetails.getData();
                         adapter.clear();
                         adapter.addAll(storeDetailsData);
-                    } else if (storeDetails.getStatus()== 3) {
+                    } else if (storeDetails.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheHangXXActivity.this);
                     } else {
                         showError(storeDetails.getInfo());
@@ -283,6 +294,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             public void onError() {
                 showError("网络出错");
             }
+
             /**
              * 错误显示
              * @param msg
@@ -304,5 +316,49 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                 viewBar.getBackground().mutate().setAlpha(255);
             }
         });
+    }
+
+    /**
+     * 检查权限
+     */
+    private void requiresPermission() {
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            call();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "需要拨打电话权限",
+                    CALL_PHONE, perms);
+        }
+    }
+
+    /**
+     * 拨打电话
+     */
+    private void call() {
+    /*跳转到拨号界面，同时传递电话号码*/
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel));
+        startActivity(dialIntent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        LogUtil.LogShitou("CheHangXXActivity--onPermissionsGranted", "222222");
+        call();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        LogUtil.LogShitou("CheHangXXActivity--onPermissionsDenied", "111111");
+//        requiresPermission();
     }
 }

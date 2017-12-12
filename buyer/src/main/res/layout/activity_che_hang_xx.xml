@@ -107,6 +107,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/viewDianHua"
             android:gravity="center"
             android:background="@color/basic_color01"
             android:layout_weight="1"

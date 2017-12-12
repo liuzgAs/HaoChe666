@@ -69,10 +69,14 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
         textName.setText(data.getName());
         textText.setText(data.getText());
         List<Store.DataBean.CarBean> carBeanList = data.getCar();
-        if (carBeanList.size() > 0) {
-            adapter.clear();
-            adapter.addAll(carBeanList);
-        } else {
+        if (carBeanList!=null){
+            if (carBeanList.size() > 0) {
+                adapter.clear();
+                adapter.addAll(carBeanList);
+            } else {
+                viewHeng.setVisibility(View.GONE);
+            }
+        }else {
             viewHeng.setVisibility(View.GONE);
         }
     }
