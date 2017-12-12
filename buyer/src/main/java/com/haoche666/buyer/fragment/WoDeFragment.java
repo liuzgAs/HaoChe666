@@ -1,7 +1,10 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -57,6 +60,19 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private ImageView imageHead;
     private TextView textMoney;
     private UserBuyerindex userBuyerindex;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.USERINFO:
+                    initData();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -134,13 +150,13 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.USER_BUYERINDEX;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid",userInfo.getUid());
+        params.put("uid", userInfo.getUid());
         return new OkObject(params, url);
     }
 
     @Override
     protected void initData() {
-        if (isLogin){
+        if (isLogin) {
             textName.setText(userInfo.getUserName());
             Glide.with(getActivity())
                     .load(userInfo.getHeadImg())
@@ -153,29 +169,29 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 @Override
                 public void onSuccess(String s) {
                     cancelLoadingDialog();
-                    LogUtil.LogShitou("WoDeFragment--我的",s+ "");
+                    LogUtil.LogShitou("WoDeFragment--我的", s + "");
                     try {
                         userBuyerindex = GsonUtils.parseJSON(s, UserBuyerindex.class);
-                        if (userBuyerindex.getStatus()==1){
+                        if (userBuyerindex.getStatus() == 1) {
                             Glide.with(getActivity())
                                     .load(userBuyerindex.getHeadimg())
                                     .asBitmap()
                                     .placeholder(R.mipmap.ic_empty)
                                     .into(imageHead);
                             textName.setText(userBuyerindex.getNickname());
-                            textMoney.setText(userBuyerindex.getMoney()+"");
+                            textMoney.setText(userBuyerindex.getMoney() + "");
                             ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
-                            UserInfo userInfo = (UserInfo)aCache.getAsObject(Constant.Acache.USER_INFO);
+                            UserInfo userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
                             userInfo.setHeadImg(userBuyerindex.getHeadimg());
                             userInfo.setUserName(userBuyerindex.getNickname());
-                            aCache.put(Constant.Acache.USER_INFO,userInfo);
-                        }else if (userBuyerindex.getStatus()==3){
+                            aCache.put(Constant.Acache.USER_INFO, userInfo);
+                        } else if (userBuyerindex.getStatus() == 3) {
                             MyDialog.showReLoginDialog(getActivity());
-                        }else {
+                        } else {
                             Toast.makeText(getActivity(), userBuyerindex.getInfo(), Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -185,7 +201,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                     Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        } else {
             textName.setText("未登录");
             Glide.with(getActivity())
                     .load(R.mipmap.mine_head)
@@ -217,11 +233,11 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewGeRenXX:
-                if (isLogin){
+                if (isLogin) {
                     intent.setClass(getActivity(), GeRenXXActivity.class);
-                    intent.putExtra(Constant.IntentKey.BEAN,userBuyerindex);
+                    intent.putExtra(Constant.IntentKey.BEAN, userBuyerindex);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(getActivity());
                 }
                 break;
@@ -257,5 +273,19 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
                 break;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.USERINFO);
+        getActivity().registerReceiver(reciver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(reciver);
     }
 }

@@ -85,6 +85,10 @@ public class Constant {
          * 我的
          */
         public static final String USER_BUYERINDEX = "/User/buyerIndex";
+        /**
+         * 修改昵称和头像
+         */
+        public static final String USER_SVAEINFO = "/User/svaeInfo";
     }
 
     public static class IntentKey {
@@ -94,6 +98,7 @@ public class Constant {
         public static final String ID = "id";
         public static final String VALUE = "value";
         public static final String BEAN = "bean";
+        public static final String NICKNAME = "nickName";
     }
 
     public static class RequestResultCode {
@@ -114,7 +119,7 @@ public class Constant {
     }
 
     public static class BroadcastCode {
-        public static final String CHE_LIANG_BIAN_JI_DIALOG = "che_liang_bian_ji_dialog";
+        public static final String USERINFO = "userInfo";
     }
 
 

@@ -329,7 +329,8 @@
             android:launchMode="singleTop" />
         <activity android:name=".avtivity.CheHangLBActivity" />
         <activity android:name=".avtivity.WenZhangLBActivity" />
-        <activity android:name=".avtivity.MapActivity"></activity>
+        <activity android:name=".avtivity.MapActivity" />
+        <activity android:name=".avtivity.EditActivity"></activity>
     </application>
 
 </manifest>

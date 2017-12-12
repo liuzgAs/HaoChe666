@@ -1,7 +1,11 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +26,22 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     private TextView textNickname;
     private TextView textGrade_name;
     private TextView textMobile;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.USERINFO:
+                    String username = intent.getStringExtra(Constant.IntentKey.NICKNAME);
+                    if (!TextUtils.isEmpty(username)){
+                        textNickname.setText(username);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +86,7 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.btnExit).setOnClickListener(this);
+        findViewById(R.id.viewNickName).setOnClickListener(this);
     }
 
     @Override
@@ -76,6 +97,12 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewNickName:
+                Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.VALUE, userBuyerindex.getNickname());
+                intent.setClass(this, EditActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btnExit:
                 ACache aCache = ACache.get(this, Constant.Acache.APP);
                 aCache.clear();
@@ -88,5 +115,19 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.USERINFO);
+        registerReceiver(reciver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(reciver);
     }
 }
