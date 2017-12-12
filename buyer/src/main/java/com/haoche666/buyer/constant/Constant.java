@@ -84,6 +84,8 @@ public class Constant {
         public static final String POSITION = "position";
         public static final String PHONE = "phone";
         public static final String ID = "id";
+        public static final String VALUE = "value";
+        public static final String BEAN = "bean";
     }
 
     public static class RequestResultCode {

@@ -13,7 +13,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
+import com.haoche666.buyer.avtivity.MapActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Location;
 import com.haoche666.buyer.model.Store;
 import com.haoche666.buyer.util.GlideRoundTransform;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -51,6 +53,14 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
                 Intent intent = new Intent();
                 intent.putExtra(Constant.IntentKey.ID, data.getId());
                 intent.setClass(getContext(), CheHangXXActivity.class);
+                getContext().startActivity(intent);
+            }
+        });$(R.id.viewLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.BEAN, new Location(data.getName(),data.getAddress(),data.getLat(),data.getLng()));
+                intent.setClass(getContext(), MapActivity.class);
                 getContext().startActivity(intent);
             }
         });

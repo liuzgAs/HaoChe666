@@ -47,7 +47,7 @@
     <!-- 允许task重排序 -->
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".application.MyApplication"
@@ -328,7 +328,8 @@
             android:name=".avtivity.WoMaiDeCheActivity"
             android:launchMode="singleTop" />
         <activity android:name=".avtivity.CheHangLBActivity" />
-        <activity android:name=".avtivity.WenZhangLBActivity"></activity>
+        <activity android:name=".avtivity.WenZhangLBActivity" />
+        <activity android:name=".avtivity.MapActivity"></activity>
     </application>
 
 </manifest>
