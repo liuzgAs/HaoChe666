@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
+import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 
@@ -66,7 +67,7 @@ public class Banner02Adapter extends PagerAdapter {
             textIntro.setText("简介：" + imgList.get(position % imgList.size()).getIntro());
             textName.setText(imgList.get(position % imgList.size()).getName());
             textDes.setText(imgList.get(position % imgList.size()).getDes());
-            List<Buyer.StoreBean.CarBean> carBeanList = imgList.get(position % imgList.size()).getCar();
+            final List<Buyer.StoreBean.CarBean> carBeanList = imgList.get(position % imgList.size()).getCar();
             for (int i = 0; i < carBeanList.size(); i++) {
                 if (!TextUtils.isEmpty(carBeanList.get(i).getImg())) {
                     imageViews[i].setVisibility(View.VISIBLE);
@@ -75,10 +76,14 @@ public class Banner02Adapter extends PagerAdapter {
                             .asBitmap()
                             .placeholder(R.mipmap.ic_empty)
                             .into(imageViews[i]);
+                    final int finalI = i;
                     imageViews[i].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            Intent intent = new Intent();
+                            intent.setClass(mContext, CheLiangXQActivity.class);
+                            intent.putExtra(Constant.IntentKey.ID,carBeanList.get(finalI).getId());
+                            mContext.startActivity(intent);
                         }
                     });
                 }

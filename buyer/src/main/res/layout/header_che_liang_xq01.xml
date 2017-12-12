@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:orientation="vertical">
@@ -44,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
 
-                <ImageView
-                    android:id="@+id/imageView54"
+                <huisedebi.zjb.mylibrary.customview.CircleImageView
+                    android:id="@+id/imageLogo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
@@ -56,13 +55,13 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:id="@+id/textView97"
+                    android:id="@+id/textName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toEndOf="@+id/imageView54"
-                    android:layout_toRightOf="@+id/imageView54"
+                    android:layout_toEndOf="@+id/imageLogo"
+                    android:layout_toRightOf="@+id/imageLogo"
                     android:text="尼克斯品质车行"
                     android:textColor="@color/light_black"
                     android:textSize="@dimen/bigText" />
@@ -100,7 +99,7 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:id="@+id/textView103"
+                    android:id="@+id/textIntro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

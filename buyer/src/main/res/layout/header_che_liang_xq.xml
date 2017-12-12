@@ -35,7 +35,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView79"
+        android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -55,7 +55,7 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView80"
+            android:id="@+id/textPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -67,13 +67,13 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/textView81"
+            android:id="@+id/textPurchasePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView80"
+            android:layout_alignBaseline="@+id/textPrice"
             android:layout_marginLeft="5dp"
-            android:layout_toEndOf="@+id/textView80"
-            android:layout_toRightOf="@+id/textView80"
+            android:layout_toEndOf="@+id/textPrice"
+            android:layout_toRightOf="@+id/textPrice"
             android:text="新车指导价8.60万（含税）"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/litterText" />
@@ -197,7 +197,7 @@
                     android:src="@mipmap/dangan01" />
 
                 <TextView
-                    android:id="@+id/textView84"
+                    android:id="@+id/textArchives0000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView48"
@@ -209,12 +209,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView85"
+                    android:id="@+id/textArchives0001"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView84"
-                    android:layout_alignStart="@+id/textView84"
-                    android:layout_below="@+id/textView84"
+                    android:layout_alignLeft="@+id/textArchives0000"
+                    android:layout_alignStart="@+id/textArchives0000"
+                    android:layout_below="@+id/textArchives0000"
                     android:layout_marginTop="2dp"
                     android:text="2年8个月"
                     android:textColor="@color/light_black"
@@ -239,7 +239,7 @@
                     android:src="@mipmap/dangan02" />
 
                 <TextView
-                    android:id="@+id/textView86"
+                    android:id="@+id/textArchives0100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView49"
@@ -251,12 +251,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView87"
+                    android:id="@+id/textArchives0101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView86"
-                    android:layout_alignStart="@+id/textView86"
-                    android:layout_below="@+id/textView86"
+                    android:layout_alignLeft="@+id/textArchives0100"
+                    android:layout_alignStart="@+id/textArchives0100"
+                    android:layout_below="@+id/textArchives0100"
                     android:layout_marginTop="2dp"
                     android:text="2.6万公里"
                     android:textColor="@color/light_black"
@@ -281,7 +281,7 @@
                     android:src="@mipmap/dangan03" />
 
                 <TextView
-                    android:id="@+id/textView88"
+                    android:id="@+id/textArchives0200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView50"
@@ -293,12 +293,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView89"
+                    android:id="@+id/textArchives0201"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView88"
-                    android:layout_alignStart="@+id/textView88"
-                    android:layout_below="@+id/textView88"
+                    android:layout_alignLeft="@+id/textArchives0200"
+                    android:layout_alignStart="@+id/textArchives0200"
+                    android:layout_below="@+id/textArchives0200"
                     android:layout_marginTop="2dp"
                     android:text="欧5"
                     android:textColor="@color/light_black"
@@ -329,7 +329,7 @@
                     android:src="@mipmap/dangan04" />
 
                 <TextView
-                    android:id="@+id/textView90"
+                    android:id="@+id/textArchives0300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView51"
@@ -341,12 +341,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView91"
+                    android:id="@+id/textArchives0301"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView90"
-                    android:layout_alignStart="@+id/textView90"
-                    android:layout_below="@+id/textView90"
+                    android:layout_alignLeft="@+id/textArchives0300"
+                    android:layout_alignStart="@+id/textArchives0300"
+                    android:layout_below="@+id/textArchives0300"
                     android:layout_marginTop="2dp"
                     android:text="17天前"
                     android:textColor="@color/light_black"
@@ -371,7 +371,7 @@
                     android:src="@mipmap/dangan05" />
 
                 <TextView
-                    android:id="@+id/textView92"
+                    android:id="@+id/textArchives0400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView52"
@@ -383,12 +383,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView93"
+                    android:id="@+id/textArchives0401"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView92"
-                    android:layout_alignStart="@+id/textView92"
-                    android:layout_below="@+id/textView92"
+                    android:layout_alignLeft="@+id/textArchives0400"
+                    android:layout_alignStart="@+id/textArchives0400"
+                    android:layout_below="@+id/textArchives0400"
                     android:layout_marginTop="2dp"
                     android:text="1.6L"
                     android:textColor="@color/light_black"
@@ -413,7 +413,7 @@
                     android:src="@mipmap/dangan06" />
 
                 <TextView
-                    android:id="@+id/textView94"
+                    android:id="@+id/textArchives0500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/imageView53"
@@ -425,12 +425,12 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView95"
+                    android:id="@+id/textArchives0501"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView94"
-                    android:layout_alignStart="@+id/textView94"
-                    android:layout_below="@+id/textView94"
+                    android:layout_alignLeft="@+id/textArchives0500"
+                    android:layout_alignStart="@+id/textArchives0500"
+                    android:layout_below="@+id/textArchives0500"
                     android:layout_marginTop="2dp"
                     android:text="厦门"
                     android:textColor="@color/light_black"

@@ -77,6 +77,10 @@ public class Constant {
          * 车行列表
          */
         public static final String STORE = "/Store";
+        /**
+         * 车辆详情
+         */
+        public static final String CAR_DETAILS = "/Car/details";
     }
 
     public static class IntentKey {

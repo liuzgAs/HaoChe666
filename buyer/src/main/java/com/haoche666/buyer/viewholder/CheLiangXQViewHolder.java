@@ -4,13 +4,15 @@ import android.support.annotation.LayoutRes;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.model.CarDetails;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 /**
  * Created by Administrator on 2017/3/28 0028.
  */
-public class CheLiangXQViewHolder extends BaseViewHolder<Integer> {
+public class CheLiangXQViewHolder extends BaseViewHolder<CarDetails.ImgListBean> {
 
     private final ImageView image;
 
@@ -20,9 +22,13 @@ public class CheLiangXQViewHolder extends BaseViewHolder<Integer> {
     }
 
     @Override
-    public void setData(Integer data) {
+    public void setData(CarDetails.ImgListBean data) {
         super.setData(data);
-        image.setImageResource(data);
+        Glide.with(getContext())
+                .load(data.getImg())
+                .asBitmap()
+                .placeholder(R.mipmap.ic_empty)
+                .into(image);
     }
     
 }

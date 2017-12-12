@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
+import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MapActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Location;
@@ -125,6 +126,15 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
             @Override
             public void onBindView(View headerView) {
 
+            }
+        });
+        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), CheLiangXQActivity.class);
+                intent.putExtra(Constant.IntentKey.ID,data.getCar().get(position).getId());
+                getContext().startActivity(intent);
             }
         });
     }

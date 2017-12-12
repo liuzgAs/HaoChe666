@@ -7,8 +7,9 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.model.CarDetails;
 
-public class CheLiangXQImgHolderView implements Holder<Integer> {
+public class CheLiangBannerImgHolderView implements Holder<CarDetails.BannerBean> {
     private ImageView imageView;
 
     @Override
@@ -19,9 +20,9 @@ public class CheLiangXQImgHolderView implements Holder<Integer> {
     }
 
     @Override
-    public void UpdateUI(Context context, int position, Integer data) {
+    public void UpdateUI(Context context, int position, CarDetails.BannerBean data) {
         Glide.with(context)
-                .load(data)
+                .load(data.getImg())
                 .placeholder(R.mipmap.ic_empty)
                 .into(imageView);
     }
