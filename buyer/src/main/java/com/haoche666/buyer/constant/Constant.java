@@ -81,6 +81,10 @@ public class Constant {
          * 车辆详情
          */
         public static final String CAR_DETAILS = "/Car/details";
+        /**
+         * 我的
+         */
+        public static final String USER_BUYERINDEX = "/User/buyerIndex";
     }
 
     public static class IntentKey {

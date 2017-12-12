@@ -123,8 +123,8 @@ public class ZhuCeActivity extends ZjbBaseActivity implements View.OnClickListen
                     Toast.makeText(ZhuCeActivity.this, "两次密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!StringUtil.isPassword(editView[2].getText().toString().trim(),6)) {
-                    Toast.makeText(ZhuCeActivity.this, "密码太简单", Toast.LENGTH_SHORT).show();
+                if (editView[2].getText().toString().trim().length()<=6) {
+                    Toast.makeText(ZhuCeActivity.this, "密码必须大于6位", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 zuCe();

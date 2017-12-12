@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
@@ -22,11 +23,22 @@ import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
 import com.haoche666.buyer.avtivity.WoMaiDeCheActivity;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.customview.HeaderWaveHelper;
 import com.haoche666.buyer.customview.HeaderWaveView;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.UserBuyerindex;
+import com.haoche666.buyer.model.UserInfo;
+import com.haoche666.buyer.util.ApiClient;
 
+import java.util.HashMap;
+
+import huisedebi.zjb.mylibrary.util.ACache;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
@@ -43,6 +55,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private ImageView imageVip;
     private TextView textName;
     private ImageView imageHead;
+    private TextView textMoney;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -83,6 +96,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         imageVip = mInflate.findViewById(R.id.imageVip);
         textName = mInflate.findViewById(R.id.textName);
         imageHead = mInflate.findViewById(R.id.imageHead);
+        textMoney = mInflate.findViewById(R.id.textMoney);
     }
 
     @Override
@@ -111,6 +125,18 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         imageVip.setOnClickListener(this);
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.USER_BUYERINDEX;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("uid",userInfo.getUid());
+        return new OkObject(params, url);
+    }
+
     @Override
     protected void initData() {
         if (isLogin){
@@ -121,6 +147,43 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                     .dontAnimate()
                     .placeholder(R.mipmap.ic_empty)
                     .into(imageHead);
+            showLoadingDialog();
+            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                @Override
+                public void onSuccess(String s) {
+                    cancelLoadingDialog();
+                    LogUtil.LogShitou("WoDeFragment--我的",s+ "");
+                    try {
+                        UserBuyerindex userBuyerindex = GsonUtils.parseJSON(s, UserBuyerindex.class);
+                        if (userBuyerindex.getStatus()==1){
+                            Glide.with(getActivity())
+                                    .load(userBuyerindex.getHeadimg())
+                                    .asBitmap()
+                                    .placeholder(R.mipmap.ic_empty)
+                                    .into(imageHead);
+                            textName.setText(userBuyerindex.getNickname());
+                            textMoney.setText(userBuyerindex.getMoney()+"");
+                            ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
+                            UserInfo userInfo = (UserInfo)aCache.getAsObject(Constant.Acache.USER_INFO);
+                            userInfo.setHeadImg(userBuyerindex.getHeadimg());
+                            userInfo.setUserName(userBuyerindex.getNickname());
+                            aCache.put(Constant.Acache.USER_INFO,userInfo);
+                        }else if (userBuyerindex.getStatus()==3){
+                            MyDialog.showReLoginDialog(getActivity());
+                        }else {
+                            Toast.makeText(getActivity(), userBuyerindex.getInfo(), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onError() {
+                    cancelLoadingDialog();
+                    Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                }
+            });
         }else {
             textName.setText("未登录");
             Glide.with(getActivity())

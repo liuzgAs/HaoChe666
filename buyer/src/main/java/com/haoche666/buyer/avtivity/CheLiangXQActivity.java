@@ -305,6 +305,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     Glide.with(CheLiangXQActivity.this)
                             .load(storeBean.getLogo())
                             .asBitmap()
+                            .dontAnimate()
                             .placeholder(R.mipmap.ic_empty)
                             .into(imageLogo);
                     textName.setText(storeBean.getName());
