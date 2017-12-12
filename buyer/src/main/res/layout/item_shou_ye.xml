@@ -11,7 +11,7 @@
         android:src="@mipmap/aodi"
         android:layout_width="120dp"
         android:layout_height="80dp"
-        android:id="@+id/imageView4"
+        android:id="@+id/imageImg"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -25,23 +25,24 @@
         android:layout_marginRight="10dp"
         android:textSize="@dimen/bigText"
         android:textColor="@color/light_black"
-        android:lines="2"
+        android:lines="1"
         android:ellipsize="end"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toRightOf="@+id/imageView4"
-        android:layout_toEndOf="@+id/imageView4" />
+        android:id="@+id/textTitle"
+        android:layout_alignTop="@+id/imageImg"
+        android:layout_toRightOf="@+id/imageImg"
+        android:layout_toEndOf="@+id/imageImg" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/litterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="厦门|5万公里|2012年"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:id="@+id/textDes"
+        android:layout_below="@+id/textTitle"
+        android:layout_alignLeft="@+id/textTitle"
+        android:layout_alignStart="@+id/textTitle" />
 
     <TextView
         android:textStyle="bold"
@@ -50,13 +51,13 @@
         android:layout_height="wrap_content"
         android:text="9.98万"
         android:textColor="@color/textGold"
-        android:id="@+id/textView5"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
+        android:id="@+id/textPrice"
+        android:layout_alignBottom="@+id/imageImg"
+        android:layout_alignLeft="@+id/textDes"
+        android:layout_alignStart="@+id/textDes" />
 
     <TextView
-        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBaseline="@+id/textPrice"
         android:textSize="@dimen/normal_textsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,6 +65,6 @@
         android:textColor="@color/textGold"
         android:layout_marginLeft="5dp"
         android:id="@+id/textShouFu"
-        android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5" />
+        android:layout_toRightOf="@+id/textPrice"
+        android:layout_toEndOf="@+id/textPrice" />
 </RelativeLayout>

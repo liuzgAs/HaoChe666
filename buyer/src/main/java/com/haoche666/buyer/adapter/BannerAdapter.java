@@ -6,9 +6,12 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.model.Buyer;
 
 import java.util.List;
 
@@ -20,9 +23,9 @@ import java.util.List;
 public class BannerAdapter extends PagerAdapter{
 
     private Context mContext;
-    private  List<String> imgList;
+    private  List<Buyer.VideoBeanX> imgList;
 
-    public BannerAdapter(Context context, List<String> imgList) {
+    public BannerAdapter(Context context, List<Buyer.VideoBeanX> imgList) {
         this.mContext = context;
         this.imgList=imgList;
     }
@@ -43,6 +46,16 @@ public class BannerAdapter extends PagerAdapter{
                 mContext.startActivity(intent);
             }
         });
+        ImageView imageImg = inflate.findViewById(R.id.imageImg);
+        if (imgList!=null){
+            if (imgList.size()>0){
+                Glide.with(mContext)
+                        .load(imgList.get(position%imgList.size()).getImg())
+                        .asBitmap()
+                        .placeholder(R.mipmap.ic_empty)
+                        .into(imageImg);
+            }
+        }
         container.addView(inflate, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         return inflate;

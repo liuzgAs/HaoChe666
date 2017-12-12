@@ -29,9 +29,8 @@ import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.ApiClient;
-import com.haoche666.buyer.viewholder.LocalImageHolderView;
+import com.haoche666.buyer.viewholder.ShouYeBannerHolderView;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -61,9 +60,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private View mInflate;
     private View mRelaTitleStatue;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<Buyer.DataBean> adapter;
     private int page = 1;
     private List<Buyer.StoreBean> storeBeanList = new ArrayList<>();
+    private List<Buyer.BannerBean> bannerBeanList;
+    private List<Buyer.VideoBeanX> videoBeanXList;
 
     public ShouYeFragment() {
         // Required empty public constructor
@@ -118,7 +119,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Buyer.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_shou_ye;
@@ -127,11 +128,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private TextView textPaiDangTitle;
             private PageIndicatorView mPageIndicatorView;
             private ViewPager id_viewpager;
             private ViewPager id_viewpager01;
             private ConvenientBanner banner;
-            private List<String> imgList = new ArrayList<String>();
             private View[] bannerText = new View[4];
             private int zhiShiQi;
 
@@ -168,9 +169,6 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     }
                 });
-                imgList.add("");
-                imgList.add("");
-                imgList.add("");
                 id_viewpager = header_shou_ye.findViewById(R.id.id_viewpager);
                 id_viewpager01 = header_shou_ye.findViewById(R.id.id_viewpager01);
                 new BannerSettingUtil(id_viewpager).set();
@@ -224,18 +222,39 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
                     }
                 });
+                textPaiDangTitle = header_shou_ye.findViewById(R.id.textPaiDangTitle);
+                id_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        if (videoBeanXList!=null){
+                            textPaiDangTitle.setText(videoBeanXList.get(position%videoBeanXList.size()).getTitle());
+                        }
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
                 return header_shou_ye;
             }
 
             @Override
             public void onBindView(View headerView) {
-                banner.setPages(new CBViewHolderCreator() {
-                    @Override
-                    public Object createHolder() {
-                        return new LocalImageHolderView();
-                    }
-                }, imgList);
-                id_viewpager.setAdapter(new BannerAdapter(getActivity(), imgList));
+                if (bannerBeanList!=null){
+                    banner.setPages(new CBViewHolderCreator() {
+                        @Override
+                        public Object createHolder() {
+                            return new ShouYeBannerHolderView();
+                        }
+                    }, bannerBeanList);
+                }
+                id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
                 id_viewpager.setCurrentItem(50);
                 id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), storeBeanList));
                 id_viewpager01.setCurrentItem(50);
@@ -244,8 +263,31 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+                ApiClient.post(getContext(), getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            page++;
+                            Buyer buyer = GsonUtils.parseJSON(s, Buyer.class);
+                            int status = buyer.getStatus();
+                            if (status == 1) {
+                                List<Buyer.DataBean> dataBeanList = buyer.getData();
+                                adapter.addAll(dataBeanList);
+                            } else if (status == 3) {
+                                MyDialog.showReLoginDialog(getContext());
+                            } else {
+                                adapter.pauseMore();
+                            }
+                        } catch (Exception e) {
+                            adapter.pauseMore();
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        adapter.pauseMore();
+                    }
+                });
             }
 
             @Override
@@ -303,6 +345,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.BUYER;
         HashMap<String, String> params = new HashMap<>();
+        params.put("p",page+"");
         return new OkObject(params, url);
     }
 
@@ -318,8 +361,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     Buyer buyer = GsonUtils.parseJSON(s, Buyer.class);
                     if (buyer.getStatus() == 1) {
                         storeBeanList = buyer.getStore();
+                        videoBeanXList = buyer.getVideo();
+                        bannerBeanList = buyer.getBanner();
+                        List<Buyer.DataBean> dataBeanList = buyer.getData();
                         adapter.clear();
-                        adapter.addAll(DataProvider.getPersonList(page));
+                        adapter.addAll(dataBeanList);
                     } else if (buyer.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
