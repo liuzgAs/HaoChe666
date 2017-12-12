@@ -1,6 +1,9 @@
 package com.haoche666.buyer.avtivity;
 
+import android.Manifest;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,9 +32,10 @@ import java.util.List;
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-
+public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener,EasyPermissions.PermissionCallbacks {
+    private static final int CALL_PHONE = 1991;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Store.DataBean> adapter;
     private int page = 1;
@@ -238,5 +242,48 @@ public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickLi
                 recyclerView.showError();
             }
         });
+    }
+
+    String phone;
+    /**
+     * 检查权限
+     */
+    public void requiresPermission(String phone) {
+        this.phone=phone;
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            call();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "需要拨打电话权限",
+                    CALL_PHONE, perms);
+        }
+    }
+
+    /**
+     * 拨打电话
+     */
+    private void call() {
+    /*跳转到拨号界面，同时传递电话号码*/
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+        startActivity(dialIntent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        call();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
     }
 }

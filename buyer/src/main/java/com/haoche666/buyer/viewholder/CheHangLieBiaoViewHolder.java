@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheHangXXActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Store;
@@ -54,6 +55,12 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
             }
         });
         initRecycler();
+        $(R.id.viewDianHua).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((CheHangLBActivity)getContext()).requiresPermission(data.getTel());
+            }
+        });
     }
 
     @Override

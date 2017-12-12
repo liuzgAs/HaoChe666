@@ -352,13 +352,10 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
-        LogUtil.LogShitou("CheHangXXActivity--onPermissionsGranted", "222222");
         call();
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        LogUtil.LogShitou("CheHangXXActivity--onPermissionsDenied", "111111");
-//        requiresPermission();
     }
 }
