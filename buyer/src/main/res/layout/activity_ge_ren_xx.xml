@@ -40,7 +40,8 @@
                 android:layout_marginRight="10dp"
                 android:src="@mipmap/right" />
 
-            <ImageView
+            <huisedebi.zjb.mylibrary.customview.CircleImageView
+                android:id="@+id/imageHeadimg"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
@@ -60,8 +61,16 @@
                 android:layout_marginLeft="10dp"
                 android:text="用户昵称"
                 android:textSize="@dimen/normal_textsize" />
-
+            <TextView
+                android:id="@+id/textNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/image0300"
+                android:textSize="@dimen/normal_textsize" />
             <ImageView
+                android:id="@+id/image0300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -92,6 +101,7 @@
                 android:src="@mipmap/right" />
 
             <TextView
+                android:id="@+id/textGrade_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -123,6 +133,7 @@
                 android:src="@mipmap/right" />
 
             <TextView
+                android:id="@+id/textMobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

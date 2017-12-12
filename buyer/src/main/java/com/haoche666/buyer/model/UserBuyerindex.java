@@ -1,12 +1,14 @@
 package com.haoche666.buyer.model;
 
+import java.io.Serializable;
+
 /**
  * Created by zhangjiebo on 2017/12/12 0012.
  *
  * @author ZhangJieBo
  */
 
-public class UserBuyerindex {
+public class UserBuyerindex implements Serializable{
     /**
      * grade : 0
      * grade_name : 普通会员

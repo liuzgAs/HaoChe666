@@ -56,6 +56,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private TextView textName;
     private ImageView imageHead;
     private TextView textMoney;
+    private UserBuyerindex userBuyerindex;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -154,7 +155,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                     cancelLoadingDialog();
                     LogUtil.LogShitou("WoDeFragment--我的",s+ "");
                     try {
-                        UserBuyerindex userBuyerindex = GsonUtils.parseJSON(s, UserBuyerindex.class);
+                        userBuyerindex = GsonUtils.parseJSON(s, UserBuyerindex.class);
                         if (userBuyerindex.getStatus()==1){
                             Glide.with(getActivity())
                                     .load(userBuyerindex.getHeadimg())
@@ -218,6 +219,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
             case R.id.viewGeRenXX:
                 if (isLogin){
                     intent.setClass(getActivity(), GeRenXXActivity.class);
+                    intent.putExtra(Constant.IntentKey.BEAN,userBuyerindex);
                     startActivity(intent);
                 }else {
                     ToLoginActivity.toLoginActivity(getActivity());
