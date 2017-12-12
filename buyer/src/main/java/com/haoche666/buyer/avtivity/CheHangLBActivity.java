@@ -32,6 +32,8 @@ import java.util.List;
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener,EasyPermissions.PermissionCallbacks {
@@ -248,6 +250,7 @@ public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickLi
     /**
      * 检查权限
      */
+    @AfterPermissionGranted(CALL_PHONE)
     public void requiresPermission(String phone) {
         this.phone=phone;
         String[] perms = {Manifest.permission.CALL_PHONE};
@@ -285,5 +288,14 @@ public class CheHangLBActivity extends ZjbBaseActivity implements View.OnClickLi
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("为了您能使用拨打电话功能，请开启打电话权限！")
+                    .setPositiveButton("去设置")
+                    .setNegativeButton("取消")
+                    .setRequestCode(CALL_PHONE)
+                    .build()
+                    .show();
+        }
     }
 }

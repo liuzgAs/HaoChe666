@@ -36,6 +36,7 @@ import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.RecycleViewDistancaUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
+import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -357,5 +358,14 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("为了您能使用拨打电话功能，请开启打电话权限！")
+                    .setPositiveButton("去设置")
+                    .setNegativeButton("取消")
+                    .setRequestCode(CALL_PHONE)
+                    .build()
+                    .show();
+        }
     }
 }
