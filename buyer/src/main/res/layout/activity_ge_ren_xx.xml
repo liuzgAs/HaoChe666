@@ -20,6 +20,7 @@
         android:showDividers="middle">
 
         <RelativeLayout
+            android:id="@+id/viewHeadImg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/normalItemHeight">
 

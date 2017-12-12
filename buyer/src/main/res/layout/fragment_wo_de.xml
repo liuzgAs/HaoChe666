@@ -69,7 +69,7 @@
                         android:layout_weight="1.2"
                         android:gravity="center">
 
-                        <ImageView
+                        <huisedebi.zjb.mylibrary.customview.CircleImageView
                             android:id="@+id/imageHead"
                             android:layout_width="100dp"
                             android:layout_height="100dp"

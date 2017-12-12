@@ -89,6 +89,10 @@ public class Constant {
          * 修改昵称和头像
          */
         public static final String USER_SVAEINFO = "/User/svaeInfo";
+        /**
+         * 单图上传
+         */
+        public static final String RESPOND_APPIMGADD = "/Respond/appImgAdd";
     }
 
     public static class IntentKey {
