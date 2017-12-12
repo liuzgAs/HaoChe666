@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
-import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -114,8 +113,8 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+//                page++;
+//                adapter.addAll(DataProvider.getPersonList(page));
             }
 
             @Override
@@ -169,6 +168,6 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onRefresh() {
         page = 1;
         adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
+//        adapter.addAll(DataProvider.getPersonList(page));
     }
 }

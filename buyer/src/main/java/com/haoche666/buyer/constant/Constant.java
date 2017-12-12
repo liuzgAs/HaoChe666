@@ -93,6 +93,10 @@ public class Constant {
          * 单图上传
          */
         public static final String RESPOND_APPIMGADD = "/Respond/appImgAdd";
+        /**
+         * 文章列表
+         */
+        public static final String ARTICLE = "/Article";
     }
 
     public static class IntentKey {
