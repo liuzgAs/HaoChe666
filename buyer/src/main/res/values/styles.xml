@@ -77,4 +77,13 @@
         <item name="android:textColor">@color/light_black</item>
         <item name="android:textSize">@dimen/normal_textsize</item>
     </style>
+
+    <style name="btnDiBu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/normalItemHeight</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@color/basic_color01</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/bigText</item>
+    </style>
 </resources>

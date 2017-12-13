@@ -2,6 +2,7 @@ package com.haoche666.buyer.avtivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
@@ -9,6 +10,9 @@ import com.haoche666.buyer.base.ZjbBaseActivity;
 
 
 public class YiJianFKActivity extends ZjbBaseActivity implements View.OnClickListener {
+
+    private EditText editEmail;
+    private EditText editContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,8 @@ public class YiJianFKActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     protected void findID() {
-
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        editContent = (EditText) findViewById(R.id.editContent);
     }
 
     @Override
