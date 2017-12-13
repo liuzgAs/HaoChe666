@@ -5,7 +5,7 @@ package com.haoche666.buyer.constant;
  * Created by zjb on 2016/6/12.
  */
 public class Constant {
-    public static String HOST = "http://api.haoche666.com";
+    public static String HOST = "https://www.haoche666.com/api";
     /**
      * 判断数据是否有改变
      */
@@ -105,6 +105,10 @@ public class Constant {
          * 足迹文章
          */
         public static final String ARTICLE_HISTORY = "/Article/history";
+        /**
+         * 常见问题
+         */
+        public static final String FAQ = "/Faq";
     }
 
     public static class IntentKey {

@@ -6,7 +6,7 @@ package hudongchuangxiang.haoche666.seller.constant;
  * @date 2016/6/12
  */
 public class Constant {
-    public static String HOST = "http://api.haoche666.com";
+    public static String HOST = "https://www.haoche666.com/api";
     /**
      * 判断数据是否有改变
      */

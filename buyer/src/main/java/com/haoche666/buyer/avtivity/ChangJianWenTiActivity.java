@@ -5,25 +5,35 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Faq;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ChangJianWenTiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
-import huisedebi.zjb.mylibrary.provider.DataProvider;
+import java.util.HashMap;
+import java.util.List;
+
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 public class ChangJianWenTiActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<Faq.DataBean> adapter;
     private int page = 1;
 
     @Override
@@ -63,7 +73,7 @@ public class ChangJianWenTiActivity extends ZjbBaseActivity implements View.OnCl
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(ChangJianWenTiActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Faq.DataBean>(ChangJianWenTiActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_chang_jian_wen_ti;
@@ -73,8 +83,31 @@ public class ChangJianWenTiActivity extends ZjbBaseActivity implements View.OnCl
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                adapter.addAll(DataProvider.getPersonList(page));
-                page++;
+               ApiClient.post(ChangJianWenTiActivity.this, getOkObject(), new ApiClient.CallBack() {
+                   @Override
+                   public void onSuccess(String s) {
+                       try {
+                           page++;
+                           Faq faq = GsonUtils.parseJSON(s, Faq.class);
+                           int status = faq.getStatus();
+                           if (status == 1) {
+                               List<Faq.DataBean> userMoneylogData = faq.getData();
+                               adapter.addAll(userMoneylogData);
+                           } else if (status == 3) {
+                               MyDialog.showReLoginDialog(ChangJianWenTiActivity.this);
+                           } else {
+                               adapter.pauseMore();
+                           }
+                       } catch (Exception e) {
+                           adapter.pauseMore();
+                       }
+                   }
+
+                   @Override
+                   public void onError() {
+                       adapter.pauseMore();
+                   }
+               });
             }
 
             @Override
@@ -145,11 +178,68 @@ public class ChangJianWenTiActivity extends ZjbBaseActivity implements View.OnCl
         }
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.FAQ;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("p",page+"");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page=1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
-        page++;
+        ApiClient.post(this, getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("常见问题", s);
+                try {
+                    page++;
+                    Faq faq = GsonUtils.parseJSON(s, Faq.class);
+                    if (faq.getStatus() == 1) {
+                        List<Faq.DataBean> dataBeanList = faq.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (faq.getStatus()== 3) {
+                        MyDialog.showReLoginDialog(ChangJianWenTiActivity.this);
+                    } else {
+                        showError(faq.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(ChangJianWenTiActivity.this).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 }
