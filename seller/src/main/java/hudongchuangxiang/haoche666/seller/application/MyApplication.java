@@ -3,7 +3,11 @@ package hudongchuangxiang.haoche666.seller.application;
 import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
@@ -35,6 +39,7 @@ public class MyApplication extends MultiDexApplication {
             initHotfix();
         } catch (Exception e) {
         }
+        initCloudChannel(this);
     }
 
 
@@ -108,5 +113,24 @@ public class MyApplication extends MultiDexApplication {
                         }
                     }
                 }).initialize();
+    }
+
+    /**
+     * 初始化云推送通道
+     * @param applicationContext
+     */
+    private void initCloudChannel(Context applicationContext) {
+        PushServiceFactory.init(applicationContext);
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.register(applicationContext, new CommonCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.e("MyApplication", "init cloudchannel success");
+            }
+            @Override
+            public void onFailed(String errorCode, String errorMessage) {
+                Log.e("MyApplication", "init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
+            }
+        });
     }
 }

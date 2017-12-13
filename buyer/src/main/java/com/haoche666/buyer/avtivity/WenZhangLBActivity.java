@@ -186,6 +186,7 @@ public class WenZhangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("p", page + "");
         params.put("keywords", keywords + "");

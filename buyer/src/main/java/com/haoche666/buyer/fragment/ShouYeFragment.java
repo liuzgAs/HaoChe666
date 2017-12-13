@@ -383,6 +383,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("p",page+"");
         return new OkObject(params, url);

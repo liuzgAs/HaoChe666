@@ -135,6 +135,7 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("code", "headimg");
         params.put("img", ImgToBase64.toBase64(path));
@@ -193,6 +194,7 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("key", "headimg");
         params.put("value", respondAppimgadd.getImgId()+"");

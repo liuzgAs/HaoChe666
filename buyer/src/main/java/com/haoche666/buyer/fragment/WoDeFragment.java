@@ -152,8 +152,8 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
-        params.put("uid", userInfo.getUid());
         return new OkObject(params, url);
     }
 

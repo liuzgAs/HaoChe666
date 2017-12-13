@@ -9,6 +9,7 @@ import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import hudongchuangxiang.haoche666.seller.model.OkObject;
@@ -39,6 +40,10 @@ public class ApiClient {
     public static void post(Context context, OkObject okObject, final CallBack callBack) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.put("smsKey", MD5Util.getMD5Time());
+        HashMap<String, String> params = okObject.getParams();
+        /*买家1卖家2拍摄3小程序4*/
+        params.put("loginType",""+2);
+        okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
 
         OkGo.<String>post(okObject.getUrl())
@@ -65,6 +70,10 @@ public class ApiClient {
     public static void get(Context context, OkObject okObject, final CallBack callBack) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.put("smsKey", MD5Util.getMD5Time());
+        HashMap<String, String> params = okObject.getParams();
+        /*买家1卖家2拍摄3小程序4*/
+        params.put("loginType",""+2);
+        okObject.setParams(params);
         OkGo.<String>get(okObject.getUrl())
                 .tag(context)
                 .headers(httpHeaders)
@@ -83,8 +92,9 @@ public class ApiClient {
 
     }
 
-    public static void postJson(Context context, String url, HttpHeaders httpHeaders, String json, final CallBack callBack) {
-        LogUtil.LogShitou("ApiClient--头部", "" + httpHeaders.toJSONString());
+    public static void postJson(Context context, String url, String json, final CallBack callBack) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.put("smsKey", MD5Util.getMD5Time());
         LogUtil.LogShitou("ApiClient--发送", "" + json);
         OkGo.<String>post(url)
                 .tag(context)
@@ -112,6 +122,10 @@ public class ApiClient {
     public static void upFiles(Context context, OkObject okObject, List<File> files, final UpLoadCallBack callBack) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.put("smsKey", MD5Util.getMD5Time());
+        HashMap<String, String> params = okObject.getParams();
+        /*买家1卖家2拍摄3小程序4*/
+        params.put("loginType",""+2);
+        okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
         OkGo.<String>post(okObject.getUrl())
                 .tag(context)
@@ -143,6 +157,10 @@ public class ApiClient {
     public static void upFile(Context context, OkObject okObject, File files, final UpLoadCallBack callBack) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.put("smsKey", MD5Util.getMD5Time());
+        HashMap<String, String> params = okObject.getParams();
+        /*买家1卖家2拍摄3小程序4*/
+        params.put("loginType",""+2);
+        okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
         LogUtil.LogShitou("ApiClient--upFile", ""+files.getPath());
         OkGo.<String>post(okObject.getUrl())

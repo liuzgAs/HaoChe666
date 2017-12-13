@@ -357,6 +357,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("id", id + "");
         return new OkObject(params, url);

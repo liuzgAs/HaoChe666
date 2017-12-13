@@ -259,6 +259,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("id", id + "");
         params.put("p", page + "");

@@ -98,6 +98,7 @@ public class EditActivity extends ZjbBaseActivity implements View.OnClickListene
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
         }
         params.put("key", "nickname");
         params.put("value", editNickName.getText().toString().trim());

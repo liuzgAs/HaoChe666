@@ -8,9 +8,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseActivity;
 import hudongchuangxiang.haoche666.seller.constant.Constant;
+import hudongchuangxiang.haoche666.seller.model.OkObject;
+import hudongchuangxiang.haoche666.seller.model.SimpleInfo;
+import hudongchuangxiang.haoche666.seller.util.ApiClient;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
+import huisedebi.zjb.mylibrary.util.MD5Util;
 import huisedebi.zjb.mylibrary.util.StringUtil;
 
 
@@ -20,15 +28,11 @@ import huisedebi.zjb.mylibrary.util.StringUtil;
  */
 public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickListener {
 
+    private EditText[] editView = new EditText[4];
     private TextView textSms;
     private Runnable mR;
     private int[] mI;
     private String mPhone_sms;
-    private EditText editPhone;
-    private EditText editSms;
-    private EditText editPsw01;
-    private EditText editPsw02;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +53,10 @@ public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickLis
     @Override
     protected void findID() {
         textSms = (TextView) findViewById(R.id.textSms);
-        editPhone = (EditText) findViewById(R.id.editPhone);
-        editSms = (EditText) findViewById(R.id.editSms);
-        editPsw01 = (EditText) findViewById(R.id.editPsw01);
-        editPsw02 = (EditText) findViewById(R.id.editPsw02);
+        editView[0] = (EditText) findViewById(R.id.edit01);
+        editView[1] = (EditText) findViewById(R.id.edit02);
+        editView[2] = (EditText) findViewById(R.id.edit03);
+        editView[3] = (EditText) findViewById(R.id.edit04);
     }
 
     @Override
@@ -72,51 +76,47 @@ public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickLis
 
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.buttonTiJiao:
-                if (TextUtils.isEmpty(mPhone_sms)) {
-                    Toast.makeText(WangJiMMActivity.this, "请先发送验证码", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(editSms.getText().toString().trim())) {
-                    Toast.makeText(WangJiMMActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(editPsw01.getText().toString().trim()) || TextUtils.isEmpty(editPsw02.getText().toString().trim())) {
-                    Toast.makeText(WangJiMMActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (!TextUtils.equals(editPsw01.getText().toString().trim(), editPsw02.getText().toString().trim())) {
-                    Toast.makeText(WangJiMMActivity.this, "两次密码不一致", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (!StringUtil.isPassword(editPsw01.getText().toString().trim(),6)) {
-                    Toast.makeText(WangJiMMActivity.this, "密码太简单", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                forgetPSW();
-                break;
-            case R.id.textSms:
-                sendSMS();
-                break;
-            case R.id.imageBack:
-                finish();
-                break;
-            default:
-                break;
-        }
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.LOGIN_FORGETSMS;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userName", mPhone_sms);
+        return new OkObject(params, url);
     }
 
     /**
-     * 忘记密码请求
+     * des： 获取短信
+     * author： ZhangJieBo
+     * date： 2017/7/6 0006 下午 2:45
      */
-    private void forgetPSW() {
-        Intent intent = new Intent();
-        intent.putExtra(Constant.IntentKey.VALUE,mPhone_sms);
-        intent.setClass(this,DengLuActivity.class);
-        startActivity(intent);
+    private void getSms() {
+        showLoadingDialog();
+        ApiClient.post(this, getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ZhuCeActivity--获取短信", "" + s);
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    Toast.makeText(WangJiMMActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    if (simpleInfo.getStatus() == 1) {
+
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(WangJiMMActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(WangJiMMActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -126,12 +126,11 @@ public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickLis
      */
     private void sendSMS() {
         textSms.removeCallbacks(mR);
-        boolean mobileNO = StringUtil.isMobileNO(editPhone.getText().toString().trim());
+        boolean mobileNO = StringUtil.isMobileNO(editView[0].getText().toString().trim());
         if (mobileNO) {
-            mPhone_sms = editPhone.getText().toString().trim();
+            mPhone_sms = editView[0].getText().toString().trim();
             textSms.setEnabled(false);
             mI = new int[]{60};
-
             mR = new Runnable() {
                 @Override
                 public void run() {
@@ -149,14 +148,89 @@ public class WangJiMMActivity extends ZjbBaseActivity implements View.OnClickLis
             getSms();
         } else {
             Toast.makeText(WangJiMMActivity.this, "输入正确的手机号", Toast.LENGTH_SHORT).show();
-            editPhone.setText("");
         }
     }
 
-    /**
-     * 获取短信请求
-     */
-    private void getSms() {
+    private OkObject getOkObject1() {
+        String url = Constant.HOST + Constant.Url.LOGIN_FORGET;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userName", mPhone_sms);
+        params.put("userPwd", MD5Util.getMD5(MD5Util.getMD5(editView[2].getText().toString().trim()) + "ad"));
+        params.put("code", editView[1].getText().toString().trim());
+        return new OkObject(params, url);
+    }
 
+    /**
+     * des： 忘记密码
+     * author： ZhangJieBo
+     * date： 2017/9/11 0011 上午 9:13
+     */
+    private void forgetPSW() {
+        showLoadingDialog();
+        ApiClient.post(this, getOkObject1(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("WangJiMMActivity--onSuccess", "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    Toast.makeText(WangJiMMActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    if (simpleInfo.getStatus() == 1) {
+                        finish();
+                        Intent intent = new Intent();
+                        intent.setClass(WangJiMMActivity.this, DengLuActivity.class);
+                        intent.putExtra(Constant.IntentKey.PHONE, mPhone_sms);
+                        startActivity(intent);
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(WangJiMMActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(WangJiMMActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonTiJiao:
+                if (TextUtils.isEmpty(mPhone_sms)) {
+                    Toast.makeText(WangJiMMActivity.this, "请先发送验证码", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(editView[1].getText().toString().trim())) {
+                    Toast.makeText(WangJiMMActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(editView[2].getText().toString().trim()) || TextUtils.isEmpty(editView[3].getText().toString().trim())) {
+                    Toast.makeText(WangJiMMActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!TextUtils.equals(editView[2].getText().toString().trim(), editView[3].getText().toString().trim())) {
+                    Toast.makeText(WangJiMMActivity.this, "两次密码不一致", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (editView[2].getText().toString().trim().length()<=6) {
+                    Toast.makeText(WangJiMMActivity.this, "密码必须大于6位", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                forgetPSW();
+                break;
+            case R.id.textSms:
+                sendSMS();
+                break;
+            case R.id.imageBack:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }
