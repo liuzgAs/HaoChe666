@@ -28,6 +28,7 @@ import com.haoche666.buyer.avtivity.WebActivity;
 import com.haoche666.buyer.avtivity.WenZhangLBActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.MyDialog;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
@@ -445,9 +446,13 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageZuJi:
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), ZuJiActivity.class);
-                startActivity(intent);
+                if (isLogin){
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), ZuJiActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             default:
 

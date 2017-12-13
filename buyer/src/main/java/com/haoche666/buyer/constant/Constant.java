@@ -97,6 +97,14 @@ public class Constant {
          * 文章列表
          */
         public static final String ARTICLE = "/Article";
+        /**
+         * 足迹车辆
+         */
+        public static final String CAR_HISTORY = "/Car/history";
+        /**
+         * 足迹文章
+         */
+        public static final String ARTICLE_HISTORY = "/Article/history";
     }
 
     public static class IntentKey {

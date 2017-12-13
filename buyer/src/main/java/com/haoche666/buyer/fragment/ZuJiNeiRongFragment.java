@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,17 +13,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.WebActivity;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
-import com.haoche666.buyer.provider.DataProvider;
-import com.haoche666.buyer.viewholder.ZuJiViewHolder;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.ArticleHistory;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.util.ApiClient;
+import com.haoche666.buyer.viewholder.ZuJiNRViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.HashMap;
+import java.util.List;
+
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +43,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
 
     private View mInflate;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<ArticleHistory.DataBean> adapter;
     private int page = 1;
 
     public ZuJiNeiRongFragment() {
@@ -82,11 +94,11 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ArticleHistory.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_jing_xuan_tu_wen;
-                return new ZuJiViewHolder(parent, layout);
+                return new ZuJiNRViewHolder(parent, layout);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -114,8 +126,31 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                @Override
+                public void onSuccess(String s) {
+                    try {
+                        page++;
+                        ArticleHistory articleHistory = GsonUtils.parseJSON(s, ArticleHistory.class);
+                        int status = articleHistory.getStatus();
+                        if (status == 1) {
+                            List<ArticleHistory.DataBean> dataBeanList = articleHistory.getData();
+                            adapter.addAll(dataBeanList);
+                        } else if (status == 3) {
+                            MyDialog.showReLoginDialog(getActivity());
+                        } else {
+                            adapter.pauseMore();
+                        }
+                    } catch (Exception e) {
+                        adapter.pauseMore();
+                    }
+                }
+
+                @Override
+                public void onError() {
+                    adapter.pauseMore();
+                }
+            });
             }
 
             @Override
@@ -148,7 +183,11 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), WebActivity.class);
+                intent.putExtra(Constant.IntentKey.TITLE,adapter.getItem(position).getTitle());
+                intent.putExtra(Constant.IntentKey.URL,adapter.getItem(position).getUrl());
+                startActivity(intent);
             }
         });
     }
@@ -163,11 +202,68 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         onRefresh();
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.ARTICLE_HISTORY;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
+        params.put("p",page+"");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("足迹文章", s);
+                try {
+                    page++;
+                    ArticleHistory articleHistory = GsonUtils.parseJSON(s, ArticleHistory.class);
+                    if (articleHistory.getStatus() == 1) {
+                        List<ArticleHistory.DataBean> dataBeanList = articleHistory.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (articleHistory.getStatus()== 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        showError(articleHistory.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 
 }
