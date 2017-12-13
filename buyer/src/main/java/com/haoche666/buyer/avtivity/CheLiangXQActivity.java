@@ -355,6 +355,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.CAR_DETAILS;
         HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("id", id + "");
         return new OkObject(params, url);
     }

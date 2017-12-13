@@ -11,10 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
@@ -22,6 +24,7 @@ import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
+import com.haoche666.buyer.avtivity.WebActivity;
 import com.haoche666.buyer.avtivity.WenZhangLBActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.MyDialog;
@@ -65,6 +68,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<Buyer.StoreBean> storeBeanList = new ArrayList<>();
     private List<Buyer.BannerBean> bannerBeanList;
     private List<Buyer.VideoBeanX> videoBeanXList;
+    private List<Buyer.NewsBean> newsBeanList;
+    private ImageView imageImg;
 
     public ShouYeFragment() {
         // Required empty public constructor
@@ -128,6 +133,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private TextView textView;
+            private TextView textTitle;
             private TextView textPaiDangTitle;
             private PageIndicatorView mPageIndicatorView;
             private ViewPager id_viewpager;
@@ -241,6 +248,23 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     }
                 });
+                imageImg = header_shou_ye.findViewById(R.id.imageImg);
+                textTitle = header_shou_ye.findViewById(R.id.textTitle);
+                textView = header_shou_ye.findViewById(R.id.textView);
+                imageImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (newsBeanList!=null){
+                            if (newsBeanList.size()>0){
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), WebActivity.class);
+                                intent.putExtra(Constant.IntentKey.TITLE,newsBeanList.get(0).getTitle());
+                                intent.putExtra(Constant.IntentKey.URL,newsBeanList.get(0).getUrl());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                });
                 return header_shou_ye;
             }
 
@@ -253,6 +277,17 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                             return new ShouYeBannerHolderView();
                         }
                     }, bannerBeanList);
+                }
+                if (newsBeanList!=null){
+                    if (newsBeanList.size()>0){
+                        Glide.with(getActivity())
+                                .load(newsBeanList.get(0).getImg())
+                                .asBitmap()
+                                .placeholder(R.mipmap.ic_empty)
+                                .into(imageImg);
+                        textTitle.setText(newsBeanList.get(0).getTitle());
+                        textView.setText(newsBeanList.get(0).getView()+"人阅读");
+                    }
                 }
                 id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
                 id_viewpager.setCurrentItem(50);
@@ -345,6 +380,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.BUYER;
         HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("p",page+"");
         return new OkObject(params, url);
     }
@@ -363,6 +401,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         storeBeanList = buyer.getStore();
                         videoBeanXList = buyer.getVideo();
                         bannerBeanList = buyer.getBanner();
+                        newsBeanList = buyer.getNews();
                         List<Buyer.DataBean> dataBeanList = buyer.getData();
                         adapter.clear();
                         adapter.addAll(dataBeanList);

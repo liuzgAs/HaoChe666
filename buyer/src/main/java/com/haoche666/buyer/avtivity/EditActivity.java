@@ -96,7 +96,9 @@ public class EditActivity extends ZjbBaseActivity implements View.OnClickListene
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.USER_SVAEINFO;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid", userInfo.getUid());
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("key", "nickname");
         params.put("value", editNickName.getText().toString().trim());
         return new OkObject(params, url);

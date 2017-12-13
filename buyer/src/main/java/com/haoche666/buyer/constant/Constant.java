@@ -107,6 +107,8 @@ public class Constant {
         public static final String VALUE = "value";
         public static final String BEAN = "bean";
         public static final String NICKNAME = "nickName";
+        public static final String URL = "url";
+        public static final String TITLE = "title";
     }
 
     public static class RequestResultCode {

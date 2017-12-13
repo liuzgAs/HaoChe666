@@ -150,6 +150,9 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.USER_BUYERINDEX;
         HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("uid", userInfo.getUid());
         return new OkObject(params, url);
     }

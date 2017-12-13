@@ -200,11 +200,6 @@
                 <action android:name="org.android.agoo.client.MessageReceiverService" />
             </intent-filter>
         </service>
-        <!-- V3.0.12及以上版本需配置 -->
-        <service
-            android:name="com.taobao.accs.internal.AccsJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":channel" />
         <!-- V3.0.7及以上版本需配置 -->
         <service
             android:name="com.alibaba.sdk.android.push.channel.KeepChannelService"
@@ -327,10 +322,21 @@
         <activity
             android:name=".avtivity.WoMaiDeCheActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".avtivity.CheHangLBActivity" />
-        <activity android:name=".avtivity.WenZhangLBActivity" />
-        <activity android:name=".avtivity.MapActivity" />
-        <activity android:name=".avtivity.EditActivity"></activity>
+        <activity
+            android:name=".avtivity.CheHangLBActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WenZhangLBActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.MapActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.EditActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.WebActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

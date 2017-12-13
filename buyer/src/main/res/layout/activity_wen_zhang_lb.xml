@@ -11,6 +11,7 @@
     <include layout="@layout/view_bar_white" />
 
     <RelativeLayout
+        android:id="@+id/viewSearch"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center">
@@ -23,6 +24,8 @@
             android:src="@mipmap/search" />
 
         <TextView
+            android:hint="搜索文章"
+            android:id="@+id/textSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

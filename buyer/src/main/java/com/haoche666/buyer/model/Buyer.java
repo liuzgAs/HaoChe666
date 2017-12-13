@@ -25,7 +25,7 @@ public class Buyer {
     private int status;
     private List<BannerBean> banner;
     private List<DataBean> data;
-    private List<?> news;
+    private List<NewsBean> news;
     private List<StoreBean> store;
     private List<VideoBeanX> video;
 
@@ -69,11 +69,11 @@ public class Buyer {
         this.data = data;
     }
 
-    public List<?> getNews() {
+    public List<NewsBean> getNews() {
         return news;
     }
 
-    public void setNews(List<?> news) {
+    public void setNews(List<NewsBean> news) {
         this.news = news;
     }
 
@@ -392,6 +392,53 @@ public class Buyer {
             public void setTitle(String title) {
                 this.title = title;
             }
+        }
+    }
+    public static class NewsBean{
+        private int id;
+        private String img;
+        private String title;
+        private String view;
+        private String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getView() {
+            return view;
+        }
+
+        public void setView(String view) {
+            this.view = view;
         }
     }
 }

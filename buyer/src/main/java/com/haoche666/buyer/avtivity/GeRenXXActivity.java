@@ -133,7 +133,9 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     private OkObject getOkObject(String path) {
         String url = Constant.HOST + Constant.Url.RESPOND_APPIMGADD;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid", userInfo.getUid());
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("code", "headimg");
         params.put("img", ImgToBase64.toBase64(path));
         params.put("type","png");
@@ -189,7 +191,9 @@ public class GeRenXXActivity extends ZjbBaseActivity implements View.OnClickList
     private OkObject getEditOkObject(RespondAppimgadd respondAppimgadd) {
         String url = Constant.HOST + Constant.Url.USER_SVAEINFO;
         HashMap<String, String> params = new HashMap<>();
-        params.put("uid", userInfo.getUid());
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("key", "headimg");
         params.put("value", respondAppimgadd.getImgId()+"");
         return new OkObject(params, url);

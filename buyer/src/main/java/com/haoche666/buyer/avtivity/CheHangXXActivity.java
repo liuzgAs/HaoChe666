@@ -257,6 +257,9 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     private OkObject getOkObject() {
         String url = Constant.HOST + Constant.Url.STORE_DETAILS;
         HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+        }
         params.put("id", id + "");
         params.put("p", page + "");
         return new OkObject(params, url);
