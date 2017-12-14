@@ -43,6 +43,7 @@ public class ApiClient {
         HashMap<String, String> params = okObject.getParams();
         /*买家1卖家2拍摄3小程序4*/
         params.put("loginType",""+1);
+        params.put("platform","android");
         okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
 

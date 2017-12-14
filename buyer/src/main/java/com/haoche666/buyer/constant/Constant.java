@@ -34,10 +34,6 @@ public class Constant {
          */
         public static final String CHE_XI_CX = "http://auto.chexun.com/api/car/seriesByLetter.do?letter=";
         /**
-         * 升级
-         */
-        public static final String INDEX_VERSION = "";
-        /**
          * 注册
          */
         public static final String LOGIN_REGISTER = "/Login/register";
@@ -113,6 +109,14 @@ public class Constant {
          * 意见反馈
          */
         public static final String USER_FEEDBACK = "/User/feedback";
+        /**
+         * 修改密码
+         */
+        public static final String USER_PWDSAVE = "/User/pwdSave";
+        /**
+         * 版本判断
+         */
+        public static final String INDEX_VERSION = "/Index/version";
     }
 
     public static class IntentKey {

@@ -70,6 +70,10 @@ public class Constant {
          * 意见反馈
          */
         public static final String USER_FEEDBACK = "/User/feedback";
+        /**
+         * 修改密码
+         */
+        public static final String USER_PWDSAVE = "/User/pwdSave";
     }
 
     public static class IntentKey {

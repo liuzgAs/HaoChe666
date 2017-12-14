@@ -48,6 +48,7 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.viewYiJianFanKui).setOnClickListener(this);
         findViewById(R.id.viewChangJianWenTi).setOnClickListener(this);
+        findViewById(R.id.viewXiuGaiMM).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +60,14 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewXiuGaiMM:
+                if (isLogin){
+                    intent.setClass(this,XiuGaiMMActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
+                break;
             case R.id.viewChangJianWenTi:
                 intent.setClass(this, ChangJianWenTiActivity.class);
                 startActivity(intent);

@@ -161,6 +161,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     protected void initData() {
         if (isLogin) {
             textName.setText(userInfo.getUserName());
+            textMoney.setText("00.00");
             Glide.with(getActivity())
                     .load(userInfo.getHeadImg())
                     .asBitmap()
