@@ -24,11 +24,12 @@ import hudongchuangxiang.haoche666.seller.util.PicassoImageLoader;
  *
  * @author Administrator
  */
-public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickListener {
+public class ShiMingRZActivity extends ZjbBaseActivity implements View.OnClickListener {
 
     private ImageView imageYingYeZZ;
     private ImageView imageMenTouZP;
     private ImagePicker mImagePicker;
+    private TextView textTip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +64,12 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
     protected void findID() {
         imageYingYeZZ = (ImageView) findViewById(R.id.imageYingYeZZ);
         imageMenTouZP = (ImageView) findViewById(R.id.imageMenTouZP);
+        textTip = (TextView) findViewById(R.id.textTip);
     }
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("免费申请");
+        ((TextView) findViewById(R.id.textViewTitle)).setText("实名认证");
     }
 
     @Override
@@ -89,7 +91,7 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == Constant.RequestResultCode.IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                Glide.with(ShenQingSYActivity.this)
+                Glide.with(ShiMingRZActivity.this)
                         .load(images.get(0).path)
                         .asBitmap()
                         .placeholder(R.mipmap.ic_empty)
@@ -101,7 +103,7 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == Constant.RequestResultCode.IMAGE_PICKER01) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                Glide.with(ShenQingSYActivity.this)
+                Glide.with(ShiMingRZActivity.this)
                         .load(images.get(0).path)
                         .asBitmap()
                         .placeholder(R.mipmap.ic_empty)
@@ -117,15 +119,15 @@ public class ShenQingSYActivity extends ZjbBaseActivity implements View.OnClickL
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btnTiJiao:
-                intent.setClass(this,TiJiaoCGActivity.class);
+                intent.setClass(this,TipsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageMenTouZP:
-                intent.setClass(ShenQingSYActivity.this, ImageGridActivity.class);
+                intent.setClass(ShiMingRZActivity.this, ImageGridActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.IMAGE_PICKER);
                 break;
             case R.id.imageYingYeZZ:
-                intent.setClass(ShenQingSYActivity.this, ImageGridActivity.class);
+                intent.setClass(ShiMingRZActivity.this, ImageGridActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.IMAGE_PICKER01);
                 break;
             case R.id.imageBack:

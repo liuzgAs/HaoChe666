@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import huisedebi.zjb.mylibrary.util.DpUtils;
+
 /**
  * Created by zhangjiebo on 2017/12/1 0001.
  *
@@ -22,7 +24,7 @@ public class JiaoBiao extends View{
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     int bgColor = Color.RED;
     String text = "NO.3";
-    float textSize = 40;
+    float textSize = DpUtils.convertDpToPixel(12,getContext());
     public JiaoBiao(Context context) {
         super(context);
     }

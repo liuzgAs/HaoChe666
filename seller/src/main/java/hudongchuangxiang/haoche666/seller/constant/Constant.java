@@ -78,6 +78,10 @@ public class Constant {
          * 首页
          */
         public static final String INDEX_INDEX = "/Index/index";
+        /**
+         * 实名认证请求
+         */
+        public static final String USER_APPLYBEFORE = "/User/applyBefore";
     }
 
     public static class IntentKey {

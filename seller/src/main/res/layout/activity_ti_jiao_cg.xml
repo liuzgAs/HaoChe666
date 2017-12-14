@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context="hudongchuangxiang.haoche666.seller.activity.TiJiaoCGActivity">
+    tools:context="hudongchuangxiang.haoche666.seller.activity.TipsActivity">
 
     <include layout="@layout/view_bar_white" />
+
     <TextView
-        android:background="@color/background"
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="5dp"
+        android:background="@color/background" />
+
     <ImageView
-        android:id="@+id/image0000"
+        android:id="@+id/imageTips"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="80dp"
@@ -39,4 +41,11 @@
         android:text="我们会尽快为您审核"
         android:textColor="@color/light_black"
         android:textSize="@dimen/normal_textsize" />
+
+    <Button
+        android:id="@+id/btnRenZheng"
+        style="@style/btnYuanJiao"
+        android:layout_width="200dp"
+        android:layout_marginTop="50dp"
+        android:text="去认证" />
 </LinearLayout>

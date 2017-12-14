@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.activity.BianJiDPActivity;
@@ -14,14 +17,23 @@ import hudongchuangxiang.haoche666.seller.activity.ChongZhiActivity;
 import hudongchuangxiang.haoche666.seller.activity.DianPuShuJuActivity;
 import hudongchuangxiang.haoche666.seller.activity.DingDanGLActivity;
 import hudongchuangxiang.haoche666.seller.activity.SheZhiActivity;
+import hudongchuangxiang.haoche666.seller.activity.ShiMingRZActivity;
+import hudongchuangxiang.haoche666.seller.activity.TipsActivity;
 import hudongchuangxiang.haoche666.seller.activity.WoDeFSActivity;
 import hudongchuangxiang.haoche666.seller.activity.XiaoXiZXActivity;
 import hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity;
 import hudongchuangxiang.haoche666.seller.activity.ZhangHaoGLActivity;
+import hudongchuangxiang.haoche666.seller.base.MyDialog;
 import hudongchuangxiang.haoche666.seller.base.ToLoginActivity;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseFragment;
+import hudongchuangxiang.haoche666.seller.constant.Constant;
+import hudongchuangxiang.haoche666.seller.model.OkObject;
+import hudongchuangxiang.haoche666.seller.model.UserApplybefore;
+import hudongchuangxiang.haoche666.seller.util.ApiClient;
 import huisedebi.zjb.mylibrary.customview.HeadZoomScrollView;
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
@@ -90,6 +102,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.viewSheZhi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewYiJianFK).setOnClickListener(this);
         mInflate.findViewById(R.id.textChongZhi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewShiMingRZ).setOnClickListener(this);
     }
 
     @Override
@@ -101,15 +114,22 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewShiMingRZ:
+                if (isLogin) {
+                    shiMingRZ();
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
+                break;
             case R.id.textChongZhi:
                 intent.setClass(getActivity(), ChongZhiActivity.class);
                 startActivity(intent);
                 break;
             case R.id.viewYiJianFK:
-                if (isLogin){
+                if (isLogin) {
                     intent.setClass(getActivity(), YiJianFKActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(getActivity());
                 }
                 break;
@@ -148,5 +168,64 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.USER_APPLYBEFORE;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        return new OkObject(params, url);
+    }
+
+    /**
+     * 实名认证
+     */
+    private void shiMingRZ() {
+        showLoadingDialog();
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ShiMingRZActivity--实名认证请求", s + "");
+                try {
+                    UserApplybefore userApplybefore = GsonUtils.parseJSON(s, UserApplybefore.class);
+                    if (userApplybefore.getStatus() == 1) {
+                        Intent intent = new Intent();
+                        switch (userApplybefore.getState()) {
+                            case 0:
+                                intent.putExtra(Constant.IntentKey.BEAN,userApplybefore);
+                                intent.setClass(getActivity(), TipsActivity.class);
+                                startActivity(intent);
+                                break;
+                            default:
+                                intent.putExtra(Constant.IntentKey.BEAN,userApplybefore);
+                                intent.setClass(getActivity(), ShiMingRZActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                    } else if (userApplybefore.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        Toast.makeText(getActivity(), userApplybefore.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -78,17 +78,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="实名认证"
+                android:text="手机号码"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/normal_textsize" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="25dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/dianpubianjipic" />
         </RelativeLayout>
 
         <RelativeLayout

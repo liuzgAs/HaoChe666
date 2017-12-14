@@ -30,7 +30,7 @@
         android:id="@+id/text0002"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text0001"
+        android:layout_below="@+id/text0000"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"

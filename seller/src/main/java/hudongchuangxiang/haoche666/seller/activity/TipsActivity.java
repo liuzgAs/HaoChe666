@@ -1,13 +1,20 @@
 package hudongchuangxiang.haoche666.seller.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseActivity;
+import hudongchuangxiang.haoche666.seller.constant.Constant;
+import hudongchuangxiang.haoche666.seller.model.UserApplybefore;
 
-public class TiJiaoCGActivity extends ZjbBaseActivity implements View.OnClickListener {
+public class TipsActivity extends ZjbBaseActivity implements View.OnClickListener {
+
+    private UserApplybefore userApplybefore;
+    private ImageView imageTips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +30,28 @@ public class TiJiaoCGActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     protected void initIntent() {
-
+        Intent intent = getIntent();
+        userApplybefore = (UserApplybefore) intent.getSerializableExtra(Constant.IntentKey.BEAN);
     }
 
     @Override
     protected void findID() {
-
+        imageTips = (ImageView) findViewById(R.id.imageTips);
     }
 
     @Override
     protected void initViews() {
         ((TextView) findViewById(R.id.textViewTitle)).setText("提交成功");
+        if (userApplybefore != null) {
+            switch (userApplybefore.getState()) {
+                case 0:
+
+                    break;
+                default:
+
+                    break;
+            }
+        }
     }
 
     @Override
