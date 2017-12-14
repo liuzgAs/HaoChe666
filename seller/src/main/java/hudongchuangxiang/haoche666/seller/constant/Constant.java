@@ -74,6 +74,10 @@ public class Constant {
          * 修改密码
          */
         public static final String USER_PWDSAVE = "/User/pwdSave";
+        /**
+         * 首页
+         */
+        public static final String INDEX_INDEX = "/Index/index";
     }
 
     public static class IntentKey {

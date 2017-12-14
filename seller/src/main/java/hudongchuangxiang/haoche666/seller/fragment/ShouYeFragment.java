@@ -7,13 +7,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.activity.GuanLiDYActivity;
 import hudongchuangxiang.haoche666.seller.activity.JinRiXZActivity;
 import hudongchuangxiang.haoche666.seller.activity.MainActivity;
 import hudongchuangxiang.haoche666.seller.activity.YuYueSJActivity;
+import hudongchuangxiang.haoche666.seller.base.MyDialog;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseFragment;
+import hudongchuangxiang.haoche666.seller.constant.Constant;
+import hudongchuangxiang.haoche666.seller.model.OkObject;
+import hudongchuangxiang.haoche666.seller.model.SimpleInfo;
+import hudongchuangxiang.haoche666.seller.util.ApiClient;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
@@ -74,9 +84,48 @@ public class ShouYeFragment extends ZjbBaseFragment implements View.OnClickListe
         mInflate.findViewById(R.id.viewJinRiXZ).setOnClickListener(this);
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.INDEX_INDEX;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        return new OkObject(params, url);
+    }
+
     @Override
     protected void initData() {
-
+        showLoadingDialog();
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ShouYeFragment--卖家版首页",s+ "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus()==1){
+                    }else if (simpleInfo.getStatus()==3){
+                        MyDialog.showReLoginDialog(getActivity());
+                    }else {
+                        Toast.makeText(getActivity(), simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+        
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

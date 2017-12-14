@@ -246,9 +246,15 @@ public class WelcomeActivity extends ZjbBaseNotLeftActivity implements EasyPermi
 
     private void toMainActivity() {
         Intent intent = new Intent();
-        intent.setClass(WelcomeActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        if (isLogin) {
+            intent.setClass(WelcomeActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            intent.setClass(WelcomeActivity.this, DengLuActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

@@ -384,6 +384,9 @@ public class DengLuActivity extends ZjbBaseActivity implements View.OnClickListe
             aCache.put(Constant.Acache.USER_INFO, userInfo);
             aCache.put(Constant.Acache.TOKENTIME, tokenTime);
             Constant.changeControl++;
+            Intent intent = new Intent();
+            intent.setClass(DengLuActivity.this, MainActivity.class);
+            startActivity(intent);
             finish();
         }
         Toast.makeText(DengLuActivity.this, userInfo.getInfo(), Toast.LENGTH_SHORT).show();
