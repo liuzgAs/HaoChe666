@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hudongchuangxiang.haoche666.seller.R;
+import hudongchuangxiang.haoche666.seller.base.ToLoginActivity;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseActivity;
 import hudongchuangxiang.haoche666.seller.util.DataCleanManager;
 import huisedebi.zjb.mylibrary.util.VersionUtils;
@@ -55,7 +56,9 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.viewYiJianFanKui).setOnClickListener(this);
         findViewById(R.id.viewChangJianWenTi).setOnClickListener(this);
+        findViewById(R.id.viewXiuGaiMM).setOnClickListener(this);
         findViewById(R.id.viewHuanCun).setOnClickListener(this);
     }
 
@@ -73,9 +76,25 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
                 textHuanCun.setText(getSize());
                 Toast.makeText(this,"缓存清除完毕", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.viewXiuGaiMM:
+                if (isLogin){
+                    intent.setClass(this,XiuGaiMMActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
+                break;
             case R.id.viewChangJianWenTi:
                 intent.setClass(this, ChangJianWenTiActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.viewYiJianFanKui:
+                if (isLogin) {
+                    intent.setClass(this, YiJianFKActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
                 break;
             case R.id.imageBack:
                 finish();
