@@ -109,6 +109,10 @@ public class Constant {
          * 常见问题
          */
         public static final String FAQ = "/Faq";
+        /**
+         * 意见反馈
+         */
+        public static final String USER_FEEDBACK = "/User/feedback";
     }
 
     public static class IntentKey {

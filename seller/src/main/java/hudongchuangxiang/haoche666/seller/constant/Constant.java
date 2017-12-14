@@ -66,6 +66,10 @@ public class Constant {
          * 忘记密码
          */
         public static final String LOGIN_FORGET = "/Login/forget";
+        /**
+         * 意见反馈
+         */
+        public static final String USER_FEEDBACK = "/User/feedback";
     }
 
     public static class IntentKey {

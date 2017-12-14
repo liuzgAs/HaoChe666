@@ -18,6 +18,7 @@ import hudongchuangxiang.haoche666.seller.activity.WoDeFSActivity;
 import hudongchuangxiang.haoche666.seller.activity.XiaoXiZXActivity;
 import hudongchuangxiang.haoche666.seller.activity.YiJianFKActivity;
 import hudongchuangxiang.haoche666.seller.activity.ZhangHaoGLActivity;
+import hudongchuangxiang.haoche666.seller.base.ToLoginActivity;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseFragment;
 import huisedebi.zjb.mylibrary.customview.HeadZoomScrollView;
 import huisedebi.zjb.mylibrary.util.DpUtils;
@@ -105,8 +106,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewYiJianFK:
-                intent.setClass(getActivity(), YiJianFKActivity.class);
-                startActivity(intent);
+                if (isLogin){
+                    intent.setClass(getActivity(), YiJianFKActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.viewSheZhi:
                 intent.setClass(getActivity(), SheZhiActivity.class);

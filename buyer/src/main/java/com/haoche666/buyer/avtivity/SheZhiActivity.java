@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 
 /**
@@ -63,8 +64,12 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.viewYiJianFanKui:
-                intent.setClass(this, YiJianFKActivity.class);
-                startActivity(intent);
+                if (isLogin) {
+                    intent.setClass(this, YiJianFKActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
                 break;
             case R.id.imageBack:
                 finish();
