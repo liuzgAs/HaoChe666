@@ -33,7 +33,7 @@
                     android:src="@mipmap/shezhi_logo" />
 
                 <TextView
-                    android:id="@+id/textView128"
+                    android:id="@+id/textBanben"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView25"
@@ -73,6 +73,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewHuanCun"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
@@ -106,7 +107,7 @@
                     android:textSize="@dimen/bigText"
                     android:textColor="@color/text_gray"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/textView135"
+                    android:id="@+id/textHuanCun"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/imageView71"
                     android:layout_toStartOf="@+id/imageView71" />
