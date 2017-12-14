@@ -177,7 +177,7 @@
                         android:layout_below="@+id/image0101"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="店铺预览"
+                        android:text="实名认证"
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/normal_textsize" />
                 </RelativeLayout>
