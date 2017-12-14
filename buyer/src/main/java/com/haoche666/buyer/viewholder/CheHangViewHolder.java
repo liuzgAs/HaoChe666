@@ -43,7 +43,7 @@ public class CheHangViewHolder extends BaseViewHolder<StoreDetails.DataBean> {
                 .placeholder(R.mipmap.ic_empty)
                 .into(imageImg);
         textTitle.setText(data.getTitle());
-        textCard_time.setText(data.getCard_time()+"\u3000"+data.getKm());
+        textCard_time.setText(data.getCard_time()+"|"+data.getKm());
     }
     
 }

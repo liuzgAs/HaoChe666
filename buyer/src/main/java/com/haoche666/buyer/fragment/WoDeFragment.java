@@ -73,6 +73,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
             }
         }
     };
+    private ImageView imageVip1;
 
     public WoDeFragment() {
         // Required empty public constructor
@@ -184,6 +185,11 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                                     .into(imageHead);
                             textName.setText(userBuyerindex.getNickname());
                             textMoney.setText(userBuyerindex.getMoney() + "");
+                            if (userBuyerindex.getGrade()>0){
+                                imageVip.setImageResource(R.mipmap.haochehuiyuan);
+                            }else {
+                                imageVip.setImageResource(R.mipmap.pay_vip);
+                            }
                             ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
                             UserInfo userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
                             userInfo.setHeadImg(userBuyerindex.getHeadimg());
