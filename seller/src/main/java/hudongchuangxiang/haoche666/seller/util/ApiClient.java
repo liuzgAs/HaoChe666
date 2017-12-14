@@ -43,6 +43,7 @@ public class ApiClient {
         HashMap<String, String> params = okObject.getParams();
         /*买家1卖家2拍摄3小程序4*/
         params.put("loginType",""+2);
+        params.put("platform","android");
         okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
 
@@ -73,6 +74,7 @@ public class ApiClient {
         HashMap<String, String> params = okObject.getParams();
         /*买家1卖家2拍摄3小程序4*/
         params.put("loginType",""+2);
+        params.put("platform","android");
         okObject.setParams(params);
         OkGo.<String>get(okObject.getUrl())
                 .tag(context)
@@ -125,6 +127,7 @@ public class ApiClient {
         HashMap<String, String> params = okObject.getParams();
         /*买家1卖家2拍摄3小程序4*/
         params.put("loginType",""+2);
+        params.put("platform","android");
         okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
         OkGo.<String>post(okObject.getUrl())
@@ -160,6 +163,7 @@ public class ApiClient {
         HashMap<String, String> params = okObject.getParams();
         /*买家1卖家2拍摄3小程序4*/
         params.put("loginType",""+2);
+        params.put("platform","android");
         okObject.setParams(params);
         LogUtil.LogShitou("ApiClient--发送", "" + okObject.getJson());
         LogUtil.LogShitou("ApiClient--upFile", ""+files.getPath());
