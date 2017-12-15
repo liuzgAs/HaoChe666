@@ -252,7 +252,9 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".avtivity.CheLiangXQActivity"
-            android:launchMode="singleTop" />
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".avtivity.WoDeGZActivity"
             android:launchMode="singleTop" />

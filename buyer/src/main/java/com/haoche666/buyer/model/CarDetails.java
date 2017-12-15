@@ -26,7 +26,7 @@ public class CarDetails {
     private ShareBean share;
     private int status;
     private StoreBean store;
-    private Object video;
+    private videoBean video;
     private List<ArchivesBean> archives;
     private List<BannerBean> banner;
     private List<ImgListBean> imgList;
@@ -71,11 +71,11 @@ public class CarDetails {
         this.store = store;
     }
 
-    public Object getVideo() {
+    public videoBean getVideo() {
         return video;
     }
 
-    public void setVideo(Object video) {
+    public void setVideo(videoBean video) {
         this.video = video;
     }
 
@@ -145,6 +145,36 @@ public class CarDetails {
 
         public void setVr_url(String vr_url) {
             this.vr_url = vr_url;
+        }
+    }
+
+    public static class videoBean{
+        private String title;
+        private String playUrl;
+        private String coverForFeed;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getPlayUrl() {
+            return playUrl;
+        }
+
+        public void setPlayUrl(String playUrl) {
+            this.playUrl = playUrl;
+        }
+
+        public String getCoverForFeed() {
+            return coverForFeed;
+        }
+
+        public void setCoverForFeed(String coverForFeed) {
+            this.coverForFeed = coverForFeed;
         }
     }
 
