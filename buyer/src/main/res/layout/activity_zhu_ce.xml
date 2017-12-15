@@ -214,31 +214,31 @@
             android:layout_marginRight="20dp"
             android:background="@color/basic_color" />
 
-        <huisedebi.zjb.mylibrary.customview.EditTextWithDel
-            android:inputType="number"
-            android:maxLength="11"
-            android:singleLine="true"
-            android:textColorHint="@color/light_black"
-            android:textCursorDrawable="@drawable/mycursor"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/edit05"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/normalItemHeight"
-            android:background="@null"
-            android:hint="请输入推荐人手机号码（选填）"
-            android:paddingLeft="2dp"
-            android:textSize="@dimen/normal_textsize" />
+        <!--<huisedebi.zjb.mylibrary.customview.EditTextWithDel-->
+            <!--android:inputType="number"-->
+            <!--android:maxLength="11"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColorHint="@color/light_black"-->
+            <!--android:textCursorDrawable="@drawable/mycursor"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:id="@+id/edit05"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/normalItemHeight"-->
+            <!--android:background="@null"-->
+            <!--android:hint="请输入推荐人手机号码（选填）"-->
+            <!--android:paddingLeft="2dp"-->
+            <!--android:textSize="@dimen/normal_textsize" />-->
 
-        <TextView
-            android:id="@+id/line05"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/basic_color" />
+        <!--<TextView-->
+            <!--android:id="@+id/line05"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:background="@color/basic_color" />-->
 
         <Button
             android:layout_marginTop="20dp"

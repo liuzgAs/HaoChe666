@@ -357,6 +357,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
                 intent.setClass(getActivity(), CheLiangXQActivity.class);
                 startActivity(intent);
             }
