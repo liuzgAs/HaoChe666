@@ -50,7 +50,7 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
     protected void initViews() {
         ((TextView) findViewById(R.id.textViewTitle)).setText("设置");
         textHuanCun.setText(getSize());
-        textBanben.setText("v"+ VersionUtils.getCurrVersionName(this));
+        textBanben.setText("v" + VersionUtils.getCurrVersionName(this));
     }
 
     @Override
@@ -74,13 +74,13 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
             case R.id.viewHuanCun:
                 DataCleanManager.clearAllCache(this);
                 textHuanCun.setText(getSize());
-                Toast.makeText(this,"缓存清除完毕", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "缓存清除完毕", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewXiuGaiMM:
-                if (isLogin){
-                    intent.setClass(this,XiuGaiMMActivity.class);
+                if (isLogin) {
+                    intent.setClass(this, XiuGaiMMActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(this);
                 }
                 break;
@@ -89,12 +89,8 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.viewYiJianFanKui:
-                if (isLogin) {
-                    intent.setClass(this, YiJianFKActivity.class);
-                    startActivity(intent);
-                } else {
-                    ToLoginActivity.toLoginActivity(this);
-                }
+                intent.setClass(this, YiJianFKActivity.class);
+                startActivity(intent);
                 break;
             case R.id.imageBack:
                 finish();

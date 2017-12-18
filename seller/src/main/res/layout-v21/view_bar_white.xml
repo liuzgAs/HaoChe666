@@ -34,6 +34,7 @@
             android:src="@mipmap/left_black" />
 
         <TextView
+            android:maxLength="8"
             android:textStyle="bold"
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"

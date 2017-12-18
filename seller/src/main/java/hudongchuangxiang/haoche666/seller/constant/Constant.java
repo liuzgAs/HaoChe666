@@ -82,6 +82,10 @@ public class Constant {
          * 实名认证请求
          */
         public static final String USER_APPLYBEFORE = "/User/applyBefore";
+        /**
+         * 常见问题
+         */
+        public static final String FAQ = "/Faq";
     }
 
     public static class IntentKey {

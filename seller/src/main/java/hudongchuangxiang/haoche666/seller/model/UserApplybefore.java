@@ -73,7 +73,7 @@ public class UserApplybefore implements Serializable{
         this.tipsTitle = tipsTitle;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * address :
          * area :

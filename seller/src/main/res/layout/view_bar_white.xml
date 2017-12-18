@@ -31,6 +31,7 @@
             android:layout_alignParentLeft="true"/>
 
         <TextView
+            android:maxLength="8"
             android:textStyle="bold"
             tools:text="标题"
             android:id="@+id/textViewTitle"

@@ -15,6 +15,7 @@ public class TipsActivity extends ZjbBaseActivity implements View.OnClickListene
 
     private UserApplybefore userApplybefore;
     private ImageView imageTips;
+    private TextView textViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,11 @@ public class TipsActivity extends ZjbBaseActivity implements View.OnClickListene
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("提交成功");
+        textViewTitle = (TextView) findViewById(R.id.textViewTitle);
         if (userApplybefore != null) {
             switch (userApplybefore.getState()) {
                 case 0:
-
+                    textViewTitle.setText("正在审核");
                     break;
                 default:
 
