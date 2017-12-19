@@ -134,6 +134,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private View viewVideo;
             private TextView textView;
             private TextView textTitle;
             private TextView textPaiDangTitle;
@@ -231,6 +232,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     }
                 });
                 textPaiDangTitle = header_shou_ye.findViewById(R.id.textPaiDangTitle);
+                viewVideo = header_shou_ye.findViewById(R.id.viewVideo);
                 id_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -290,8 +292,15 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         textView.setText(newsBeanList.get(0).getView()+"人阅读");
                     }
                 }
-                id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
-                id_viewpager.setCurrentItem(50);
+                if (videoBeanXList!=null){
+                    if (videoBeanXList.size()>0){
+                        viewVideo.setVisibility(View.VISIBLE);
+                        id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
+                        id_viewpager.setCurrentItem(50);
+                    }else {
+                        viewVideo.setVisibility(View.GONE);
+                    }
+                }
                 id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), storeBeanList));
                 id_viewpager01.setCurrentItem(50);
             }

@@ -4,88 +4,95 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/viewVideo"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/white" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textMore"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="更多"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/normal_textsize" />
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical">
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white">
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/textMore"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="好车拍档"
-                android:textColor="@color/light_black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="更多"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/normal_textsize" />
 
-            <ImageView
-                android:id="@+id/imageView16"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView31"
-                android:layout_marginTop="2dp"
-                android:src="@mipmap/youqudeyouxijiemu" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="好车拍档"
+                    android:textColor="@color/light_black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView31"
+                    android:layout_marginTop="2dp"
+                    android:src="@mipmap/youqudeyouxijiemu" />
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:clipChildren="false">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/id_viewpager"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/lunBoShiPin"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:clipChildren="false" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clipChildren="false">
 
-    <TextView
-        android:id="@+id/textPaiDangTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:gravity="center_horizontal"
-        android:paddingTop="10dp"
-        android:text="标致207 2009款 三厢 1.6L 手动品乐版"
-        android:textColor="@color/light_black"
-        android:textSize="@dimen/bigText"
-        android:textStyle="bold" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/id_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/lunBoShiPin"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:clipChildren="false" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textPaiDangTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="标致207 2009款 三厢 1.6L 手动品乐版"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/bigText"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView161"
@@ -101,15 +108,15 @@
         android:background="@color/white">
 
         <TextView
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical"
             android:id="@+id/textTuWenMore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="更多"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/normal_textsize" />

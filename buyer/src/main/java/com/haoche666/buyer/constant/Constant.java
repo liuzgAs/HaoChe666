@@ -117,6 +117,10 @@ public class Constant {
          * 版本判断
          */
         public static final String INDEX_VERSION = "/Index/version";
+        /**
+         * 买车页面
+         */
+        public static final String CAR = "/Car";
     }
 
     public static class IntentKey {
