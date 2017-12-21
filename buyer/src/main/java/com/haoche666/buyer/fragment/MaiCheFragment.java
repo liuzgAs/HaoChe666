@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.base.MyDialog;
@@ -47,6 +49,8 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
+    private TextView textRange;
+    private CrystalRangeSeekbar rangeSeekbar;
 
     public MaiCheFragment() {
         // Required empty public constructor
@@ -83,6 +87,8 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     protected void findID() {
         mRelaTitleStatue = mInflate.findViewById(R.id.relaTitleStatue);
         recyclerView = mInflate.findViewById(R.id.recyclerView);
+        textRange = mInflate.findViewById(R.id.textRange);
+        rangeSeekbar = mInflate.findViewById(R.id.rangeSeekbar);
     }
 
     @Override
@@ -167,7 +173,20 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     protected void setListeners() {
-
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                if (minValue.intValue()==0&&maxValue.intValue()==60){
+                    textRange.setText("不限");
+                }else {
+                    if (maxValue.intValue()==60){
+                        textRange.setText(minValue+"万以上");
+                    }else {
+                        textRange.setText(minValue+"万至"+maxValue+"万");
+                    }
+                }
+            }
+        });
     }
 
     @Override

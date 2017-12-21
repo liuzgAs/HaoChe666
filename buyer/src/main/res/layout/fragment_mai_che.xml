@@ -27,68 +27,392 @@
         <com.jude.easyrecyclerview.EasyRecyclerView
             android:id="@+id/recyclerViewShaiXuan00"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_empty="@layout/view_empty"
             app:layout_progress="@layout/view_progress"
             app:scrollbarStyle="insideOverlay" />
 
         <LinearLayout
-            android:background="@color/background"
             android:id="@+id/viewShaiXuan01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <huisedebi.zjb.mylibrary.customview.GridView4ScrollView
-                android:background="@color/white"
                 android:id="@+id/gridPrice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <RelativeLayout
-                android:layout_marginTop="5dp"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="5dp"
+                android:background="@color/background" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
                 <TextView
-                    android:textColor="@color/light_black"
-                    android:text="自定义价格"
-                    android:textSize="@dimen/normal_textsize"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
                     android:id="@+id/textZidingYiJaiGe"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="自定义价格"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
+
                 <TextView
-                    android:text="/万"
-                    android:layout_toRightOf="@+id/textZidingYiJaiGe"
-                    android:layout_alignBaseline="@+id/textZidingYiJaiGe"
-                    android:textSize="@dimen/moreLitterText"
-                    android:textColor="@color/text_gray"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textZidingYiJaiGe"
+                    android:layout_toRightOf="@+id/textZidingYiJaiGe"
+                    android:text="/万"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/moreLitterText" />
+
                 <TextView
+                    android:id="@+id/textRange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textZidingYiJaiGe"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
                     android:text="不限"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/normal_textsize"
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignBaseline="@+id/textZidingYiJaiGe"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/normal_textsize" />
 
             </RelativeLayout>
-            <RelativeLayout
-                android:background="@color/white"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="3" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="4" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="5" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="不限" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                app:left_thumb_image="@mipmap/seekbar_thumb"
+                app:right_thumb_image="@mipmap/seekbar_thumb"
+                app:bar_color="@color/text_gray"
+                app:bar_highlight_color="@color/basic_color"
+                app:min_value="0"
+                app:max_value="60"
+                app:min_start_value="0"
+                app:max_start_value="60"
+                app:gap="1"
+                app:corner_radius="10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/rangeSeekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
                 <Button
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    style="@style/MyBtn02"
                     android:layout_marginBottom="20dp"
-                    android:text="确定"
-                    style="@style/MyBtn02"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="确定" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/viewShaiXuan02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <huisedebi.zjb.mylibrary.customview.GridView4ScrollView
+                android:id="@+id/gridPrice1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/background" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textZidingYiJaiGe1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="自定义价格"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textZidingYiJaiGe1"
+                    android:layout_toRightOf="@+id/textZidingYiJaiGe1"
+                    android:text="/万"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/moreLitterText" />
+
+                <TextView
+                    android:id="@+id/textRange1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textZidingYiJaiGe1"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="不限"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/normal_textsize" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="4" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="6" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="8" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="不限" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                app:left_thumb_image="@mipmap/seekbar_thumb"
+                app:right_thumb_image="@mipmap/seekbar_thumb"
+                app:bar_color="@color/text_gray"
+                app:bar_highlight_color="@color/basic_color"
+                app:min_value="0"
+                app:max_value="60"
+                app:min_start_value="0"
+                app:max_start_value="60"
+                app:gap="1"
+                app:corner_radius="10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/rangeSeekbar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <Button
+                    style="@style/MyBtn02"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="确定" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
