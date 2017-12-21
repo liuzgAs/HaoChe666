@@ -197,7 +197,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
-                LogUtil.LogShitou("", s);
+                LogUtil.LogShitou("买车", s);
                 try {
                     page++;
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);

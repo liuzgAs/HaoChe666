@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HaoChe666.iml" filepath="$PROJECT_DIR$/HaoChe666.iml" />
-      <module fileurl="file://F:\project\HaoChe666\buyer\app.iml" filepath="F:\project\HaoChe666\buyer\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/buyer/buyer.iml" filepath="$PROJECT_DIR$/buyer/buyer.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/seller/seller.iml" filepath="$PROJECT_DIR$/seller/seller.iml" />
