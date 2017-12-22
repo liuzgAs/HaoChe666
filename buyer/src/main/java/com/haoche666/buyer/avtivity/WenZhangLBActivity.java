@@ -1,23 +1,13 @@
 package com.haoche666.buyer.avtivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
@@ -32,7 +22,6 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-import com.luoxudong.app.threadpool.ThreadPoolHelp;
 
 import java.util.HashMap;
 import java.util.List;
@@ -244,88 +233,18 @@ public class WenZhangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         });
     }
 
-    public void showKeyboard(EditText editSearch) {
-        if(editSearch!=null){
-            //设置可获得焦点
-            editSearch.setFocusable(true);
-            editSearch.setFocusableInTouchMode(true);
-            //请求获得焦点
-            editSearch.requestFocus();
-            //调用系统输入法
-            InputMethodManager inputManager = (InputMethodManager) editSearch
-                    .getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.showSoftInput(editSearch, 0);
-        }
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewSearch:
-                View dialog_tu_pian = LayoutInflater.from(this).inflate(R.layout.dialog_search, null);
-                final AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.dialog)
-                        .setView(dialog_tu_pian)
-                        .create();
-                alertDialog.show();
-                final EditText editSearch = dialog_tu_pian.findViewById(R.id.editSearch);
-                editSearch.setText(keywords);
-                editSearch.setSelection(keywords.length());
-                dialog_tu_pian.findViewById(R.id.imageSearch).setOnClickListener(new View.OnClickListener() {
+                MyDialog.showSearchDialog(this,keywords);
+                MyDialog.setOnSearchDoneListener(new MyDialog.OnSearchDoneListener() {
                     @Override
-                    public void onClick(View v) {
-                        InputMethodManager imm = (InputMethodManager) v
-                                .getContext().getSystemService(
-                                        Context.INPUT_METHOD_SERVICE);
-                        if (imm.isActive()) {
-                            imm.hideSoftInputFromWindow(
-                                    v.getApplicationWindowToken(), 0);
-                        }
-                        keywords = editSearch.getText().toString().trim();
-                        alertDialog.dismiss();
+                    public void searchDone(String key) {
+                        keywords =key;
                         initData();
                     }
                 });
-                editSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
-                         /*判断是否是“GO”键*/
-                        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    /*隐藏软键盘*/
-                            InputMethodManager imm = (InputMethodManager) v
-                                    .getContext().getSystemService(
-                                            Context.INPUT_METHOD_SERVICE);
-                            if (imm.isActive()) {
-                                imm.hideSoftInputFromWindow(
-                                        v.getApplicationWindowToken(), 0);
-                            }
-                            keywords = editSearch.getText().toString().trim();
-                            alertDialog.dismiss();
-                            initData();
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                Window dialogWindow = alertDialog.getWindow();
-                dialogWindow.setGravity(Gravity.TOP);
-                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-                DisplayMetrics d = getResources().getDisplayMetrics();
-                lp.width = (int) (d.widthPixels * 1);
-                dialogWindow.setAttributes(lp);
-                ThreadPoolHelp.Builder
-                        .cached()
-                        .builder()
-                        .execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(200);
-                                    showKeyboard(editSearch);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
                 break;
             case R.id.imageBack:
                 finish();

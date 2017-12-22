@@ -27,6 +27,7 @@
                 android:src="@mipmap/guanzhu" />
 
             <RelativeLayout
+                android:id="@+id/viewSearch"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
@@ -49,7 +50,7 @@
                     android:src="@mipmap/search" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
