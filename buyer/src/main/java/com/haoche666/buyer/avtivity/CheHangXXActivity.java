@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.model.StoreDetails;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheHangViewHolder;
@@ -56,6 +59,8 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     private TextView textViewTitle;
     private View viewBottom;
     private String tel;
+    private int is_attention;
+    private TextView textGuanZhu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
         textViewTitle = (TextView) findViewById(R.id.textViewTitle);
         viewBottom = findViewById(R.id.viewBottom);
+        textGuanZhu = (TextView) findViewById(R.id.textGuanZhu);
     }
 
     @Override
@@ -228,6 +234,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.viewDianHua).setOnClickListener(this);
+        findViewById(R.id.viewGuanZhu).setOnClickListener(this);
     }
 
     @Override
@@ -238,6 +245,13 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewGuanZhu:
+                if (isLogin){
+                    guanZhuCheHang();
+                }else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
+                break;
             case R.id.viewDianHua:
                 requiresPermission();
                 break;
@@ -247,6 +261,61 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             default:
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getGuanZhuCHOkObject() {
+        String url = Constant.HOST + Constant.Url.Attention;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("type_id","1");
+        params.put("car_store_id",storeDetailsStore.getId()+"");
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 关注车辆
+     * author： ZhangJieBo
+     * date： 2017/12/22/022 16:37
+     */
+    private void guanZhuCheHang() {
+        showLoadingDialog();
+        ApiClient.post(CheHangXXActivity.this, getGuanZhuCHOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("CheHangXXActivity--onSuccess",s+ "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus()==1){
+                        if (is_attention==0){
+                            textGuanZhu.setText("关注ta");
+                        }else {
+                            textGuanZhu.setText("已关注");
+                        }
+                    }else if (simpleInfo.getStatus()==3){
+                        MyDialog.showReLoginDialog(CheHangXXActivity.this);
+                    }else {
+                        Toast.makeText(CheHangXXActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(CheHangXXActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheHangXXActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -282,6 +351,12 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                         viewBar.getBackground().mutate().setAlpha(0);
                         textViewTitle.setText(storeDetailsStore.getName());
                         tel = storeDetailsStore.getTel();
+                        is_attention = storeDetailsStore.getIs_attention();
+                        if (is_attention==0){
+                            textGuanZhu.setText("关注ta");
+                        }else {
+                            textGuanZhu.setText("已关注");
+                        }
                         List<StoreDetails.DataBean> storeDetailsData = storeDetails.getData();
                         adapter.clear();
                         adapter.addAll(storeDetailsData);

@@ -125,6 +125,14 @@ public class Constant {
          * 添加关注车辆/车行 1-车辆；2-车行
          */
         public static final String Attention = "/Attention";
+        /**
+         * 车辆品牌用途颜色
+         */
+        public static final String CAR_CARPARAM = "/Car/carParam";
+        /**
+         * 车辆款式
+         */
+        public static final String CAR_CARSTYLE = "/Car/carStyle";
     }
 
     public static class IntentKey {

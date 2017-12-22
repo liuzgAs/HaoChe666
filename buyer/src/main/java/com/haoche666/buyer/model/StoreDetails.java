@@ -122,11 +122,20 @@ public class StoreDetails {
 
         private String company;
         private int id;
+        private int is_attention;
         private String logo;
         private String name;
         private String tel;
         private String text1;
         private String text2;
+
+        public int getIs_attention() {
+            return is_attention;
+        }
+
+        public void setIs_attention(int is_attention) {
+            this.is_attention = is_attention;
+        }
 
         public String getCompany() {
             return company;

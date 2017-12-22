@@ -18,6 +18,7 @@
             layout="@layout/view_bar_white" />
 
         <com.jude.easyrecyclerview.EasyRecyclerView
+            android:descendantFocusability="blocksDescendants"
             android:layout_marginRight="36dp"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             app:layout_progress="@layout/view_progress"
             app:scrollbarStyle="insideOverlay" />
 
-        <huisedebi.zjb.mylibrary.customview.SideLetterBar
+        <com.haoche666.buyer.customview.SideLetterBar
             android:id="@+id/side_letter_bar"
             android:layout_width="36dp"
             android:layout_height="match_parent"

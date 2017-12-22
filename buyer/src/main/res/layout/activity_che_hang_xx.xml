@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:layout_progress="@layout/view_progress"
         app:scrollbarStyle="insideOverlay"
-        android:layout_above="@+id/linearLayout" />
+        android:layout_above="@+id/viewBottom" />
 
     <LinearLayout
         android:id="@+id/viewBar"
@@ -55,16 +55,16 @@
                 android:textSize="@dimen/titleSize"
                 tools:text="标题" />
 
-            <ImageView
-                android:id="@+id/imageView81"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:src="@mipmap/che_hang_gengduo" />
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView81"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:src="@mipmap/che_hang_gengduo" />-->
 
         </RelativeLayout>
     </LinearLayout>
@@ -78,6 +78,7 @@
         android:id="@+id/viewBottom">
 
         <RelativeLayout
+            android:id="@+id/viewGuanZhu"
             android:gravity="center"
             android:background="@color/basic_color"
             android:layout_weight="1"
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:text="关注ta"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/textView159"
+                android:id="@+id/textGuanZhu"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/imageView85"
                 android:layout_toEndOf="@+id/imageView85" />

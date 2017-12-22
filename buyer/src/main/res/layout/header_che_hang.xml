@@ -39,7 +39,7 @@
 
             <huisedebi.zjb.mylibrary.customview.CircleImageView
                 app:civ_border_color="@color/basic_color"
-                app:civ_border_width="2dp"
+                app:civ_border_width="3dp"
                 android:src="@mipmap/che_hang_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"

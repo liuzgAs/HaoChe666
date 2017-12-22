@@ -36,7 +36,7 @@ dependencies {
     compile 'com.iarcuschin:simpleratingbar:0.1.2'
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.6'
     implementation project(':library')
-    compile 'com.github.huisedebi:ZjbLibrary:0.2.8'
+    compile 'com.github.huisedebi:ZjbLibrary:0.2.9'
     compile 'com.lzy.net:okgo:3.0.4'
     compile 'com.amap.api:location:latest.integration'
     compile 'com.amap.api:map2d:latest.integration'

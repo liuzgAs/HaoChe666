@@ -8,13 +8,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.model.PinPaiBean;
+import com.haoche666.buyer.model.CarCarparam;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 /**
  * Created by Administrator on 2017/3/28 0028.
  */
-public class PinPaiXCViewHolder extends BaseViewHolder<PinPaiBean> {
+public class PinPaiXCViewHolder extends BaseViewHolder<CarCarparam.BrandBean.ListBean> {
 
     private final TextView textXuanZhong;
     private final TextView textName;
@@ -28,14 +28,12 @@ public class PinPaiXCViewHolder extends BaseViewHolder<PinPaiBean> {
     }
 
     @Override
-    public void setData(PinPaiBean data) {
+    public void setData(CarCarparam.BrandBean.ListBean data) {
         super.setData(data);
         textXuanZhong.setVisibility(View.GONE);
-        String logoPath = data.getLogoPath();
-        String replace = logoPath.replace("50_50", "100_100");
-        textName.setText(data.getBrandName());
+        textName.setText(data.getName());
         Glide.with(getContext())
-                .load(replace)
+                .load(data.getImg())
                 .asBitmap()
                 .placeholder(R.mipmap.ic_empty)
                 .into(imageLogo);

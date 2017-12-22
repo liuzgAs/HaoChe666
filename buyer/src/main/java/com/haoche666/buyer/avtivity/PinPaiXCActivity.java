@@ -13,19 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseNotLeftActivity;
 import com.haoche666.buyer.constant.Constant;
-import com.haoche666.buyer.model.CheXi;
+import com.haoche666.buyer.customview.SideLetterBar;
+import com.haoche666.buyer.model.CarCarparam;
+import com.haoche666.buyer.model.CarCarstyle;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.PinPaiBean;
-import com.haoche666.buyer.model.PinPaiXC;
 import com.haoche666.buyer.model.ReMen;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheXiViewHolder;
-import com.haoche666.buyer.viewholder.PinPaiXCViewHolder;
+import com.haoche666.buyer.viewholder.PinPaiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -36,29 +38,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import huisedebi.zjb.mylibrary.customview.SideLetterBar;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 /**
  * 品牌选车
+ *
  * @author Administrator
  */
 public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private EasyRecyclerView recyclerViewRight;
+    public EasyRecyclerView recyclerViewRight;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<PinPaiBean> adapter;
+    private RecyclerArrayAdapter<CarCarparam.BrandBean> adapter;
     private SideLetterBar mLetterBar;
-    private List<PinPaiBean> pinPaiBeanList;
-    private DrawerLayout drawerLayout;
-    private List<Integer> letterList = new ArrayList<>();
-    private RecyclerArrayAdapter<CheXi.SeriesBean> adapterRight;
+    public DrawerLayout drawerLayout;
+    private RecyclerArrayAdapter<CarCarstyle.DataBean> adapterRight;
     private String letter;
     private int brandId;
-    private String brandName;
-    private String logoPath;
+    public String brandName;
+    public String logoPath;
     private List<ReMen> reMenList = new ArrayList<>();
 
     @Override
@@ -109,7 +109,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 if (position > 1) {
                     RecyclerView recyclerView1 = recyclerView.getRecyclerView();
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView1.getLayoutManager();
-                    layoutManager.scrollToPositionWithOffset(letterList.get(position - 2) + 1, 0);
+                    layoutManager.scrollToPositionWithOffset(position-1, 0);
                 } else {
                     recyclerView.scrollToPosition(0);
                 }
@@ -137,27 +137,12 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
      */
     private void initRecycler() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
-        itemDecoration.setDrawLastItem(false);
-        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<PinPaiBean>(PinPaiXCActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CarCarparam.BrandBean>(PinPaiXCActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_pinpai_xc;
-                return new PinPaiXCViewHolder(parent, layout);
-            }
-        });
-        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                drawerLayout.openDrawer(recyclerViewRight);
-                PinPaiBean pinPaiBean = adapter.getItem(position);
-                brandName = pinPaiBean.getBrandName();
-                logoPath = pinPaiBean.getLogoPath();
-                letter = pinPaiBean.getLetter();
-                brandId = pinPaiBean.getBrandId();
-                cheXi();
+                int layout = R.layout.item_pinpai;
+                return new PinPaiViewHolder(parent, layout);
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -181,13 +166,13 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     reMenView[i].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            drawerLayout.openDrawer(recyclerViewRight);
-                            ReMen reMen = reMenList.get(finalI);
-                            brandId = reMen.getBrandId();
-                            brandName = reMen.getBrandName();
-                            letter = reMen.getLetter();
-                            logoPath = reMen.getLogoPath();
-                            cheXi();
+//                            drawerLayout.openDrawer(recyclerViewRight);
+//                            ReMen reMen = reMenList.get(finalI);
+//                            brandId = reMen.getBrandId();
+//                            brandName = reMen.getBrandName();
+//                            letter = reMen.getLetter();
+//                            logoPath = reMen.getLogoPath();
+//                            cheXi();
                         }
                     });
                 }
@@ -199,10 +184,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
             }
         });
-        /*StickyHeader*/
-        StickyHeaderDecoration decoration = new StickyHeaderDecoration(new StickyHeaderAdapter(this));
-        decoration.setIncludeHeader(false);
-        recyclerView.addItemDecoration(decoration);
+
     }
 
     /**
@@ -210,9 +192,10 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getCheXiCXOkObject() {
-        String url = Constant.Url.CHE_XI_CX + letter;
+    private OkObject getCheXiCXOkObject(int id) {
+        String url = Constant.HOST + Constant.Url.CAR_CARSTYLE;
         HashMap<String, String> params = new HashMap<>();
+        params.put("id",id+"");
         return new OkObject(params, url);
     }
 
@@ -221,27 +204,23 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
      * author： ZhangJieBo
      * date： 2017/11/15 0015 下午 2:20
      */
-    private void cheXi() {
+    public void cheXi(final int id) {
         recyclerViewRight.showProgress();
-        ApiClient.post(this, getCheXiCXOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(this, getCheXiCXOkObject(id), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("车系", s);
                 try {
-                    CheXi cheXi = GsonUtils.parseJSON(s, CheXi.class);
-                    List<CheXi.CompanyBean> companyBeen = cheXi.getCompanyMap().get("" + brandId);
-                    List<CheXi.SeriesBean> seriesBeen = new ArrayList<>();
-                    if (companyBeen != null) {
-                        for (int i = 0; i < companyBeen.size(); i++) {
-                            List<CheXi.SeriesBean> collection = cheXi.getSeriesMap().get("" + companyBeen.get(i).getCompanyId());
-                            if (collection.size() > 0) {
-                                collection.get(0).setCompanyName(companyBeen.get(i).getCompanyName());
-                            }
-                            seriesBeen.addAll(collection);
-                        }
+                    CarCarstyle carCarstyle = GsonUtils.parseJSON(s, CarCarstyle.class);
+                    if (carCarstyle.getStatus() == 1) {
+                        List<CarCarstyle.DataBean> dataBeanList = carCarstyle.getData();
+                        adapterRight.clear();
+                        adapterRight.addAll(dataBeanList);
+                    } else if (carCarstyle.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(PinPaiXCActivity.this);
+                    } else {
+                        showError(carCarstyle.getInfo());
                     }
-                    adapterRight.clear();
-                    adapterRight.addAll(seriesBeen);
                 } catch (Exception e) {
                     showError("数据出错");
                 }
@@ -260,7 +239,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     @Override
                     public void onClick(View v) {
                         recyclerViewRight.showProgress();
-                        cheXi();
+                        cheXi(id);
                     }
                 });
                 recyclerViewRight.setErrorView(viewLoader);
@@ -278,7 +257,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         itemDecoration.setDrawLastItem(false);
         recyclerViewRight.addItemDecoration(itemDecoration);
         recyclerViewRight.setRefreshingColorResources(R.color.basic_color);
-        recyclerViewRight.setAdapterWithProgress(adapterRight = new RecyclerArrayAdapter<CheXi.SeriesBean>(PinPaiXCActivity.this) {
+        recyclerViewRight.setAdapterWithProgress(adapterRight = new RecyclerArrayAdapter<CarCarstyle.DataBean>(PinPaiXCActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_chexi;
@@ -312,7 +291,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
             public void onBindView(View headerView) {
                 if (!TextUtils.isEmpty(logoPath)) {
                     Glide.with(PinPaiXCActivity.this)
-                            .load(logoPath.replace("50_50", "100_100"))
+                            .load(logoPath)
                             .asBitmap()
                             .placeholder(R.mipmap.ic_empty)
                             .into(imageLogo);
@@ -339,7 +318,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
      * date： 2017/8/28 0028 上午 9:55
      */
     private OkObject getOkObject() {
-        String url = Constant.Url.CHE_XUN;
+        String url = Constant.HOST + Constant.Url.CAR_CARPARAM;
         HashMap<String, String> params = new HashMap<>();
         return new OkObject(params, url);
     }
@@ -352,173 +331,20 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
             public void onSuccess(String s) {
                 LogUtil.LogShitou("品牌选车树结构", s);
                 try {
-                    pinPaiBeanList = new ArrayList<>();
-                    pinPaiBeanList.clear();
-                    letterList.clear();
-                    PinPaiXC pinPaiXC = GsonUtils.parseJSON(s, PinPaiXC.class);
-                    List<PinPaiBean> pinPaiXCA = pinPaiXC.getA();
-                    List<PinPaiBean> pinPaiXCB = pinPaiXC.getB();
-                    List<PinPaiBean> pinPaiXCC = pinPaiXC.getC();
-                    List<PinPaiBean> pinPaiXCD = pinPaiXC.getD();
-                    List<PinPaiBean> pinPaiXCF = pinPaiXC.getF();
-                    List<PinPaiBean> pinPaiXCG = pinPaiXC.getG();
-                    List<PinPaiBean> pinPaiXCH = pinPaiXC.getH();
-                    List<PinPaiBean> pinPaiXCI = pinPaiXC.getI();
-                    List<PinPaiBean> pinPaiXCJ = pinPaiXC.getJ();
-                    List<PinPaiBean> pinPaiXCK = pinPaiXC.getK();
-                    List<PinPaiBean> pinPaiXCL = pinPaiXC.getL();
-                    List<PinPaiBean> pinPaiXCM = pinPaiXC.getM();
-                    List<PinPaiBean> pinPaiXCN = pinPaiXC.getN();
-                    List<PinPaiBean> pinPaiXCO = pinPaiXC.getO();
-                    List<PinPaiBean> pinPaiXCP = pinPaiXC.getP();
-                    List<PinPaiBean> pinPaiXCQ = pinPaiXC.getQ();
-                    List<PinPaiBean> pinPaiXCR = pinPaiXC.getR();
-                    List<PinPaiBean> pinPaiXCS = pinPaiXC.getS();
-                    List<PinPaiBean> pinPaiXCT = pinPaiXC.getT();
-                    List<PinPaiBean> pinPaiXCW = pinPaiXC.getW();
-                    List<PinPaiBean> pinPaiXCX = pinPaiXC.getX();
-                    List<PinPaiBean> pinPaiXCY = pinPaiXC.getY();
-                    List<PinPaiBean> pinPaiXCZ = pinPaiXC.getZ();
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCA.size(); i++) {
-                        pinPaiXCA.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCA.get(i).setLetter("A");
+                    CarCarparam carCarparam = GsonUtils.parseJSON(s, CarCarparam.class);
+                    if (carCarparam.getStatus() == 1) {
+                        List<CarCarparam.BrandBean> brandBeanList = carCarparam.getBrand();
+                        adapter.clear();
+                        adapter.addAll(brandBeanList);
+                    } else if (carCarparam.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(PinPaiXCActivity.this);
+                    } else {
+                        Toast.makeText(PinPaiXCActivity.this, carCarparam.getInfo(), Toast.LENGTH_SHORT).show();
                     }
-                    pinPaiBeanList.addAll(pinPaiXCA);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCB.size(); i++) {
-                        pinPaiXCB.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCB.get(i).setLetter("B");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCB);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCC.size(); i++) {
-                        pinPaiXCC.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCC.get(i).setLetter("C");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCC);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCD.size(); i++) {
-                        pinPaiXCD.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCD.get(i).setLetter("D");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCD);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCF.size(); i++) {
-                        pinPaiXCF.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCF.get(i).setLetter("F");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCF);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCG.size(); i++) {
-                        pinPaiXCG.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCG.get(i).setLetter("G");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCG);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCH.size(); i++) {
-                        pinPaiXCH.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCH.get(i).setLetter("H");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCH);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCI.size(); i++) {
-                        pinPaiXCI.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCI.get(i).setLetter("I");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCI);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCJ.size(); i++) {
-                        pinPaiXCJ.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCJ.get(i).setLetter("J");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCJ);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCK.size(); i++) {
-                        pinPaiXCK.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCK.get(i).setLetter("K");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCK);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCL.size(); i++) {
-                        pinPaiXCL.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCL.get(i).setLetter("L");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCL);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCM.size(); i++) {
-                        pinPaiXCM.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCM.get(i).setLetter("M");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCM);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCN.size(); i++) {
-                        pinPaiXCN.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCN.get(i).setLetter("N");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCN);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCO.size(); i++) {
-                        pinPaiXCO.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCO.get(i).setLetter("O");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCO);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCP.size(); i++) {
-                        pinPaiXCP.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCP.get(i).setLetter("P");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCP);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCQ.size(); i++) {
-                        pinPaiXCQ.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCQ.get(i).setLetter("Q");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCQ);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCR.size(); i++) {
-                        pinPaiXCR.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCR.get(i).setLetter("R");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCR);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCS.size(); i++) {
-                        pinPaiXCS.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCS.get(i).setLetter("S");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCS);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCT.size(); i++) {
-                        pinPaiXCT.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCT.get(i).setLetter("T");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCT);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCW.size(); i++) {
-                        pinPaiXCW.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCW.get(i).setLetter("W");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCW);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCX.size(); i++) {
-                        pinPaiXCX.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCX.get(i).setLetter("X");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCX);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCY.size(); i++) {
-                        pinPaiXCY.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCY.get(i).setLetter("Y");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCY);
-                    letterList.add(pinPaiBeanList.size());
-                    for (int i = 0; i < pinPaiXCZ.size(); i++) {
-                        pinPaiXCZ.get(i).setIndex(pinPaiBeanList.size());
-                        pinPaiXCZ.get(i).setLetter("Z");
-                    }
-                    pinPaiBeanList.addAll(pinPaiXCZ);
-                    adapter.clear();
-                    adapter.addAll(pinPaiBeanList);
+                         /*StickyHeader*/
+                    StickyHeaderDecoration decoration = new StickyHeaderDecoration(new StickyHeaderAdapter(PinPaiXCActivity.this));
+                    decoration.setIncludeHeader(false);
+                    recyclerView.addItemDecoration(decoration);
                 } catch (Exception e) {
                     showError("数据出错");
                 }
@@ -565,7 +391,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
         @Override
         public long getHeaderId(int position) {
-            return pinPaiBeanList.get(position).getIndex();
+            return position;
         }
 
         @Override
@@ -576,7 +402,9 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
         @Override
         public void onBindHeaderViewHolder(HeaderHolder viewholder, final int position) {
-            viewholder.textTitle.setText(pinPaiBeanList.get(position).getLetter());
+            if (position<26){
+                viewholder.textTitle.setText(adapter.getItem(position).getTitle());
+            }
         }
 
         class HeaderHolder extends RecyclerView.ViewHolder {
