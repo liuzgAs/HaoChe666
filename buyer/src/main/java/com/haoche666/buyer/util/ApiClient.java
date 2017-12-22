@@ -71,11 +71,6 @@ public class ApiClient {
     public static void get(Context context, OkObject okObject, final CallBack callBack) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.put("smsKey", MD5Util.getMD5Time());
-        HashMap<String, String> params = okObject.getParams();
-        /*买家1卖家2拍摄3小程序4*/
-        params.put("loginType",""+1);
-        params.put("platform","android");
-        okObject.setParams(params);
         OkGo.<String>get(okObject.getUrl())
                 .tag(context)
                 .headers(httpHeaders)

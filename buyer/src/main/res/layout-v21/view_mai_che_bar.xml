@@ -108,12 +108,13 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/viewShaiXuan0000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView56"
+                    android:id="@+id/textSort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -129,12 +130,13 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
-                    android:layout_toEndOf="@+id/textView56"
-                    android:layout_toRightOf="@+id/textView56"
+                    android:layout_toEndOf="@+id/textSort"
+                    android:layout_toRightOf="@+id/textSort"
                     android:src="@mipmap/down" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewShaiXuan0001"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -163,6 +165,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewShaiXuan0002"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -191,6 +194,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewAll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

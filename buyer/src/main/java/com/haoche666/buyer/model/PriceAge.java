@@ -1,28 +1,30 @@
 package com.haoche666.buyer.model;
 
+import java.util.List;
+
 /**
  * Created by zhangjiebo on 2017/12/22/022.
  *
  * @author ZhangJieBo
  */
 
-public class Sort {
+public class PriceAge {
     private String name;
-    private int sort_id;
+    private List<Integer> value;
     private boolean isSelect;
 
-    public Sort(int sort_id,String name, boolean isSelect) {
-        this.sort_id = sort_id;
+    public PriceAge(String name,List<Integer> value, boolean isSelect) {
         this.name = name;
+        this.value = value;
         this.isSelect = isSelect;
     }
 
-    public int getSort_id() {
-        return sort_id;
+    public List<Integer> getValue() {
+        return value;
     }
 
-    public void setSort_id(int sort_id) {
-        this.sort_id = sort_id;
+    public void setValue(List<Integer> value) {
+        this.value = value;
     }
 
     public String getName() {
