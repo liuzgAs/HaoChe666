@@ -22,14 +22,18 @@ import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.SimpleInfo;
+import com.haoche666.buyer.model.Sort;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
+import com.haoche666.buyer.viewholder.SortViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -48,9 +52,12 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private View mRelaTitleStatue;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<Sort> adapterSort;
     private int page = 1;
     private TextView textRange;
     private CrystalRangeSeekbar rangeSeekbar;
+    private EasyRecyclerView recyclerViewShaiXuan00;
+    private List<Sort> sortList = new ArrayList<>();
 
     public MaiCheFragment() {
         // Required empty public constructor
@@ -89,6 +96,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         recyclerView = mInflate.findViewById(R.id.recyclerView);
         textRange = mInflate.findViewById(R.id.textRange);
         rangeSeekbar = mInflate.findViewById(R.id.rangeSeekbar);
+        recyclerViewShaiXuan00 = mInflate.findViewById(R.id.recyclerViewShaiXuan00);
     }
 
     @Override
@@ -98,6 +106,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         mRelaTitleStatue.setLayoutParams(layoutParams);
         mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
         initRecycle();
+        initSortRecycler();
     }
 
     private void initRecycle() {
@@ -169,6 +178,42 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * 初始化recyclerview
+     */
+    private void initSortRecycler() {
+        sortList.add(new Sort("智能排序",true));
+        sortList.add(new Sort("最新上架",false));
+        sortList.add(new Sort("价格最低",false));
+        sortList.add(new Sort("价格最高",false));
+        sortList.add(new Sort("车龄最短",false));
+        sortList.add(new Sort("里程最少",false));
+        recyclerViewShaiXuan00.setLayoutManager(new LinearLayoutManager(getActivity()));
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
+        itemDecoration.setDrawLastItem(false);
+        recyclerViewShaiXuan00.addItemDecoration(itemDecoration);
+        recyclerViewShaiXuan00.setRefreshingColorResources(R.color.basic_color);
+        recyclerViewShaiXuan00.setAdapterWithProgress(adapterSort = new RecyclerArrayAdapter<Sort>(getActivity()) {
+            @Override
+            public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
+                int layout = R.layout.item_sort;
+                return new SortViewHolder(parent, layout);
+            }
+        });
+        adapterSort.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                for (int i = 0; i < adapterSort.getAllData().size(); i++) {
+                    adapterSort.getItem(i).setSelect(false);
+                }
+                adapterSort.getItem(position).setSelect(true);
+                adapterSort.notifyDataSetChanged();
+            }
+        });
+        adapterSort.clear();
+        adapterSort.addAll(sortList);
     }
 
     @Override
