@@ -79,6 +79,7 @@
             android:textSize="@dimen/litterText" />
 
         <Button
+            android:visibility="gone"
             android:id="@+id/buttonVR"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -98,6 +99,7 @@
         android:background="@color/white" />
 
     <TextView
+        android:id="@+id/textShiPing"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"

@@ -121,6 +121,10 @@ public class Constant {
          * 买车页面
          */
         public static final String CAR = "/Car";
+        /**
+         * 添加关注车辆/车行 1-车辆；2-车行
+         */
+        public static final String Attention = "/Attention";
     }
 
     public static class IntentKey {

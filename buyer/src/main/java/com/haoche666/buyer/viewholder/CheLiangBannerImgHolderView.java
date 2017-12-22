@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.model.CarDetails;
 
+import huisedebi.zjb.mylibrary.util.LogUtil;
+
 public class CheLiangBannerImgHolderView implements Holder<CarDetails.BannerBean> {
     private ImageView imageView;
 
@@ -21,6 +23,7 @@ public class CheLiangBannerImgHolderView implements Holder<CarDetails.BannerBean
 
     @Override
     public void UpdateUI(Context context, int position, CarDetails.BannerBean data) {
+        LogUtil.LogShitou("CheLiangBannerImgHolderView--banner", ""+data.getImg());
         Glide.with(context)
                 .load(data.getImg())
                 .placeholder(R.mipmap.ic_empty)

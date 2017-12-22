@@ -58,7 +58,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private RecyclerArrayAdapter<CarDetails.ImgListBean> adapter;
     private TextView textViewTitle;
     private int viewBarHeight;
-//    private AlertDialog payVideoDialog;
+    //    private AlertDialog payVideoDialog;
     private int id;
     private ImageView imageShare;
     private View viewBottom;
@@ -133,6 +133,8 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private TextView textShiPing;
+            private View viewVideo;
             private JZVideoPlayerStandard jzVideoPlayerStandard;
             private TextView textIntro;
             private TextView textName;
@@ -206,6 +208,10 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 textName = header_che_liang_xq.findViewById(R.id.textName);
                 textIntro = header_che_liang_xq.findViewById(R.id.textIntro);
                 jzVideoPlayerStandard = header_che_liang_xq.findViewById(R.id.videoplayer);
+                jzVideoPlayerStandard.batteryLevel.setVisibility(View.GONE);
+                jzVideoPlayerStandard.backButton.setVisibility(View.GONE);
+                viewVideo = header_che_liang_xq.findViewById(R.id.viewVideo);
+                textShiPing = header_che_liang_xq.findViewById(R.id.textShiPing);
                 return header_che_liang_xq;
             }
 
@@ -281,7 +287,8 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
             @Override
             public void onBindView(View headerView) {
-                if (banner != null) {
+                if (bannerBeanList != null) {
+                    LogUtil.LogShitou("CheLiangXQActivity--bannerBeanList", ""+bannerBeanList.size());
                     banner.setPages(new CBViewHolderCreator() {
                         @Override
                         public Object createHolder() {
@@ -310,7 +317,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     textName.setText(storeBean.getName());
                     textIntro.setText(storeBean.getIntro());
                 }
-                if (video!=null){
+                if (video != null) {
+                    viewVideo.setVisibility(View.VISIBLE);
+                    textShiPing.setVisibility(View.VISIBLE);
                     jzVideoPlayerStandard.setUp(video.getPlayUrl()
                             , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, video.getTitle());
                     Glide.with(CheLiangXQActivity.this)
@@ -318,6 +327,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                             .asBitmap()
                             .placeholder(R.mipmap.ic_empty)
                             .into(jzVideoPlayerStandard.thumbImageView);
+                } else {
+                    viewVideo.setVisibility(View.GONE);
+                    textShiPing.setVisibility(View.GONE);
                 }
             }
 
@@ -365,7 +377,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
         params.put("id", id + "");
         return new OkObject(params, url);
@@ -480,7 +492,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private void call() {
     /*跳转到拨号界面，同时传递电话号码*/
         if (storeBean != null) {
-            if (TextUtils.isEmpty(storeBean.getTel())){
+            if (TextUtils.isEmpty(storeBean.getTel())) {
                 Toast.makeText(CheLiangXQActivity.this, "电话号码为空", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -522,6 +534,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         }
         super.onBackPressed();
     }
+
     @Override
     protected void onPause() {
         super.onPause();

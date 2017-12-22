@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/normal_textsize"
             android:text="更多"
-            android:id="@+id/textView164"
+            android:id="@+id/textNewMore"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

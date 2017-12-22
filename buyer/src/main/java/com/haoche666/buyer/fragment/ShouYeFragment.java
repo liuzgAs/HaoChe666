@@ -268,6 +268,12 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         }
                     }
                 });
+                header_shou_ye.findViewById(R.id.textNewMore).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                    }
+                });
                 return header_shou_ye;
             }
 

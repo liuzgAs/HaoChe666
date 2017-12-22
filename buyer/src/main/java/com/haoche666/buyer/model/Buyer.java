@@ -244,7 +244,16 @@ public class Buyer {
         private int id;
         private String intro;
         private String name;
+        private int is_attention;
         private List<CarBean> car;
+
+        public int getIs_attention() {
+            return is_attention;
+        }
+
+        public void setIs_attention(int is_attention) {
+            this.is_attention = is_attention;
+        }
 
         public String getDes() {
             return des;
