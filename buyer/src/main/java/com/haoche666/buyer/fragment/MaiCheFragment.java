@@ -1,7 +1,10 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -78,6 +81,22 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private PriceAdapter ageAdapter;
     private TextView textSort;
     private TextView textSearch;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.PIN_PAI:
+                    Intent intent1 = new Intent();
+                    intent1.setClass(getActivity(), PinPaiXCActivity.class);
+                    getActivity().startActivityForResult(intent1, Constant.RequestResultCode.PIN_PAI);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private TextView textAll;
 
     public MaiCheFragment() {
         // Required empty public constructor
@@ -131,6 +150,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         gridAge = mInflate.findViewById(R.id.gridAge);
         textSort = mInflate.findViewById(R.id.textSort);
         textSearch = mInflate.findViewById(R.id.textSearch);
+        textAll = mInflate.findViewById(R.id.textAll);
     }
 
     @Override
@@ -257,7 +277,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                ApiClient.postJson(getActivity(),url, getOkObject(), new ApiClient.CallBack() {
+                ApiClient.postJson(getActivity(), url, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         try {
@@ -422,7 +442,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 priceList.get(i).setSelect(true);
                 priceAdapter.notifyDataSetChanged();
                 z_price = priceList.get(i).getValue();
-                LogUtil.LogShitou("MaiCheFragment--onItemClick", ""+z_price.get(0)+"-"+z_price.get(1));
+                LogUtil.LogShitou("MaiCheFragment--onItemClick", "" + z_price.get(0) + "-" + z_price.get(1));
                 rangeSeekbar.setMinStartValue(z_price.get(0)).setMaxStartValue(z_price.get(1)).apply();
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
@@ -453,12 +473,13 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     protected void initData() {
         onRefresh();
     }
+
     String url = Constant.HOST + Constant.Url.CAR;
     private int bid = 0;
     private int sort_id = 0;
     private List<Integer> z_price = new ArrayList<>();
     private List<Integer> z_age = new ArrayList<>();
-    private String title ="";
+    private String title = "";
 
     /**
      * des： 网络请求参数
@@ -530,17 +551,28 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.RequestResultCode.PIN_PAI && resultCode == Constant.RequestResultCode.PIN_PAI) {
+            bid = data.getIntExtra(Constant.IntentKey.ID, -1);
+            String name = data.getStringExtra(Constant.IntentKey.NAME);
+            textAll.setText(name);
+            initData();
+        }
+    }
+
+    @Override
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewSearch:
-                shaiXuanVisible =-1;
+                shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
-                MyDialog.showSearchDialog(getActivity(),title);
+                MyDialog.showSearchDialog(getActivity(), title);
                 MyDialog.setOnSearchDoneListener(new MyDialog.OnSearchDoneListener() {
                     @Override
                     public void searchDone(String key) {
-                        title =key;
+                        title = key;
                         initData();
                     }
                 });
@@ -631,5 +663,19 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             }
             return convertView;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.PIN_PAI);
+        getActivity().registerReceiver(reciver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(reciver);
     }
 }

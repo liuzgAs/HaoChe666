@@ -23,7 +23,6 @@ import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.avtivity.CheHangLBActivity;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
-import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.WebActivity;
 import com.haoche666.buyer.avtivity.WenZhangLBActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
@@ -204,9 +203,10 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewPinPaiXC).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
                         Intent intent = new Intent();
-                        intent.setClass(getActivity(), PinPaiXCActivity.class);
-                        startActivity(intent);
+                        intent.setAction(Constant.BroadcastCode.PIN_PAI);
+                        getActivity().sendBroadcast(intent);
                     }
                 });
                 header_shou_ye.findViewById(R.id.textMoreCheHang).setOnClickListener(new View.OnClickListener() {

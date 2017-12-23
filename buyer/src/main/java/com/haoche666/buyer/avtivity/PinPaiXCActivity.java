@@ -1,6 +1,7 @@
 package com.haoche666.buyer.avtivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -176,6 +177,16 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                         }
                     });
                 }
+                view.findViewById(R.id.textBuXian).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.putExtra(Constant.IntentKey.ID,0);
+                        intent.putExtra(Constant.IntentKey.NAME,"全部品牌");
+                        setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                        finish();
+                    }
+                });
                 return view;
             }
 
@@ -268,6 +279,11 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
             @Override
             public void onItemClick(int position) {
                 drawerLayout.closeDrawer(recyclerViewRight);
+                Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.ID,adapterRight.getItem(position).getId());
+                intent.putExtra(Constant.IntentKey.NAME,adapterRight.getItem(position).getName());
+                setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                finish();
             }
         });
         adapterRight.addHeader(new RecyclerArrayAdapter.ItemView() {

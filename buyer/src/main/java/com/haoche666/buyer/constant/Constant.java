@@ -145,10 +145,12 @@ public class Constant {
         public static final String NICKNAME = "nickName";
         public static final String URL = "url";
         public static final String TITLE = "title";
+        public static final String NAME = "name";
     }
 
     public static class RequestResultCode {
         public static final int IMAGE_PICKER = 2029;
+        public static final int PIN_PAI = 2030;
     }
 
     public static class Acache {
@@ -166,6 +168,7 @@ public class Constant {
 
     public static class BroadcastCode {
         public static final String USERINFO = "userInfo";
+        public static final String PIN_PAI = "pinPai";
     }
 
 

@@ -364,5 +364,5 @@
         android:layout_height="60dp"
         android:text="不限品牌"
         android:textSize="@dimen/bigText"
-        android:id="@+id/textView185" />
+        android:id="@+id/textBuXian" />
 </LinearLayout>

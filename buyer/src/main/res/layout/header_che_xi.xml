@@ -58,5 +58,11 @@
         android:layout_height="60dp"
         android:text="不限车系"
         android:textSize="@dimen/bigText"
-        android:id="@+id/textView185" />
+        android:id="@+id/textBuXian" />
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="1dp"
+        android:id="@+id/textView186" />
+
 </LinearLayout>
