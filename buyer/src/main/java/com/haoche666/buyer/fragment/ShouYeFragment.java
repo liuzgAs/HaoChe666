@@ -97,19 +97,19 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("ShouYeFragment--onSuccess",s+ "");
+                LogUtil.LogShitou("ShouYeFragment--onSuccess", s + "");
                 try {
                     Buyer buyer = GsonUtils.parseJSON(s, Buyer.class);
-                    if (buyer.getStatus()==1){
+                    if (buyer.getStatus() == 1) {
                         storeBeanList = buyer.getStore();
                         adapter.notifyDataSetChanged();
-                    }else if (buyer.getStatus()==3){
+                    } else if (buyer.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), buyer.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -343,7 +343,13 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-                        ((MainActivity) getActivity()).isJiaGEXC=true;
+                        ((MainActivity) getActivity()).isJiaGEXC = true;
+                    }
+                });
+                header_shou_ye.findViewById(R.id.viewWoYaoMC).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(2);
                     }
                 });
                 return header_shou_ye;
