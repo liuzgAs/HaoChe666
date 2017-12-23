@@ -1,9 +1,6 @@
 package com.haoche666.buyer.viewholder;
 
 import android.support.annotation.LayoutRes;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.RelativeSizeSpan;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,9 +31,9 @@ public class CheHangViewHolder extends BaseViewHolder<StoreDetails.DataBean> {
     @Override
     public void setData(StoreDetails.DataBean data) {
         super.setData(data);
-        SpannableString span = new SpannableString("¥"+data.getPrice());
-        span.setSpan(new RelativeSizeSpan(0.6f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textJiaGe.setText(span);
+//        SpannableString span = new SpannableString("¥"+data.getPrice());
+//        span.setSpan(new RelativeSizeSpan(0.6f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textJiaGe.setText(data.getPrice());
         Glide.with(getContext())
                 .load(data.getImg())
                 .asBitmap()

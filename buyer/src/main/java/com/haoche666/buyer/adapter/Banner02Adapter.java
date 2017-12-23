@@ -149,6 +149,8 @@ public class Banner02Adapter extends PagerAdapter {
         /*1-车辆；2-车行*/
         params.put("type_id","2");
         params.put("car_store_id",car_store_id+"");
+        /*1-关注；0-取消关注*/
+        params.put("a_status","1");
         return new OkObject(params, url);
     }
 

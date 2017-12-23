@@ -225,7 +225,10 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
+                intent.setClass(CheHangXXActivity.this,CheLiangXQActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -246,9 +249,13 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewGuanZhu:
-                if (isLogin){
-                    guanZhuCheHang();
-                }else {
+                if (isLogin) {
+                    if (is_attention == 0) {
+                        guanZhuCheHang(1);
+                    } else {
+                        guanZhuCheHang(0);
+                    }
+                } else {
                     ToLoginActivity.toLoginActivity(this);
                 }
                 break;
@@ -268,15 +275,16 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getGuanZhuCHOkObject() {
+    private OkObject getGuanZhuCHOkObject(int a_status) {
         String url = Constant.HOST + Constant.Url.Attention;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("type_id","1");
-        params.put("car_store_id",storeDetailsStore.getId()+"");
+        params.put("type_id", "1");
+        params.put("car_store_id", storeDetailsStore.getId() + "");
+        params.put("a_status", a_status + "");
         return new OkObject(params, url);
     }
 
@@ -285,28 +293,30 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/12/22/022 16:37
      */
-    private void guanZhuCheHang() {
+    private void guanZhuCheHang(int a_status) {
         showLoadingDialog();
-        ApiClient.post(CheHangXXActivity.this, getGuanZhuCHOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(CheHangXXActivity.this, getGuanZhuCHOkObject(a_status), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("CheHangXXActivity--onSuccess",s+ "");
+                LogUtil.LogShitou("CheHangXXActivity--onSuccess", s + "");
                 try {
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus()==1){
-                        if (is_attention==0){
-                            textGuanZhu.setText("关注ta");
-                        }else {
+                    if (simpleInfo.getStatus() == 1) {
+                        if (is_attention == 0) {
+                            is_attention = 1;
                             textGuanZhu.setText("已关注");
+                        } else {
+                            is_attention = 0;
+                            textGuanZhu.setText("关注ta");
                         }
-                    }else if (simpleInfo.getStatus()==3){
+                    } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheHangXXActivity.this);
-                    }else {
-                        Toast.makeText(CheHangXXActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    } else {
                     }
+                    Toast.makeText(CheHangXXActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(CheHangXXActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheHangXXActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -328,7 +338,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
         params.put("id", id + "");
         params.put("p", page + "");
@@ -352,9 +362,9 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                         textViewTitle.setText(storeDetailsStore.getName());
                         tel = storeDetailsStore.getTel();
                         is_attention = storeDetailsStore.getIs_attention();
-                        if (is_attention==0){
+                        if (is_attention == 0) {
                             textGuanZhu.setText("关注ta");
-                        }else {
+                        } else {
                             textGuanZhu.setText("已关注");
                         }
                         List<StoreDetails.DataBean> storeDetailsData = storeDetails.getData();
