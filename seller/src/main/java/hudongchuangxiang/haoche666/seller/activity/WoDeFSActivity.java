@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import hudongchuangxiang.haoche666.seller.R;
 import hudongchuangxiang.haoche666.seller.base.ZjbBaseActivity;
 import hudongchuangxiang.haoche666.seller.viewholder.WoDeFSViewHolder;
 import huisedebi.zjb.mylibrary.provider.DataProvider;
-import huisedebi.zjb.mylibrary.util.DpUtils;
 
 
 public class WoDeFSActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
@@ -103,20 +101,6 @@ public class WoDeFSActivity extends ZjbBaseActivity implements SwipeRefreshLayou
             @Override
             public void onErrorClick() {
                 adapter.resumeMore();
-            }
-        });
-        recyclerView.setRefreshListener(this);
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = new View(WoDeFSActivity.this);
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(5, WoDeFSActivity.this)));
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
             }
         });
         recyclerView.setRefreshListener(this);

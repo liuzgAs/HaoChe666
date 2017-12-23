@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,8 +16,6 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-
-import huisedebi.zjb.mylibrary.util.DpUtils;
 
 public class WoMaiDeCheActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -85,7 +82,9 @@ public class WoMaiDeCheActivity extends ZjbBaseActivity implements View.OnClickL
         adapter.setNoMore(R.layout.view_nomore, new RecyclerArrayAdapter.OnNoMoreListener() {
             @Override
             public void onNoMoreShow() {
-
+                if (adapter.getAllData().size()==0){
+                    recyclerView.showEmpty();
+                }
             }
 
             @Override
@@ -106,19 +105,6 @@ public class WoMaiDeCheActivity extends ZjbBaseActivity implements View.OnClickL
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-            }
-        });
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = new View(WoMaiDeCheActivity.this);
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(5f, WoMaiDeCheActivity.this)));
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
             }
         });
         recyclerView.setRefreshListener(this);

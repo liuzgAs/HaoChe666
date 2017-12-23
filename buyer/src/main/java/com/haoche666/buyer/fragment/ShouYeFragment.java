@@ -29,6 +29,7 @@ import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.WebActivity;
 import com.haoche666.buyer.avtivity.WenZhangLBActivity;
+import com.haoche666.buyer.avtivity.ZhuCeActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
@@ -350,6 +351,18 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         ((MainActivity) getActivity()).mTabHost.setCurrentTab(2);
+                    }
+                });
+                header_shou_ye.findViewById(R.id.viewZhuCe).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!isLogin){
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), ZhuCeActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Toast.makeText(getActivity(), "您已经是会员了", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 return header_shou_ye;

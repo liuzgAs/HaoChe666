@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -38,7 +37,6 @@ import hudongchuangxiang.haoche666.seller.base.ZjbBaseFragment;
 import hudongchuangxiang.haoche666.seller.constant.Constant;
 import hudongchuangxiang.haoche666.seller.viewholder.CheLiangGLViewHolder;
 import huisedebi.zjb.mylibrary.provider.DataProvider;
-import huisedebi.zjb.mylibrary.util.DpUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -172,19 +170,6 @@ public class CheLiangGuangLiFragment extends ZjbBaseFragment implements SwipeRef
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), CheLiangXQActivity.class);
                 startActivity(intent);
-            }
-        });
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = new View(getActivity());
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(5, getActivity())));
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
             }
         });
         recyclerView.setRefreshListener(this);

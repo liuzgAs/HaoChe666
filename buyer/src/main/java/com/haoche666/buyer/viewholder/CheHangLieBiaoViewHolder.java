@@ -115,19 +115,6 @@ public class CheHangLieBiaoViewHolder extends BaseViewHolder<Store.DataBean> {
         SpaceDecoration spaceDecoration = new SpaceDecoration((int) DpUtils.convertDpToPixel(10, getContext()));
         spaceDecoration.setPaddingEdgeSide(false);
         recyclerView.addItemDecoration(spaceDecoration);
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = new View(getContext());
-                view.setLayoutParams(new ViewGroup.LayoutParams((int) DpUtils.convertDpToPixel(10f, getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
-            }
-        });
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
