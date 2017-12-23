@@ -16,9 +16,8 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.AttentionGetattention;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
-import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.GuanZuCHViewHolder;
 import com.haoche666.buyer.viewholder.GuanZuCLViewHolder;
@@ -28,6 +27,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.HashMap;
+import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -39,7 +39,7 @@ import huisedebi.zjb.mylibrary.util.LogUtil;
 public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     private View mInflate;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<AttentionGetattention.DataBean> adapter;
     private int page = 1;
     private int type = 1;
 
@@ -96,15 +96,15 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<AttentionGetattention.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout;
                 switch (type) {
-                    case 0:
+                    case 1:
                         layout = R.layout.item_guan_zu_cl;
                         return new GuanZuCLViewHolder(parent, layout);
-                    case 1:
+                    case 3:
                         layout = R.layout.item_guan_zu_jj;
                         return new GuanZuCLViewHolder(parent, layout);
                     case 2:
@@ -119,8 +119,31 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                @Override
+                public void onSuccess(String s) {
+                    try {
+                        page++;
+                        AttentionGetattention simpleInfo = GsonUtils.parseJSON(s, AttentionGetattention.class);
+                        int status = simpleInfo.getStatus();
+                        if (status == 1) {
+                            List<AttentionGetattention.DataBean> dataBeanList = simpleInfo.getData();
+                            adapter.addAll(dataBeanList);
+                        } else if (status == 3) {
+                            MyDialog.showReLoginDialog(getActivity());
+                        } else {
+                            adapter.pauseMore();
+                        }
+                    } catch (Exception e) {
+                        adapter.pauseMore();
+                    }
+                }
+
+                @Override
+                public void onError() {
+                    adapter.pauseMore();
+                }
+            });
             }
 
             @Override
@@ -191,11 +214,14 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
-                LogUtil.LogShitou("关注车辆", s);
+                LogUtil.LogShitou("关注"+type, s);
                 try {
                     page++;
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    AttentionGetattention simpleInfo = GsonUtils.parseJSON(s, AttentionGetattention.class);
                     if (simpleInfo.getStatus() == 1) {
+                        List<AttentionGetattention.DataBean> dataBeanList = simpleInfo.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {

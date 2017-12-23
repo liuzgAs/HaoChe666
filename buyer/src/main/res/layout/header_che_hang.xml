@@ -48,26 +48,26 @@
                 android:layout_centerHorizontal="true" />
 
             <TextView
+                android:visibility="gone"
                 android:textColor="#999999"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="关注：198"
                 android:layout_margin="10dp"
                 android:textSize="@dimen/normal_textsize"
-                android:id="@+id/textText1"
+                android:id="@+id/textText2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:visibility="gone"
                 android:textColor="#999999"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="粉丝：198"
                 android:textSize="@dimen/normal_textsize"
-                android:id="@+id/textText2"
+                android:id="@+id/textText1"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />

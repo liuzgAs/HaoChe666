@@ -104,9 +104,9 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
                 case 0:
                     return new GuanZhuFragment(1);
                 case 1:
-                    return new GuanZhuFragment(2);
-                case 2:
                     return new GuanZhuFragment(3);
+                case 2:
+                    return new GuanZhuFragment(2);
                 default:
                     return new GuanZhuFragment(0);
             }
