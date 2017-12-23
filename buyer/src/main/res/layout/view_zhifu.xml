@@ -53,9 +53,8 @@
             android:textSize="@dimen/normal_textsize" />
 
         <TextView
-            tools:text="  |  余额：¥123.14"
-            android:text="  |  余额：¥123.14"
-            android:id="@+id/textView170"
+            tools:text="&#8194;|&#8194;余额：¥123.14"
+            android:id="@+id/textBlance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_gray"

@@ -137,6 +137,18 @@ public class Constant {
          * 获取我的关注
          */
         public static final String ATTENTION_GETATTENTION = "/Attention/getAttention";
+        /**
+         * 创建订单(查询单)
+         */
+        public static final String CORDER_CREATEORDER = "/corder/createOrder";
+        /**
+         * 获取付费类型信息（会员\查询）
+         */
+        public static final String PRODUCT = "/product";
+        /**
+         * 余额获取
+         */
+        public static final String PRODUCT_GETBALANCE = "/product/getbalance";
     }
 
     public static class IntentKey {
