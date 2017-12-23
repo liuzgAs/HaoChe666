@@ -69,6 +69,10 @@
             app:tabIndicatorColor="@color/basic_color"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed" />
+        <TextView
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
     </LinearLayout>
 
 

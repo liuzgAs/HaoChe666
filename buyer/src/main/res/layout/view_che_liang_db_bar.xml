@@ -63,4 +63,8 @@
             android:src="@mipmap/tianjia" />
 
     </RelativeLayout>
+    <TextView
+        android:background="@color/line_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 </LinearLayout>
