@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.application.MyApplication;
@@ -25,7 +26,9 @@ import com.haoche666.buyer.interfacepage.OnPatchLister;
 import com.haoche666.buyer.util.UpgradeUtils;
 import com.taobao.sophix.SophixManager;
 
+import huisedebi.zjb.mylibrary.util.BackHandlerHelper;
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * 主界面
@@ -134,4 +137,24 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
 
     }
 
+    /**
+     * 双击退出应用
+     */
+    private long currentTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        if (!BackHandlerHelper.handleBackPress(this)) {
+            if (System.currentTimeMillis() - currentTime > 1000) {
+                Toast toast = Toast.makeText(this, "双击退出应用", Toast.LENGTH_SHORT);
+                toast.show();
+                currentTime = System.currentTimeMillis();
+            } else {
+                LogUtil.LogShitou("MainActivity--onBackPressed", "退出app");
+                MyApplication.getInstance().exit();
+                android.os.Process.killProcess(android.os.Process.myPid());   //获取PID
+                System.exit(0);
+            }
+        }
+    }
 }
