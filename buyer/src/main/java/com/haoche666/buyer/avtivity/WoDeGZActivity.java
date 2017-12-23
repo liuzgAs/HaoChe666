@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * 我的关注
- *
  * @author Administrator
  */
 public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListener {

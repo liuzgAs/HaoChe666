@@ -98,6 +98,8 @@
     <string name="gpsNotifyMsg">当前应用需要打开定位功能。\n\n请点击\"设置\"-\"定位服务\"-打开定位功能。</string>
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
+    <string name="wangguochucuo">网络出错</string>
+    <string name="dianjichongshi">点击重试</string>
 
     <string-array name="negativeMarkArray">
         <item>0</item>

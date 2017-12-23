@@ -342,6 +342,9 @@
         <activity
             android:name=".avtivity.XiuGaiMMActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.YinDaoActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

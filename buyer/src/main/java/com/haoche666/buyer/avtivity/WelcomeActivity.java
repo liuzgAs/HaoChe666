@@ -120,13 +120,13 @@ public class WelcomeActivity extends ZjbBaseNotLeftActivity implements EasyPermi
             }
 
             private void go(IndexStartad indexStartad) {
-//                if (TextUtils.equals(isFirst, "1")) {
-//                    Intent intent = new Intent(WelcomeActivity.this, YinDaoActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                } else {
-                toMainActivity();
-//                }
+                if (TextUtils.equals(isFirst, "1")) {
+                    Intent intent = new Intent(WelcomeActivity.this, YinDaoActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    toMainActivity();
+                }
                 ACache aCache = ACache.get(WelcomeActivity.this, Constant.Acache.LOCATION);
                 aCache.put(Constant.Acache.CITY, indexStartad.getCityName());
                 aCache.put(Constant.Acache.CITY_ID, indexStartad.getCityId() + "");
