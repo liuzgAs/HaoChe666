@@ -12,9 +12,7 @@ import android.widget.TextView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
-import com.haoche666.buyer.fragment.GuanZhuCHFragment;
-import com.haoche666.buyer.fragment.GuanZhuCLFragment;
-import com.haoche666.buyer.fragment.GuanZhuJJFragment;
+import com.haoche666.buyer.fragment.GuanZhuFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,13 +103,13 @@ public class WoDeGZActivity extends ZjbBaseActivity implements View.OnClickListe
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new GuanZhuCLFragment();
+                    return new GuanZhuFragment(1);
                 case 1:
-                    return new GuanZhuJJFragment();
+                    return new GuanZhuFragment(2);
                 case 2:
-                    return new GuanZhuCHFragment();
+                    return new GuanZhuFragment(3);
                 default:
-                    return new GuanZhuCLFragment();
+                    return new GuanZhuFragment(0);
             }
         }
 

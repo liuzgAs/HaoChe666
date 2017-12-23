@@ -133,6 +133,10 @@ public class Constant {
          * 车辆款式
          */
         public static final String CAR_CARSTYLE = "/Car/carStyle";
+        /**
+         * 获取我的关注
+         */
+        public static final String ATTENTION_GETATTENTION = "/Attention/getAttention";
     }
 
     public static class IntentKey {

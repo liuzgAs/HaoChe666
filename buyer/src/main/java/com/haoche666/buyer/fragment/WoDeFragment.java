@@ -276,8 +276,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewWoDeGZ:
-                intent.setClass(getActivity(), WoDeGZActivity.class);
-                startActivity(intent);
+                if (isLogin){
+                    intent.setClass(getActivity(), WoDeGZActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             default:
 

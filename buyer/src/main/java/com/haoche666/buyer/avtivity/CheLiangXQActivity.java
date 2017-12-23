@@ -26,6 +26,7 @@ import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.CarDetails;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheLiangBannerImgHolderView;
 import com.haoche666.buyer.viewholder.CheLiangXQViewHolder;
@@ -67,6 +68,8 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private CarDetails.CarBean carBean;
     private CarDetails.StoreBean storeBean;
     private CarDetails.videoBean video;
+    private ImageView imageCollect;
+    private TextView textCollect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +96,13 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         textViewTitle = (TextView) findViewById(R.id.textViewTitle);
         imageShare = (ImageView) findViewById(R.id.imageShare);
         viewBottom = findViewById(R.id.viewBottom);
+        imageCollect = (ImageView) findViewById(R.id.imageCollect);
+        textCollect = (TextView) findViewById(R.id.textCollect);
     }
 
     @Override
     protected void initViews() {
+        viewBottom.setVisibility(View.GONE);
         textViewTitle.setText("车辆详情");
         viewBarHeight = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(this));
         viewBar.getBackground().mutate().setAlpha(0);
@@ -107,6 +113,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.viewGuanZhu).setOnClickListener(this);
         findViewById(R.id.textCall).setOnClickListener(this);
     }
 
@@ -288,7 +295,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             @Override
             public void onBindView(View headerView) {
                 if (bannerBeanList != null) {
-                    LogUtil.LogShitou("CheLiangXQActivity--bannerBeanList", ""+bannerBeanList.size());
+                    LogUtil.LogShitou("CheLiangXQActivity--bannerBeanList", "" + bannerBeanList.size());
                     banner.setPages(new CBViewHolderCreator() {
                         @Override
                         public Object createHolder() {
@@ -398,6 +405,15 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         archives = carDetails.getArchives();
                         bannerBeanList = carDetails.getBanner();
                         carBean = carDetails.getCar();
+                        if (carBean != null) {
+                            if (carBean.getIs_attention() == 1) {
+                                imageCollect.setImageResource(R.mipmap.shoucang_true);
+                                textCollect.setText("取消关注");
+                            } else {
+                                imageCollect.setImageResource(R.mipmap.mine_guanzhu);
+                                textCollect.setText("关注");
+                            }
+                        }
                         storeBean = carDetails.getStore();
                         video = carDetails.getVideo();
                         List<CarDetails.ImgListBean> imgListBeanList = carDetails.getImgList();
@@ -445,6 +461,13 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewGuanZhu:
+                if (carBean.getIs_attention() == 1) {
+                    guanZhu(0);
+                } else {
+                    guanZhu(1);
+                }
+                break;
             case R.id.textCall:
                 requiresPermission();
                 break;
@@ -454,6 +477,68 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             default:
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject(int a_status) {
+        String url = Constant.HOST + Constant.Url.Attention;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        /*1-车辆；2-车行*/
+        params.put("type_id", "1");
+        params.put("car_store_id", carBean.getId() + "");
+        /*1-关注；0-取消关注*/
+        params.put("a_status", "" + a_status);
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 关注
+     * author： ZhangJieBo
+     * date： 2017/12/22/022 15:58
+     */
+    private void guanZhu(final int a_status) {
+        showLoadingDialog();
+        ApiClient.post(this, getOkObject(a_status), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("Banner02Adapter--onSuccess", s + "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus() == 1) {
+                        if (carBean.getIs_attention()==1){
+                            carBean.setIs_attention(0);
+                            imageCollect.setImageResource(R.mipmap.mine_guanzhu);
+                            textCollect.setText("关注");
+                        }else {
+                            carBean.setIs_attention(1);
+                            imageCollect.setImageResource(R.mipmap.shoucang_true);
+                            textCollect.setText("取消关注");
+                        }
+                    } else if (simpleInfo.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                    } else {
+                    }
+                    Toast.makeText(CheLiangXQActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(CheLiangXQActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 //    @Override

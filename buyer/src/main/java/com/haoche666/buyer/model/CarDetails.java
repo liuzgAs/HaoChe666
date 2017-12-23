@@ -114,6 +114,24 @@ public class CarDetails {
         private String title;
         private String vr_url;
         private String purchasePrice;
+        private int is_attention;
+        private int id;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getIs_attention() {
+            return is_attention;
+        }
+
+        public void setIs_attention(int is_attention) {
+            this.is_attention = is_attention;
+        }
 
         public String getPurchasePrice() {
             return purchasePrice;

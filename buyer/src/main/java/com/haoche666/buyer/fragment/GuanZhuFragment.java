@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,29 +10,46 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.provider.DataProvider;
+import com.haoche666.buyer.util.ApiClient;
+import com.haoche666.buyer.viewholder.GuanZuCHViewHolder;
 import com.haoche666.buyer.viewholder.GuanZuCLViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.HashMap;
+
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GuanZhuJJFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-
+public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     private View mInflate;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
-    public GuanZhuJJFragment() {
+    private int type = 1;
+
+    public GuanZhuFragment() {
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public GuanZhuFragment(int type) {
+        this.type = type;
     }
 
 
@@ -40,7 +58,7 @@ public class GuanZhuJJFragment extends ZjbBaseFragment implements SwipeRefreshLa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (mInflate == null) {
-            mInflate = inflater.inflate(R.layout.fragment_guan_zhu_jj, container, false);
+            mInflate = inflater.inflate(R.layout.fragment_guan_zhu, container, false);
             init();
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
@@ -50,6 +68,7 @@ public class GuanZhuJJFragment extends ZjbBaseFragment implements SwipeRefreshLa
         }
         return mInflate;
     }
+
     @Override
     protected void initIntent() {
 
@@ -80,8 +99,21 @@ public class GuanZhuJJFragment extends ZjbBaseFragment implements SwipeRefreshLa
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_guan_zu_jj;
-                return new GuanZuCLViewHolder(parent, layout);
+                int layout;
+                switch (type) {
+                    case 0:
+                        layout = R.layout.item_guan_zu_cl;
+                        return new GuanZuCLViewHolder(parent, layout);
+                    case 1:
+                        layout = R.layout.item_guan_zu_jj;
+                        return new GuanZuCLViewHolder(parent, layout);
+                    case 2:
+                        layout = R.layout.item_guan_zu_ch;
+                        return new GuanZuCHViewHolder(parent, layout);
+                    default:
+                        layout = R.layout.item_guan_zu_cl;
+                        return new GuanZuCLViewHolder(parent, layout);
+                }
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
@@ -136,10 +168,67 @@ public class GuanZhuJJFragment extends ZjbBaseFragment implements SwipeRefreshLa
         onRefresh();
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.ATTENTION_GETATTENTION;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("p", page + "");
+        params.put("type_id", type+"");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("关注车辆", s);
+                try {
+                    page++;
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus() == 1) {
+                    } else if (simpleInfo.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        showError(simpleInfo.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 }

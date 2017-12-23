@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
+                android:id="@+id/viewGuanZhu"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:gravity="center"
@@ -94,7 +95,7 @@
                     android:src="@mipmap/mine_guanzhu"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:id="@+id/imageView60"
+                    android:id="@+id/imageCollect"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -103,8 +104,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="关注"
-                    android:id="@+id/textView110"
-                    android:layout_below="@+id/imageView60"
+                    android:id="@+id/textCollect"
+                    android:layout_below="@+id/imageCollect"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
