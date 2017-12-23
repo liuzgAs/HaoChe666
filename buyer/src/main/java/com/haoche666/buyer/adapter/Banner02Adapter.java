@@ -2,6 +2,7 @@ package com.haoche666.buyer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
@@ -67,6 +68,8 @@ public class Banner02Adapter extends PagerAdapter {
                 }
             }
         });
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.SHOU_YE_CHE_HANG);
         TextView textName = inflate.findViewById(R.id.textName);
         TextView textIntro = inflate.findViewById(R.id.textIntro);
         TextView textDes = inflate.findViewById(R.id.textDes);
@@ -102,17 +105,7 @@ public class Banner02Adapter extends PagerAdapter {
                     });
                 }
             }
-            setTextGuanZhu(position);
-        }
-
-        container.addView(inflate, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        return inflate;
-    }
-
-    public void setTextGuanZhu(final int position) {
-        if (imgList.size() > 0) {
-            if (textGuanZhu!=null){
+            if (textGuanZhu != null) {
                 if (imgList.get(position % imgList.size()).getIs_attention() == 0) {
                     textGuanZhu.setText("+关注");
                     textGuanZhu.setBackgroundResource(R.drawable.shape_basic1dp_5dp);
@@ -140,6 +133,10 @@ public class Banner02Adapter extends PagerAdapter {
                 }
             }
         }
+
+        container.addView(inflate, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        return inflate;
     }
 
     /**
@@ -168,6 +165,7 @@ public class Banner02Adapter extends PagerAdapter {
      * date： 2017/12/22/022 15:58
      */
     private void guanZhu(final int position) {
+        LogUtil.LogShitou("Banner02Adapter--guanZhu", "" + position);
         ((MainActivity) mContext).showLoadingDialog();
         ApiClient.post(mContext, getOkObject(imgList.get(position % imgList.size()).getId()), new ApiClient.CallBack() {
             @Override
@@ -177,10 +175,9 @@ public class Banner02Adapter extends PagerAdapter {
                 try {
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
                     if (simpleInfo.getStatus() == 1) {
+                        LogUtil.LogShitou("Banner02Adapter--onSuccess", "" + position);
                         imgList.get(position % imgList.size()).setIs_attention(1);
-                        textGuanZhu.setText("已关注");
-                        textGuanZhu.setBackgroundResource(R.drawable.shape_textgray1dp_5dp);
-                        textGuanZhu.setTextColor(ContextCompat.getColor(mContext, R.color.text_gray));
+                        notifyDataSetChanged();
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(mContext);
                     } else {

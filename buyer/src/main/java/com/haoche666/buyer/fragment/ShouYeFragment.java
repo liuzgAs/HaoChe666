@@ -301,22 +301,6 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     }
                 });
-                id_viewpager01.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        banner02Adapter.setTextGuanZhu(position);
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-                });
                 imageImg = header_shou_ye.findViewById(R.id.imageImg);
                 textTitle = header_shou_ye.findViewById(R.id.textTitle);
                 textView = header_shou_ye.findViewById(R.id.textView);

@@ -2,17 +2,13 @@ package com.haoche666.buyer.fragment;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
@@ -27,12 +23,10 @@ import com.haoche666.buyer.viewholder.ZuJiNRViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.HashMap;
 import java.util.List;
 
-import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 
@@ -90,37 +84,12 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
     private void initRecycle() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.WHITE, (int) DpUtils.convertDpToPixel(10f, getActivity()), 0, 0);
-        itemDecoration.setDrawLastItem(false);
-        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ArticleHistory.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_jing_xuan_tu_wen;
                 return new ZuJiNRViewHolder(parent, layout);
-            }
-        });
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                LinearLayout linearLayout = new LinearLayout(getActivity());
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                View view = new View(getActivity());
-                view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(10f,getActivity())));
-                view.setBackgroundColor(Color.WHITE);
-                View view01 = new View(getActivity());
-                view01.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) DpUtils.convertDpToPixel(5f,getActivity())));
-                view01.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.background));
-                linearLayout.addView(view01);
-                linearLayout.addView(view);
-                return linearLayout;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
