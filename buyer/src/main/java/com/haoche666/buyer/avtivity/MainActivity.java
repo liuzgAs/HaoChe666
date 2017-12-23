@@ -48,6 +48,8 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
             R.drawable.selector_item05
     };
     public FragmentTabHost mTabHost;
+    public boolean isPinPaiXC = false;
+    public boolean isJiaGEXC = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

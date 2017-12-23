@@ -1,10 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +21,7 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -81,21 +79,6 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private PriceAdapter ageAdapter;
     private TextView textSort;
     private TextView textSearch;
-    private BroadcastReceiver reciver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            switch (action) {
-                case Constant.BroadcastCode.PIN_PAI:
-                    Intent intent1 = new Intent();
-                    intent1.setClass(getActivity(), PinPaiXCActivity.class);
-                    getActivity().startActivityForResult(intent1, Constant.RequestResultCode.PIN_PAI);
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
     private TextView textAll;
 
     public MaiCheFragment() {
@@ -668,14 +651,20 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constant.BroadcastCode.PIN_PAI);
-        getActivity().registerReceiver(reciver, filter);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        getActivity().unregisterReceiver(reciver);
+        if (((MainActivity) getActivity()).isPinPaiXC){
+            Intent intent = new Intent();
+            intent.setClass(getActivity(),PinPaiXCActivity.class);
+            getActivity().startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
+            ((MainActivity) getActivity()).isPinPaiXC = false;
+        }
+        if (((MainActivity)getActivity()).isJiaGEXC){
+            viewShaiXuan.setVisibility(View.VISIBLE);
+            shaiXuanVisible = 1;
+            for (int j = 0; j < viewShaiXuanArr.length; j++) {
+                viewShaiXuanArr[j].setVisibility(View.GONE);
+            }
+            viewShaiXuanArr[1].setVisibility(View.VISIBLE);
+            ((MainActivity) getActivity()).isJiaGEXC = false;
+        }
     }
 }

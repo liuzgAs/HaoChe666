@@ -183,6 +183,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private Banner02Adapter banner02Adapter;
             private View viewVideo;
             private TextView textView;
             private TextView textTitle;
@@ -254,9 +255,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-                        Intent intent = new Intent();
-                        intent.setAction(Constant.BroadcastCode.PIN_PAI);
-                        getActivity().sendBroadcast(intent);
+                        ((MainActivity) getActivity()).isPinPaiXC = true;
                     }
                 });
                 header_shou_ye.findViewById(R.id.textMoreCheHang).setOnClickListener(new View.OnClickListener() {
@@ -301,6 +300,22 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     }
                 });
+                id_viewpager01.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        banner02Adapter.setTextGuanZhu(position);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
                 imageImg = header_shou_ye.findViewById(R.id.imageImg);
                 textTitle = header_shou_ye.findViewById(R.id.textTitle);
                 textView = header_shou_ye.findViewById(R.id.textView);
@@ -322,6 +337,13 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                    }
+                });
+                header_shou_ye.findViewById(R.id.viewJiaGeXC).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity) getActivity()).isJiaGEXC=true;
                     }
                 });
                 return header_shou_ye;
@@ -357,7 +379,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         viewVideo.setVisibility(View.GONE);
                     }
                 }
-                id_viewpager01.setAdapter(new Banner02Adapter(getActivity(), storeBeanList));
+                banner02Adapter = new Banner02Adapter(getActivity(), storeBeanList);
+                id_viewpager01.setAdapter(banner02Adapter);
                 id_viewpager01.setCurrentItem(50);
             }
         });
