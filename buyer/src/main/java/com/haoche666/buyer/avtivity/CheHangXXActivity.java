@@ -118,14 +118,14 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             private ImageView imageLogo;
             private TextView textCompany;
             private TextView textName;
-            private TextView textText2;
+//            private TextView textText2;
             private TextView textText1;
 
             @Override
             public View onCreateView(ViewGroup parent) {
                 View view = LayoutInflater.from(CheHangXXActivity.this).inflate(R.layout.header_che_hang, null);
                 textText1 = view.findViewById(R.id.textText1);
-                textText2 = view.findViewById(R.id.textText2);
+//                textText2 = view.findViewById(R.id.textText2);
                 textName = view.findViewById(R.id.textName);
                 textCompany = view.findViewById(R.id.textCompany);
                 imageLogo = view.findViewById(R.id.imageLogo);
@@ -136,7 +136,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             public void onBindView(View headerView) {
                 if (storeDetailsStore != null) {
                     textText1.setText(storeDetailsStore.getText1());
-                    textText2.setText(storeDetailsStore.getText2());
+//                    textText2.setText(storeDetailsStore.getText2());
                     textName.setText(storeDetailsStore.getName());
                     textCompany.setText(storeDetailsStore.getCompany());
                     Glide.with(CheHangXXActivity.this)
@@ -282,7 +282,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
             params.put("uid", userInfo.getUid());
             params.put("tokenTime", tokenTime);
         }
-        params.put("type_id", "1");
+        params.put("type_id", "2");
         params.put("car_store_id", storeDetailsStore.getId() + "");
         params.put("a_status", a_status + "");
         return new OkObject(params, url);
@@ -310,6 +310,9 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                             is_attention = 0;
                             textGuanZhu.setText("关注ta");
                         }
+                        Intent intent = new Intent();
+                        intent.setAction(Constant.BroadcastCode.CHE_HANG_GUAN_ZHU);
+                        sendBroadcast(intent);
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheHangXXActivity.this);
                     } else {

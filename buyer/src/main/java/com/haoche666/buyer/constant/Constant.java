@@ -169,6 +169,7 @@ public class Constant {
     public static class BroadcastCode {
         public static final String USERINFO = "userInfo";
         public static final String PIN_PAI = "pinPai";
+        public static final String CHE_HANG_GUAN_ZHU = "che_hang_guan_zhu";
     }
 
 

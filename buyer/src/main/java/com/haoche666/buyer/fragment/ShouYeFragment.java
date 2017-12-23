@@ -1,7 +1,10 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -70,6 +74,52 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<Buyer.VideoBeanX> videoBeanXList;
     private List<Buyer.NewsBean> newsBeanList;
     private ImageView imageImg;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.CHE_HANG_GUAN_ZHU:
+                    shuaXinCheHang();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 刷新车行
+     */
+    private void shuaXinCheHang() {
+        showLoadingDialog();
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ShouYeFragment--onSuccess",s+ "");
+                try {
+                    Buyer buyer = GsonUtils.parseJSON(s, Buyer.class);
+                    if (buyer.getStatus()==1){
+                        storeBeanList = buyer.getStore();
+                        adapter.notifyDataSetChanged();
+                    }else if (buyer.getStatus()==3){
+                        MyDialog.showReLoginDialog(getActivity());
+                    }else {
+                        Toast.makeText(getActivity(), buyer.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     public ShouYeFragment() {
         // Required empty public constructor
@@ -203,7 +253,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewPinPaiXC).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
                         Intent intent = new Intent();
                         intent.setAction(Constant.BroadcastCode.PIN_PAI);
                         getActivity().sendBroadcast(intent);
@@ -241,8 +291,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                     @Override
                     public void onPageSelected(int position) {
-                        if (videoBeanXList!=null){
-                            textPaiDangTitle.setText(videoBeanXList.get(position%videoBeanXList.size()).getTitle());
+                        if (videoBeanXList != null) {
+                            textPaiDangTitle.setText(videoBeanXList.get(position % videoBeanXList.size()).getTitle());
                         }
                     }
 
@@ -257,12 +307,12 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 imageImg.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (newsBeanList!=null){
-                            if (newsBeanList.size()>0){
+                        if (newsBeanList != null) {
+                            if (newsBeanList.size() > 0) {
                                 Intent intent = new Intent();
                                 intent.setClass(getActivity(), WebActivity.class);
-                                intent.putExtra(Constant.IntentKey.TITLE,newsBeanList.get(0).getTitle());
-                                intent.putExtra(Constant.IntentKey.URL,newsBeanList.get(0).getUrl());
+                                intent.putExtra(Constant.IntentKey.TITLE, newsBeanList.get(0).getTitle());
+                                intent.putExtra(Constant.IntentKey.URL, newsBeanList.get(0).getUrl());
                                 startActivity(intent);
                             }
                         }
@@ -271,7 +321,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.textNewMore).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
                     }
                 });
                 return header_shou_ye;
@@ -279,7 +329,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
             @Override
             public void onBindView(View headerView) {
-                if (bannerBeanList!=null){
+                if (bannerBeanList != null) {
                     banner.setPages(new CBViewHolderCreator() {
                         @Override
                         public Object createHolder() {
@@ -287,23 +337,23 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         }
                     }, bannerBeanList);
                 }
-                if (newsBeanList!=null){
-                    if (newsBeanList.size()>0){
+                if (newsBeanList != null) {
+                    if (newsBeanList.size() > 0) {
                         Glide.with(getActivity())
                                 .load(newsBeanList.get(0).getImg())
                                 .asBitmap()
                                 .placeholder(R.mipmap.ic_empty)
                                 .into(imageImg);
                         textTitle.setText(newsBeanList.get(0).getTitle());
-                        textView.setText(newsBeanList.get(0).getView()+"人阅读");
+                        textView.setText(newsBeanList.get(0).getView() + "人阅读");
                     }
                 }
-                if (videoBeanXList!=null){
-                    if (videoBeanXList.size()>0){
+                if (videoBeanXList != null) {
+                    if (videoBeanXList.size() > 0) {
                         viewVideo.setVisibility(View.VISIBLE);
                         id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
                         id_viewpager.setCurrentItem(50);
-                    }else {
+                    } else {
                         viewVideo.setVisibility(View.GONE);
                     }
                 }
@@ -372,7 +422,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
+                intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
                 intent.setClass(getActivity(), CheLiangXQActivity.class);
                 startActivity(intent);
             }
@@ -399,9 +449,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("p",page+"");
+        params.put("p", page + "");
         return new OkObject(params, url);
     }
 
@@ -463,11 +513,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageZuJi:
-                if (isLogin){
+                if (isLogin) {
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), ZuJiActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(getActivity());
                 }
                 break;
@@ -475,5 +525,19 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
                 break;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.CHE_HANG_GUAN_ZHU);
+        getActivity().registerReceiver(reciver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(reciver);
     }
 }
