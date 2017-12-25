@@ -165,6 +165,7 @@ public class Constant {
          * 获取对比车辆
          */
         public static final String GETATTENTION = "/getAttention";
+        public static final String PAY_WXPAY = "/pay/wxpay";
     }
 
     public static class IntentKey {

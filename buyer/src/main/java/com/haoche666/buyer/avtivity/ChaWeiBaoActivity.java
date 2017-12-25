@@ -13,6 +13,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.AliPayBean;
 import com.haoche666.buyer.model.CarCarparam;
 import com.haoche666.buyer.model.CorderCreateorder;
 import com.haoche666.buyer.model.OkObject;
@@ -22,7 +23,6 @@ import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -167,6 +167,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                                     case 1:
                                         zhiFuBao(corderCreateorder.getOrder_no());
                                         break;
+                                    case 2:
+                                        weiXinZF(corderCreateorder.getOrder_no());
+                                        break;
                                     default:
 
                                         break;
@@ -207,6 +210,56 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
+    private OkObject getWXOkObject(String order_no) {
+        String url = Constant.HOST + Constant.Url.PAY_WXPAY;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("order_no",order_no);
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 微信支付
+     * author： ZhangJieBo
+     * date： 2017/12/25/025 17:25
+     */
+    private void weiXinZF(String order_no) {
+       showLoadingDialog();
+       ApiClient.post(ChaWeiBaoActivity.this, getWXOkObject(order_no), new ApiClient.CallBack() {
+           @Override
+           public void onSuccess(String s) {
+               cancelLoadingDialog();
+               LogUtil.LogShitou("ChaWeiBaoActivity--微信支付",s+ "");
+               try {
+                   SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                   if (simpleInfo.getStatus()==1){
+
+                   }else if (simpleInfo.getStatus()==3){
+                       MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
+                   }else {
+                       Toast.makeText(ChaWeiBaoActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                   }
+               } catch (Exception e) {
+                   Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+               }
+           }
+
+           @Override
+           public void onError() {
+               cancelLoadingDialog();
+               Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+           }
+       });
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
     private OkObject getZFBOkObject(String order_no) {
         String url = Constant.HOST + Constant.Url.PAY_ALIPAY;
         HashMap<String, String> params = new HashMap<>();
@@ -238,42 +291,35 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                                 try {
                                     PayTask alipay = new PayTask(ChaWeiBaoActivity.this);
                                     Map<String, String> stringMap = alipay.payV2(payAlipay.getOrderinfo(), true);
-                                    Map map = new HashMap();
-                                    Iterator iter = map.entrySet().iterator();
-                                    while (iter.hasNext()) {
-                                        Map.Entry entry = (Map.Entry) iter.next();
-                                        Object key = entry.getKey();
-                                        LogUtil.LogShitou("ChaWeiBaoActivity--key", ""+key.toString());
-                                        Object val = entry.getValue();
-                                        LogUtil.LogShitou("ChaWeiBaoActivity--run", ""+val.toString());
+                                    AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果", ""+stringMap.get("result"));
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果码", ""+aliPayBean.getAlipay_trade_app_pay_response().getCode());
+                                    switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
+                                        case 10000:
+                                            paySuccess();
+                                            break;
+                                        case 8000:
+                                            paySuccess();
+                                            break;
+                                        case 4000:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "订单支付失败");
+                                            break;
+                                        case 5000:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "重复请求");
+                                            break;
+                                        case 6001:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "取消支付");
+                                            break;
+                                        case 6002:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "网络连接错误");
+                                            break;
+                                        case 6004:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付结果未知");
+                                            break;
+                                        default:
+                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付失败");
+                                            break;
                                     }
-//                                    AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
-//                                    switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
-//                                        case 10000:
-//                                            paySuccess();
-//                                            break;
-//                                        case 8000:
-//                                            paySuccess();
-//                                            break;
-//                                        case 4000:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "订单支付失败");
-//                                            break;
-//                                        case 5000:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "重复请求");
-//                                            break;
-//                                        case 6001:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "取消支付");
-//                                            break;
-//                                        case 6002:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "网络连接错误");
-//                                            break;
-//                                        case 6004:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付结果未知");
-//                                            break;
-//                                        default:
-//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付失败");
-//                                            break;
-//                                    }
                                 } catch (Exception e) {
                                 }
                             }
@@ -305,7 +351,13 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * date： 2017/12/25/025 16:11
      */
     private void paySuccess() {
-        MyDialog.dialogFinish(this, "支付成功");
+        LogUtil.LogShitou("ChaWeiBaoActivity--paySuccess", "fuck没有用？");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                MyDialog.dialogFinish(ChaWeiBaoActivity.this, "支付成功");
+            }
+        });
     }
 
     /**

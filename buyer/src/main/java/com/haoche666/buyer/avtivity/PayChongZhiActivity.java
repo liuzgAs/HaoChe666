@@ -6,16 +6,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.AliPayBean;
 import com.haoche666.buyer.model.CorderRecharge;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
+import com.haoche666.buyer.model.PayAlipay;
 import com.haoche666.buyer.util.ApiClient;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
@@ -156,6 +159,7 @@ public class PayChongZhiActivity extends ZjbBaseActivity implements View.OnClick
         });
     }
 
+
     /**
      * des： 网络请求参数
      * author： ZhangJieBo
@@ -166,11 +170,26 @@ public class PayChongZhiActivity extends ZjbBaseActivity implements View.OnClick
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("order_no",order_no+"");
+        params.put("order_no", order_no + "");
         return new OkObject(params, url);
     }
+
+    /**
+     * des： 支付成功
+     * author： ZhangJieBo
+     * date： 2017/12/25/025 16:11
+     */
+    private void paySuccess() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                MyDialog.dialogFinish(PayChongZhiActivity.this, "充值成功");
+            }
+        });
+    }
+
     /**
      * des： 支付宝支付
      * author： ZhangJieBo
@@ -182,19 +201,60 @@ public class PayChongZhiActivity extends ZjbBaseActivity implements View.OnClick
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("ChaWeiBaoActivity--支付宝",s+ "");
+                LogUtil.LogShitou("ChaWeiBaoActivity--支付宝", s + "");
                 try {
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus()==1){
+                    final PayAlipay payAlipay = GsonUtils.parseJSON(s, PayAlipay.class);
+                    if (payAlipay.getStatus() == 1) {
+                        Runnable payRunnable = new Runnable() {
 
-                    }else if (simpleInfo.getStatus()==3){
+                            @Override
+                            public void run() {
+                                try {
+                                    PayTask alipay = new PayTask(PayChongZhiActivity.this);
+                                    Map<String, String> stringMap = alipay.payV2(payAlipay.getOrderinfo(), true);
+                                    AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果", ""+stringMap.get("result"));
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果码", ""+aliPayBean.getAlipay_trade_app_pay_response().getCode());
+                                    switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
+                                        case 10000:
+                                            paySuccess();
+                                            break;
+                                        case 8000:
+                                            paySuccess();
+                                            break;
+                                        case 4000:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "订单支付失败");
+                                            break;
+                                        case 5000:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "重复请求");
+                                            break;
+                                        case 6001:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "取消支付");
+                                            break;
+                                        case 6002:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "网络连接错误");
+                                            break;
+                                        case 6004:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "支付结果未知");
+                                            break;
+                                        default:
+                                            MyDialog.showTipDialog(PayChongZhiActivity.this, "支付失败");
+                                            break;
+                                    }
+                                } catch (Exception e) {
+                                }
+                            }
+                        };
+                        // 必须异步调用
+                        Thread payThread = new Thread(payRunnable);
+                        payThread.start();
+                    } else if (payAlipay.getStatus() == 3) {
                         MyDialog.showReLoginDialog(PayChongZhiActivity.this);
-                    }else {
-
+                    } else {
                     }
-                    Toast.makeText(PayChongZhiActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PayChongZhiActivity.this, payAlipay.getInfo(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(PayChongZhiActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PayChongZhiActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
