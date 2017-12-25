@@ -73,6 +73,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private CarDetails.videoBean video;
     private ImageView imageCollect;
     private TextView textCollect;
+    private TextView textDuiBi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         viewBottom = findViewById(R.id.viewBottom);
         imageCollect = (ImageView) findViewById(R.id.imageCollect);
         textCollect = (TextView) findViewById(R.id.textCollect);
+        textDuiBi = (TextView) findViewById(R.id.textDuiBi);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.viewGuanZhu).setOnClickListener(this);
         findViewById(R.id.textCall).setOnClickListener(this);
+        findViewById(R.id.viewDuiBi).setOnClickListener(this);
     }
 
     @Override
@@ -497,6 +500,11 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                                 imageCollect.setImageResource(R.mipmap.mine_guanzhu);
                                 textCollect.setText("关注");
                             }
+                            if (carBean.getIs_contrast()==1){
+                                textDuiBi.setText("取消对比");
+                            }else {
+                                textDuiBi.setText("对比");
+                            }
                         }
                         storeBean = carDetails.getStore();
                         video = carDetails.getVideo();
@@ -545,6 +553,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewDuiBi:
+                duiBi();
+                break;
             case R.id.viewGuanZhu:
                 if (isLogin){
                     if (carBean.getIs_attention() == 1) {
@@ -565,6 +576,63 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             default:
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getDuiBiOkObject() {
+        String url = Constant.HOST + Constant.Url.ATTENTION;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("type_id",4+"");
+        params.put("car_store_id",carBean.getId()+"");
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 对比
+     * author： ZhangJieBo
+     * date： 2017/12/25/025 15:39
+     */
+    private void duiBi() {
+       showLoadingDialog();
+       ApiClient.post(CheLiangXQActivity.this, getDuiBiOkObject(), new ApiClient.CallBack() {
+           @Override
+           public void onSuccess(String s) {
+               cancelLoadingDialog();
+               LogUtil.LogShitou("CheLiangXQActivity--onSuccess",s+ "");
+               try {
+                   SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                   if (simpleInfo.getStatus()==1){
+                       if (carBean.getIs_contrast()==1){
+                           carBean.setIs_contrast(0);
+                           textDuiBi.setText("对比");
+                       }else {
+                           carBean.setIs_contrast(1);
+                           textDuiBi.setText("取消对比");
+                       }
+                   }else if (simpleInfo.getStatus()==3){
+                       MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                   }else {
+                       Toast.makeText(CheLiangXQActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                   }
+               } catch (Exception e) {
+                   Toast.makeText(CheLiangXQActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+               }
+           }
+
+           @Override
+           public void onError() {
+               cancelLoadingDialog();
+               Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+           }
+       });
     }
 
     /**

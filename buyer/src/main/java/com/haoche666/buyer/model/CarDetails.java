@@ -115,7 +115,16 @@ public class CarDetails {
         private String vr_url;
         private String purchasePrice;
         private int is_attention;
+        private int is_contrast;
         private int id;
+
+        public int getIs_contrast() {
+            return is_contrast;
+        }
+
+        public void setIs_contrast(int is_contrast) {
+            this.is_contrast = is_contrast;
+        }
 
         public int getId() {
             return id;

@@ -86,7 +86,7 @@
             <RelativeLayout
                 android:id="@+id/viewGuanZhu"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/layout_selector_white_system_gray"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -110,9 +110,10 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewDuiBi"
                 android:layout_weight="1"
                 android:layout_marginLeft="1dp"
-                android:background="@color/white"
+                android:background="@drawable/layout_selector_white_system_gray"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
@@ -130,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="对比"
-                    android:id="@+id/textView111"
+                    android:id="@+id/textDuiBi"
                     android:layout_below="@+id/imageView61"
                     android:layout_centerHorizontal="true" />
 
