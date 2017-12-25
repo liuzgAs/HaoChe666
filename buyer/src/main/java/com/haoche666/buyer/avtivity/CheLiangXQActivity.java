@@ -554,7 +554,11 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewDuiBi:
-                duiBi();
+                if (carBean.getIs_contrast()==1){
+                    duiBi(0);
+                }else {
+                    duiBi(1);
+                }
                 break;
             case R.id.viewGuanZhu:
                 if (isLogin){
@@ -583,7 +587,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getDuiBiOkObject() {
+    private OkObject getDuiBiOkObject(int a_status) {
         String url = Constant.HOST + Constant.Url.ATTENTION;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
@@ -592,6 +596,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         }
         params.put("type_id",4+"");
         params.put("car_store_id",carBean.getId()+"");
+        params.put("a_status",a_status+"");
         return new OkObject(params, url);
     }
 
@@ -600,9 +605,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
      * author： ZhangJieBo
      * date： 2017/12/25/025 15:39
      */
-    private void duiBi() {
+    private void duiBi(int a_status) {
        showLoadingDialog();
-       ApiClient.post(CheLiangXQActivity.this, getDuiBiOkObject(), new ApiClient.CallBack() {
+       ApiClient.post(CheLiangXQActivity.this, getDuiBiOkObject(a_status), new ApiClient.CallBack() {
            @Override
            public void onSuccess(String s) {
                cancelLoadingDialog();

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
@@ -15,11 +16,14 @@ import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.CarCarparam;
 import com.haoche666.buyer.model.CorderCreateorder;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.PayAlipay;
 import com.haoche666.buyer.model.Product;
 import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
@@ -208,9 +212,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("order_no",order_no+"");
+        params.put("order_no", order_no + "");
         return new OkObject(params, url);
     }
 
@@ -223,18 +227,67 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("ChaWeiBaoActivity--支付宝",s+ "");
+                LogUtil.LogShitou("ChaWeiBaoActivity--支付宝", s + "");
                 try {
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus()==1){
+                    final PayAlipay payAlipay = GsonUtils.parseJSON(s, PayAlipay.class);
+                    if (payAlipay.getStatus() == 1) {
+                        Runnable payRunnable = new Runnable() {
 
-                    }else if (simpleInfo.getStatus()==3){
+                            @Override
+                            public void run() {
+                                try {
+                                    PayTask alipay = new PayTask(ChaWeiBaoActivity.this);
+                                    Map<String, String> stringMap = alipay.payV2(payAlipay.getOrderinfo(), true);
+                                    Map map = new HashMap();
+                                    Iterator iter = map.entrySet().iterator();
+                                    while (iter.hasNext()) {
+                                        Map.Entry entry = (Map.Entry) iter.next();
+                                        Object key = entry.getKey();
+                                        LogUtil.LogShitou("ChaWeiBaoActivity--key", ""+key.toString());
+                                        Object val = entry.getValue();
+                                        LogUtil.LogShitou("ChaWeiBaoActivity--run", ""+val.toString());
+                                    }
+//                                    AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
+//                                    switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
+//                                        case 10000:
+//                                            paySuccess();
+//                                            break;
+//                                        case 8000:
+//                                            paySuccess();
+//                                            break;
+//                                        case 4000:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "订单支付失败");
+//                                            break;
+//                                        case 5000:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "重复请求");
+//                                            break;
+//                                        case 6001:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "取消支付");
+//                                            break;
+//                                        case 6002:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "网络连接错误");
+//                                            break;
+//                                        case 6004:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付结果未知");
+//                                            break;
+//                                        default:
+//                                            MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付失败");
+//                                            break;
+//                                    }
+                                } catch (Exception e) {
+                                }
+                            }
+                        };
+                        // 必须异步调用
+                        Thread payThread = new Thread(payRunnable);
+                        payThread.start();
+                    } else if (payAlipay.getStatus() == 3) {
                         MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
-                    }else {
-                        Toast.makeText(ChaWeiBaoActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    } else {
                     }
+                    Toast.makeText(ChaWeiBaoActivity.this, payAlipay.getInfo(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -247,6 +300,15 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     }
 
     /**
+     * des： 支付成功
+     * author： ZhangJieBo
+     * date： 2017/12/25/025 16:11
+     */
+    private void paySuccess() {
+        MyDialog.dialogFinish(this, "支付成功");
+    }
+
+    /**
      * des： 网络请求参数
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
@@ -256,9 +318,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("order_no",order_no+"");
+        params.put("order_no", order_no + "");
         return new OkObject(params, url);
     }
 
@@ -271,17 +333,17 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess",s+ "");
+                LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
                 try {
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus()==1){
-                    }else if (simpleInfo.getStatus()==3){
+                    if (simpleInfo.getStatus() == 1) {
+                    } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
-                    }else {
+                    } else {
                         Toast.makeText(ChaWeiBaoActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 

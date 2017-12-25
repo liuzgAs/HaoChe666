@@ -28,6 +28,8 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
+            android:inputType="number"
+            android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
             android:maxLength="17"
             android:id="@+id/editVin"
             android:layout_width="match_parent"

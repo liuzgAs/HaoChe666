@@ -161,6 +161,10 @@ public class Constant {
          * 创建充值订单
          */
         public static final String CORDER_RECHARGE = "/corder/recharge";
+        /**
+         * 获取对比车辆
+         */
+        public static final String GETATTENTION = "/getAttention";
     }
 
     public static class IntentKey {
