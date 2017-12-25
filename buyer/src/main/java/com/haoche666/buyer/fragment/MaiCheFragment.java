@@ -304,6 +304,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
                 intent.setClass(getActivity(), CheLiangXQActivity.class);
                 startActivity(intent);
             }
@@ -459,9 +460,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private String getOkObject() {
         MaiChe maiChe;
         if (isLogin) {
-            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid,bsid, sort_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, z_price, z_age, title);
         } else {
-            maiChe = new MaiChe(1, "android", page, bid,bsid, sort_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, z_price, z_age, title);
         }
         return GsonUtils.parseObject(maiChe);
     }
@@ -525,7 +526,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             bid = data.getIntExtra(Constant.IntentKey.ID, 0);
             bsid = data.getIntExtra(Constant.IntentKey.BSID, 0);
             String name = data.getStringExtra(Constant.IntentKey.NAME);
-            LogUtil.LogShitou("MaiCheFragment--onActivityResult", "品牌名"+textAll);
+            LogUtil.LogShitou("MaiCheFragment--onActivityResult", "品牌名" + textAll);
             textAll.setText(name);
             initData();
         }
@@ -579,7 +580,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 viewShaiXuan.setVisibility(View.GONE);
                 shaiXuanVisible = -1;
                 intent.setClass(getActivity(), PinPaiXCActivity.class);
-                startActivityForResult(intent,Constant.RequestResultCode.PIN_PAI);
+                startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
                 break;
             default:
                 break;
@@ -638,15 +639,28 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
-        if (((MainActivity) getActivity()).isPinPaiXC){
+        if (((MainActivity) getActivity()).isSearch) {
+            shaiXuanVisible = -1;
+            viewShaiXuan.setVisibility(View.GONE);
+            MyDialog.showSearchDialog(getActivity(), title);
+            MyDialog.setOnSearchDoneListener(new MyDialog.OnSearchDoneListener() {
+                @Override
+                public void searchDone(String key) {
+                    title = key;
+                    initData();
+                }
+            });
+            ((MainActivity) getActivity()).isSearch = false;
+        }
+        if (((MainActivity) getActivity()).isPinPaiXC) {
             viewShaiXuan.setVisibility(View.GONE);
             shaiXuanVisible = -1;
             Intent intent = new Intent();
-            intent.setClass(getActivity(),PinPaiXCActivity.class);
+            intent.setClass(getActivity(), PinPaiXCActivity.class);
             startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
             ((MainActivity) getActivity()).isPinPaiXC = false;
         }
-        if (((MainActivity)getActivity()).isJiaGEXC){
+        if (((MainActivity) getActivity()).isJiaGEXC) {
             viewShaiXuan.setVisibility(View.VISIBLE);
             shaiXuanVisible = 1;
             for (int j = 0; j < viewShaiXuanArr.length; j++) {

@@ -53,6 +53,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     public FragmentTabHost mTabHost;
     public boolean isPinPaiXC = false;
     public boolean isJiaGEXC = false;
+    public boolean isSearch = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

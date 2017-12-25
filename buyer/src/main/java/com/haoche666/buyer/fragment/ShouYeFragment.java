@@ -340,11 +340,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewZhuCe).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!isLogin){
+                        if (!isLogin) {
                             Intent intent = new Intent();
                             intent.setClass(getActivity(), ZhuCeActivity.class);
                             startActivity(intent);
-                        }else {
+                        } else {
                             Toast.makeText(getActivity(), "您已经是会员了", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -458,6 +458,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     protected void setListeners() {
         mInflate.findViewById(R.id.imageZuJi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewSearch).setOnClickListener(this);
     }
 
     @Override
@@ -538,6 +539,10 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewSearch:
+                ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                ((MainActivity) getActivity()).isSearch = true;
+                break;
             case R.id.imageZuJi:
                 if (isLogin) {
                     Intent intent = new Intent();
