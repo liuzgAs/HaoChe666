@@ -11,7 +11,7 @@
         android:src="@mipmap/aodi"
         android:layout_width="120dp"
         android:layout_height="80dp"
-        android:id="@+id/imageView4"
+        android:id="@+id/imageImg"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -28,17 +28,17 @@
         android:textColor="@color/light_black"
         android:maxLines="2"
         android:ellipsize="end"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toRightOf="@+id/imageView4"
-        android:layout_toEndOf="@+id/imageView4" />
+        android:id="@+id/textTitle"
+        android:layout_alignTop="@+id/imageImg"
+        android:layout_toRightOf="@+id/imageImg"
+        android:layout_toEndOf="@+id/imageImg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignBottom="@+id/imageImg"
+        android:layout_alignLeft="@+id/textTitle"
+        android:layout_alignStart="@+id/textTitle"
         >
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5万公里|2012年"
-            android:id="@+id/textView4"
+            android:id="@+id/textDes"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -56,7 +56,7 @@
             android:src="@mipmap/daishou"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView62"
+            android:id="@+id/imageIs_sale"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

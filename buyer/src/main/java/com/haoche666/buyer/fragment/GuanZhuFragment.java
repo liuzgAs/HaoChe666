@@ -2,6 +2,7 @@ package com.haoche666.buyer.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
@@ -21,6 +23,7 @@ import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.GuanZuCHViewHolder;
 import com.haoche666.buyer.viewholder.GuanZuCLViewHolder;
+import com.haoche666.buyer.viewholder.GuanZuJJViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -106,7 +109,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
                         return new GuanZuCLViewHolder(parent, layout);
                     case 3:
                         layout = R.layout.item_guan_zu_jj;
-                        return new GuanZuCLViewHolder(parent, layout);
+                        return new GuanZuJJViewHolder(parent, layout);
                     case 2:
                         layout = R.layout.item_guan_zu_ch;
                         return new GuanZuCHViewHolder(parent, layout);
@@ -119,31 +122,31 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
-                @Override
-                public void onSuccess(String s) {
-                    try {
-                        page++;
-                        AttentionGetattention simpleInfo = GsonUtils.parseJSON(s, AttentionGetattention.class);
-                        int status = simpleInfo.getStatus();
-                        if (status == 1) {
-                            List<AttentionGetattention.DataBean> dataBeanList = simpleInfo.getData();
-                            adapter.addAll(dataBeanList);
-                        } else if (status == 3) {
-                            MyDialog.showReLoginDialog(getActivity());
-                        } else {
+                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            page++;
+                            AttentionGetattention simpleInfo = GsonUtils.parseJSON(s, AttentionGetattention.class);
+                            int status = simpleInfo.getStatus();
+                            if (status == 1) {
+                                List<AttentionGetattention.DataBean> dataBeanList = simpleInfo.getData();
+                                adapter.addAll(dataBeanList);
+                            } else if (status == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                                adapter.pauseMore();
+                            }
+                        } catch (Exception e) {
                             adapter.pauseMore();
                         }
-                    } catch (Exception e) {
+                    }
+
+                    @Override
+                    public void onError() {
                         adapter.pauseMore();
                     }
-                }
-
-                @Override
-                public void onError() {
-                    adapter.pauseMore();
-                }
-            });
+                });
             }
 
             @Override
@@ -176,7 +179,17 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                Intent intent = new Intent();
+                switch (type) {
+                    case 1:
+                        intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
+                        intent.setClass(getActivity(), CheLiangXQActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
 
+                        break;
+                }
             }
         });
     }
@@ -204,7 +217,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
             params.put("tokenTime", tokenTime);
         }
         params.put("p", page + "");
-        params.put("type_id", type+"");
+        params.put("type_id", type + "");
         return new OkObject(params, url);
     }
 
@@ -214,7 +227,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
-                LogUtil.LogShitou("关注"+type, s);
+                LogUtil.LogShitou("关注" + type, s);
                 try {
                     page++;
                     AttentionGetattention simpleInfo = GsonUtils.parseJSON(s, AttentionGetattention.class);
