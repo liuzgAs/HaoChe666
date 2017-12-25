@@ -1,19 +1,25 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.fragment.ChongZhiGZFragment;
 import com.haoche666.buyer.fragment.XiaoFeiMXFragment;
+import com.haoche666.buyer.util.MoneyInputFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +28,7 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
     private TabLayout tablayout;
     List<String> list = new ArrayList<>();
     private ViewPager viewPager;
+    private EditText editMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
     protected void findID() {
         tablayout = (TabLayout) findViewById(R.id.tablayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        editMoney = (EditText) findViewById(R.id.editMoney);
     }
 
     @Override
@@ -65,11 +73,13 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
                 tablayout.addTab(tablayout.newTab().setCustomView(view), false);
             }
         }
+        MoneyInputFilter.init(editMoney);
     }
 
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
+        findViewById(R.id.btnNext).setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +90,24 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btnNext:
+                if (TextUtils.equals(editMoney.getText().toString().trim(), "")) {
+                    Toast.makeText(ChongZhiActivity.this, "请输入金额", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.equals(editMoney.getText().toString().trim(), "0.")) {
+                    Toast.makeText(ChongZhiActivity.this, "请输入正确的金额", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (Double.parseDouble(editMoney.getText().toString().trim()) == 0) {
+                    Toast.makeText(ChongZhiActivity.this, "金额必须大于0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.VALUE,editMoney.getText().toString().trim());
+                intent.setClass(this, PayChongZhiActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imageBack:
                 finish();
                 break;

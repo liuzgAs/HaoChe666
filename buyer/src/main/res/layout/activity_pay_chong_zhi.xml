@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haoche666.buyer.avtivity.PayChongZhiActivity">
+    <include layout="@layout/view_bar_white"/>
+    <TextView
+        android:id="@+id/textJinE"
+        android:text="¥00.00"
+        android:textColor="@color/light_black"
+        android:textSize="50dp"
+        android:layout_margin="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textView168"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:text="充值方式"
+        android:textSize="@dimen/litterText" />
+
+    <RelativeLayout
+        android:id="@+id/viewZhiFuBao"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray" >
+
+        <ImageView
+            android:id="@+id/imageView90"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/zhifu_zhifubao" />
+
+        <TextView
+            android:id="@+id/textView171"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imageView90"
+            android:layout_toRightOf="@+id/imageView90"
+            android:text="支付宝"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+        <ImageView
+            android:id="@+id/imageZhiFuBao"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/gouzhong" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewWeiXin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/layout_selector_white_system_gray" >
+
+        <ImageView
+            android:id="@+id/imageView91"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/zhifu_weixin" />
+
+        <TextView
+            android:id="@+id/textView172"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imageView91"
+            android:layout_toRightOf="@+id/imageView91"
+            android:text="微信"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/normal_textsize" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imageWeiXin"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/gouzhong" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/buttonChongZhi"
+        style="@style/MyBtn01"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:text="立即充值" />
+</LinearLayout>

@@ -161,7 +161,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                                         yuEZhiFu(corderCreateorder.getOrder_no());
                                         break;
                                     case 1:
-                                        zhiFuBao();
+                                        zhiFuBao(corderCreateorder.getOrder_no());
                                         break;
                                     default:
 
@@ -199,10 +199,51 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     }
 
     /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getZFBOkObject(String order_no) {
+        String url = Constant.HOST + Constant.Url.PAY_ALIPAY;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("order_no",order_no+"");
+        return new OkObject(params, url);
+    }
+
+    /**
      * 支付宝支付
      */
-    private void zhiFuBao() {
+    private void zhiFuBao(String order_no) {
+        showLoadingDialog();
+        ApiClient.post(ChaWeiBaoActivity.this, getZFBOkObject(order_no), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ChaWeiBaoActivity--支付宝",s+ "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus()==1){
 
+                    }else if (simpleInfo.getStatus()==3){
+                        MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
+                    }else {
+                        Toast.makeText(ChaWeiBaoActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**

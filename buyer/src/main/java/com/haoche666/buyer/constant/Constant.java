@@ -152,7 +152,15 @@ public class Constant {
         /**
          * 余额支付
          */
-        public static final String PAY_BALANCEPAY = "pay/balancePay";
+        public static final String PAY_BALANCEPAY = "/pay/balancePay";
+        /**
+         * 支付宝支付
+         */
+        public static final String PAY_ALIPAY = "/pay/alipay";
+        /**
+         * 创建充值订单
+         */
+        public static final String CORDER_RECHARGE = "/corder/recharge";
     }
 
     public static class IntentKey {

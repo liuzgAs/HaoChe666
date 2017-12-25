@@ -345,6 +345,7 @@
         <activity
             android:name=".avtivity.YinDaoActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".avtivity.PayChongZhiActivity"></activity>
     </application>
 
 </manifest>
