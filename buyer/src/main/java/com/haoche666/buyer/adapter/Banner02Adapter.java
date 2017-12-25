@@ -145,7 +145,7 @@ public class Banner02Adapter extends PagerAdapter {
      * date： 2017/8/28 0028 上午 9:55
      */
     private OkObject getOkObject(int car_store_id) {
-        String url = Constant.HOST + Constant.Url.Attention;
+        String url = Constant.HOST + Constant.Url.ATTENTION;
         HashMap<String, String> params = new HashMap<>();
         if (((MainActivity) mContext).isLogin) {
             params.put("uid", ((MainActivity) mContext).userInfo.getUid());

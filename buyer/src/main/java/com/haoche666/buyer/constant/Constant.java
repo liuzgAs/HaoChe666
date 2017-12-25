@@ -124,7 +124,7 @@ public class Constant {
         /**
          * 添加关注车辆/车行 1-车辆；2-车行
          */
-        public static final String Attention = "/Attention";
+        public static final String ATTENTION = "/Attention";
         /**
          * 车辆品牌用途颜色
          */
@@ -149,6 +149,10 @@ public class Constant {
          * 余额获取
          */
         public static final String PRODUCT_GETBALANCE = "/product/getbalance";
+        /**
+         * 余额支付
+         */
+        public static final String PAY_BALANCEPAY = "pay/balancePay";
     }
 
     public static class IntentKey {

@@ -16,9 +16,10 @@
         android:textSize="@dimen/litterText" />
 
     <RelativeLayout
+        android:id="@+id/viewYuE"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
-        android:background="@color/white" >
+        android:background="@drawable/layout_selector_white_system_gray" >
 
         <ImageView
             android:id="@+id/imageView79"
@@ -31,7 +32,7 @@
             android:src="@mipmap/zhifu_yue" />
 
         <ImageView
-            android:id="@+id/imageView89"
+            android:id="@+id/imageYuE"
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -65,9 +66,10 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/viewZhiFuBao"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
-        android:background="@color/white" >
+        android:background="@drawable/layout_selector_white_system_gray" >
 
         <ImageView
             android:id="@+id/imageView90"
@@ -90,13 +92,24 @@
             android:text="支付宝支付"
             android:textColor="@color/light_black"
             android:textSize="@dimen/normal_textsize" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imageZhiFuBao"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/gouzhong" />
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/viewWeiXin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
         android:layout_marginTop="1dp"
-        android:background="@color/white" >
+        android:background="@drawable/layout_selector_white_system_gray" >
 
         <ImageView
             android:id="@+id/imageView91"
@@ -119,5 +132,15 @@
             android:text="微信支付"
             android:textColor="@color/light_black"
             android:textSize="@dimen/normal_textsize" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imageWeiXin"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/gouzhong" />
     </RelativeLayout>
 </LinearLayout>

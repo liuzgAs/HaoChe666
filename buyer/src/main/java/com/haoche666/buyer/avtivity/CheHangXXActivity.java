@@ -276,7 +276,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
      * date： 2017/8/28 0028 上午 9:55
      */
     private OkObject getGuanZhuCHOkObject(int a_status) {
-        String url = Constant.HOST + Constant.Url.Attention;
+        String url = Constant.HOST + Constant.Url.ATTENTION;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());

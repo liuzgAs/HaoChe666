@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +23,10 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Attention;
 import com.haoche666.buyer.model.CarDetails;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.SimpleInfo;
@@ -140,6 +143,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
 
+            private Button buttonGuanZhu;
             private TextView textShiPing;
             private View viewVideo;
             private JZVideoPlayerStandard jzVideoPlayerStandard;
@@ -219,6 +223,21 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 jzVideoPlayerStandard.backButton.setVisibility(View.GONE);
                 viewVideo = header_che_liang_xq.findViewById(R.id.viewVideo);
                 textShiPing = header_che_liang_xq.findViewById(R.id.textShiPing);
+                buttonGuanZhu = header_che_liang_xq.findViewById(R.id.buttonGuanZhu);
+                buttonGuanZhu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (isLogin) {
+                            if (storeBean.getIs_attention() == 0) {
+                                guanZhuCheHang(1);
+                            } else {
+                                guanZhuCheHang(0);
+                            }
+                        } else {
+                            ToLoginActivity.toLoginActivity(CheLiangXQActivity.this);
+                        }
+                    }
+                });
                 return header_che_liang_xq;
             }
 
@@ -323,6 +342,11 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                             .into(imageLogo);
                     textName.setText(storeBean.getName());
                     textIntro.setText(storeBean.getIntro());
+                    if (storeBean.getIs_attention()==1){
+                        buttonGuanZhu.setText("已关注");
+                    }else {
+                        buttonGuanZhu.setText("+\u3000关注");
+                    }
                 }
                 if (video != null) {
                     viewVideo.setVisibility(View.VISIBLE);
@@ -369,6 +393,66 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     viewBar.getBackground().mutate().setAlpha(255);
                     textViewTitle.setAlpha(1);
                 }
+            }
+        });
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getGuanZhuCHOkObject(int a_status) {
+        String url = Constant.HOST + Constant.Url.ATTENTION;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("type_id", "2");
+        params.put("car_store_id", storeBean.getId() + "");
+        params.put("a_status", a_status + "");
+        return new OkObject(params, url);
+    }
+
+    /**
+     * des： 关注车行
+     * author： ZhangJieBo
+     * date： 2017/12/25/025 13:45
+     */
+    private void guanZhuCheHang(int a_status) {
+        showLoadingDialog();
+        ApiClient.post(CheLiangXQActivity.this, getGuanZhuCHOkObject(a_status), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("CheHangXXActivity--onSuccess", s + "");
+                try {
+                    Attention simpleInfo = GsonUtils.parseJSON(s, Attention.class);
+                    if (simpleInfo.getStatus() == 1) {
+                        if (storeBean.getIs_attention() == 0) {
+                            storeBean.setIs_attention(1);
+                        } else {
+                            storeBean.setIs_attention(0);
+                        }
+                        adapter.notifyDataSetChanged();
+                        Intent intent = new Intent();
+                        intent.setAction(Constant.BroadcastCode.CHE_HANG_GUAN_ZHU);
+                        sendBroadcast(intent);
+                    } else if (simpleInfo.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                    } else {
+                    }
+                    Toast.makeText(CheLiangXQActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(CheLiangXQActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -462,10 +546,14 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewGuanZhu:
-                if (carBean.getIs_attention() == 1) {
-                    guanZhu(0);
-                } else {
-                    guanZhu(1);
+                if (isLogin){
+                    if (carBean.getIs_attention() == 1) {
+                        guanZhu(0);
+                    } else {
+                        guanZhu(1);
+                    }
+                }else {
+                    ToLoginActivity.toLoginActivity(this);
                 }
                 break;
             case R.id.textCall:
@@ -485,7 +573,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
      * date： 2017/8/28 0028 上午 9:55
      */
     private OkObject getOkObject(int a_status) {
-        String url = Constant.HOST + Constant.Url.Attention;
+        String url = Constant.HOST + Constant.Url.ATTENTION;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
