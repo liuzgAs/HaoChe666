@@ -347,13 +347,13 @@
         android:paddingLeft="10dp"
         android:background="@color/white"
         android:textSize="@dimen/bigText"
-        android:id="@+id/textView183" />
+        android:id="@+id/textStar" />
 
     <TextView
         android:layout_width="match_parent"
         android:background="@color/background"
         android:layout_height="1dp"
-        android:id="@+id/textView184" />
+        android:id="@+id/textLine" />
 
     <TextView
         android:textColor="@color/light_black"
@@ -365,4 +365,9 @@
         android:text="不限品牌"
         android:textSize="@dimen/bigText"
         android:id="@+id/textBuXian" />
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="1dp"
+        android:id="@+id/textLine1" />
 </LinearLayout>

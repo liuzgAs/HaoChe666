@@ -64,6 +64,7 @@ public class PinPaiViewHolder extends BaseViewHolder<CarCarparam.BrandBean> {
                     ((PinPaiXCActivity)getContext()).logoPath=adapter.getItem(position).getImg();
                     ((PinPaiXCActivity)getContext()).recyclerViewRight.getRecyclerView().scrollToPosition(0);
                     ((PinPaiXCActivity)getContext()).cheXi(adapter.getItem(position).getId());
+                    ((PinPaiXCActivity)getContext()).bsid = adapter.getItem(position).getId();
                 }
             }
         });

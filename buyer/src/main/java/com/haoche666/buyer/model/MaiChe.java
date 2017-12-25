@@ -15,6 +15,7 @@ public class MaiChe {
     private String tokenTime;
     private int p;
     private int bid;
+    private int bsid;
     private int sort_id;
     private List<Integer> z_price ;
     private List<Integer> z_age ;
@@ -28,28 +29,38 @@ public class MaiChe {
         this.sort_id = sort_id;
     }
 
-    public MaiChe(int loginType, String platform, String uid, String tokenTime, int p, int bid, int sort_id, List<Integer> z_price, List<Integer> z_age, String title) {
+    public MaiChe(int loginType, String platform, String uid, String tokenTime, int p, int bid,int bsid, int sort_id, List<Integer> z_price, List<Integer> z_age, String title) {
         this.loginType = loginType;
         this.platform = platform;
         this.uid = uid;
         this.tokenTime = tokenTime;
         this.p = p;
         this.bid = bid;
+        this.bsid = bsid;
         this.sort_id = sort_id;
         this.z_price = z_price;
         this.z_age = z_age;
         this.title = title;
     }
 
-    public MaiChe(int loginType, String platform, int p, int bid,  int sort_id, List<Integer> z_price, List<Integer> z_age, String title) {
+    public MaiChe(int loginType, String platform, int p, int bid,int bsid,  int sort_id, List<Integer> z_price, List<Integer> z_age, String title) {
         this.loginType = loginType;
         this.platform = platform;
         this.p = p;
         this.bid = bid;
+        this.bsid = bsid;
         this.sort_id = sort_id;
         this.z_price = z_price;
         this.z_age = z_age;
         this.title = title;
+    }
+
+    public int getBsid() {
+        return bsid;
+    }
+
+    public void setBsid(int bsid) {
+        this.bsid = bsid;
     }
 
     public int getLoginType() {

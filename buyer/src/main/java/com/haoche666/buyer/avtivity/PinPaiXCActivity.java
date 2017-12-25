@@ -56,12 +56,11 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     private SideLetterBar mLetterBar;
     public DrawerLayout drawerLayout;
     private RecyclerArrayAdapter<CarCarstyle.DataBean> adapterRight;
-    private String letter;
-    private int brandId;
     public String brandName;
     public String logoPath;
     private List<ReMen> reMenList = new ArrayList<>();
     public int brand;
+    public int bsid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +152,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
             }
         });
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            private View textBuXian;
             View[] reMenView = new View[10];
 
             @Override
@@ -183,16 +183,32 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                         }
                     });
                 }
-                view.findViewById(R.id.textBuXian).setOnClickListener(new View.OnClickListener() {
+                textBuXian = view.findViewById(R.id.textBuXian);
+                textBuXian.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
                         intent.putExtra(Constant.IntentKey.ID,0);
+                        intent.putExtra(Constant.IntentKey.BSID,0);
                         intent.putExtra(Constant.IntentKey.NAME,"全部品牌");
                         setResult(Constant.RequestResultCode.PIN_PAI,intent);
                         finish();
                     }
                 });
+                View textStar = view.findViewById(R.id.textStar);
+                View textLine = view.findViewById(R.id.textLine);
+                View textLine1 = view.findViewById(R.id.textLine1);
+                if (brand==1){
+                    textBuXian.setVisibility(View.GONE);
+                    textStar.setVisibility(View.GONE);
+                    textLine.setVisibility(View.GONE);
+                    textLine1.setVisibility(View.GONE);
+                }else {
+                    textBuXian.setVisibility(View.VISIBLE);
+                    textStar.setVisibility(View.VISIBLE);
+                    textLine.setVisibility(View.VISIBLE);
+                    textLine1.setVisibility(View.VISIBLE);
+                }
                 return view;
             }
 
@@ -287,6 +303,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 drawerLayout.closeDrawer(recyclerViewRight);
                 Intent intent = new Intent();
                 intent.putExtra(Constant.IntentKey.ID,adapterRight.getItem(position).getId());
+                intent.putExtra(Constant.IntentKey.BSID,bsid);
                 intent.putExtra(Constant.IntentKey.NAME,adapterRight.getItem(position).getName());
                 setResult(Constant.RequestResultCode.PIN_PAI,intent);
                 finish();
@@ -306,6 +323,17 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 ViewGroup.LayoutParams layoutParams = textBar.getLayoutParams();
                 layoutParams.height = ScreenUtils.getStatusBarHeight(PinPaiXCActivity.this);
                 textBar.setLayoutParams(layoutParams);
+                view.findViewById(R.id.textBuXian).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.putExtra(Constant.IntentKey.ID,0);
+                        intent.putExtra(Constant.IntentKey.BSID,bsid);
+                        intent.putExtra(Constant.IntentKey.NAME,brandName);
+                        setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                        finish();
+                    }
+                });
                 return view;
             }
 

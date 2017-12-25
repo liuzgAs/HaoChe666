@@ -21,8 +21,8 @@ import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Attention;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.model.StoreDetails;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheHangViewHolder;
@@ -301,7 +301,7 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                 cancelLoadingDialog();
                 LogUtil.LogShitou("CheHangXXActivity--onSuccess", s + "");
                 try {
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    Attention simpleInfo = GsonUtils.parseJSON(s, Attention.class);
                     if (simpleInfo.getStatus() == 1) {
                         if (is_attention == 0) {
                             is_attention = 1;
@@ -310,6 +310,8 @@ public class CheHangXXActivity extends ZjbBaseActivity implements View.OnClickLi
                             is_attention = 0;
                             textGuanZhu.setText("关注ta");
                         }
+                        storeDetailsStore.setText1("关注:"+simpleInfo.getNum());
+                        adapter.notifyDataSetChanged();
                         Intent intent = new Intent();
                         intent.setAction(Constant.BroadcastCode.CHE_HANG_GUAN_ZHU);
                         sendBroadcast(intent);
