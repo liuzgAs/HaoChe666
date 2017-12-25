@@ -61,6 +61,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     public String brandName;
     public String logoPath;
     private List<ReMen> reMenList = new ArrayList<>();
+    public int brand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,8 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
     @Override
     protected void initIntent() {
-
+        Intent intent = getIntent();
+        brand = intent.getIntExtra(Constant.IntentKey.BRAND, -1);
     }
 
     @Override
@@ -88,7 +90,11 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
     @Override
     protected void initViews() {
-        ((TextView) findViewById(R.id.textViewTitle)).setText("品牌选车");
+        if (brand==1){
+            ((TextView) findViewById(R.id.textViewTitle)).setText("选择品牌");
+        }else {
+            ((TextView) findViewById(R.id.textViewTitle)).setText("品牌选车");
+        }
         ViewGroup.LayoutParams layoutParams = recyclerViewRight.getLayoutParams();
         int screenWidth = ScreenUtils.getScreenWidth(this);
         layoutParams.width = (int) ((float) screenWidth / 4 * 3);
@@ -431,5 +437,12 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 textTitle = itemView.findViewById(R.id.textTitle);
             }
         }
+    }
+
+    public void chooseBrand(CarCarparam.BrandBean.ListBean brandBean){
+        Intent intent = new Intent();
+        intent.putExtra(Constant.IntentKey.BEAN,brandBean);
+        setResult(Constant.RequestResultCode.BRAND,intent);
+        finish();
     }
 }

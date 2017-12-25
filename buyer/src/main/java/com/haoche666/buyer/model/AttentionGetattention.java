@@ -109,11 +109,70 @@ public class AttentionGetattention {
          */
 
         private String des;
+        private String des2;
         private int id;
         private String img;
         private int is_sale;
+        private int updates;
         private String title;
+        private String cut_price;
+        private String price;
+        private List<CarBean> car;
 
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public String getCut_price() {
+            return cut_price;
+        }
+
+        public void setCut_price(String cut_price) {
+            this.cut_price = cut_price;
+        }
+
+        public List<CarBean> getCar() {
+            return car;
+        }
+
+        public void setCar(List<CarBean> car) {
+            this.car = car;
+        }
+
+        public String getDes2() {
+            return des2;
+        }
+
+        public void setDes2(String des2) {
+            this.des2 = des2;
+        }
+
+        public int getUpdates() {
+            return updates;
+        }
+
+        public void setUpdates(int updates) {
+            this.updates = updates;
+        }
+
+
+        public static class CarBean {
+            private int id;
+            private String img;
+            private String price;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+        }
         public String getDes() {
             return des;
         }

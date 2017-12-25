@@ -162,11 +162,13 @@ public class Constant {
         public static final String URL = "url";
         public static final String TITLE = "title";
         public static final String NAME = "name";
+        public static final String BRAND = "brand";
     }
 
     public static class RequestResultCode {
         public static final int IMAGE_PICKER = 2029;
         public static final int PIN_PAI = 2030;
+        public static final int BRAND = 2031;
     }
 
     public static class Acache {

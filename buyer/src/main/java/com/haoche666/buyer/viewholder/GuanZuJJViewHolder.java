@@ -15,17 +15,20 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
  */
 public class GuanZuJJViewHolder extends BaseViewHolder<AttentionGetattention.DataBean> {
 
+
     private final ImageView imageImg;
-    private final ImageView imageIs_sale;
     private final TextView textTitle;
     private final TextView textDes;
+    private final TextView textPrice;
+    private final TextView textCut_price;
 
     public GuanZuJJViewHolder(ViewGroup parent, @LayoutRes int res) {
         super(parent, res);
         imageImg = $(R.id.imageImg);
-        imageIs_sale = $(R.id.imageIs_sale);
         textTitle = $(R.id.textTitle);
         textDes = $(R.id.textDes);
+        textPrice = $(R.id.textPrice);
+        textCut_price = $(R.id.textCut_price);
     }
 
     @Override
@@ -38,11 +41,8 @@ public class GuanZuJJViewHolder extends BaseViewHolder<AttentionGetattention.Dat
                 .into(imageImg);
         textTitle.setText(data.getTitle());
         textDes.setText(data.getDes());
-        if (data.getIs_sale()==0){
-            imageIs_sale.setImageResource(R.mipmap.daishou);
-        }else {
-            imageIs_sale.setImageResource(R.mipmap.yishou);
-        }
+        textPrice.setText(data.getPrice());
+        textCut_price.setText(data.getCut_price());
     }
     
 }

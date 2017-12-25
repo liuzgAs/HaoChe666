@@ -1,5 +1,6 @@
 package com.haoche666.buyer.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -88,7 +89,7 @@ public class CarCarparam {
             this.list = list;
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable{
             /**
              * id : 1
              * img : https://www.haoche666.com/Uploads/car_brand/0.png

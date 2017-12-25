@@ -56,11 +56,15 @@ public class PinPaiViewHolder extends BaseViewHolder<CarCarparam.BrandBean> {
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ((PinPaiXCActivity)getContext()).drawerLayout.openDrawer(((PinPaiXCActivity)getContext()).recyclerViewRight);
-                ((PinPaiXCActivity)getContext()).brandName=adapter.getItem(position).getName();
-                ((PinPaiXCActivity)getContext()).logoPath=adapter.getItem(position).getImg();
-                ((PinPaiXCActivity)getContext()).recyclerViewRight.getRecyclerView().scrollToPosition(0);
-                ((PinPaiXCActivity)getContext()).cheXi(adapter.getItem(position).getId());
+                if (((PinPaiXCActivity)getContext()).brand==1){
+                    ((PinPaiXCActivity)getContext()).chooseBrand(adapter.getItem(position));
+                }else {
+                    ((PinPaiXCActivity)getContext()).drawerLayout.openDrawer(((PinPaiXCActivity)getContext()).recyclerViewRight);
+                    ((PinPaiXCActivity)getContext()).brandName=adapter.getItem(position).getName();
+                    ((PinPaiXCActivity)getContext()).logoPath=adapter.getItem(position).getImg();
+                    ((PinPaiXCActivity)getContext()).recyclerViewRight.getRecyclerView().scrollToPosition(0);
+                    ((PinPaiXCActivity)getContext()).cheXi(adapter.getItem(position).getId());
+                }
             }
         });
     }

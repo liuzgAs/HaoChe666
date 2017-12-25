@@ -28,7 +28,8 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText"
+            android:maxLength="17"
+            android:id="@+id/editVin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -45,6 +46,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/viewBrand"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
         android:layout_marginTop="1dp"
@@ -73,14 +75,15 @@
             android:src="@mipmap/right" />
 
         <TextView
-            android:id="@+id/textView139"
+            android:gravity="right"
+            android:hint="请选择要查询的车辆品牌"
+            android:id="@+id/textBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/imageView75"
             android:layout_toStartOf="@+id/imageView75"
-            android:text="雷克萨斯"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/normal_textsize" />
 
