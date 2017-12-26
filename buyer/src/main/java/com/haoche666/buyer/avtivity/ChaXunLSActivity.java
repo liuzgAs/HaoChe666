@@ -106,7 +106,17 @@ public class ChaXunLSActivity extends ZjbBaseActivity implements View.OnClickLis
 
         @Override
         public Fragment getItem(int position) {
-            return new ChaXunLSFragment();
+            switch (position) {
+                case 0:
+                    return new ChaXunLSFragment(1);
+                case 1:
+                    return new ChaXunLSFragment(2);
+                case 2:
+                    return new ChaXunLSFragment(3);
+                default:
+                    return new ChaXunLSFragment(1);
+            }
+
         }
 
         @Override

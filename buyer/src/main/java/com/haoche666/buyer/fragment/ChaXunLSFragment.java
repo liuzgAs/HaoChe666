@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +10,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
-import com.haoche666.buyer.provider.DataProvider;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.ProductQueryhistory;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ChaXunLSViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.HashMap;
+import java.util.List;
+
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,10 +39,17 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
 
     private View mInflate;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<ProductQueryhistory.DataBean> adapter;
     private int page = 1;
+    private int type;
+
     public ChaXunLSFragment() {
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public ChaXunLSFragment(int type) {
+        this.type = type;
     }
 
 
@@ -78,7 +96,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ProductQueryhistory.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_cha_xun_ls;
@@ -88,8 +106,31 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+              ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                  @Override
+                  public void onSuccess(String s) {
+                      try {
+                          page++;
+                          ProductQueryhistory productQueryhistory = GsonUtils.parseJSON(s, ProductQueryhistory.class);
+                          int status = productQueryhistory.getStatus();
+                          if (status == 1) {
+                              List<ProductQueryhistory.DataBean> dataBeanList = productQueryhistory.getData();
+                              adapter.addAll(dataBeanList);
+                          } else if (status == 3) {
+                              MyDialog.showReLoginDialog(getActivity());
+                          } else {
+                              adapter.pauseMore();
+                          }
+                      } catch (Exception e) {
+                          adapter.pauseMore();
+                      }
+                  }
+
+                  @Override
+                  public void onError() {
+                      adapter.pauseMore();
+                  }
+              });
             }
 
             @Override
@@ -137,11 +178,70 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
         onRefresh();
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.PRODUCT_QUERYHISTORY;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("p", page + "");
+        params.put("type_id", type + "");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
-        page++;
+        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("查询历史"+type, s);
+                try {
+                    page++;
+                    ProductQueryhistory productQueryhistory = GsonUtils.parseJSON(s, ProductQueryhistory.class);
+                    if (productQueryhistory.getStatus() == 1) {
+                        List<ProductQueryhistory.DataBean> dataBeanList = productQueryhistory.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (productQueryhistory.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        showError(productQueryhistory.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 }

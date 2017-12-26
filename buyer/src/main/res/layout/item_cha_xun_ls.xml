@@ -12,23 +12,24 @@
         android:textStyle="bold"
         android:textColor="@color/light_black"
         android:layout_width="wrap_content"
-        android:id="@+id/text0000"
+        android:id="@+id/textDes"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginLeft="10dp"
         android:textSize="@dimen/litterText"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/text0000"
+        android:layout_below="@+id/textDes"
         android:textColor="@color/text_gray"
         android:text="2017-12-5"
         android:layout_width="wrap_content"
-        android:id="@+id/text0001"
+        android:id="@+id/textCreate_time"
         android:layout_height="wrap_content" />
     <TextView
+        android:id="@+id/textPrice"
         android:text="¥25"
         android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/text0001"
+        android:layout_alignBaseline="@+id/textCreate_time"
         android:layout_alignParentRight="true"
         android:textColor="@color/light_black"
         android:textStyle="bold"

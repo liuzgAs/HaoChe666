@@ -173,6 +173,10 @@ public class Constant {
          * 获取消费明细
          */
         public static final String CORDER_GETCONSUMEDETAIL = "/corder/getConsumeDetail";
+        /**
+         * 查询历史获取
+         */
+        public static final String PRODUCT_QUERYHISTORY = "/product/queryHistory";
     }
 
     public static class IntentKey {
