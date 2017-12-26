@@ -1,6 +1,9 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,9 +21,14 @@ import com.haoche666.buyer.model.CarCarparam;
 import com.haoche666.buyer.model.CorderCreateorder;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.PayAlipay;
+import com.haoche666.buyer.model.PayWxpay;
 import com.haoche666.buyer.model.Product;
 import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
+import com.tencent.mm.opensdk.constants.Build;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +53,28 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     private int payMode = 0;
     private View[] paySelectView = new View[3];
     private View[] payView = new View[3];
+    final IWXAPI api = WXAPIFactory.createWXAPI(this, null);
+    private BroadcastReceiver recevier = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.PAY_RECEIVER:
+                    cancelLoadingDialog();
+                    int error = intent.getIntExtra("error", -1);
+                    if (error == 0) {
+                        paySuccess();
+                    } else if (error == -1) {
+                        MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付失败");
+                    } else if (error == -2) {
+                        MyDialog.showTipDialog(ChaWeiBaoActivity.this, "支付失败");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,9 +245,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("order_no",order_no);
+        params.put("order_no", order_no);
         return new OkObject(params, url);
     }
 
@@ -227,32 +257,60 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * date： 2017/12/25/025 17:25
      */
     private void weiXinZF(String order_no) {
-       showLoadingDialog();
-       ApiClient.post(ChaWeiBaoActivity.this, getWXOkObject(order_no), new ApiClient.CallBack() {
-           @Override
-           public void onSuccess(String s) {
-               cancelLoadingDialog();
-               LogUtil.LogShitou("ChaWeiBaoActivity--微信支付",s+ "");
-               try {
-                   SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                   if (simpleInfo.getStatus()==1){
+        showLoadingDialog();
+        ApiClient.post(ChaWeiBaoActivity.this, getWXOkObject(order_no), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ChaWeiBaoActivity--微信支付", s + "");
+                try {
+                    PayWxpay payWxpay = GsonUtils.parseJSON(s, PayWxpay.class);
+                    if (payWxpay.getStatus() == 1) {
+                        wechatPay(payWxpay);
+                    } else if (payWxpay.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
+                    } else {
+                        Toast.makeText(ChaWeiBaoActivity.this, payWxpay.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-                   }else if (simpleInfo.getStatus()==3){
-                       MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
-                   }else {
-                       Toast.makeText(ChaWeiBaoActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
-                   }
-               } catch (Exception e) {
-                   Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
-               }
-           }
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-           @Override
-           public void onError() {
-               cancelLoadingDialog();
-               Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
-           }
-       });
+    /**
+     * 微信支付
+     */
+    private void wechatPay(PayWxpay payWxpay) {
+        if (!checkIsSupportedWeachatPay()) {
+            Toast.makeText(ChaWeiBaoActivity.this, "您暂未安装微信或您的微信版本暂不支持支付功能\n请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
+        } else {
+            api.registerApp(payWxpay.getAppid());
+            PayReq mPayReq = new PayReq();
+            mPayReq.appId = payWxpay.getAppid();
+            mPayReq.partnerId = payWxpay.getPartnerid();
+            mPayReq.prepayId = payWxpay.getPrepayid();
+            mPayReq.packageValue = payWxpay.getPackageX();
+            mPayReq.nonceStr = payWxpay.getNonceStr();
+            mPayReq.timeStamp = payWxpay.getTimeStamp() + "";
+            mPayReq.sign = payWxpay.getSign().toUpperCase();
+            api.sendReq(mPayReq);
+        }
+    }
+
+    /**
+     * 检查微信版本是否支付支付或是否安装可支付的微信版本
+     */
+    private boolean checkIsSupportedWeachatPay() {
+        boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
+        return isPaySupported;
     }
 
     /**
@@ -292,8 +350,8 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                                     PayTask alipay = new PayTask(ChaWeiBaoActivity.this);
                                     Map<String, String> stringMap = alipay.payV2(payAlipay.getOrderinfo(), true);
                                     AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
-                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果", ""+stringMap.get("result"));
-                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果码", ""+aliPayBean.getAlipay_trade_app_pay_response().getCode());
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果", "" + stringMap.get("result"));
+                                    LogUtil.LogShitou("ChaWeiBaoActivity--支付结果码", "" + aliPayBean.getAlipay_trade_app_pay_response().getCode());
                                     switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
                                         case 10000:
                                             paySuccess();
@@ -351,7 +409,6 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * date： 2017/12/25/025 16:11
      */
     private void paySuccess() {
-        LogUtil.LogShitou("ChaWeiBaoActivity--paySuccess", "fuck没有用？");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -405,5 +462,19 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                 Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.PAY_RECEIVER);
+        registerReceiver(recevier, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(recevier);
     }
 }

@@ -206,6 +206,11 @@ public class Constant {
         public static final String USERINFO = "userInfo";
         public static final String CHE_HANG_GUAN_ZHU = "che_hang_guan_zhu";
         public static final String SHOU_YE_CHE_HANG = "shou_ye_che_hang";
+        public static final String PAY_RECEIVER = "pay_receiver";
+        public static final String WX_LOGIN = "wxLogin";
+        public static final String WX_SHARE = "wxShare";
+        public static final String WX_LOGIN_FAIL = "wxLoginFail";
+        public static final String WX_SHARE_FAIL = "wxShareFail";
     }
 
 
