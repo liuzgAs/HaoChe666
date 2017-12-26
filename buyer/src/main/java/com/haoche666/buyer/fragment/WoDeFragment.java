@@ -242,8 +242,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewWoMaiDeChe:
-                intent.setClass(getActivity(), WoMaiDeCheActivity.class);
-                startActivity(intent);
+                if (isLogin) {
+                    intent.setClass(getActivity(), WoMaiDeCheActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.viewGeRenXX:
                 if (isLogin) {
@@ -255,16 +259,20 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 }
                 break;
             case R.id.textChongZhi:
-                if (isLogin){
+                if (isLogin) {
                     intent.setClass(getActivity(), ChongZhiActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(getActivity());
                 }
                 break;
             case R.id.imageVip:
-                intent.setClass(getActivity(), PayVipActivity.class);
-                startActivity(intent);
+                if (isLogin) {
+                    intent.setClass(getActivity(), PayVipActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.imageSheZhi:
                 intent.setClass(getActivity(), SheZhiActivity.class);
@@ -275,12 +283,20 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewWoDeDD:
-                intent.setClass(getActivity(), DingDanGLActivity.class);
-                startActivity(intent);
+                if (isLogin) {
+                    intent.setClass(getActivity(), DingDanGLActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.viewDuiBi:
-                intent.setClass(getActivity(), CheLiangDBActivity.class);
-                startActivity(intent);
+                if (isLogin) {
+                    intent.setClass(getActivity(), CheLiangDBActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.viewWoDeGZ:
                 if (isLogin) {

@@ -181,6 +181,10 @@ public class Constant {
          * 获取价格、车龄范围数组（搜索）
          */
         public static final String CAR_GETSEARCHDATA = "/car/getSearchData";
+        /**
+         * 获取订单列表
+         */
+        public static final String CORDER = "/corder";
     }
 
     public static class IntentKey {

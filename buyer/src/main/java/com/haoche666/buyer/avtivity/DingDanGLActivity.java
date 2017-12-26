@@ -4,28 +4,39 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
-import com.haoche666.buyer.provider.DataProvider;
+import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Corder;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.DingDanGLViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.HashMap;
+import java.util.List;
+
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
+import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * 订单管理
+ *
  * @author Administrator
  */
 public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<Corder.DataBean> adapter;
     private int page = 1;
 
     @Override
@@ -63,23 +74,46 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(DingDanGLActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Corder.DataBean>(DingDanGLActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_ding_dan_gl;
-                return new DingDanGLViewHolder(parent, layout,viewType);
+                return new DingDanGLViewHolder(parent, layout, viewType);
             }
 
             @Override
             public int getViewType(int position) {
-                return getItem(position);
+                return getItem(position).getType_id();
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+            ApiClient.post(DingDanGLActivity.this, getOkObject(), new ApiClient.CallBack() {
+                @Override
+                public void onSuccess(String s) {
+                    try {
+                        page++;
+                        Corder corder = GsonUtils.parseJSON(s, Corder.class);
+                        int status = corder.getStatus();
+                        if (status == 1) {
+                            List<Corder.DataBean> dataBeanList = corder.getData();
+                            adapter.addAll(dataBeanList);
+                        } else if (status == 3) {
+                            MyDialog.showReLoginDialog(DingDanGLActivity.this);
+                        } else {
+                            adapter.pauseMore();
+                        }
+                    } catch (Exception e) {
+                        adapter.pauseMore();
+                    }
+                }
+
+                @Override
+                public void onError() {
+                    adapter.pauseMore();
+                }
+            });
             }
 
             @Override
@@ -139,11 +173,71 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
         }
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.CORDER;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("p",page+"");
+        params.put("status",2+"");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
-        adapter.addAll(DataProvider.getPersonList(page));
+        ApiClient.post(this, getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("订单列表", s);
+                try {
+                    page++;
+                    Corder corder = GsonUtils.parseJSON(s, Corder.class);
+                    if (corder.getStatus() == 1) {
+                        List<Corder.DataBean> dataBeanList = corder.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (corder.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(DingDanGLActivity.this);
+                    } else {
+                        showError(corder.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(DingDanGLActivity.this).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
     }
 
 }
