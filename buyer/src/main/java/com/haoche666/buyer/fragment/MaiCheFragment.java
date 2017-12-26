@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
@@ -26,9 +27,9 @@ import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
+import com.haoche666.buyer.model.CarGetsearchdata;
 import com.haoche666.buyer.model.MaiChe;
-import com.haoche666.buyer.model.PriceAge;
-import com.haoche666.buyer.model.Sort;
+import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.haoche666.buyer.viewholder.SortViewHolder;
@@ -38,6 +39,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
@@ -57,16 +59,13 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private View mRelaTitleStatue;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Buyer.DataBean> adapter;
-    private RecyclerArrayAdapter<Sort> adapterSort;
+    private RecyclerArrayAdapter<CarGetsearchdata.DataBean.SortIdBean> adapterSort;
     private int page = 1;
     private TextView textRange;
     private TextView textRange1;
     private CrystalRangeSeekbar rangeSeekbar;
     private CrystalRangeSeekbar rangeSeekbar1;
     private EasyRecyclerView recyclerViewShaiXuan00;
-    private List<Sort> sortList = new ArrayList<>();
-    private List<PriceAge> priceList = new ArrayList<>();
-    private List<PriceAge> ageList = new ArrayList<>();
     private View[] viewShaiXuanArr = new View[3];
     private View[] viewShaiXuan00Arr = new View[3];
     private View viewShaiXuan;
@@ -79,6 +78,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private TextView textSort;
     private TextView textSearch;
     private TextView textAll;
+    private List<CarGetsearchdata.DataBean.SortIdBean> sortIdBeanList = new ArrayList<>();
+    private List<CarGetsearchdata.AgePriceBean> zPriceBeanList = new ArrayList<>();
+    private List<CarGetsearchdata.AgePriceBean> zAgeBeanList = new ArrayList<>();
 
     public MaiCheFragment() {
         // Required empty public constructor
@@ -143,89 +145,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
         initRecycle();
         initSortRecycler();
-        List<Integer> list00 = new ArrayList<>();
-        list00.clear();
-        list00.add(0);
-        list00.add(60);
-        priceList.add(new PriceAge("不限", list00, true));
-        List<Integer> list01 = new ArrayList<>();
-        list01.clear();
-        list01.add(0);
-        list01.add(3);
-        priceList.add(new PriceAge("0-3万", list01, false));
-        List<Integer> list02 = new ArrayList<>();
-        list02.clear();
-        list02.add(3);
-        list02.add(5);
-        priceList.add(new PriceAge("3-5万", list02, false));
-        List<Integer> list03 = new ArrayList<>();
-        list03.clear();
-        list03.add(5);
-        list03.add(10);
-        priceList.add(new PriceAge("5-10万", list03, false));
-        List<Integer> list04 = new ArrayList<>();
-        list04.clear();
-        list04.add(10);
-        list04.add(15);
-        priceList.add(new PriceAge("10-15万", list04, false));
-        List<Integer> list05 = new ArrayList<>();
-        list05.clear();
-        list05.add(15);
-        list05.add(20);
-        priceList.add(new PriceAge("15-20万", list05, false));
-        List<Integer> list06 = new ArrayList<>();
-        list06.clear();
-        list06.add(20);
-        list06.add(30);
-        priceList.add(new PriceAge("20-30万", list06, false));
-        List<Integer> list07 = new ArrayList<>();
-        list07.clear();
-        list07.add(30);
-        list07.add(50);
-        priceList.add(new PriceAge("30-50万", list07, false));
-        List<Integer> list08 = new ArrayList<>();
-        list08.clear();
-        list08.add(50);
-        list08.add(60);
-        priceList.add(new PriceAge("50万以上", list08, false));
-        priceAdapter = new PriceAdapter(priceList);
+        priceAdapter = new PriceAdapter(zPriceBeanList);
         gridPrice.setAdapter(priceAdapter);
-        List<Integer> list10 = new ArrayList<>();
-        list10.clear();
-        list10.add(0);
-        list10.add(60);
-        ageList.add(new PriceAge("不限", list10, true));
-        List<Integer> list11 = new ArrayList<>();
-        list11.clear();
-        list11.add(0);
-        list11.add(1);
-        ageList.add(new PriceAge("1年内", list11, false));
-        List<Integer> list12 = new ArrayList<>();
-        list12.clear();
-        list12.add(0);
-        list12.add(2);
-        ageList.add(new PriceAge("2年内", list12, false));
-        List<Integer> list13 = new ArrayList<>();
-        list13.clear();
-        list13.add(0);
-        list13.add(3);
-        ageList.add(new PriceAge("3年内", list13, false));
-        List<Integer> list14 = new ArrayList<>();
-        list14.clear();
-        list14.add(0);
-        list14.add(5);
-        ageList.add(new PriceAge("5年内", list14, false));
-        List<Integer> list15 = new ArrayList<>();
-        list15.clear();
-        list15.add(0);
-        list15.add(8);
-        ageList.add(new PriceAge("8年内", list15, false));
-        List<Integer> list16 = new ArrayList<>();
-        list16.clear();
-        list16.add(0);
-        list16.add(10);
-        ageList.add(new PriceAge("10年内", list16, false));
-        ageAdapter = new PriceAdapter(ageList);
+        ageAdapter = new PriceAdapter(zAgeBeanList);
         gridAge.setAdapter(ageAdapter);
     }
 
@@ -315,18 +237,12 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
      * 初始化recyclerview
      */
     private void initSortRecycler() {
-        sortList.add(new Sort(0, "默认排序", true));
-        sortList.add(new Sort(1, "最新上架", false));
-        sortList.add(new Sort(2, "价格最低", false));
-        sortList.add(new Sort(3, "价格最高", false));
-        sortList.add(new Sort(4, "车龄最短", false));
-        sortList.add(new Sort(5, "里程最少", false));
         recyclerViewShaiXuan00.setLayoutManager(new LinearLayoutManager(getActivity()));
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerViewShaiXuan00.addItemDecoration(itemDecoration);
         recyclerViewShaiXuan00.setRefreshingColorResources(R.color.basic_color);
-        recyclerViewShaiXuan00.setAdapterWithProgress(adapterSort = new RecyclerArrayAdapter<Sort>(getActivity()) {
+        recyclerViewShaiXuan00.setAdapterWithProgress(adapterSort = new RecyclerArrayAdapter<CarGetsearchdata.DataBean.SortIdBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_sort;
@@ -343,13 +259,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 adapterSort.notifyDataSetChanged();
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
-                textSort.setText(adapterSort.getItem(position).getName());
-                sort_id = adapterSort.getItem(position).getSort_id();
-                initData();
+                textSort.setText(adapterSort.getItem(position).getTitle());
+                sort_id = adapterSort.getItem(position).getValue();
+                onRefresh();
             }
         });
-        adapterSort.clear();
-        adapterSort.addAll(sortList);
     }
 
     @Override
@@ -406,32 +320,32 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         gridPrice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                for (int j = 0; j < priceList.size(); j++) {
-                    priceList.get(j).setSelect(false);
+                for (int j = 0; j < zPriceBeanList.size(); j++) {
+                    zPriceBeanList.get(j).setSelect(false);
                 }
-                priceList.get(i).setSelect(true);
+                zPriceBeanList.get(i).setSelect(true);
                 priceAdapter.notifyDataSetChanged();
-                z_price = priceList.get(i).getValue();
+                z_price = zPriceBeanList.get(i).getValue();
                 LogUtil.LogShitou("MaiCheFragment--onItemClick", "" + z_price.get(0) + "-" + z_price.get(1));
                 rangeSeekbar.setMinStartValue(z_price.get(0)).setMaxStartValue(z_price.get(1)).apply();
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
-                initData();
+                onRefresh();
             }
         });
         gridAge.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                for (int j = 0; j < ageList.size(); j++) {
-                    ageList.get(j).setSelect(false);
+                for (int j = 0; j < zAgeBeanList.size(); j++) {
+                    zAgeBeanList.get(j).setSelect(false);
                 }
-                ageList.get(i).setSelect(true);
+                zAgeBeanList.get(i).setSelect(true);
                 ageAdapter.notifyDataSetChanged();
-                z_age = ageList.get(i).getValue();
+                z_age = zAgeBeanList.get(i).getValue();
                 rangeSeekbar1.setMinStartValue(z_age.get(0)).setMaxStartValue(z_age.get(1)).apply();
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
-                initData();
+                onRefresh();
             }
         });
         mInflate.findViewById(R.id.btnPrice).setOnClickListener(this);
@@ -439,9 +353,71 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         mInflate.findViewById(R.id.viewSearch).setOnClickListener(this);
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getSearchOkObject() {
+        String url = Constant.HOST + Constant.Url.CAR_GETSEARCHDATA;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        return new OkObject(params, url);
+    }
+
     @Override
     protected void initData() {
-        onRefresh();
+        showLoadingDialog();
+        ApiClient.post(getActivity(), getSearchOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("MaiCheFragment--获取价格、车龄范围数组",s+ "");
+                cancelLoadingDialog();
+                try {
+                    CarGetsearchdata carGetsearchdata = GsonUtils.parseJSON(s, CarGetsearchdata.class);
+                    if (carGetsearchdata.getStatus()==1){
+                        sortIdBeanList.clear();
+                        sortIdBeanList.addAll(carGetsearchdata.getData().getSort_id());
+                        for (int i = 0; i < sortIdBeanList.size(); i++) {
+                            sortIdBeanList.get(i).setSelect(false);
+                        }
+                        sortIdBeanList.get(0).setSelect(true);
+                        adapterSort.clear();
+                        adapterSort.addAll(sortIdBeanList);
+                        zPriceBeanList = carGetsearchdata.getData().getZ_price();
+                        for (int i = 0; i < zPriceBeanList.size(); i++) {
+                            zPriceBeanList.get(i).setSelect(false);
+                        }
+                        zPriceBeanList.get(0).setSelect(true);
+                        zAgeBeanList = carGetsearchdata.getData().getZ_age();
+                        for (int i = 0; i < zAgeBeanList.size(); i++) {
+                            zAgeBeanList.get(i).setSelect(false);
+                        }
+                        zAgeBeanList.get(0).setSelect(true);
+                        priceAdapter.setList(zPriceBeanList);
+                        ageAdapter.setList(zAgeBeanList);
+                        priceAdapter.notifyDataSetChanged();
+                        ageAdapter.notifyDataSetChanged();
+                        onRefresh();
+                    }else if (carGetsearchdata.getStatus()==3){
+                        MyDialog.showReLoginDialog(getActivity());
+                    }else {
+                        Toast.makeText(getActivity(), carGetsearchdata.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     String url = Constant.HOST + Constant.Url.CAR;
@@ -510,7 +486,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View v) {
                         recyclerView.showProgress();
-                        initData();
+                        onRefresh();
                     }
                 });
                 recyclerView.setErrorView(viewLoader);
@@ -528,7 +504,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             String name = data.getStringExtra(Constant.IntentKey.NAME);
             LogUtil.LogShitou("MaiCheFragment--onActivityResult", "品牌名" + textAll);
             textAll.setText(name);
-            initData();
+            onRefresh();
         }
     }
 
@@ -544,7 +520,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void searchDone(String key) {
                         title = key;
-                        initData();
+                        onRefresh();
                     }
                 });
                 break;
@@ -554,11 +530,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 z_price.clear();
                 z_price.add(rangeSeekbar.getSelectedMinValue().intValue());
                 z_price.add(rangeSeekbar.getSelectedMaxValue().intValue());
-                for (int i = 0; i < priceList.size(); i++) {
-                    priceList.get(i).setSelect(false);
+                for (int i = 0; i < zPriceBeanList.size(); i++) {
+                    zPriceBeanList.get(i).setSelect(false);
                 }
                 priceAdapter.notifyDataSetChanged();
-                initData();
+                onRefresh();
                 break;
             case R.id.btnAge:
                 shaiXuanVisible = -1;
@@ -566,11 +542,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 z_age.clear();
                 z_age.add(rangeSeekbar1.getSelectedMinValue().intValue());
                 z_age.add(rangeSeekbar1.getSelectedMaxValue().intValue());
-                for (int i = 0; i < ageList.size(); i++) {
-                    ageList.get(i).setSelect(false);
+                for (int i = 0; i < zAgeBeanList.size(); i++) {
+                    zAgeBeanList.get(i).setSelect(false);
                 }
                 ageAdapter.notifyDataSetChanged();
-                initData();
+                onRefresh();
                 break;
             case R.id.viewDismiss:
                 viewShaiXuan.setVisibility(View.GONE);
@@ -588,9 +564,17 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     }
 
     class PriceAdapter extends BaseAdapter {
-        List<PriceAge> list = new ArrayList<>();
+        List<CarGetsearchdata.AgePriceBean> list = new ArrayList<>();
 
-        public PriceAdapter(List<PriceAge> list) {
+        public PriceAdapter(List<CarGetsearchdata.AgePriceBean> list) {
+            this.list = list;
+        }
+
+        public List<CarGetsearchdata.AgePriceBean> getList() {
+            return list;
+        }
+
+        public void setList(List<CarGetsearchdata.AgePriceBean> list) {
             this.list = list;
         }
 
@@ -624,7 +608,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.textName.setText(list.get(position).getName());
+            holder.textName.setText(list.get(position).getTitle());
             if (list.get(position).isSelect()) {
                 holder.textName.setTextColor(ContextCompat.getColor(getActivity(), R.color.textGold));
                 holder.textName.setBackgroundResource(R.drawable.shape_gold1dp_priceage3dp);
@@ -647,7 +631,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 @Override
                 public void searchDone(String key) {
                     title = key;
-                    initData();
+                    onRefresh();
                 }
             });
             ((MainActivity) getActivity()).isSearch = false;

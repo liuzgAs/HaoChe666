@@ -177,6 +177,10 @@ public class Constant {
          * 查询历史获取
          */
         public static final String PRODUCT_QUERYHISTORY = "/product/queryHistory";
+        /**
+         * 获取价格、车龄范围数组（搜索）
+         */
+        public static final String CAR_GETSEARCHDATA = "/car/getSearchData";
     }
 
     public static class IntentKey {
