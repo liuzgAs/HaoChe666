@@ -1,6 +1,7 @@
 package com.haoche666.buyer.avtivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.customview.MyScrollView;
+import com.haoche666.buyer.model.AttentionGetattention;
+import com.haoche666.buyer.model.DuiBi;
 import com.haoche666.buyer.viewholder.DuiBiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -35,6 +39,7 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
     private TextView[] textCeillingArr = new TextView[8];
     private float celilingHeight;
     private View viewCeilling;
+    private List<AttentionGetattention.DataBean> duiBiAllData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,9 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
 
     @Override
     protected void initIntent() {
-
+        Intent intent = getIntent();
+        DuiBi duiBi = (DuiBi) intent.getSerializableExtra(Constant.IntentKey.BEAN);
+        duiBiAllData = duiBi.getAllData();
     }
 
     @SuppressLint("WrongViewCast")

@@ -44,7 +44,7 @@
             android:textSize="@dimen/titleSize" />
 
         <ImageView
-            android:id="@+id/imageView63"
+            android:id="@+id/imageBianJi"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -55,12 +55,12 @@
             android:src="@mipmap/bianji" />
 
         <ImageView
-            android:id="@+id/imageView64"
+            android:id="@+id/imageAdd"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageView63"
-            android:layout_toStartOf="@+id/imageView63"
+            android:layout_toLeftOf="@+id/imageBianJi"
+            android:layout_toStartOf="@+id/imageBianJi"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@mipmap/tianjia" />

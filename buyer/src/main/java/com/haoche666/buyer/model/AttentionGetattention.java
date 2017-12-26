@@ -1,5 +1,6 @@
 package com.haoche666.buyer.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @author ZhangJieBo
  */
 
-public class AttentionGetattention {
+public class AttentionGetattention implements Serializable{
     /**
      * data : [{"des":"12.00万公里 | 2015年","id":3,"img":"https://www.haoche666.com/Uploads/attachment/20171219/c8023024a06442e12db6cb13368abe7b.jpg","is_sale":0,"title":"奥迪A6L 2015款 TFSI 纪念智领版"}]
      * info : 操作成功！
@@ -53,7 +54,7 @@ public class AttentionGetattention {
         this.data = data;
     }
 
-    public static class PageBean {
+    public static class PageBean implements Serializable{
         /**
          * dataTotal : 1
          * page : 1
@@ -99,7 +100,7 @@ public class AttentionGetattention {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * des : 12.00万公里 | 2015年
          * id : 3
@@ -169,7 +170,7 @@ public class AttentionGetattention {
         }
 
 
-        public static class CarBean {
+        public static class CarBean implements Serializable{
             private int id;
             private String img;
             private String price;

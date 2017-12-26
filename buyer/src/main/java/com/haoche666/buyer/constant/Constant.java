@@ -202,6 +202,7 @@ public class Constant {
         public static final int IMAGE_PICKER = 2029;
         public static final int PIN_PAI = 2030;
         public static final int BRAND = 2031;
+        public static final int MAICHE = 2032;
     }
 
     public static class Acache {

@@ -1,20 +1,27 @@
 package com.haoche666.buyer.avtivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.AttentionGetattention;
+import com.haoche666.buyer.model.DuiBi;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheLiangDBViewHolder;
@@ -39,6 +46,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<AttentionGetattention.DataBean> adapter;
     private int page = 1;
+    private ImageView imageBianJi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     protected void findID() {
         recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
+        imageBianJi = (ImageView) findViewById(R.id.imageBianJi);
     }
 
     @Override
@@ -84,34 +93,34 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-               ApiClient.post(CheLiangDBActivity.this, getOkObject(), new ApiClient.CallBack() {
-                   @Override
-                   public void onSuccess(String s) {
-                       try {
-                           page++;
-                           AttentionGetattention attentionGetattention = GsonUtils.parseJSON(s, AttentionGetattention.class);
-                           int status = attentionGetattention.getStatus();
-                           if (status == 1) {
-                               List<AttentionGetattention.DataBean> dataBeanList = attentionGetattention.getData();
-                               for (int i = 0; i < dataBeanList.size(); i++) {
-                                   dataBeanList.get(i).setSelect(false);
-                               }
-                               adapter.addAll(dataBeanList);
-                           } else if (status == 3) {
-                               MyDialog.showReLoginDialog(CheLiangDBActivity.this);
-                           } else {
-                               adapter.pauseMore();
-                           }
-                       } catch (Exception e) {
-                           adapter.pauseMore();
-                       }
-                   }
+                ApiClient.post(CheLiangDBActivity.this, getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            page++;
+                            AttentionGetattention attentionGetattention = GsonUtils.parseJSON(s, AttentionGetattention.class);
+                            int status = attentionGetattention.getStatus();
+                            if (status == 1) {
+                                List<AttentionGetattention.DataBean> dataBeanList = attentionGetattention.getData();
+                                for (int i = 0; i < dataBeanList.size(); i++) {
+                                    dataBeanList.get(i).setSelect(false);
+                                }
+                                adapter.addAll(dataBeanList);
+                            } else if (status == 3) {
+                                MyDialog.showReLoginDialog(CheLiangDBActivity.this);
+                            } else {
+                                adapter.pauseMore();
+                            }
+                        } catch (Exception e) {
+                            adapter.pauseMore();
+                        }
+                    }
 
-                   @Override
-                   public void onError() {
-                       adapter.pauseMore();
-                   }
-               });
+                    @Override
+                    public void onError() {
+                        adapter.pauseMore();
+                    }
+                });
             }
 
             @Override
@@ -140,11 +149,15 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                 adapter.resumeMore();
             }
         });
-        recyclerView.setRefreshListener(this);
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                if (adapter.getItem(position).isSelect()) {
+                    adapter.getItem(position).setSelect(false);
+                } else {
+                    adapter.getItem(position).setSelect(true);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -153,6 +166,24 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
         findViewById(R.id.buttonDuiBi).setOnClickListener(this);
+        findViewById(R.id.imageAdd).setOnClickListener(this);
+        imageBianJi.setOnClickListener(this);
+        recyclerView.getEmptyView().findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCar();
+            }
+        });
+    }
+
+    /**
+     * des： 添加对比车辆
+     * author： ZhangJieBo
+     * date： 2017/12/26/026 16:07
+     */
+    private void addCar() {
+        setResult(Constant.RequestResultCode.MAICHE);
+        finish();
     }
 
     @Override
@@ -163,18 +194,51 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.imageBianJi:
+                showDeleteDialog();
+                break;
+            case R.id.imageAdd:
+                addCar();
+                break;
             case R.id.buttonDuiBi:
+                List<AttentionGetattention.DataBean> allData = adapter.getAllData();
+                if (allData.size() == 0) {
+                    Toast.makeText(CheLiangDBActivity.this, "请选择对比车辆", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (allData.size() > 10) {
+                    Toast.makeText(CheLiangDBActivity.this, "对比车辆不能超过十辆", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent();
+                intent.putExtra(Constant.IntentKey.BEAN, new DuiBi(allData));
                 intent.setClass(CheLiangDBActivity.this, DuiBiActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imageBack:
                 finish();
                 break;
+
             default:
 
                 break;
         }
+    }
+
+    /**
+     * 删除pop
+     */
+    private void showDeleteDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_delete, null);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(view);
+        Window dialogWindow = dialog.getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.x = (int) DpUtils.convertDpToPixel(20, this);
+        lp.y = (int) DpUtils.convertDpToPixel(20, this);
+        dialogWindow.setGravity(Gravity.RIGHT | Gravity.TOP);
+        dialogWindow.setAttributes(lp);
+        dialog.show();
     }
 
     /**
@@ -187,10 +251,10 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("type_id",4+"");
-        params.put("p",page+"");
+        params.put("type_id", 4 + "");
+        params.put("p", page + "");
         return new OkObject(params, url);
     }
 

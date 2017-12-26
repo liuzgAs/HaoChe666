@@ -31,7 +31,7 @@
             android:layout_marginTop="80dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/button5"
+            android:id="@+id/buttonAdd"
             style="@style/MyBtn01"
             android:layout_below="@+id/textView127"
             android:layout_centerHorizontal="true"

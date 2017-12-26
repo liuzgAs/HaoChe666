@@ -55,7 +55,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="10dp"
         android:src="@mipmap/xuanzhong"
-        android:layout_width="wrap_content"
+        android:layout_width="22dp"
         android:layout_height="wrap_content"
         android:id="@+id/imageSelect"
         android:layout_centerVertical="true"
