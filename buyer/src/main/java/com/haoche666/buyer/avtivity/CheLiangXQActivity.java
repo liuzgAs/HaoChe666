@@ -554,10 +554,14 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewDuiBi:
-                if (carBean.getIs_contrast()==1){
-                    duiBi(0);
-                }else {
-                    duiBi(1);
+                if (isLogin){
+                    if (carBean.getIs_contrast()==1){
+                        duiBi(0);
+                    }else {
+                        duiBi(1);
+                    }
+                }else{
+                    ToLoginActivity.toLoginActivity(this);
                 }
                 break;
             case R.id.viewGuanZhu:
@@ -621,6 +625,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                        }else {
                            carBean.setIs_contrast(1);
                            textDuiBi.setText("取消对比");
+                           Intent intent = new Intent();
+                           intent.setClass(CheLiangXQActivity.this,CheLiangDBActivity.class);
+                           startActivity(intent);
                        }
                    }else if (simpleInfo.getStatus()==3){
                        MyDialog.showReLoginDialog(CheLiangXQActivity.this);

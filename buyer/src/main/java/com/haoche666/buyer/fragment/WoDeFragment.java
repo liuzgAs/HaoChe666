@@ -22,7 +22,6 @@ import com.haoche666.buyer.avtivity.CheLiangDBActivity;
 import com.haoche666.buyer.avtivity.ChongZhiActivity;
 import com.haoche666.buyer.avtivity.DingDanGLActivity;
 import com.haoche666.buyer.avtivity.GeRenXXActivity;
-import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PayVipActivity;
 import com.haoche666.buyer.avtivity.SheZhiActivity;
 import com.haoche666.buyer.avtivity.WoDeGZActivity;
@@ -236,15 +235,6 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     public void onResume() {
         super.onResume();
         mHeaderWaveHelper.start();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==Constant.RequestResultCode.MAICHE&&resultCode==Constant.RequestResultCode.MAICHE){
-            LogUtil.LogShitou("WoDeFragment--onActivityResult", "11111111111");
-            ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-        }
     }
 
     @Override

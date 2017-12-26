@@ -182,8 +182,9 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
      * date： 2017/12/26/026 16:07
      */
     private void addCar() {
-        setResult(Constant.RequestResultCode.MAICHE);
-        finish();
+        Intent intent = new Intent();
+        intent.setAction(Constant.BroadcastCode.DUI_BI);
+        sendBroadcast(intent);
     }
 
     @Override

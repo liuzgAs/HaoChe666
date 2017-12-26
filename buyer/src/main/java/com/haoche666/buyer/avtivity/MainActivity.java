@@ -2,9 +2,11 @@ package com.haoche666.buyer.avtivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +33,7 @@ import huisedebi.zjb.mylibrary.util.DpUtils;
 
 /**
  * 主界面
+ *
  * @author Administrator
  */
 public class MainActivity extends ZjbBaseNotLeftActivity {
@@ -53,6 +56,20 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     public boolean isPinPaiXC = false;
     public boolean isJiaGEXC = false;
     public boolean isSearch = false;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.DUI_BI:
+                    mTabHost.setCurrentTab(1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,10 +104,10 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtab);
         for (int i = 0; i < tabsItem.length; i++) {
             View inflate = getLayoutInflater().inflate(R.layout.tabs_item, null);
-            TextView tabsText =  inflate.findViewById(R.id.tabs_text);
-            ImageView tabsImg =  inflate.findViewById(R.id.tabs_img);
-            if (i==1){
-                tabsImg.setPadding(0,(int) DpUtils.convertDpToPixel(1f,this),0,(int) DpUtils.convertDpToPixel(1f,this));
+            TextView tabsText = inflate.findViewById(R.id.tabs_text);
+            ImageView tabsImg = inflate.findViewById(R.id.tabs_img);
+            if (i == 1) {
+                tabsImg.setPadding(0, (int) DpUtils.convertDpToPixel(1f, this), 0, (int) DpUtils.convertDpToPixel(1f, this));
             }
             tabsText.setText(tabsItem[i]);
             tabsImg.setImageResource(imgRes[i]);
@@ -116,14 +133,14 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
                                         Intent mStartActivity = new Intent(MainActivity.this, MainActivity.class);
                                         int mPendingIntentId = 123456;
                                         PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                                        AlarmManager mgr = (AlarmManager)MainActivity.this.getSystemService(Context.ALARM_SERVICE);
+                                        AlarmManager mgr = (AlarmManager) MainActivity.this.getSystemService(Context.ALARM_SERVICE);
                                         if (mgr != null) {
                                             mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                                         }
                                         SophixManager.getInstance().killProcessSafely();
                                     }
                                 })
-                                .setNegativeButton("否",null)
+                                .setNegativeButton("否", null)
                                 .create()
                                 .show();
                     }
@@ -155,5 +172,19 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
                 System.exit(0);
             }
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.DUI_BI);
+        registerReceiver(reciver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(reciver);
     }
 }

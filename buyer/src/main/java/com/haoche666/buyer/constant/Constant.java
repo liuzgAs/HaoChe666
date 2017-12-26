@@ -232,6 +232,7 @@ public class Constant {
         public static final String WX_LOGIN_FAIL = "wxLoginFail";
         public static final String WX_SHARE_FAIL = "wxShareFail";
         public static final String CHONG_ZHI = "chongZhi";
+        public static final String DUI_BI = "duiBi";
     }
 
 
