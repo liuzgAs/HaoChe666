@@ -1,14 +1,17 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
@@ -19,12 +22,15 @@ import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.ApiClient;
+import com.haoche666.buyer.util.DateTransforam;
 import com.haoche666.buyer.viewholder.DingDanGLViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
@@ -34,13 +40,15 @@ import huisedebi.zjb.mylibrary.util.LogUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
 
     private View mInflate;
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Integer> adapter;
     private int page = 1;
+    private TextView textStart;
+    private TextView textEnd;
 
     public XiaoFeiMXFragment() {
         // Required empty public constructor
@@ -75,7 +83,9 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
 
     @Override
     protected void findID() {
-        recyclerView = (EasyRecyclerView) mInflate.findViewById(R.id.recyclerView);
+        recyclerView = mInflate.findViewById(R.id.recyclerView);
+        textStart = mInflate.findViewById(R.id.textStart);
+        textEnd = mInflate.findViewById(R.id.textEnd);
     }
 
     @Override
@@ -146,13 +156,17 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
 
     @Override
     protected void setListeners() {
-
+        mInflate.findViewById(R.id.viewStart).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewEnd).setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         onRefresh();
     }
+
+    private String date_begin;
+    private String date_end;
 
     /**
      * des： 网络请求参数
@@ -164,9 +178,11 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("p",page+"");
+        params.put("date_begin", date_begin);
+        params.put("date_end", date_end);
+        params.put("p", String.valueOf(page));
         return new OkObject(params, url);
     }
 
@@ -181,7 +197,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                     page++;
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
                     if (simpleInfo.getStatus() == 1) {
-                    } else if (simpleInfo.getStatus()== 3) {
+                    } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
                         showError(simpleInfo.getInfo());
@@ -195,6 +211,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
             public void onError() {
                 showError("网络出错");
             }
+
             /**
              * 错误显示
              * @param msg
@@ -214,5 +231,54 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                 recyclerView.showError();
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.viewStart:
+                Calendar c1 = Calendar.getInstance();
+                DatePickerDialog datePickerDialog1 = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        try {
+                            date_begin = DateTransforam.dateToStamp(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        textStart.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        onRefresh();
+                    }
+                }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DAY_OF_MONTH));
+                if (!TextUtils.isEmpty(date_end)){
+                    datePickerDialog1.getDatePicker().setMaxDate(Long.parseLong(date_end));
+                }else {
+                    datePickerDialog1.getDatePicker().setMaxDate(System.currentTimeMillis());
+                }
+                datePickerDialog1.show();
+                break;
+            case R.id.viewEnd:
+                Calendar c = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        try {
+                            date_end = DateTransforam.dateToStamp(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        textEnd.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        onRefresh();
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+                if (!TextUtils.isEmpty(date_begin)){
+                    datePickerDialog.getDatePicker().setMinDate(Long.parseLong(date_begin));
+                }
+                datePickerDialog.show();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/viewStart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/normalItemHeight"
             android:background="@drawable/layout_selector_white_system_gray">
@@ -26,13 +27,14 @@
                 android:textSize="@dimen/bigText" />
 
             <TextView
+                android:id="@+id/textStart"
+                android:hint="选择开始时间"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/text01"
                 android:layout_toRightOf="@+id/text01"
-                android:text="2017-11-28"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/bigText" />
 
@@ -47,6 +49,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/viewEnd"
             android:layout_width="match_parent"
             android:layout_height="@dimen/normalItemHeight"
             android:layout_marginTop="1dp"
@@ -62,13 +65,14 @@
                 android:textSize="@dimen/bigText" />
 
             <TextView
+                android:id="@+id/textEnd"
+                android:hint="选择结束时间"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/text02"
                 android:layout_toRightOf="@+id/text02"
-                android:text="2017-11-28"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/bigText" />
 
