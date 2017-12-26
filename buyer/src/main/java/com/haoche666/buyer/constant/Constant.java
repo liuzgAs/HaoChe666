@@ -165,7 +165,14 @@ public class Constant {
          * 获取对比车辆
          */
         public static final String GETATTENTION = "/getAttention";
+        /**
+         * 微信支付
+         */
         public static final String PAY_WXPAY = "/pay/wxpay";
+        /**
+         * 获取消费明细
+         */
+        public static final String CORDER_GETCONSUMEDETAIL = "/corder/getConsumeDetail";
     }
 
     public static class IntentKey {

@@ -162,6 +162,7 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
     public void onStart() {
         super.onStart();
         IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.CHONG_ZHI);
         registerReceiver(reciver, filter);
     }
 
