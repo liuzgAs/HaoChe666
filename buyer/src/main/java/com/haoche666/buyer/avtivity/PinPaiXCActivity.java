@@ -373,7 +373,6 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         return new OkObject(params, url);
     }
 
-
     @Override
     public void onRefresh() {
         ApiClient.post(this, getOkObject(), new ApiClient.CallBack() {
