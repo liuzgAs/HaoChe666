@@ -14,9 +14,8 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.AttentionGetattention;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
-import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheLiangDBViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -25,6 +24,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.HashMap;
+import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -37,7 +37,7 @@ import huisedebi.zjb.mylibrary.util.LogUtil;
  */
 public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<AttentionGetattention.DataBean> adapter;
     private int page = 1;
 
     @Override
@@ -74,7 +74,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(CheLiangDBActivity.this) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<AttentionGetattention.DataBean>(CheLiangDBActivity.this) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_che_liang_db;
@@ -84,8 +84,34 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+               ApiClient.post(CheLiangDBActivity.this, getOkObject(), new ApiClient.CallBack() {
+                   @Override
+                   public void onSuccess(String s) {
+                       try {
+                           page++;
+                           AttentionGetattention attentionGetattention = GsonUtils.parseJSON(s, AttentionGetattention.class);
+                           int status = attentionGetattention.getStatus();
+                           if (status == 1) {
+                               List<AttentionGetattention.DataBean> dataBeanList = attentionGetattention.getData();
+                               for (int i = 0; i < dataBeanList.size(); i++) {
+                                   dataBeanList.get(i).setSelect(false);
+                               }
+                               adapter.addAll(dataBeanList);
+                           } else if (status == 3) {
+                               MyDialog.showReLoginDialog(CheLiangDBActivity.this);
+                           } else {
+                               adapter.pauseMore();
+                           }
+                       } catch (Exception e) {
+                           adapter.pauseMore();
+                       }
+                   }
+
+                   @Override
+                   public void onError() {
+                       adapter.pauseMore();
+                   }
+               });
             }
 
             @Override
@@ -157,13 +183,14 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
      * date： 2017/8/28 0028 上午 9:55
      */
     private OkObject getOkObject() {
-        String url = Constant.HOST + Constant.Url.GETATTENTION;
+        String url = Constant.HOST + Constant.Url.ATTENTION_GETATTENTION;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
             params.put("tokenTime",tokenTime);
         }
         params.put("type_id",4+"");
+        params.put("p",page+"");
         return new OkObject(params, url);
     }
 
@@ -176,12 +203,18 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                 LogUtil.LogShitou("对比车辆", s);
                 try {
                     page++;
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus() == 1) {
-                    } else if (simpleInfo.getStatus() == 3) {
+                    AttentionGetattention attentionGetattention = GsonUtils.parseJSON(s, AttentionGetattention.class);
+                    if (attentionGetattention.getStatus() == 1) {
+                        List<AttentionGetattention.DataBean> dataBeanList = attentionGetattention.getData();
+                        for (int i = 0; i < dataBeanList.size(); i++) {
+                            dataBeanList.get(i).setSelect(false);
+                        }
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (attentionGetattention.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheLiangDBActivity.this);
                     } else {
-                        showError(simpleInfo.getInfo());
+                        showError(attentionGetattention.getInfo());
                     }
                 } catch (Exception e) {
                     showError("数据出错");

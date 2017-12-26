@@ -118,6 +118,15 @@ public class AttentionGetattention {
         private String cut_price;
         private String price;
         private List<CarBean> car;
+        private boolean isSelect;
+
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        public void setSelect(boolean select) {
+            isSelect = select;
+        }
 
         public String getPrice() {
             return price;

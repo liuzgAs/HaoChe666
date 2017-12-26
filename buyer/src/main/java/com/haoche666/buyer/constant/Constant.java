@@ -162,10 +162,6 @@ public class Constant {
          */
         public static final String CORDER_RECHARGE = "/corder/recharge";
         /**
-         * 获取对比车辆
-         */
-        public static final String GETATTENTION = "/getAttention";
-        /**
          * 微信支付
          */
         public static final String PAY_WXPAY = "/pay/wxpay";
