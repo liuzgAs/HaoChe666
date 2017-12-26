@@ -28,7 +28,6 @@ import com.taobao.sophix.SophixManager;
 
 import huisedebi.zjb.mylibrary.util.BackHandlerHelper;
 import huisedebi.zjb.mylibrary.util.DpUtils;
-import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * 主界面
@@ -151,9 +150,8 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
                 toast.show();
                 currentTime = System.currentTimeMillis();
             } else {
-                LogUtil.LogShitou("MainActivity--onBackPressed", "退出app");
                 MyApplication.getInstance().exit();
-                android.os.Process.killProcess(android.os.Process.myPid());   //获取PID
+                android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(0);
             }
         }

@@ -17,12 +17,14 @@ public class DingDanGLViewHolder extends BaseViewHolder<Corder.DataBean> {
     private final TextView textType;
     private final TextView textDes;
     private final TextView textCreatetime;
+    private final TextView textPrice;
 
     public DingDanGLViewHolder(ViewGroup parent, @LayoutRes int res, int viewType) {
         super(parent, res);
         textType = $(R.id.textType);
         textDes = $(R.id.textDes);
         textCreatetime = $(R.id.textCreatetime);
+        textPrice = $(R.id.textPrice);
         switch (viewType) {
             case 1:
                 textType.setTextColor(ContextCompat.getColor(getContext(), R.color.dingDanChaWeiXiu));
@@ -52,6 +54,7 @@ public class DingDanGLViewHolder extends BaseViewHolder<Corder.DataBean> {
         super.setData(data);
         textDes.setText(data.getDes());
         textCreatetime.setText(data.getCreatetime());
+        textPrice.setText("¥"+data.getPrice());
     }
 
 }

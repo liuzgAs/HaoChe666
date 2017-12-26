@@ -654,4 +654,15 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             ((MainActivity) getActivity()).isJiaGEXC = false;
         }
     }
+
+    @Override
+    public boolean onBackPressed() {
+        if (shaiXuanVisible!=-1) {
+            shaiXuanVisible = -1;
+            viewShaiXuan.setVisibility(View.GONE);
+            return true;
+        } else {
+            return super.onBackPressed();
+        }
+    }
 }

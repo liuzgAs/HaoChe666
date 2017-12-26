@@ -113,6 +113,15 @@ public class Corder {
         private int id;
         private String order_no;
         private int type_id;
+        private String price;
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
 
         public String getCreatetime() {
             return createtime;
