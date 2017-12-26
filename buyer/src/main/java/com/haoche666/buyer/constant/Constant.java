@@ -181,6 +181,10 @@ public class Constant {
          * 获取订单列表
          */
         public static final String CORDER = "/corder";
+        /**
+         * 获取对比参数
+         */
+        public static final String ATTENTION_GETCONTRASTINFO = "/Attention/getContrastInfo";
     }
 
     public static class IntentKey {

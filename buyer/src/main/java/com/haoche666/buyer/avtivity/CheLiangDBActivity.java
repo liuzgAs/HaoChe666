@@ -202,11 +202,17 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                 break;
             case R.id.buttonDuiBi:
                 List<AttentionGetattention.DataBean> allData = adapter.getAllData();
-                if (allData.size() == 0) {
-                    Toast.makeText(CheLiangDBActivity.this, "请选择对比车辆", Toast.LENGTH_SHORT).show();
+                int count = 0;
+                for (int i = 0; i < allData.size(); i++) {
+                    if (allData.get(i).isSelect()) {
+                        count++;
+                    }
+                }
+                if (count < 2) {
+                    Toast.makeText(CheLiangDBActivity.this, "请选择至少两辆车辆", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (allData.size() > 10) {
+                if (count > 10) {
                     Toast.makeText(CheLiangDBActivity.this, "对比车辆不能超过十辆", Toast.LENGTH_SHORT).show();
                     return;
                 }

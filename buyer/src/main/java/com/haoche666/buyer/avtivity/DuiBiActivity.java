@@ -5,16 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.customview.MyScrollView;
 import com.haoche666.buyer.model.AttentionGetattention;
+import com.haoche666.buyer.model.DuiBICanShu;
 import com.haoche666.buyer.model.DuiBi;
+import com.haoche666.buyer.model.SimpleInfo;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.DuiBiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -25,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
+import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 
 public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListener {
@@ -224,8 +230,64 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private String getOkObject() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < duiBiAllData.size(); i++) {
+            list.add(duiBiAllData.get(i).getId());
+        }
+        DuiBICanShu duiBICanShu = new DuiBICanShu(1, "android", userInfo.getUid(), tokenTime,list);
+        return GsonUtils.parseObject(duiBICanShu);
+    }
+
     @Override
     protected void initData() {
+        String url = Constant.HOST + Constant.Url.ATTENTION_GETCONTRASTINFO;
+        ApiClient.postJson(this, url,getOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("对比参数", s);
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus() == 1) {
+                    } else if (simpleInfo.getStatus()== 3) {
+                        MyDialog.showReLoginDialog(DuiBiActivity.this);
+                    } else {
+                        showError(simpleInfo.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(DuiBiActivity.this).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
+
         adapter.clear();
         adapterInfo.clear();
         List<Integer> list = new ArrayList<>();
