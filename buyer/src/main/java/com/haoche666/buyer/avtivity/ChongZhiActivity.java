@@ -1,6 +1,9 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -29,6 +32,19 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
     List<String> list = new ArrayList<>();
     private ViewPager viewPager;
     private EditText editMoney;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.CHONG_ZHI:
+                    editMoney.setText("");
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +120,7 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
                     return;
                 }
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IntentKey.VALUE,editMoney.getText().toString().trim());
+                intent.putExtra(Constant.IntentKey.VALUE, editMoney.getText().toString().trim());
                 intent.setClass(this, PayChongZhiActivity.class);
                 startActivity(intent);
                 break;
@@ -140,5 +156,18 @@ public class ChongZhiActivity extends ZjbBaseActivity implements View.OnClickLis
         public int getCount() {
             return list.size();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        registerReceiver(reciver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(reciver);
     }
 }

@@ -292,6 +292,9 @@ public class PayChongZhiActivity extends ZjbBaseActivity implements View.OnClick
      * date： 2017/12/25/025 16:11
      */
     private void paySuccess() {
+        Intent intent = new Intent();
+        intent.setAction(Constant.BroadcastCode.CHONG_ZHI);
+        sendBroadcast(intent);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

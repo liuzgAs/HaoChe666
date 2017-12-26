@@ -68,6 +68,9 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 case Constant.BroadcastCode.USERINFO:
                     initData();
                     break;
+                case Constant.BroadcastCode.CHONG_ZHI:
+                    initData();
+                    break;
                 default:
                     break;
             }
@@ -153,7 +156,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
         return new OkObject(params, url);
     }
@@ -185,9 +188,9 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                                     .into(imageHead);
                             textName.setText(userBuyerindex.getNickname());
                             textMoney.setText(userBuyerindex.getMoney() + "");
-                            if (userBuyerindex.getGrade()>0){
+                            if (userBuyerindex.getGrade() > 0) {
                                 imageVip.setImageResource(R.mipmap.haochehuiyuan);
-                            }else {
+                            } else {
                                 imageVip.setImageResource(R.mipmap.pay_vip);
                             }
                             ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
@@ -252,8 +255,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 }
                 break;
             case R.id.textChongZhi:
-                intent.setClass(getActivity(), ChongZhiActivity.class);
-                startActivity(intent);
+                if (isLogin){
+                    intent.setClass(getActivity(), ChongZhiActivity.class);
+                    startActivity(intent);
+                }else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
                 break;
             case R.id.imageVip:
                 intent.setClass(getActivity(), PayVipActivity.class);
@@ -276,10 +283,10 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.viewWoDeGZ:
-                if (isLogin){
+                if (isLogin) {
                     intent.setClass(getActivity(), WoDeGZActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(getActivity());
                 }
                 break;
@@ -294,6 +301,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         super.onStart();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.BroadcastCode.USERINFO);
+        filter.addAction(Constant.BroadcastCode.CHONG_ZHI);
         getActivity().registerReceiver(reciver, filter);
     }
 
