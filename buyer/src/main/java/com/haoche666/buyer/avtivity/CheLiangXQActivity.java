@@ -495,7 +495,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         if (carBean != null) {
                             if (carBean.getIs_attention() == 1) {
                                 imageCollect.setImageResource(R.mipmap.shoucang_true);
-                                textCollect.setText("取消关注");
+                                textCollect.setText("已关注");
                             } else {
                                 imageCollect.setImageResource(R.mipmap.mine_guanzhu);
                                 textCollect.setText("关注");
@@ -682,7 +682,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         }else {
                             carBean.setIs_attention(1);
                             imageCollect.setImageResource(R.mipmap.shoucang_true);
-                            textCollect.setText("取消关注");
+                            textCollect.setText("已关注");
                         }
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheLiangXQActivity.this);
