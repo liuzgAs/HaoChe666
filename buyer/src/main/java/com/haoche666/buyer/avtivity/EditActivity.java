@@ -81,7 +81,7 @@ public class EditActivity extends ZjbBaseActivity implements View.OnClickListene
                 edit();
                 break;
             case R.id.imageBack:
-
+                finish();
                 break;
             default:
                 break;
