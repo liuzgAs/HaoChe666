@@ -110,10 +110,19 @@ public class ProductQueryhistory {
          */
 
         private String create_time;
+        private String order_no;
         private String des;
         private int id;
         private double price;
         private String vin;
+
+        public String getOrder_no() {
+            return order_no;
+        }
+
+        public void setOrder_no(String order_no) {
+            this.order_no = order_no;
+        }
 
         public String getCreate_time() {
             return create_time;

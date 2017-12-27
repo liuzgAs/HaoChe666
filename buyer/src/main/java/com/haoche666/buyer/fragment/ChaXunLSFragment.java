@@ -2,6 +2,7 @@ package com.haoche666.buyer.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.avtivity.WebActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Carsearch;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.ProductQueryhistory;
 import com.haoche666.buyer.util.ApiClient;
@@ -163,7 +167,36 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                showLoadingDialog();
+                ApiClient.post(getActivity(), getJieGuoOkObject(adapter.getItem(position)), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        cancelLoadingDialog();
+                        LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
+                        try {
+                            Carsearch carsearch = GsonUtils.parseJSON(s, Carsearch.class);
+                            if (carsearch.getStatus() == 1) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(),WebActivity.class);
+                                intent.putExtra(Constant.IntentKey.TITLE,"查维保");
+                                intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
+                                startActivity(intent);
+                            } else if (carsearch.getStatus() == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                                Toast.makeText(getActivity(), carsearch.getInfo(), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
+                    @Override
+                    public void onError() {
+                        cancelLoadingDialog();
+                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
@@ -176,6 +209,23 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
     @Override
     protected void initData() {
         onRefresh();
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getJieGuoOkObject(ProductQueryhistory.DataBean dataBean) {
+        String url = Constant.HOST + Constant.Url.CARSEARCH;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("order_no",dataBean.getOrder_no());
+        params.put("type_id",type+"");
+        return new OkObject(params, url);
     }
 
     /**

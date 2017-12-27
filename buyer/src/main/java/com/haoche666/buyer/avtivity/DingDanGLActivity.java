@@ -1,5 +1,6 @@
 package com.haoche666.buyer.avtivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Carsearch;
 import com.haoche666.buyer.model.Corder;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
@@ -92,6 +95,7 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
             ApiClient.post(DingDanGLActivity.this, getOkObject(), new ApiClient.CallBack() {
                 @Override
                 public void onSuccess(String s) {
+                    LogUtil.LogShitou("DingDanGLActivity--加载更多", s+"");
                     try {
                         page++;
                         Corder corder = GsonUtils.parseJSON(s, Corder.class);
@@ -146,7 +150,36 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                showLoadingDialog();
+                ApiClient.post(DingDanGLActivity.this, getJieGuoOkObject(adapter.getItem(position)), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        cancelLoadingDialog();
+                        LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
+                        try {
+                            Carsearch carsearch = GsonUtils.parseJSON(s, Carsearch.class);
+                            if (carsearch.getStatus() == 1) {
+                                Intent intent = new Intent();
+                                intent.setClass(DingDanGLActivity.this,WebActivity.class);
+                                intent.putExtra(Constant.IntentKey.TITLE,"查维保");
+                                intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
+                                startActivity(intent);
+                            } else if (carsearch.getStatus() == 3) {
+                                MyDialog.showReLoginDialog(DingDanGLActivity.this);
+                            } else {
+                                Toast.makeText(DingDanGLActivity.this, carsearch.getInfo(), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(DingDanGLActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
+                    @Override
+                    public void onError() {
+                        cancelLoadingDialog();
+                        Toast.makeText(DingDanGLActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
@@ -171,6 +204,23 @@ public class DingDanGLActivity extends ZjbBaseActivity implements SwipeRefreshLa
 
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getJieGuoOkObject(Corder.DataBean dataBean) {
+        String url = Constant.HOST + Constant.Url.CARSEARCH;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("order_no",dataBean.getOrder_no());
+        params.put("type_id",dataBean.getType_id()+"");
+        return new OkObject(params, url);
     }
 
     /**
