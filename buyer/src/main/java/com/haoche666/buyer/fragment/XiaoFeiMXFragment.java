@@ -18,12 +18,11 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.CorderGetconsumedetail;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
-import com.haoche666.buyer.provider.DataProvider;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.util.DateTransforam;
-import com.haoche666.buyer.viewholder.DingDanGLViewHolder;
+import com.haoche666.buyer.viewholder.XiaoFeiMXViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -32,6 +31,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -45,7 +45,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
 
     private View mInflate;
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<CorderGetconsumedetail.DataBean> adapter;
     private int page = 1;
     private TextView textStart;
     private TextView textEnd;
@@ -100,23 +100,46 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CorderGetconsumedetail.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_ding_dan_gl;
-                return new DingDanGLViewHolder(parent, layout, viewType);
+                return new XiaoFeiMXViewHolder(parent, layout, viewType);
             }
 
             @Override
             public int getViewType(int position) {
-                return getItem(position);
+                return getItem(position).getType_id();
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+           ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+               @Override
+               public void onSuccess(String s) {
+                   try {
+                       page++;
+                       CorderGetconsumedetail corderGetconsumedetail = GsonUtils.parseJSON(s, CorderGetconsumedetail.class);
+                       int status = corderGetconsumedetail.getStatus();
+                       if (status == 1) {
+                           List<CorderGetconsumedetail.DataBean> dataBeanList = corderGetconsumedetail.getData();
+                           adapter.addAll(dataBeanList);
+                       } else if (status == 3) {
+                           MyDialog.showReLoginDialog(getActivity());
+                       } else {
+                           adapter.pauseMore();
+                       }
+                   } catch (Exception e) {
+                       adapter.pauseMore();
+                   }
+               }
+
+               @Override
+               public void onError() {
+                   adapter.pauseMore();
+               }
+           });
             }
 
             @Override
@@ -195,12 +218,15 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                 LogUtil.LogShitou("消费明细", s);
                 try {
                     page++;
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus() == 1) {
-                    } else if (simpleInfo.getStatus() == 3) {
+                    CorderGetconsumedetail corderGetconsumedetail = GsonUtils.parseJSON(s, CorderGetconsumedetail.class);
+                    if (corderGetconsumedetail.getStatus() == 1) {
+                        List<CorderGetconsumedetail.DataBean> dataBeanList = corderGetconsumedetail.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (corderGetconsumedetail.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
-                        showError(simpleInfo.getInfo());
+                        showError(corderGetconsumedetail.getInfo());
                     }
                 } catch (Exception e) {
                     showError("数据出错");

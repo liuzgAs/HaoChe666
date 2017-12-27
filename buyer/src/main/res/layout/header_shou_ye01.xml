@@ -84,10 +84,11 @@
         <TextView
             android:id="@+id/textPaiDangTitle"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center_horizontal"
             android:paddingTop="10dp"
+            android:paddingBottom="15dp"
             android:text="标致207 2009款 三厢 1.6L 手动品乐版"
             android:textColor="@color/light_black"
             android:textSize="@dimen/bigText"
