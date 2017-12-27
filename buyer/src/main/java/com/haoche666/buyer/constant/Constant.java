@@ -24,6 +24,14 @@ public class Constant {
     public static String QQ_ID = "1106239952";
     public static String QQ_KEY = "HcA9s2rpKkLO2M5w";
 
+    /**
+     * 融云开发环境参数
+     * App Key
+     * 3argexb630c2e
+     * App Secret
+     * kDu3k9mcSbtW
+     */
+
     public static class Url {
         /**
          * 车讯网数据
