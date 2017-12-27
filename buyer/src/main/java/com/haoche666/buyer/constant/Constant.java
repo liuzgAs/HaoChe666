@@ -197,6 +197,10 @@ public class Constant {
          * 获取城市列表
          */
         public static final String CARSEARCH_GETCITY = "/carsearch/getCity";
+        /**
+         * 获取查询结果
+         */
+        public static final String CARSEARCH = "/carsearch";
     }
 
     public static class IntentKey {

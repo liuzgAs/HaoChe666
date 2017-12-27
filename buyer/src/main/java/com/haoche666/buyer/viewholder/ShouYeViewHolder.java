@@ -55,6 +55,7 @@ public class ShouYeViewHolder extends BaseViewHolder<Buyer.DataBean> {
         textTitle.setText(data.getTitle());
         textDes.setText(data.getDes());
         textPrice.setText(data.getPrice());
+        textShouFu.setText(data.getOne_payments());
     }
     
 }

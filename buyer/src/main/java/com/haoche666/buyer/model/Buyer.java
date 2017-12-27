@@ -189,6 +189,15 @@ public class Buyer {
         private String img;
         private String price;
         private String title;
+        private String one_payments;
+
+        public String getOne_payments() {
+            return one_payments;
+        }
+
+        public void setOne_payments(String one_payments) {
+            this.one_payments = one_payments;
+        }
 
         public String getDes() {
             return des;

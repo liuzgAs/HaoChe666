@@ -18,6 +18,7 @@ import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.AliPayBean;
 import com.haoche666.buyer.model.CarCarparam;
+import com.haoche666.buyer.model.Carsearch;
 import com.haoche666.buyer.model.CorderCreateorder;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.PayAlipay;
@@ -53,6 +54,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     private int payMode = 0;
     private View[] paySelectView = new View[3];
     private View[] payView = new View[3];
+    private int type_id =1;
     final IWXAPI api = WXAPIFactory.createWXAPI(this, null);
     private BroadcastReceiver recevier = new BroadcastReceiver() {
         @Override
@@ -75,6 +77,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
             }
         }
     };
+    private String order_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +166,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
             params.put("tokenTime", tokenTime);
         }
         params.put("id", dataBean.getId() + "");
-        params.put("type_id", 1 + "");
+        params.put("type_id", type_id + "");
         params.put("vin", editVin.getText().toString().trim());
         params.put("brand_id", brandBean.getId() + "");
         return new OkObject(params, url);
@@ -190,15 +193,16 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                         try {
                             CorderCreateorder corderCreateorder = GsonUtils.parseJSON(s, CorderCreateorder.class);
                             if (corderCreateorder.getStatus() == 1) {
+                                order_no = corderCreateorder.getOrder_no();
                                 switch (payMode) {
                                     case 0:
-                                        yuEZhiFu(corderCreateorder.getOrder_no());
+                                        yuEZhiFu();
                                         break;
                                     case 1:
-                                        zhiFuBao(corderCreateorder.getOrder_no());
+                                        zhiFuBao();
                                         break;
                                     case 2:
-                                        weiXinZF(corderCreateorder.getOrder_no());
+                                        weiXinZF();
                                         break;
                                     default:
 
@@ -240,7 +244,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getWXOkObject(String order_no) {
+    private OkObject getWXOkObject() {
         String url = Constant.HOST + Constant.Url.PAY_WXPAY;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
@@ -256,9 +260,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/12/25/025 17:25
      */
-    private void weiXinZF(String order_no) {
+    private void weiXinZF() {
         showLoadingDialog();
-        ApiClient.post(ChaWeiBaoActivity.this, getWXOkObject(order_no), new ApiClient.CallBack() {
+        ApiClient.post(ChaWeiBaoActivity.this, getWXOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
@@ -318,7 +322,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getZFBOkObject(String order_no) {
+    private OkObject getZFBOkObject() {
         String url = Constant.HOST + Constant.Url.PAY_ALIPAY;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
@@ -332,9 +336,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     /**
      * 支付宝支付
      */
-    private void zhiFuBao(String order_no) {
+    private void zhiFuBao() {
         showLoadingDialog();
-        ApiClient.post(ChaWeiBaoActivity.this, getZFBOkObject(order_no), new ApiClient.CallBack() {
+        ApiClient.post(ChaWeiBaoActivity.this, getZFBOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
@@ -404,15 +408,56 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     }
 
     /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getJieGuoOkObject() {
+        String url = Constant.HOST + Constant.Url.CARSEARCH;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("order_no",order_no);
+        params.put("type_id",type_id+"");
+        return new OkObject(params, url);
+    }
+
+    /**
      * des： 支付成功
      * author： ZhangJieBo
      * date： 2017/12/25/025 16:11
      */
     private void paySuccess() {
-        runOnUiThread(new Runnable() {
+        showLoadingDialog();
+        ApiClient.post(ChaWeiBaoActivity.this, getJieGuoOkObject(), new ApiClient.CallBack() {
             @Override
-            public void run() {
-                MyDialog.dialogFinish(ChaWeiBaoActivity.this, "支付成功");
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
+                try {
+                    Carsearch carsearch = GsonUtils.parseJSON(s, Carsearch.class);
+                    if (carsearch.getStatus() == 1) {
+                        Intent intent = new Intent();
+                        intent.setClass(ChaWeiBaoActivity.this,WebActivity.class);
+                        intent.putExtra(Constant.IntentKey.TITLE,"查维保");
+                        intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
+                        startActivity(intent);
+                    } else if (carsearch.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
+                    } else {
+                        Toast.makeText(ChaWeiBaoActivity.this, carsearch.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -422,7 +467,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
      * author： ZhangJieBo
      * date： 2017/8/28 0028 上午 9:55
      */
-    private OkObject getYuEOkObject(String order_no) {
+    private OkObject getYuEOkObject() {
         String url = Constant.HOST + Constant.Url.PAY_BALANCEPAY;
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
@@ -436,9 +481,9 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     /**
      * 余额支付
      */
-    private void yuEZhiFu(String order_no) {
+    private void yuEZhiFu() {
         showLoadingDialog();
-        ApiClient.post(ChaWeiBaoActivity.this, getYuEOkObject(order_no), new ApiClient.CallBack() {
+        ApiClient.post(ChaWeiBaoActivity.this, getYuEOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
@@ -446,6 +491,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                 try {
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
                     if (simpleInfo.getStatus() == 1) {
+                        paySuccess();
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
                     } else {
