@@ -8,6 +8,7 @@
     <include layout="@layout/view_bar_white"/>
 
     <RelativeLayout
+        android:id="@+id/viewCity"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
         android:layout_marginTop="5dp"
@@ -36,6 +37,7 @@
             android:textSize="@dimen/normal_textsize" />
 
         <TextView
+            android:hint="请选择城市"
             android:id="@+id/textCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +45,6 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/imageView80"
             android:layout_toStartOf="@+id/imageView80"
-            android:text="广东 深圳"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/normal_textsize" />
     </RelativeLayout>

@@ -185,6 +185,10 @@ public class Constant {
          * 获取对比参数
          */
         public static final String ATTENTION_GETCONTRASTINFO = "/Attention/getContrastInfo";
+        /**
+         * 获取城市列表
+         */
+        public static final String CARSEARCH_GETCITY = "/carsearch/getCity";
     }
 
     public static class IntentKey {
