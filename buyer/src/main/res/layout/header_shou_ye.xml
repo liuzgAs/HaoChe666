@@ -168,7 +168,6 @@
             android:id="@+id/viewWoYaoMC"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="0.5dp"
             android:layout_weight="1"
             android:background="@color/shouYeZongSe"
             android:gravity="center">
@@ -196,6 +195,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/viewZhuCe"
             android:layout_width="match_parent"
             android:layout_height="50dp"
