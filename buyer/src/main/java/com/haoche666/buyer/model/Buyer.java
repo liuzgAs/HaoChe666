@@ -28,6 +28,54 @@ public class Buyer {
     private List<NewsBean> news;
     private List<StoreBean> store;
     private List<VideoBeanX> video;
+    private List<HotCar> hotcar;
+
+    public List<HotCar> getHotcar() {
+        return hotcar;
+    }
+
+    public void setHotcar(List<HotCar> hotcar) {
+        this.hotcar = hotcar;
+    }
+
+    public static class HotCar{
+        private int id;
+        private String img;
+        private String title;
+        private String x_title;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getX_title() {
+            return x_title;
+        }
+
+        public void setX_title(String x_title) {
+            this.x_title = x_title;
+        }
+    }
 
     public String getInfo() {
         return info;

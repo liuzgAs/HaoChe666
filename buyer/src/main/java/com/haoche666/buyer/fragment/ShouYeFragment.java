@@ -74,6 +74,8 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<Buyer.BannerBean> bannerBeanList;
     private List<Buyer.VideoBeanX> videoBeanXList;
     private List<Buyer.NewsBean> newsBeanList;
+    private List<Buyer.HotCar> hotCarList;
+
     private ImageView imageImg;
     private BroadcastReceiver reciver = new BroadcastReceiver() {
         @Override
@@ -195,6 +197,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             private ConvenientBanner banner;
             private View[] bannerText = new View[4];
             private int zhiShiQi;
+            private ImageView[] hotImg = new ImageView[4];
+            private TextView[] hotText00 = new TextView[4];
+            private TextView[] hotText01 = new TextView[4];
 
             @Override
             public View onCreateView(ViewGroup parent) {
@@ -349,6 +354,18 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         }
                     }
                 });
+                hotImg[0] = header_shou_ye.findViewById(R.id.imageHotCar0000);
+                hotImg[1] = header_shou_ye.findViewById(R.id.imageHotCar0100);
+                hotImg[2] = header_shou_ye.findViewById(R.id.imageHotCar0200);
+                hotImg[3] = header_shou_ye.findViewById(R.id.imageHotCar0300);
+                hotText00[0] = header_shou_ye.findViewById(R.id.textHotCar0000);
+                hotText00[1] = header_shou_ye.findViewById(R.id.textHotCar0100);
+                hotText00[2] = header_shou_ye.findViewById(R.id.textHotCar0200);
+                hotText00[3] = header_shou_ye.findViewById(R.id.textHotCar0300);
+                hotText01[0] = header_shou_ye.findViewById(R.id.textHotCar0001);
+                hotText01[1] = header_shou_ye.findViewById(R.id.textHotCar0101);
+                hotText01[2] = header_shou_ye.findViewById(R.id.textHotCar0201);
+                hotText01[3] = header_shou_ye.findViewById(R.id.textHotCar0301);
                 return header_shou_ye;
             }
 
@@ -385,6 +402,17 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 banner02Adapter = new Banner02Adapter(getActivity(), storeBeanList);
                 id_viewpager01.setAdapter(banner02Adapter);
                 id_viewpager01.setCurrentItem(50);
+                if (hotCarList!=null){
+                    for (int i = 0; i < hotCarList.size(); i++) {
+                        Glide.with(getActivity())
+                                .load(hotCarList.get(i).getImg())
+                                .asBitmap()
+                                .placeholder(R.mipmap.ic_empty)
+                                .into(hotImg[i]);
+                        hotText00[i].setText(hotCarList.get(i).getTitle());
+                        hotText01[i].setText(hotCarList.get(i).getX_title());
+                    }
+                }
             }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
@@ -486,6 +514,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onRefresh() {
         page = 1;
         ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("买家版主页", s);
@@ -497,6 +526,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         videoBeanXList = buyer.getVideo();
                         bannerBeanList = buyer.getBanner();
                         newsBeanList = buyer.getNews();
+                        hotCarList = buyer.getHotcar();
                         List<Buyer.DataBean> dataBeanList = buyer.getData();
                         adapter.clear();
                         adapter.addAll(dataBeanList);
