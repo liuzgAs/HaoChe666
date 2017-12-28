@@ -2,6 +2,7 @@ package com.haoche666.buyer.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -27,6 +28,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import java.util.HashMap;
 import java.util.List;
 
+import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 
@@ -39,6 +41,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<ArticleHistory.DataBean> adapter;
     private int page = 1;
+    private RecyclerArrayAdapter.ItemView footer;
 
     public ZuJiNeiRongFragment() {
         // Required empty public constructor
@@ -92,6 +95,21 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
                 return new ZuJiNRViewHolder(parent, layout);
             }
         });
+        footer = new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = new View(getActivity());
+                view.setBackgroundColor(Color.WHITE);
+                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(10, getActivity())));
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        };
+        adapter.addFooter(footer);
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
@@ -105,6 +123,10 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
                         if (status == 1) {
                             List<ArticleHistory.DataBean> dataBeanList = articleHistory.getData();
                             adapter.addAll(dataBeanList);
+                            if (adapter.getAllData().size()==0){
+                                adapter.removeFooter(footer);
+                                recyclerView.showEmpty();
+                            }
                         } else if (status == 3) {
                             MyDialog.showReLoginDialog(getActivity());
                         } else {
