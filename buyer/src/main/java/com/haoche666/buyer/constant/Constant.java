@@ -6,6 +6,7 @@ package com.haoche666.buyer.constant;
  */
 public class Constant {
     public static String HOST = "https://www.haoche666.com/api";
+    public static String WWW = "http://api.haoche666.com";
     /**
      * 判断数据是否有改变
      */
@@ -33,6 +34,10 @@ public class Constant {
      */
 
     public static class Url {
+        /**
+         * 卖车规则
+         */
+        public static final String MAI_CHE_GUI_ZE = WWW+"/maiche/index.php";
         /**
          * 车讯网数据
          */

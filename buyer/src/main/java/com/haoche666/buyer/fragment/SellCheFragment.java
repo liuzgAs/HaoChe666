@@ -18,7 +18,6 @@ import huisedebi.zjb.mylibrary.util.ScreenUtils;
 public class SellCheFragment extends ZjbBaseFragment implements View.OnClickListener {
 
     private View mInflate;
-    private String mUrl = "http://api.haoche666.com/maiche/index.php";
     private View viewBar;
     private ImageView imageBack;
     private TextView textViewRight;
@@ -89,7 +88,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
             case R.id.textViewRight:
                 intent.setClass(getActivity(), WebActivity.class);
                 intent.putExtra(Constant.IntentKey.TITLE, "卖车流程");
-                intent.putExtra(Constant.IntentKey.URL, mUrl);
+                intent.putExtra(Constant.IntentKey.URL, Constant.Url.MAI_CHE_GUI_ZE);
                 startActivity(intent);
                 break;
             default:
