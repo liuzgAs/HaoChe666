@@ -29,6 +29,45 @@ public class Buyer {
     private List<StoreBean> store;
     private List<VideoBeanX> video;
     private List<HotCar> hotcar;
+    private List<HotSearch> hotSearch;
+
+    public List<HotSearch> getHotSearch() {
+        return hotSearch;
+    }
+
+    public void setHotSearch(List<HotSearch> hotSearch) {
+        this.hotSearch = hotSearch;
+    }
+
+    public static class HotSearch{
+        private String title;
+        private int type_id;
+        private List<Integer> value;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public int getType_id() {
+            return type_id;
+        }
+
+        public void setType_id(int type_id) {
+            this.type_id = type_id;
+        }
+
+        public List<Integer> getValue() {
+            return value;
+        }
+
+        public void setValue(List<Integer> value) {
+            this.value = value;
+        }
+    }
 
     public List<HotCar> getHotcar() {
         return hotcar;

@@ -90,6 +90,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             }
         }
     };
+    private List<Buyer.HotSearch> hotSearch;
 
     /**
      * 刷新车行
@@ -200,6 +201,17 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             private ImageView[] hotImg = new ImageView[4];
             private TextView[] hotText00 = new TextView[4];
             private TextView[] hotText01 = new TextView[4];
+            private TextView[] searchTextView = new TextView[8];
+            private int[] searchTextViewID = new int[]{
+                    R.id.text0300,
+                    R.id.text0301,
+                    R.id.text0302,
+                    R.id.text0303,
+                    R.id.text0304,
+                    R.id.text0305,
+                    R.id.text0306,
+                    R.id.text0307,
+            };
 
             @Override
             public View onCreateView(ViewGroup parent) {
@@ -366,6 +378,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 hotText01[1] = header_shou_ye.findViewById(R.id.textHotCar0101);
                 hotText01[2] = header_shou_ye.findViewById(R.id.textHotCar0201);
                 hotText01[3] = header_shou_ye.findViewById(R.id.textHotCar0301);
+                for (int i = 0; i < searchTextViewID.length; i++) {
+                    searchTextView[i] = header_shou_ye.findViewById(searchTextViewID[i]);
+                }
                 return header_shou_ye;
             }
 
@@ -402,7 +417,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 banner02Adapter = new Banner02Adapter(getActivity(), storeBeanList);
                 id_viewpager01.setAdapter(banner02Adapter);
                 id_viewpager01.setCurrentItem(50);
-                if (hotCarList!=null){
+                if (hotCarList != null) {
                     for (int i = 0; i < hotCarList.size(); i++) {
                         Glide.with(getActivity())
                                 .load(hotCarList.get(i).getImg())
@@ -527,6 +542,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         bannerBeanList = buyer.getBanner();
                         newsBeanList = buyer.getNews();
                         hotCarList = buyer.getHotcar();
+                        hotSearch = buyer.getHotSearch();
                         List<Buyer.DataBean> dataBeanList = buyer.getData();
                         adapter.clear();
                         adapter.addAll(dataBeanList);

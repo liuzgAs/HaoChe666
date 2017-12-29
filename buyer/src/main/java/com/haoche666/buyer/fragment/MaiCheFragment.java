@@ -326,8 +326,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 zPriceBeanList.get(i).setSelect(true);
                 priceAdapter.notifyDataSetChanged();
                 z_price = zPriceBeanList.get(i).getValue();
-                LogUtil.LogShitou("MaiCheFragment--onItemClick", "" + z_price.get(0) + "-" + z_price.get(1));
-                rangeSeekbar.setMinStartValue(z_price.get(0)).setMaxStartValue(z_price.get(1)).apply();
+                if (z_price.size()>0){
+                    rangeSeekbar.setMinStartValue(z_price.get(0)).setMaxStartValue(z_price.get(1)).apply();
+                }else {
+                    rangeSeekbar.setMinStartValue(0).setMaxStartValue(60).apply();
+                }
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
                 onRefresh();

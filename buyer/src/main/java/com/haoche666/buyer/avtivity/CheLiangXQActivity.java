@@ -317,13 +317,19 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             @Override
             public void onBindView(View headerView) {
                 if (bannerBeanList != null) {
-                    LogUtil.LogShitou("CheLiangXQActivity--bannerBeanList", "" + bannerBeanList.size());
-                    banner.setPages(new CBViewHolderCreator() {
-                        @Override
-                        public Object createHolder() {
-                            return new CheLiangBannerImgHolderView();
-                        }
-                    }, bannerBeanList);
+                    if (bannerBeanList.size() > 0) {
+                        LogUtil.LogShitou("CheLiangXQActivity--bannerBeanList", "" + bannerBeanList.size());
+                        banner.setPages(new CBViewHolderCreator() {
+                            @Override
+                            public Object createHolder() {
+                                return new CheLiangBannerImgHolderView();
+                            }
+                        }, bannerBeanList);
+                    } else {
+                        textZhiShiQi.setText("0/0");
+                    }
+                } else {
+                    textZhiShiQi.setText("0/0");
                 }
                 if (archives != null) {
                     for (int i = 0; i < archives.size(); i++) {
@@ -345,9 +351,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                             .into(imageLogo);
                     textName.setText(storeBean.getName());
                     textIntro.setText(storeBean.getIntro());
-                    if (storeBean.getIs_attention()==1){
+                    if (storeBean.getIs_attention() == 1) {
                         buttonGuanZhu.setText("已关注");
-                    }else {
+                    } else {
                         buttonGuanZhu.setText("+\u3000关注");
                     }
                 }
@@ -500,9 +506,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                                 imageCollect.setImageResource(R.mipmap.mine_guanzhu);
                                 textCollect.setText("关注");
                             }
-                            if (carBean.getIs_contrast()==1){
+                            if (carBean.getIs_contrast() == 1) {
                                 textDuiBi.setText("取消对比");
-                            }else {
+                            } else {
                                 textDuiBi.setText("对比");
                             }
                         }
@@ -554,24 +560,24 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewDuiBi:
-                if (isLogin){
-                    if (carBean.getIs_contrast()==1){
+                if (isLogin) {
+                    if (carBean.getIs_contrast() == 1) {
                         duiBi(0);
-                    }else {
+                    } else {
                         duiBi(1);
                     }
-                }else{
+                } else {
                     ToLoginActivity.toLoginActivity(this);
                 }
                 break;
             case R.id.viewGuanZhu:
-                if (isLogin){
+                if (isLogin) {
                     if (carBean.getIs_attention() == 1) {
                         guanZhu(0);
                     } else {
                         guanZhu(1);
                     }
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(this);
                 }
                 break;
@@ -596,11 +602,11 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("type_id",4+"");
-        params.put("car_store_id",carBean.getId()+"");
-        params.put("a_status",a_status+"");
+        params.put("type_id", 4 + "");
+        params.put("car_store_id", carBean.getId() + "");
+        params.put("a_status", a_status + "");
         return new OkObject(params, url);
     }
 
@@ -610,41 +616,41 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
      * date： 2017/12/25/025 15:39
      */
     private void duiBi(int a_status) {
-       showLoadingDialog();
-       ApiClient.post(CheLiangXQActivity.this, getDuiBiOkObject(a_status), new ApiClient.CallBack() {
-           @Override
-           public void onSuccess(String s) {
-               cancelLoadingDialog();
-               LogUtil.LogShitou("CheLiangXQActivity--onSuccess",s+ "");
-               try {
-                   SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                   if (simpleInfo.getStatus()==1){
-                       if (carBean.getIs_contrast()==1){
-                           carBean.setIs_contrast(0);
-                           textDuiBi.setText("对比");
-                       }else {
-                           carBean.setIs_contrast(1);
-                           textDuiBi.setText("取消对比");
-                           Intent intent = new Intent();
-                           intent.setClass(CheLiangXQActivity.this,CheLiangDBActivity.class);
-                           startActivity(intent);
-                       }
-                   }else if (simpleInfo.getStatus()==3){
-                       MyDialog.showReLoginDialog(CheLiangXQActivity.this);
-                   }else {
-                       Toast.makeText(CheLiangXQActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
-                   }
-               } catch (Exception e) {
-                   Toast.makeText(CheLiangXQActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
-               }
-           }
+        showLoadingDialog();
+        ApiClient.post(CheLiangXQActivity.this, getDuiBiOkObject(a_status), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("CheLiangXQActivity--onSuccess", s + "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus() == 1) {
+                        if (carBean.getIs_contrast() == 1) {
+                            carBean.setIs_contrast(0);
+                            textDuiBi.setText("对比");
+                        } else {
+                            carBean.setIs_contrast(1);
+                            textDuiBi.setText("取消对比");
+                            Intent intent = new Intent();
+                            intent.setClass(CheLiangXQActivity.this, CheLiangDBActivity.class);
+                            startActivity(intent);
+                        }
+                    } else if (simpleInfo.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                    } else {
+                        Toast.makeText(CheLiangXQActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(CheLiangXQActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-           @Override
-           public void onError() {
-               cancelLoadingDialog();
-               Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
-           }
-       });
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -682,11 +688,11 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 try {
                     SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
                     if (simpleInfo.getStatus() == 1) {
-                        if (carBean.getIs_attention()==1){
+                        if (carBean.getIs_attention() == 1) {
                             carBean.setIs_attention(0);
                             imageCollect.setImageResource(R.mipmap.mine_guanzhu);
                             textCollect.setText("关注");
-                        }else {
+                        } else {
                             carBean.setIs_attention(1);
                             imageCollect.setImageResource(R.mipmap.shoucang_true);
                             textCollect.setText("已关注");
