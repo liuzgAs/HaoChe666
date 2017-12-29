@@ -626,6 +626,10 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
+        if (((MainActivity) getActivity()).hotSearch!=null){
+            shaiXuanVisible = -1;
+            viewShaiXuan.setVisibility(View.GONE);
+        }
         if (((MainActivity) getActivity()).isSearch) {
             shaiXuanVisible = -1;
             viewShaiXuan.setVisibility(View.GONE);

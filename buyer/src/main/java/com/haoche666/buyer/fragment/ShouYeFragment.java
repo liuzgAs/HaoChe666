@@ -381,6 +381,22 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 for (int i = 0; i < searchTextViewID.length; i++) {
                     searchTextView[i] = header_shou_ye.findViewById(searchTextViewID[i]);
                 }
+                for (int i = 0; i < searchTextView.length; i++) {
+                    final int finalI = i;
+                    searchTextView[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((MainActivity)getActivity()).hotSearch = hotSearch.get(finalI);
+                            ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                        }
+                    });
+                }
+                header_shou_ye.findViewById(R.id.viewAll).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                    }
+                });
                 return header_shou_ye;
             }
 
@@ -426,6 +442,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                                 .into(hotImg[i]);
                         hotText00[i].setText(hotCarList.get(i).getTitle());
                         hotText01[i].setText(hotCarList.get(i).getX_title());
+                    }
+                }
+                if(hotSearch!=null){
+                    for (int i = 0; i < searchTextView.length; i++) {
+                        searchTextView[i].setText(hotSearch.get(i).getTitle());
                     }
                 }
             }

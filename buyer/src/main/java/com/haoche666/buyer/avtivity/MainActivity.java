@@ -25,6 +25,7 @@ import com.haoche666.buyer.fragment.ShouYeFragment;
 import com.haoche666.buyer.fragment.WoDeFragment;
 import com.haoche666.buyer.fragment.XiaoXiFragment;
 import com.haoche666.buyer.interfacepage.OnPatchLister;
+import com.haoche666.buyer.model.Buyer;
 import com.haoche666.buyer.util.UpgradeUtils;
 import com.taobao.sophix.SophixManager;
 
@@ -56,6 +57,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     public boolean isPinPaiXC = false;
     public boolean isJiaGEXC = false;
     public boolean isSearch = false;
+    public Buyer.HotSearch hotSearch;
     private BroadcastReceiver reciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
