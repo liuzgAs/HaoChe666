@@ -58,7 +58,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     public String logoPath;
     public int brand;
     public int bsid;
-    private List<CarCarparam.HotCarBean> hotCarBeanList;
+    private List<CarCarparam.CarBean> hotCarBeanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +87,9 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
     @Override
     protected void initViews() {
-        if (brand==1){
+        if (brand == 1) {
             ((TextView) findViewById(R.id.textViewTitle)).setText("选择品牌");
-        }else {
+        } else {
             ((TextView) findViewById(R.id.textViewTitle)).setText("品牌选车");
         }
         ViewGroup.LayoutParams layoutParams = recyclerViewRight.getLayoutParams();
@@ -113,7 +113,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 if (position > 1) {
                     RecyclerView recyclerView1 = recyclerView.getRecyclerView();
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView1.getLayoutManager();
-                    layoutManager.scrollToPositionWithOffset(position-1, 0);
+                    layoutManager.scrollToPositionWithOffset(position - 1, 0);
                 } else {
                     recyclerView.scrollToPosition(0);
                 }
@@ -191,11 +191,15 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     reMenView[i].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            drawerLayout.openDrawer(recyclerViewRight);
-                            CarCarparam.HotCarBean hotCarBean = hotCarBeanList.get(finalI);
-                            brandName = hotCarBean.getName();
-                            logoPath = hotCarBean.getImg();
-                            cheXi(hotCarBean.getId());
+                            CarCarparam.CarBean hotCarBean = hotCarBeanList.get(finalI);
+                            if (brand == 1) {
+                                chooseBrand(hotCarBean);
+                            } else {
+                                drawerLayout.openDrawer(recyclerViewRight);
+                                brandName = hotCarBean.getName();
+                                logoPath = hotCarBean.getImg();
+                                cheXi(hotCarBean.getId());
+                            }
                         }
                     });
                 }
@@ -204,22 +208,22 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.putExtra(Constant.IntentKey.ID,0);
-                        intent.putExtra(Constant.IntentKey.BSID,0);
-                        intent.putExtra(Constant.IntentKey.NAME,"全部品牌");
-                        setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                        intent.putExtra(Constant.IntentKey.ID, 0);
+                        intent.putExtra(Constant.IntentKey.BSID, 0);
+                        intent.putExtra(Constant.IntentKey.NAME, "全部品牌");
+                        setResult(Constant.RequestResultCode.PIN_PAI, intent);
                         finish();
                     }
                 });
                 View textStar = view.findViewById(R.id.textStar);
                 View textLine = view.findViewById(R.id.textLine);
                 View textLine1 = view.findViewById(R.id.textLine1);
-                if (brand==1){
+                if (brand == 1) {
                     textBuXian.setVisibility(View.GONE);
                     textStar.setVisibility(View.GONE);
                     textLine.setVisibility(View.GONE);
                     textLine1.setVisibility(View.GONE);
-                }else {
+                } else {
                     textBuXian.setVisibility(View.VISIBLE);
                     textStar.setVisibility(View.VISIBLE);
                     textLine.setVisibility(View.VISIBLE);
@@ -230,7 +234,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
             @Override
             public void onBindView(View headerView) {
-                if (hotCarBeanList!=null){
+                if (hotCarBeanList != null) {
                     for (int i = 0; i < hotCarBeanList.size(); i++) {
                         reMenView[i].setVisibility(View.VISIBLE);
                         Glide.with(PinPaiXCActivity.this)
@@ -254,7 +258,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     private OkObject getCheXiCXOkObject(int id) {
         String url = Constant.HOST + Constant.Url.CAR_CARSTYLE;
         HashMap<String, String> params = new HashMap<>();
-        params.put("id",id+"");
+        params.put("id", id + "");
         return new OkObject(params, url);
     }
 
@@ -328,10 +332,10 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
             public void onItemClick(int position) {
                 drawerLayout.closeDrawer(recyclerViewRight);
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IntentKey.ID,adapterRight.getItem(position).getId());
-                intent.putExtra(Constant.IntentKey.BSID,bsid);
-                intent.putExtra(Constant.IntentKey.NAME,adapterRight.getItem(position).getName());
-                setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                intent.putExtra(Constant.IntentKey.ID, adapterRight.getItem(position).getId());
+                intent.putExtra(Constant.IntentKey.BSID, bsid);
+                intent.putExtra(Constant.IntentKey.NAME, adapterRight.getItem(position).getName());
+                setResult(Constant.RequestResultCode.PIN_PAI, intent);
                 finish();
             }
         });
@@ -353,10 +357,10 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.putExtra(Constant.IntentKey.ID,0);
-                        intent.putExtra(Constant.IntentKey.BSID,bsid);
-                        intent.putExtra(Constant.IntentKey.NAME,brandName);
-                        setResult(Constant.RequestResultCode.PIN_PAI,intent);
+                        intent.putExtra(Constant.IntentKey.ID, 0);
+                        intent.putExtra(Constant.IntentKey.BSID, bsid);
+                        intent.putExtra(Constant.IntentKey.NAME, brandName);
+                        setResult(Constant.RequestResultCode.PIN_PAI, intent);
                         finish();
                     }
                 });
@@ -478,7 +482,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
         @Override
         public void onBindHeaderViewHolder(HeaderHolder viewholder, final int position) {
-            if (position<26){
+            if (position < 26) {
                 viewholder.textTitle.setText(adapter.getItem(position).getTitle());
             }
         }
@@ -493,10 +497,10 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         }
     }
 
-    public void chooseBrand(CarCarparam.BrandBean.ListBean brandBean){
+    public void chooseBrand(CarCarparam.CarBean brandBean) {
         Intent intent = new Intent();
-        intent.putExtra(Constant.IntentKey.BEAN,brandBean);
-        setResult(Constant.RequestResultCode.BRAND,intent);
+        intent.putExtra(Constant.IntentKey.BEAN, brandBean);
+        setResult(Constant.RequestResultCode.BRAND, intent);
         finish();
     }
 }

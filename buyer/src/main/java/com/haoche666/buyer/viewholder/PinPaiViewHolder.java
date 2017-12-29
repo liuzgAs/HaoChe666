@@ -21,7 +21,7 @@ import java.util.List;
 public class PinPaiViewHolder extends BaseViewHolder<CarCarparam.BrandBean> {
 
     private final EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<CarCarparam.BrandBean.ListBean> adapter;
+    private RecyclerArrayAdapter<CarCarparam.CarBean> adapter;
 
     public PinPaiViewHolder(ViewGroup parent, @LayoutRes int res) {
         super(parent, res);
@@ -32,7 +32,7 @@ public class PinPaiViewHolder extends BaseViewHolder<CarCarparam.BrandBean> {
     @Override
     public void setData(CarCarparam.BrandBean data) {
         super.setData(data);
-        List<CarCarparam.BrandBean.ListBean> list = data.getList();
+        List<CarCarparam.CarBean> list = data.getList();
         adapter.clear();
         adapter.addAll(list);
     }
@@ -46,7 +46,7 @@ public class PinPaiViewHolder extends BaseViewHolder<CarCarparam.BrandBean> {
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CarCarparam.BrandBean.ListBean>(getContext()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CarCarparam.CarBean>(getContext()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_pinpai_xc;

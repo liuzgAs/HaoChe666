@@ -48,7 +48,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     private TextView textPrice;
     private double blance;
     private TextView textBlance;
-    private CarCarparam.BrandBean.ListBean brandBean;
+    private CarCarparam.CarBean brandBean;
     private TextView textBrand;
     private EditText editVin;
     private int payMode = 0;
@@ -148,7 +148,7 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.RequestResultCode.BRAND && resultCode == Constant.RequestResultCode.BRAND) {
-            brandBean = (CarCarparam.BrandBean.ListBean) data.getSerializableExtra(Constant.IntentKey.BEAN);
+            brandBean = (CarCarparam.CarBean) data.getSerializableExtra(Constant.IntentKey.BEAN);
             textBrand.setText(brandBean.getName());
         }
     }

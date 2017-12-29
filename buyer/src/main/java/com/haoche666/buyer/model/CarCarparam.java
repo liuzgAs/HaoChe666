@@ -21,46 +21,16 @@ public class CarCarparam {
     private String info;
     private int status;
     private List<BrandBean> brand;
-    private List<HotCarBean> hotbrand;
+    private List<CarBean> hotbrand;
     private List<ColorBean> color;
     private List<UseTypeBean> useType;
 
-    public List<HotCarBean> getHotbrand() {
+    public List<CarBean> getHotbrand() {
         return hotbrand;
     }
 
-    public void setHotbrand(List<HotCarBean> hotbrand) {
+    public void setHotbrand(List<CarBean> hotbrand) {
         this.hotbrand = hotbrand;
-    }
-
-    public static class HotCarBean {
-        private int id;
-        private String img;
-        private String name;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 
     public String getInfo() {
@@ -110,7 +80,7 @@ public class CarCarparam {
          */
 
         private String title;
-        private List<ListBean> list;
+        private List<CarBean> list;
 
         public String getTitle() {
             return title;
@@ -120,49 +90,15 @@ public class CarCarparam {
             this.title = title;
         }
 
-        public List<ListBean> getList() {
+        public List<CarBean> getList() {
             return list;
         }
 
-        public void setList(List<ListBean> list) {
+        public void setList(List<CarBean> list) {
             this.list = list;
         }
 
-        public static class ListBean implements Serializable {
-            /**
-             * id : 1
-             * img : https://www.haoche666.com/Uploads/car_brand/0.png
-             * name : 奥迪
-             */
 
-            private int id;
-            private String img;
-            private String name;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getImg() {
-                return img;
-            }
-
-            public void setImg(String img) {
-                this.img = img;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-        }
     }
 
     public static class ColorBean {
@@ -198,6 +134,42 @@ public class CarCarparam {
 
         public void setValue(String value) {
             this.value = value;
+        }
+    }
+
+    public static class CarBean implements Serializable {
+        /**
+         * id : 1
+         * img : https://www.haoche666.com/Uploads/car_brand/0.png
+         * name : 奥迪
+         */
+
+        private int id;
+        private String img;
+        private String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 

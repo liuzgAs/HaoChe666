@@ -14,7 +14,7 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 /**
  * Created by Administrator on 2017/3/28 0028.
  */
-public class PinPaiXCViewHolder extends BaseViewHolder<CarCarparam.BrandBean.ListBean> {
+public class PinPaiXCViewHolder extends BaseViewHolder<CarCarparam.CarBean> {
 
     private final TextView textXuanZhong;
     private final TextView textName;
@@ -28,7 +28,7 @@ public class PinPaiXCViewHolder extends BaseViewHolder<CarCarparam.BrandBean.Lis
     }
 
     @Override
-    public void setData(CarCarparam.BrandBean.ListBean data) {
+    public void setData(CarCarparam.CarBean data) {
         super.setData(data);
         textXuanZhong.setVisibility(View.GONE);
         textName.setText(data.getName());
