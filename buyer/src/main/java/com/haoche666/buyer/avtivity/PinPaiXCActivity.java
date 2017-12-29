@@ -25,7 +25,6 @@ import com.haoche666.buyer.customview.SideLetterBar;
 import com.haoche666.buyer.model.CarCarparam;
 import com.haoche666.buyer.model.CarCarstyle;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.ReMen;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheXiViewHolder;
 import com.haoche666.buyer.viewholder.PinPaiViewHolder;
@@ -35,7 +34,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.jude.easyrecyclerview.decoration.StickyHeaderDecoration;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,7 +56,6 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     private RecyclerArrayAdapter<CarCarstyle.DataBean> adapterRight;
     public String brandName;
     public String logoPath;
-    private List<ReMen> reMenList = new ArrayList<>();
     public int brand;
     public int bsid;
     private List<CarCarparam.HotCarBean> hotCarBeanList;
@@ -126,16 +123,6 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
     @Override
     protected void initData() {
-        reMenList.add(new ReMen("大众", "http://i1.chexun.net/images/2015/0113/16627/logo_50_50_191DFF86BFE0B45C3253927FE6CAE681.jpg", "D", 23));
-        reMenList.add(new ReMen("沃尔沃", "http://i2.chexun.net/images/2015/0108/16620/logo_50_50_14677CAD5F1064B46B4627B843799716.jpg", "W", 92));
-        reMenList.add(new ReMen("日产", "http://i2.chexun.net/images/2015/0108/16620/logo_50_50_E078DDF08F934C9F6A708DFFB6320F42.jpg", "R", 78));
-        reMenList.add(new ReMen("本田", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_70FD7F9E1ABAF0E9D82AD02F1E7CFA24.jpg", "B", 7));
-        reMenList.add(new ReMen("丰田", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_91AF7AA500D18A64C2FCC92119D0C159.jpg", "F", 30));
-        reMenList.add(new ReMen("奥迪", "http://i2.chexun.net/images/2015/0113/16627/logo_50_50_65BC3B6C8188EE6FE49108EA4661AA7D.jpg", "A", 2));
-        reMenList.add(new ReMen("别克", "http://i2.chexun.net/images/2015/0601/16892/logo_50_50_919A034DE5C2F9C658B582854994CE67.jpg", "B", 8));
-        reMenList.add(new ReMen("福特", "http://i0.chexun.net/images/2015/0108/16620/logo_50_50_323E469A0FF5C8B34A0F573CA0AFCBF8.jpg", "F", 29));
-        reMenList.add(new ReMen("宝马", "http://i1.chexun.net/images/2015/0108/16620/logo_50_50_13CCD272D4978F4FF9A18DFC4870AFFE.jpg", "B", 9));
-        reMenList.add(new ReMen("奔驰", "http://i0.chexun.net/images/2015/0113/16627/logo_50_50_1357F5B5774D27BF9709F2BBF96A4C6F.jpg", "B", 6));
         onRefresh();
     }
 
