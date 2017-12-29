@@ -43,7 +43,7 @@
                     android:src="@mipmap/dazhong"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image01"
+                    android:id="@+id/image0001"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -54,8 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="大众"
-                    android:id="@+id/textView143"
-                    android:layout_below="@+id/image01"
+                    android:id="@+id/text0001"
+                    android:layout_below="@+id/image0001"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -73,7 +73,7 @@
                     android:src="@mipmap/woerwo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView77"
+                    android:id="@+id/image0002"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -84,8 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="沃尔沃"
-                    android:id="@+id/textView166"
-                    android:layout_below="@+id/imageView77"
+                    android:id="@+id/text0002"
+                    android:layout_below="@+id/image0002"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -103,7 +103,7 @@
                     android:src="@mipmap/richan"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView92"
+                    android:id="@+id/image0003"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -114,8 +114,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="日产"
-                    android:id="@+id/textView175"
-                    android:layout_below="@+id/imageView92"
+                    android:id="@+id/text0003"
+                    android:layout_below="@+id/image0003"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -133,7 +133,7 @@
                     android:src="@mipmap/bentian"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView93"
+                    android:id="@+id/image0004"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -144,8 +144,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="本田"
-                    android:id="@+id/textView176"
-                    android:layout_below="@+id/imageView93"
+                    android:id="@+id/text0004"
+                    android:layout_below="@+id/image0004"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -163,7 +163,7 @@
                     android:src="@mipmap/fengtian"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView94"
+                    android:id="@+id/image0005"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -174,8 +174,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="丰田"
-                    android:id="@+id/textView177"
-                    android:layout_below="@+id/imageView94"
+                    android:id="@+id/text0005"
+                    android:layout_below="@+id/image0005"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>
@@ -199,7 +199,7 @@
                     android:src="@mipmap/aodilogo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView95"
+                    android:id="@+id/image0006"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -210,8 +210,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="奥迪"
-                    android:id="@+id/textView178"
-                    android:layout_below="@+id/imageView95"
+                    android:id="@+id/text0006"
+                    android:layout_below="@+id/image0006"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -229,7 +229,7 @@
                     android:src="@mipmap/bieke"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView96"
+                    android:id="@+id/image0007"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -240,8 +240,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="别克"
-                    android:id="@+id/textView179"
-                    android:layout_below="@+id/imageView96"
+                    android:id="@+id/text0007"
+                    android:layout_below="@+id/image0007"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -259,7 +259,7 @@
                     android:src="@mipmap/fute"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView97"
+                    android:id="@+id/image0008"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -270,8 +270,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="福特"
-                    android:id="@+id/textView180"
-                    android:layout_below="@+id/imageView97"
+                    android:id="@+id/text0008"
+                    android:layout_below="@+id/image0008"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -289,7 +289,7 @@
                     android:src="@mipmap/baoma"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView98"
+                    android:id="@+id/image0009"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -300,8 +300,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="宝马"
-                    android:id="@+id/textView181"
-                    android:layout_below="@+id/imageView98"
+                    android:id="@+id/text0009"
+                    android:layout_below="@+id/image0009"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -319,7 +319,7 @@
                     android:src="@mipmap/benchi"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/imageView99"
+                    android:id="@+id/image0010"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -330,8 +330,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="奔驰"
-                    android:id="@+id/textView182"
-                    android:layout_below="@+id/imageView99"
+                    android:id="@+id/text0010"
+                    android:layout_below="@+id/image0010"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>

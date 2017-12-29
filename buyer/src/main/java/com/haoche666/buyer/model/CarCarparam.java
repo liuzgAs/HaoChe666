@@ -21,8 +21,47 @@ public class CarCarparam {
     private String info;
     private int status;
     private List<BrandBean> brand;
+    private List<HotCarBean> hotbrand;
     private List<ColorBean> color;
     private List<UseTypeBean> useType;
+
+    public List<HotCarBean> getHotbrand() {
+        return hotbrand;
+    }
+
+    public void setHotbrand(List<HotCarBean> hotbrand) {
+        this.hotbrand = hotbrand;
+    }
+
+    public static class HotCarBean {
+        private int id;
+        private String img;
+        private String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 
     public String getInfo() {
         return info;
@@ -89,7 +128,7 @@ public class CarCarparam {
             this.list = list;
         }
 
-        public static class ListBean implements Serializable{
+        public static class ListBean implements Serializable {
             /**
              * id : 1
              * img : https://www.haoche666.com/Uploads/car_brand/0.png

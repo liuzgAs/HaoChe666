@@ -61,6 +61,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     private List<ReMen> reMenList = new ArrayList<>();
     public int brand;
     public int bsid;
+    private List<CarCarparam.HotCarBean> hotCarBeanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +155,33 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
             private View textBuXian;
             View[] reMenView = new View[10];
+            TextView[] renMenText = new TextView[10];
+            int[] reMenTextId = new int[]{
+                    R.id.text0001,
+                    R.id.text0002,
+                    R.id.text0003,
+                    R.id.text0004,
+                    R.id.text0005,
+                    R.id.text0006,
+                    R.id.text0007,
+                    R.id.text0008,
+                    R.id.text0009,
+                    R.id.text0010,
+            };
+
+            ImageView[] reMenImg = new ImageView[10];
+            int[] reMenImgId = new int[]{
+                    R.id.image0001,
+                    R.id.image0002,
+                    R.id.image0003,
+                    R.id.image0004,
+                    R.id.image0005,
+                    R.id.image0006,
+                    R.id.image0007,
+                    R.id.image0008,
+                    R.id.image0009,
+                    R.id.image0010,
+            };
 
             @Override
             public View onCreateView(ViewGroup parent) {
@@ -169,17 +197,18 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 reMenView[8] = view.findViewById(R.id.reMen09);
                 reMenView[9] = view.findViewById(R.id.reMen10);
                 for (int i = 0; i < reMenView.length; i++) {
+                    renMenText[i] = view.findViewById(reMenTextId[i]);
+                    reMenImg[i] = view.findViewById(reMenImgId[i]);
                     final int finalI = i;
+                    reMenView[i].setVisibility(View.INVISIBLE);
                     reMenView[i].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            drawerLayout.openDrawer(recyclerViewRight);
-//                            ReMen reMen = reMenList.get(finalI);
-//                            brandId = reMen.getBrandId();
-//                            brandName = reMen.getBrandName();
-//                            letter = reMen.getLetter();
-//                            logoPath = reMen.getLogoPath();
-//                            cheXi();
+                            drawerLayout.openDrawer(recyclerViewRight);
+                            CarCarparam.HotCarBean hotCarBean = hotCarBeanList.get(finalI);
+                            brandName = hotCarBean.getName();
+                            logoPath = hotCarBean.getImg();
+                            cheXi(hotCarBean.getId());
                         }
                     });
                 }
@@ -214,7 +243,17 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
 
             @Override
             public void onBindView(View headerView) {
-
+                if (hotCarBeanList!=null){
+                    for (int i = 0; i < hotCarBeanList.size(); i++) {
+                        reMenView[i].setVisibility(View.VISIBLE);
+                        Glide.with(PinPaiXCActivity.this)
+                                .load(hotCarBeanList.get(i).getImg())
+                                .asBitmap()
+                                .placeholder(R.mipmap.ic_empty)
+                                .into(reMenImg[i]);
+                        renMenText[i].setText(hotCarBeanList.get(i).getName());
+                    }
+                }
             }
         });
 
@@ -382,6 +421,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                 try {
                     CarCarparam carCarparam = GsonUtils.parseJSON(s, CarCarparam.class);
                     if (carCarparam.getStatus() == 1) {
+                        hotCarBeanList = carCarparam.getHotbrand();
                         List<CarCarparam.BrandBean> brandBeanList = carCarparam.getBrand();
                         adapter.clear();
                         adapter.addAll(brandBeanList);
