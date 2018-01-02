@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/cheHangTuiJian"
-    android:background="@color/white"
+    android:id="@+id/viewCheHang"
+    android:background="@drawable/layout_selector_white_system_gray"
     android:orientation="vertical">
 
     <RelativeLayout

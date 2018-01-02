@@ -213,10 +213,16 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     R.id.text0306,
                     R.id.text0307,
             };
+            private int[] viewHotId = new int[]{
+                    R.id.viewHotCar00,
+                    R.id.viewHotCar01,
+                    R.id.viewHotCar02,
+                    R.id.viewHotCar03,
+            };
 
             @Override
             public View onCreateView(ViewGroup parent) {
-                View header_shou_ye = LayoutInflater.from(getActivity()).inflate(R.layout.header_shou_ye, null);
+                final View header_shou_ye = LayoutInflater.from(getActivity()).inflate(R.layout.header_shou_ye, null);
                 bannerText[0] = header_shou_ye.findViewById(R.id.bannerText01);
                 bannerText[1] = header_shou_ye.findViewById(R.id.bannerText02);
                 bannerText[2] = header_shou_ye.findViewById(R.id.bannerText03);
@@ -379,6 +385,18 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 hotText01[1] = header_shou_ye.findViewById(R.id.textHotCar0101);
                 hotText01[2] = header_shou_ye.findViewById(R.id.textHotCar0201);
                 hotText01[3] = header_shou_ye.findViewById(R.id.textHotCar0301);
+                for (int i = 0; i < viewHotId.length; i++) {
+                    final int finalI = i;
+                    header_shou_ye.findViewById(viewHotId[i]).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(),CheLiangLBActivity.class);
+                            intent.putExtra(Constant.IntentKey.VALUE,hotCarList.get(finalI));
+                            startActivity(intent);
+                        }
+                    });
+                }
                 for (int i = 0; i < searchTextViewID.length; i++) {
                     searchTextView[i] = header_shou_ye.findViewById(searchTextViewID[i]);
                 }
@@ -421,7 +439,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                                 .placeholder(R.mipmap.ic_empty)
                                 .into(imageImg);
                         textTitle.setText(newsBeanList.get(0).getTitle());
-                        textView.setText(newsBeanList.get(0).getView() + "人阅读");
+                        textView.setText(newsBeanList.get(0).getView());
                     }
                 }
                 if (videoBeanXList != null) {

@@ -78,7 +78,7 @@ public class Buyer {
         this.hotcar = hotcar;
     }
 
-    public static class HotCar{
+    public static class HotCar implements Serializable{
         private int id;
         private String img;
         private String title;

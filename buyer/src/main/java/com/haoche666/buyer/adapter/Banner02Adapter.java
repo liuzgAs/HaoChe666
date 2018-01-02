@@ -57,7 +57,7 @@ public class Banner02Adapter extends PagerAdapter {
     @Override
     public View instantiateItem(ViewGroup container, final int position) {
         View inflate = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_che_hang_tui_jian, null);
-        inflate.findViewById(R.id.textJinRuDP).setOnClickListener(new View.OnClickListener() {
+        inflate.findViewById(R.id.viewCheHang).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (imgList.size() > 0) {

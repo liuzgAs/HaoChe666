@@ -435,6 +435,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private int bid = 0;
     private int bsid = 0;
     private int sort_id = 0;
+    private int hotcat_id = 0;
     private List<Integer> z_price = new ArrayList<>();
     private List<Integer> z_age = new ArrayList<>();
     private String title = "";
@@ -477,9 +478,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private String getOkObject() {
         MaiChe maiChe;
         if (isLogin) {
-            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id,hotcat_id, z_price, z_age, title);
         } else {
-            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id,z_price, z_age, title);
         }
         return GsonUtils.parseObject(maiChe);
     }
