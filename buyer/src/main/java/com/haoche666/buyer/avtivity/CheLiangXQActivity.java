@@ -365,6 +365,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     Glide.with(CheLiangXQActivity.this)
                             .load(video.getCoverForFeed())
                             .asBitmap()
+                            .centerCrop()
                             .placeholder(R.mipmap.ic_empty)
                             .into(jzVideoPlayerStandard.thumbImageView);
                 } else {

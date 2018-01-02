@@ -39,6 +39,10 @@ public class Constant {
          */
         public static final String MAI_CHE_GUI_ZE = WWW + "/maiche/index.php";
         /**
+         * 关于我们
+         */
+        public static final String ABOUT = WWW + "/Api/Article/info/id/1.html";
+        /**
          * 车讯网数据
          */
         public static final String CHE_XUN = "http://auto.chexun.com/api/car/brand.do";

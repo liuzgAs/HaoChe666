@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.util.DataCleanManager;
 
 import huisedebi.zjb.mylibrary.util.VersionUtils;
@@ -60,6 +61,7 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
         findViewById(R.id.viewChangJianWenTi).setOnClickListener(this);
         findViewById(R.id.viewXiuGaiMM).setOnClickListener(this);
         findViewById(R.id.viewHuanCun).setOnClickListener(this);
+        findViewById(R.id.viewAbout).setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +73,12 @@ public class SheZhiActivity extends ZjbBaseActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewAbout:
+                intent.setClass(SheZhiActivity.this,WebActivity.class);
+                intent.putExtra(Constant.IntentKey.TITLE,"关于我们");
+                intent.putExtra(Constant.IntentKey.URL,Constant.Url.ABOUT);
+                startActivity(intent);
+                break;
             case R.id.viewHuanCun:
                 DataCleanManager.clearAllCache(this);
                 textHuanCun.setText(getSize());

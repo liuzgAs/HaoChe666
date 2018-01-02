@@ -143,6 +143,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/viewAbout"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
@@ -200,6 +201,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/layout_selector_white_system_gray"
                 android:layout_width="match_parent"
