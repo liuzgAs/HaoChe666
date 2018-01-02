@@ -82,6 +82,10 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<CarGetsearchdata.AgePriceBean> zPriceBeanList = new ArrayList<>();
     private List<CarGetsearchdata.AgePriceBean> zAgeBeanList = new ArrayList<>();
 
+    /**
+     * 是否首次启动
+     */
+
     public MaiCheFragment() {
         // Required empty public constructor
     }
@@ -326,9 +330,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 zPriceBeanList.get(i).setSelect(true);
                 priceAdapter.notifyDataSetChanged();
                 z_price = zPriceBeanList.get(i).getValue();
-                if (z_price.size()>0){
+                if (z_price.size() > 0) {
                     rangeSeekbar.setMinStartValue(z_price.get(0)).setMaxStartValue(z_price.get(1)).apply();
-                }else {
+                } else {
                     rangeSeekbar.setMinStartValue(0).setMaxStartValue(60).apply();
                 }
                 shaiXuanVisible = -1;
@@ -345,7 +349,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 zAgeBeanList.get(i).setSelect(true);
                 ageAdapter.notifyDataSetChanged();
                 z_age = zAgeBeanList.get(i).getValue();
-                rangeSeekbar1.setMinStartValue(z_age.get(0)).setMaxStartValue(z_age.get(1)).apply();
+                if (z_age.size() > 0) {
+                    rangeSeekbar1.setMinStartValue(z_age.get(0)).setMaxStartValue(z_age.get(1)).apply();
+                } else {
+                    rangeSeekbar1.setMinStartValue(0).setMaxStartValue(12).apply();
+                }
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
                 onRefresh();
@@ -366,7 +374,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
         return new OkObject(params, url);
     }
@@ -377,11 +385,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         ApiClient.post(getActivity(), getSearchOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
-                LogUtil.LogShitou("MaiCheFragment--获取价格、车龄范围数组",s+ "");
+                LogUtil.LogShitou("MaiCheFragment--获取价格、车龄范围数组", s + "");
                 cancelLoadingDialog();
                 try {
                     CarGetsearchdata carGetsearchdata = GsonUtils.parseJSON(s, CarGetsearchdata.class);
-                    if (carGetsearchdata.getStatus()==1){
+                    if (carGetsearchdata.getStatus() == 1) {
                         sortIdBeanList.clear();
                         sortIdBeanList.addAll(carGetsearchdata.getData().getSort_id());
                         for (int i = 0; i < sortIdBeanList.size(); i++) {
@@ -405,13 +413,13 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         priceAdapter.notifyDataSetChanged();
                         ageAdapter.notifyDataSetChanged();
                         onRefresh();
-                    }else if (carGetsearchdata.getStatus()==3){
+                    } else if (carGetsearchdata.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), carGetsearchdata.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(),"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -430,6 +438,36 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<Integer> z_price = new ArrayList<>();
     private List<Integer> z_age = new ArrayList<>();
     private String title = "";
+
+    /**
+     * 初始化筛选
+     */
+    private void initShaiXuan() {
+        bid = 0;
+        bsid = 0;
+        sort_id = 0;
+        z_price.clear();
+        z_age.clear();
+        title = "";
+        textSort.setText("默认排序");
+        textAll.setText("全部品牌");
+        for (int i = 0; i < sortIdBeanList.size(); i++) {
+            sortIdBeanList.get(i).setSelect(false);
+        }
+        sortIdBeanList.get(0).setSelect(true);
+        for (int i = 0; i < zPriceBeanList.size(); i++) {
+            zPriceBeanList.get(i).setSelect(false);
+        }
+        zPriceBeanList.get(0).setSelect(true);
+        rangeSeekbar.setMinStartValue(0).setMaxStartValue(60).apply();
+        for (int i = 0; i < zAgeBeanList.size(); i++) {
+            zAgeBeanList.get(i).setSelect(false);
+        }
+        rangeSeekbar1.setMinStartValue(0).setMaxStartValue(12).apply();
+        zAgeBeanList.get(0).setSelect(true);
+        priceAdapter.notifyDataSetChanged();
+        ageAdapter.notifyDataSetChanged();
+    }
 
     /**
      * des： 网络请求参数
@@ -626,11 +664,8 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
-        if (((MainActivity) getActivity()).hotSearch!=null){
-            shaiXuanVisible = -1;
-            viewShaiXuan.setVisibility(View.GONE);
-        }
         if (((MainActivity) getActivity()).isSearch) {
+            initShaiXuan();
             shaiXuanVisible = -1;
             viewShaiXuan.setVisibility(View.GONE);
             MyDialog.showSearchDialog(getActivity(), title);
@@ -644,6 +679,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             ((MainActivity) getActivity()).isSearch = false;
         }
         if (((MainActivity) getActivity()).isPinPaiXC) {
+            initShaiXuan();
             viewShaiXuan.setVisibility(View.GONE);
             shaiXuanVisible = -1;
             Intent intent = new Intent();
@@ -652,6 +688,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             ((MainActivity) getActivity()).isPinPaiXC = false;
         }
         if (((MainActivity) getActivity()).isJiaGEXC) {
+            initShaiXuan();
             viewShaiXuan.setVisibility(View.VISIBLE);
             shaiXuanVisible = 1;
             for (int j = 0; j < viewShaiXuanArr.length; j++) {
@@ -664,7 +701,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     public boolean onBackPressed() {
-        if (shaiXuanVisible!=-1) {
+        if (shaiXuanVisible != -1) {
             shaiXuanVisible = -1;
             viewShaiXuan.setVisibility(View.GONE);
             return true;

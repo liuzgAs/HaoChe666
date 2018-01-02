@@ -1,5 +1,6 @@
 package com.haoche666.buyer.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class Buyer {
         this.hotSearch = hotSearch;
     }
 
-    public static class HotSearch{
+    public static class HotSearch implements Serializable{
         private String title;
         private int type_id;
         private List<Integer> value;

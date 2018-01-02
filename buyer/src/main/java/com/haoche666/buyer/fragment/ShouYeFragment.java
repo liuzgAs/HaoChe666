@@ -25,6 +25,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.avtivity.CheHangLBActivity;
+import com.haoche666.buyer.avtivity.CheLiangLBActivity;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.WebActivity;
@@ -386,8 +387,10 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     searchTextView[i].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            ((MainActivity)getActivity()).hotSearch = hotSearch.get(finalI);
-                            ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), CheLiangLBActivity.class);
+                            intent.putExtra(Constant.IntentKey.BEAN,hotSearch.get(finalI));
+                            startActivity(intent);
                         }
                     });
                 }
