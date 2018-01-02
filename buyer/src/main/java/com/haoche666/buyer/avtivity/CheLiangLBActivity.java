@@ -183,11 +183,12 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
     private int bid = 0;
     private int bsid = 0;
     private int sort_id = 0;
+    private int city_id = 0;
     private List<Integer> z_price = new ArrayList<>();
     private List<Integer> z_age = new ArrayList<>();
     private String title = "";
     private int page = 1;
-    private int hotcat_id;
+    private int hotcat_id = 0;
 
     /**
      * des： 网络请求参数
@@ -197,9 +198,9 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
     private String getOkObject() {
         MaiChe maiChe;
         if (isLogin) {
-            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, hotcat_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, hotcat_id, city_id,z_price, z_age, title);
         } else {
-            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id,city_id, z_price, z_age, title);
         }
         return GsonUtils.parseObject(maiChe);
     }

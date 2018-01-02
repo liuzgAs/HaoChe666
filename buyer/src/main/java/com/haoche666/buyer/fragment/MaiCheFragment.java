@@ -21,6 +21,7 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.avtivity.ChengShiXZActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.ZuJiActivity;
@@ -30,6 +31,8 @@ import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 import com.haoche666.buyer.model.CarGetsearchdata;
+import com.haoche666.buyer.model.IndexCitylist;
+import com.haoche666.buyer.model.IndexMpcity;
 import com.haoche666.buyer.model.MaiChe;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
@@ -44,6 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import huisedebi.zjb.mylibrary.util.ACache;
 import huisedebi.zjb.mylibrary.util.DpUtils;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
@@ -83,6 +87,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private List<CarGetsearchdata.DataBean.SortIdBean> sortIdBeanList = new ArrayList<>();
     private List<CarGetsearchdata.AgePriceBean> zPriceBeanList = new ArrayList<>();
     private List<CarGetsearchdata.AgePriceBean> zAgeBeanList = new ArrayList<>();
+    private String lat;
+    private String lng;
+    private TextView textLocation;
 
     /**
      * 是否首次启动
@@ -116,7 +123,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     protected void initSP() {
-
+        ACache aCache = ACache.get(getActivity(), Constant.Acache.LOCATION);
+        lat = aCache.getAsString(Constant.Acache.LAT);
+        lng = aCache.getAsString(Constant.Acache.LNG);
     }
 
     @Override
@@ -141,6 +150,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         textSort = mInflate.findViewById(R.id.textSort);
         textSearch = mInflate.findViewById(R.id.textSearch);
         textAll = mInflate.findViewById(R.id.textAll);
+        textLocation = mInflate.findViewById(R.id.textLocation);
     }
 
     @Override
@@ -365,6 +375,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         mInflate.findViewById(R.id.btnAge).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSearch).setOnClickListener(this);
         mInflate.findViewById(R.id.imageZuJi).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewLocation).setOnClickListener(this);
     }
 
     /**
@@ -382,14 +393,75 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         return new OkObject(params, url);
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getLocationOkObject() {
+        String url = Constant.HOST + Constant.Url.INDEX_MPCITY;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("lat", lat);
+        params.put("lng", lng);
+        return new OkObject(params, url);
+    }
+
     @Override
     protected void initData() {
-        showLoadingDialog();
+
+        ApiClient.post(getActivity(), getLocationOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                LogUtil.LogShitou("定位城市", s);
+                try {
+                    IndexMpcity indexMpcity = GsonUtils.parseJSON(s, IndexMpcity.class);
+                    if (indexMpcity.getStatus() == 1) {
+                        city_id = indexMpcity.getCityId();
+                        textLocation.setText(indexMpcity.getCityName());
+                    } else if (indexMpcity.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(getActivity());
+                    } else {
+                        showError(indexMpcity.getInfo());
+                    }
+                } catch (Exception e) {
+                    showError("数据出错");
+                }
+            }
+
+            @Override
+            public void onError() {
+                showError("网络出错");
+            }
+
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        initData();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
+            }
+        });
+
+
         ApiClient.post(getActivity(), getSearchOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("MaiCheFragment--获取价格、车龄范围数组", s + "");
-                cancelLoadingDialog();
                 try {
                     CarGetsearchdata carGetsearchdata = GsonUtils.parseJSON(s, CarGetsearchdata.class);
                     if (carGetsearchdata.getStatus() == 1) {
@@ -422,14 +494,32 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         Toast.makeText(getActivity(), carGetsearchdata.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                    showError("数据出错");
                 }
             }
 
             @Override
             public void onError() {
-                cancelLoadingDialog();
-                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                showError("请求失败");
+            }
+
+            /**
+             * 错误显示
+             * @param msg
+             */
+            private void showError(String msg) {
+                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+                textMsg.setText(msg);
+                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.showProgress();
+                        onRefresh();
+                    }
+                });
+                recyclerView.setErrorView(viewLoader);
+                recyclerView.showError();
             }
         });
     }
@@ -439,6 +529,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private int bsid = 0;
     private int sort_id = 0;
     private int hotcat_id = 0;
+    private int city_id = 0;
     private List<Integer> z_price = new ArrayList<>();
     private List<Integer> z_age = new ArrayList<>();
     private String title = "";
@@ -481,9 +572,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     private String getOkObject() {
         MaiChe maiChe;
         if (isLogin) {
-            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id,hotcat_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, hotcat_id, city_id, z_price, z_age, title);
         } else {
-            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id,z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id, city_id, z_price, z_age, title);
         }
         return GsonUtils.parseObject(maiChe);
     }
@@ -551,12 +642,22 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             textAll.setText(name);
             onRefresh();
         }
+        if (requestCode == Constant.RequestResultCode.CITY&&resultCode ==Constant.RequestResultCode.CITY){
+            IndexCitylist.CityEntity.ListEntity cityBean = (IndexCitylist.CityEntity.ListEntity) data.getSerializableExtra(Constant.IntentKey.BEAN);
+            city_id = cityBean.getId();
+            textLocation.setText(cityBean.getName());
+            onRefresh();
+        }
     }
 
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewLocation:
+                intent.setClass(getActivity(), ChengShiXZActivity.class);
+                startActivityForResult(intent, Constant.RequestResultCode.CITY);
+                break;
             case R.id.imageZuJi:
                 if (isLogin) {
                     intent.setClass(getActivity(), ZuJiActivity.class);

@@ -544,6 +544,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     protected void setListeners() {
         mInflate.findViewById(R.id.imageZuJi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSearch).setOnClickListener(this);
+        mInflate.findViewById(R.id.imageMine).setOnClickListener(this);
     }
 
     @Override
@@ -627,6 +628,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.imageMine:
+                ((MainActivity) getActivity()).mTabHost.setCurrentTab(4);
+                break;
             case R.id.viewSearch:
                 ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
                 ((MainActivity) getActivity()).isSearch = true;

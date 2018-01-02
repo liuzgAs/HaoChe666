@@ -37,7 +37,7 @@ public class Constant {
         /**
          * 卖车规则
          */
-        public static final String MAI_CHE_GUI_ZE = WWW+"/maiche/index.php";
+        public static final String MAI_CHE_GUI_ZE = WWW + "/maiche/index.php";
         /**
          * 车讯网数据
          */
@@ -206,6 +206,14 @@ public class Constant {
          * 获取查询结果
          */
         public static final String CARSEARCH = "/carsearch";
+        /**
+         * 经纬度定位城市
+         */
+        public static final String INDEX_MPCITY = "/Index/mpCity";
+        /**
+         * 城市列表
+         */
+        public static final String INDEX_CITYLIST = "/Index/cityList";
     }
 
     public static class IntentKey {
@@ -228,6 +236,7 @@ public class Constant {
         public static final int PIN_PAI = 2030;
         public static final int BRAND = 2031;
         public static final int MAICHE = 2032;
+        public static final int CITY = 2033;
     }
 
     public static class Acache {

@@ -373,8 +373,15 @@
         <activity
             android:name=".avtivity.YinDaoActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".avtivity.PayChongZhiActivity" />
-        <activity android:name=".avtivity.CheLiangLBActivity"></activity>
+        <activity
+            android:name=".avtivity.PayChongZhiActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.CheLiangLBActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".avtivity.ChengShiXZActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
