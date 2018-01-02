@@ -23,7 +23,9 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.CheLiangXQActivity;
 import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
+import com.haoche666.buyer.avtivity.ZuJiActivity;
 import com.haoche666.buyer.base.MyDialog;
+import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
@@ -362,6 +364,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         mInflate.findViewById(R.id.btnPrice).setOnClickListener(this);
         mInflate.findViewById(R.id.btnAge).setOnClickListener(this);
         mInflate.findViewById(R.id.viewSearch).setOnClickListener(this);
+        mInflate.findViewById(R.id.imageZuJi).setOnClickListener(this);
     }
 
     /**
@@ -554,6 +557,14 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.imageZuJi:
+                if (isLogin) {
+                    intent.setClass(getActivity(), ZuJiActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToLoginActivity.toLoginActivity(getActivity());
+                }
+                break;
             case R.id.viewSearch:
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);

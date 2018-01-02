@@ -26,14 +26,15 @@
                 android:background="@color/white">
 
                 <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:id="@+id/imageZuJi"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="15dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/guanzhu" />
+                    android:src="@mipmap/zuji" />
 
                 <RelativeLayout
                     android:id="@+id/viewSearch"
@@ -43,9 +44,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_toEndOf="@+id/viewLocation"
-                    android:layout_toLeftOf="@id/imageView2"
+                    android:layout_toLeftOf="@id/imageZuJi"
                     android:layout_toRightOf="@+id/viewLocation"
-                    android:layout_toStartOf="@id/imageView2"
+                    android:layout_toStartOf="@id/imageZuJi"
                     android:background="@drawable/shape_background_5dp"
                     android:gravity="center">
 
