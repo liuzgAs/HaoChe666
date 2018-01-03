@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
@@ -27,6 +28,7 @@ import com.haoche666.buyer.util.DateTransforam;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
 public class SellCheFragment extends ZjbBaseFragment implements View.OnClickListener {
@@ -138,10 +140,40 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
             case R.id.viewLiCheng:
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
                 View dialog_chan_pin = inflater.inflate(R.layout.dialog_li_cheng, null);
-                AlertDialog xinZengDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
+                final NumberPicker numPicker01 = dialog_chan_pin.findViewById(R.id.numPicker01);
+                numPicker01.setMinValue(0);
+                numPicker01.setMaxValue(9);
+                final NumberPicker numPicker02 = dialog_chan_pin.findViewById(R.id.numPicker02);
+                numPicker02.setMinValue(0);
+                numPicker02.setMaxValue(9);
+                final NumberPicker numPicker03 = dialog_chan_pin.findViewById(R.id.numPicker03);
+                numPicker03.setMinValue(0);
+                numPicker03.setMaxValue(9);
+                final NumberPicker numPicker04 = dialog_chan_pin.findViewById(R.id.numPicker04);
+                numPicker04.setMinValue(0);
+                numPicker04.setMaxValue(9);
+                final NumberPicker numPicker05 = dialog_chan_pin.findViewById(R.id.numPicker05);
+                numPicker05.setMinValue(0);
+                numPicker05.setMaxValue(9);
+                final AlertDialog xinZengDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
                         .setView(dialog_chan_pin)
                         .create();
                 xinZengDialog.show();
+                dialog_chan_pin.findViewById(R.id.textCancle).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        xinZengDialog.dismiss();
+                    }
+                });
+                dialog_chan_pin.findViewById(R.id.textSure).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LogUtil.LogShitou("SellCheFragment--onClick", "" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue()+numPicker05.getValue());
+                        int liCheng = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue()+ numPicker05.getValue());
+                        LogUtil.LogShitou("SellCheFragment--onClick", "" + liCheng);
+                        xinZengDialog.dismiss();
+                    }
+                });
                 Window dialogWindow = xinZengDialog.getWindow();
                 dialogWindow.setGravity(Gravity.BOTTOM);
                 dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
@@ -168,7 +200,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 break;
             case R.id.viewCarName:
                 intent.setClass(getActivity(), PinPaiXCActivity.class);
-                intent.putExtra(Constant.IntentKey.NAME,true);
+                intent.putExtra(Constant.IntentKey.NAME, true);
                 startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
                 break;
             case R.id.viewChePiaCity:

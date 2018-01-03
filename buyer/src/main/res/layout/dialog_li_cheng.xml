@@ -10,6 +10,7 @@
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/textCancle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -27,6 +28,7 @@
             android:textSize="@dimen/bigText" />
 
         <TextView
+            android:id="@+id/textSure"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -38,28 +40,39 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <NumberPicker
+            android:id="@+id/numPicker01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
+            android:id="@+id/numPicker02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
+            android:id="@+id/numPicker03"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
+            android:id="@+id/numPicker04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/numPicker05"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
