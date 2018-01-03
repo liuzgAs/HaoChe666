@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textCheKuang01"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="非常好"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/textCheKuang02"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="良好"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/textCheKuang03"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="一般"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/textCheKuang04"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="差劲"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/textCheKuang05"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="非常差"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+</LinearLayout>

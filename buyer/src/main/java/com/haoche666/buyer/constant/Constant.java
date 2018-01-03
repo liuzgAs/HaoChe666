@@ -218,6 +218,10 @@ public class Constant {
          * 城市列表
          */
         public static final String INDEX_CITYLIST = "/Index/cityList";
+        /**
+         * 我要卖车
+         */
+        public static final String SELLCAR = "/Sellcar";
     }
 
     public static class IntentKey {

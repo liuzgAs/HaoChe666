@@ -275,7 +275,7 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonTiJiao"
                 style="@style/MyBtn01"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"

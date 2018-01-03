@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,19 +16,27 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.avtivity.ChengShiXZActivity;
 import com.haoche666.buyer.avtivity.PinPaiXCActivity;
 import com.haoche666.buyer.avtivity.WebActivity;
+import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.IndexCitylist;
+import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SimpleInfo;
+import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.util.DateTransforam;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.HashMap;
 
+import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
 
@@ -45,6 +54,18 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
     private String name;
     private String card_time;
     private TextView textTime;
+    private TextView textCheKuang;
+    private String[] cheKuangArr = new String[]{
+            "非常好",
+            "良好",
+            "一般",
+            "差劲",
+            "非常差",
+    };
+    private SimpleRatingBar ratingbarCheKuang;
+    private int cheKuang = 0;
+    private int km = -1;
+    private TextView textLiCheng;
 
     public SellCheFragment() {
         // Required empty public constructor
@@ -86,6 +107,9 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
         textChePaiCity = mInflate.findViewById(R.id.textChePaiCity);
         textCarName = mInflate.findViewById(R.id.textCarName);
         textTime = mInflate.findViewById(R.id.textTime);
+        textCheKuang = mInflate.findViewById(R.id.textCheKuang);
+        ratingbarCheKuang = mInflate.findViewById(R.id.ratingbarCheKuang);
+        textLiCheng = mInflate.findViewById(R.id.textLiCheng);
     }
 
     @Override
@@ -97,6 +121,8 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
         imageBack.setVisibility(View.GONE);
         ((TextView) mInflate.findViewById(R.id.textViewTitle)).setText("我要卖车");
         textViewRight.setText("卖车流程");
+        textCheKuang.setText("车况等级：请选择");
+        ratingbarCheKuang.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -107,6 +133,8 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
         mInflate.findViewById(R.id.viewCarName).setOnClickListener(this);
         mInflate.findViewById(R.id.viewTime).setOnClickListener(this);
         mInflate.findViewById(R.id.viewLiCheng).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewCheKuang).setOnClickListener(this);
+        mInflate.findViewById(R.id.buttonTiJiao).setOnClickListener(this);
     }
 
     @Override
@@ -133,10 +161,117 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
         }
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getOkObject() {
+        String url = Constant.HOST + Constant.Url.SELLCAR;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("name", name);
+        params.put("card_time", card_time);
+        params.put("km", km + "");
+        params.put("grade", cheKuang + "");
+        params.put("sell_city_id", sell_city_id + "");
+        params.put("brand_city_id", brand_city_id + "");
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.buttonTiJiao:
+                if (sell_city_id == 0) {
+                    Toast.makeText(getActivity(), "请选择出售城市", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (brand_city_id == 0) {
+                    Toast.makeText(getActivity(), "请选择车牌城市", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(getActivity(), "请选择车辆名称", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(card_time)) {
+                    Toast.makeText(getActivity(), "请选择上牌时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (km == -1) {
+                    Toast.makeText(getActivity(), "请选择表显里程", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (cheKuang == 0) {
+                    Toast.makeText(getActivity(), "请选择车况等级", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                showLoadingDialog();
+                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        cancelLoadingDialog();
+                        LogUtil.LogShitou("SellCheFragment--onSuccess", s + "");
+                        try {
+                            SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                            if (simpleInfo.getStatus() == 1) {
+                            } else if (simpleInfo.getStatus() == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                            }
+                            MyDialog.showTipDialog(getActivity(),simpleInfo.getInfo());
+                        } catch (Exception e) {
+                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        cancelLoadingDialog();
+                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                break;
+            case R.id.viewCheKuang:
+                LayoutInflater inflater1 = LayoutInflater.from(getActivity());
+                View dialog_che_kuang = inflater1.inflate(R.layout.dialog_che_kuang, null);
+                final AlertDialog cheKuangDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
+                        .setView(dialog_che_kuang)
+                        .create();
+                cheKuangDialog.show();
+                TextView[] textCheKuangArr = new TextView[5];
+                textCheKuangArr[0] = dialog_che_kuang.findViewById(R.id.textCheKuang01);
+                textCheKuangArr[1] = dialog_che_kuang.findViewById(R.id.textCheKuang02);
+                textCheKuangArr[2] = dialog_che_kuang.findViewById(R.id.textCheKuang03);
+                textCheKuangArr[3] = dialog_che_kuang.findViewById(R.id.textCheKuang04);
+                textCheKuangArr[4] = dialog_che_kuang.findViewById(R.id.textCheKuang05);
+                for (int i = 0; i < textCheKuangArr.length; i++) {
+                    final int finalI = i;
+                    textCheKuangArr[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            cheKuang = 5 - finalI;
+                            textCheKuang.setText("车况等级：" + cheKuangArr[finalI]);
+                            ratingbarCheKuang.setVisibility(View.VISIBLE);
+                            ratingbarCheKuang.setNumberOfStars(cheKuang);
+                            ratingbarCheKuang.setRating(cheKuang);
+                            cheKuangDialog.dismiss();
+                        }
+                    });
+                }
+                Window dialogWindow1 = cheKuangDialog.getWindow();
+                dialogWindow1.setGravity(Gravity.BOTTOM);
+                dialogWindow1.setWindowAnimations(R.style.dialogFenXiang);
+                WindowManager.LayoutParams lp1 = dialogWindow1.getAttributes();
+                DisplayMetrics d1 = getActivity().getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+                lp1.width = (int) (d1.widthPixels * 1); // 高度设置为屏幕的0.6
+                dialogWindow1.setAttributes(lp1);
+                break;
             case R.id.viewLiCheng:
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
                 View dialog_chan_pin = inflater.inflate(R.layout.dialog_li_cheng, null);
@@ -168,9 +303,8 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 dialog_chan_pin.findViewById(R.id.textSure).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        LogUtil.LogShitou("SellCheFragment--onClick", "" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue()+numPicker05.getValue());
-                        int liCheng = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue()+ numPicker05.getValue());
-                        LogUtil.LogShitou("SellCheFragment--onClick", "" + liCheng);
+                        km = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue() + numPicker05.getValue());
+                        textLiCheng.setText(km+"公里");
                         xinZengDialog.dismiss();
                     }
                 });
