@@ -224,7 +224,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                                 MyDialog.showReLoginDialog(getActivity());
                             } else {
                             }
-                            MyDialog.showTipDialog(getActivity(),simpleInfo.getInfo());
+                            MyDialog.showTipDialog(getActivity(), simpleInfo.getInfo());
                         } catch (Exception e) {
                             Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
                         }
@@ -304,7 +304,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                     @Override
                     public void onClick(View view) {
                         km = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue() + numPicker05.getValue());
-                        textLiCheng.setText(km+"公里");
+                        textLiCheng.setText(km + "公里");
                         xinZengDialog.dismiss();
                     }
                 });

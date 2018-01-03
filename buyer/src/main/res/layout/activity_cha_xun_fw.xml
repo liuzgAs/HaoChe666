@@ -1,148 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context="com.haoche666.buyer.avtivity.ChaXunFWActivity">
 
     <include layout="@layout/view_bar_white" />
 
-    <LinearLayout
-        android:layout_margin="15dp"
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="220dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/viewChaWeiXiu"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="220dp"
+                app:canLoop="true">
 
-                <ImageView
-                    android:src="@mipmap/fuwu_chaweixiu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:id="@+id/imageView66"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+            </com.bigkoo.convenientbanner.ConvenientBanner>
 
-                <TextView
-                    android:textSize="@dimen/MoreBigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查维修"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/textView123"
-                    android:layout_below="@+id/imageView66"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/viewChaWeiZhang"
-                android:layout_marginLeft="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:src="@mipmap/fuwu_chaweizhang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:id="@+id/imageView67"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:textSize="@dimen/MoreBigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查违章"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/textView124"
-                    android:layout_below="@+id/imageView67"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/viewChaWeiXiu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_selector_white_system_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView66"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/fuwu_chaweixiu" />
+
+                        <TextView
+                            android:id="@+id/textView123"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imageView66"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:text="查维修"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/MoreBigText" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/viewChaWeiZhang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_selector_white_system_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView67"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/fuwu_chaweizhang" />
+
+                        <TextView
+                            android:id="@+id/textView124"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imageView67"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:text="查违章"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/MoreBigText" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/viewChaChuXian"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_selector_white_system_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView68"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/fuwu_chachuxian" />
+
+                        <TextView
+                            android:id="@+id/textView125"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imageView68"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:text="查出险"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/MoreBigText" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/viewChaXunLS"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_selector_white_system_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView69"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/fuwu_chaxunlishi" />
+
+                        <TextView
+                            android:id="@+id/textView126"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imageView69"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:text="查询历史"
+                            android:textColor="@color/light_black"
+                            android:textSize="@dimen/MoreBigText" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" >
-
-            <RelativeLayout
-                android:id="@+id/viewChaChuXian"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <ImageView
-                    android:src="@mipmap/fuwu_chachuxian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:id="@+id/imageView68"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:textSize="@dimen/MoreBigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查出险"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/textView125"
-                    android:layout_below="@+id/imageView68"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/viewChaXunLS"
-                android:layout_marginLeft="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <ImageView
-                    android:src="@mipmap/fuwu_chaxunlishi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:id="@+id/imageView69"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:textSize="@dimen/MoreBigText"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查询历史"
-                    android:layout_marginTop="30dp"
-                    android:id="@+id/textView126"
-                    android:layout_below="@+id/imageView69"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

@@ -222,6 +222,10 @@ public class Constant {
          * 我要卖车
          */
         public static final String SELLCAR = "/Sellcar";
+        /**
+         * 查询广告图获取
+         */
+        public static final String PRODUCT_GETBANNER = "/product/getBanner";
     }
 
     public static class IntentKey {
