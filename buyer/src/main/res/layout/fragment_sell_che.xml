@@ -40,13 +40,14 @@
                         android:orientation="horizontal">
 
                         <RelativeLayout
+                            android:id="@+id/viewSellCity"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center">
 
                             <TextView
-                                android:id="@+id/textView65"
+                                android:id="@+id/textSellCity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -61,8 +62,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="5dp"
-                                android:layout_toEndOf="@+id/textView65"
-                                android:layout_toRightOf="@+id/textView65"
+                                android:layout_toEndOf="@+id/textSellCity"
+                                android:layout_toRightOf="@+id/textSellCity"
                                 android:src="@mipmap/right" />
                         </RelativeLayout>
 
@@ -72,13 +73,14 @@
                             android:background="#eeeeee" />
 
                         <RelativeLayout
+                            android:id="@+id/viewChePiaCity"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center">
 
                             <TextView
-                                android:id="@+id/textView66"
+                                android:id="@+id/textChePaiCity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -93,17 +95,18 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="5dp"
-                                android:layout_toEndOf="@+id/textView66"
-                                android:layout_toRightOf="@+id/textView66"
+                                android:layout_toEndOf="@+id/textChePaiCity"
+                                android:layout_toRightOf="@+id/textChePaiCity"
                                 android:src="@mipmap/right" />
                         </RelativeLayout>
                     </LinearLayout>
 
                     <RelativeLayout
+                        android:id="@+id/viewCarName"
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@color/white"
+                        android:background="@drawable/layout_selector_white_system_gray"
                         android:gravity="center">
 
                         <TextView
@@ -116,7 +119,7 @@
                             android:textSize="@dimen/litterText" />
 
                         <TextView
-                            android:id="@+id/textView68"
+                            android:id="@+id/textCarName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/textView67"
@@ -145,7 +148,8 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:id="@+id/viewTime"
+                            android:background="@drawable/layout_selector_white_system_gray"
                             android:gravity="center">
 
                             <TextView
@@ -158,7 +162,7 @@
                                 android:textSize="@dimen/litterText" />
 
                             <TextView
-                                android:id="@+id/textView71"
+                                android:id="@+id/textTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/textView70"
@@ -180,7 +184,8 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:id="@+id/viewLiCheng"
+                            android:background="@drawable/layout_selector_white_system_gray"
                             android:gravity="center">
 
                             <TextView
@@ -193,7 +198,7 @@
                                 android:textSize="@dimen/litterText" />
 
                             <TextView
-                                android:id="@+id/textView73"
+                                android:id="@+id/textLiCheng"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/textView72"
@@ -215,7 +220,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
-                        android:background="@color/white"
+                        android:background="@drawable/layout_selector_white_system_gray"
+                        android:id="@+id/viewCheKuang"
                         android:gravity="center">
 
                         <RelativeLayout
@@ -228,7 +234,7 @@
                             android:gravity="center">
 
                             <TextView
-                                android:id="@+id/textView76"
+                                android:id="@+id/textCheKuang"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -250,7 +256,7 @@
                         </RelativeLayout>
 
                         <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                            android:id="@+id/ratingbar_pingfeng"
+                            android:id="@+id/ratingbarCheKuang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/relativeLayout2"

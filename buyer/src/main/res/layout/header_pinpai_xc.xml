@@ -1,373 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
+        android:id="@+id/textView55"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
         android:text="热门品牌"
         android:textColor="@color/light_black"
-        android:paddingLeft="10dp"
-        android:background="@color/white"
-        android:textSize="@dimen/bigText"
-        android:id="@+id/textView55" />
+        android:textSize="@dimen/bigText" />
+
     <TextView
         android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:background="@color/background" />
+
     <LinearLayout
-        android:background="@color/white"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="90dp">
+            android:layout_height="90dp"
+            android:orientation="horizontal">
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen01"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/dazhong"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0001"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/dazhong" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="大众"
                     android:id="@+id/text0001"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0001"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="大众"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen02"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/woerwo"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0002"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/woerwo" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="沃尔沃"
                     android:id="@+id/text0002"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0002"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="沃尔沃"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen03"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/richan"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0003"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/richan" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日产"
                     android:id="@+id/text0003"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0003"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="日产"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen04"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/bentian"
+                    android:id="@+id/image0004"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image0004"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/bentian" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/text0004"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="本田"
-                    android:id="@+id/text0004"
                     android:layout_below="@+id/image0004"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="本田"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen05"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/fengtian"
+                    android:id="@+id/image0005"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image0005"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/fengtian" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/text0005"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="丰田"
-                    android:id="@+id/text0005"
                     android:layout_below="@+id/image0005"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="丰田"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="90dp" >
+            android:layout_height="90dp"
+            android:orientation="horizontal">
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen06"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/aodilogo"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0006"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/aodilogo" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="奥迪"
                     android:id="@+id/text0006"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0006"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="奥迪"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen07"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/bieke"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0007"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/bieke" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="别克"
                     android:id="@+id/text0007"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0007"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="别克"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen08"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/fute"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:id="@+id/image0008"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/fute" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="福特"
                     android:id="@+id/text0008"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/image0008"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="福特"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen09"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/baoma"
+                    android:id="@+id/image0009"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image0009"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/baoma" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/text0009"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="宝马"
-                    android:id="@+id/text0009"
                     android:layout_below="@+id/image0009"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="宝马"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/layout_selector_white_system_gray"
                 android:id="@+id/reMen10"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/benchi"
+                    android:id="@+id/image0010"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image0010"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/benchi" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/normal_textsize"
-                    android:textColor="@color/light_black"
+                    android:id="@+id/text0010"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="奔驰"
-                    android:id="@+id/text0010"
                     android:layout_below="@+id/image0010"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="奔驰"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/normal_textsize" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
+    <LinearLayout
+        android:id="@+id/viewBuXian"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="★"
-        android:textColor="@color/light_black"
-        android:paddingLeft="10dp"
-        android:background="@color/white"
-        android:textSize="@dimen/bigText"
-        android:id="@+id/textStar" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textStar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="★"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/bigText" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="1dp"
-        android:id="@+id/textLine" />
+        <TextView
+            android:id="@+id/textLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background" />
 
-    <TextView
-        android:textColor="@color/light_black"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:background="@drawable/layout_selector_white_system_gray"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="不限品牌"
-        android:textSize="@dimen/bigText"
-        android:id="@+id/textBuXian" />
-    <TextView
-        android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="1dp"
-        android:id="@+id/textLine1" />
+        <TextView
+            android:id="@+id/textBuXian"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/layout_selector_white_system_gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="不限品牌"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/bigText" />
+        <TextView
+            android:id="@+id/textLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background" />
+    </LinearLayout>
+
 </LinearLayout>

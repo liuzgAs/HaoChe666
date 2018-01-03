@@ -31,38 +31,45 @@
             android:text="奥迪"
             android:id="@+id/textName" />
     </LinearLayout>
-    <TextView
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
+    <LinearLayout
+        android:id="@+id/viewBuXian"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="★"
-        android:textColor="@color/light_black"
-        android:paddingLeft="10dp"
-        android:background="@color/white"
-        android:textSize="@dimen/bigText"
-        android:id="@+id/textView183" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="★"
+            android:textColor="@color/light_black"
+            android:paddingLeft="10dp"
+            android:background="@color/white"
+            android:textSize="@dimen/bigText"
+            android:id="@+id/textView183" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="1dp"
-        android:id="@+id/textView184" />
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_height="1dp"
+            android:id="@+id/textView184" />
 
-    <TextView
-        android:textColor="@color/light_black"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:background="@drawable/layout_selector_white_system_gray"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="不限车系"
-        android:textSize="@dimen/bigText"
-        android:id="@+id/textBuXian" />
-    <TextView
-        android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="1dp"
-        android:id="@+id/textView186" />
+        <TextView
+            android:textColor="@color/light_black"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:background="@drawable/layout_selector_white_system_gray"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="不限车系"
+            android:textSize="@dimen/bigText"
+            android:id="@+id/textBuXian" />
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_height="1dp"
+            android:id="@+id/textView186" />
+    </LinearLayout>
+
 
 </LinearLayout>

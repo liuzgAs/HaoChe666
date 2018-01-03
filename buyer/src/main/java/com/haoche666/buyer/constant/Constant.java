@@ -241,6 +241,7 @@ public class Constant {
         public static final int BRAND = 2031;
         public static final int MAICHE = 2032;
         public static final int CITY = 2033;
+        public static final int CITY01 = 2034;
     }
 
     public static class Acache {

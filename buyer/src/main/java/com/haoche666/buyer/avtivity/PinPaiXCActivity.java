@@ -59,6 +59,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     public int brand;
     public int bsid;
     private List<CarCarparam.CarBean> hotCarBeanList;
+    private boolean isName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     protected void initIntent() {
         Intent intent = getIntent();
         brand = intent.getIntExtra(Constant.IntentKey.BRAND, -1);
+        isName = intent.getBooleanExtra(Constant.IntentKey.NAME, false);
     }
 
     @Override
@@ -89,6 +91,8 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
     protected void initViews() {
         if (brand == 1) {
             ((TextView) findViewById(R.id.textViewTitle)).setText("选择品牌");
+        } else if (isName) {
+            ((TextView) findViewById(R.id.textViewTitle)).setText("选择车辆名称");
         } else {
             ((TextView) findViewById(R.id.textViewTitle)).setText("品牌选车");
         }
@@ -229,6 +233,12 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                     textLine.setVisibility(View.VISIBLE);
                     textLine1.setVisibility(View.VISIBLE);
                 }
+                View viewBuXian = view.findViewById(R.id.viewBuXian);
+                if (isName) {
+                    viewBuXian.setVisibility(View.GONE);
+                } else {
+                    viewBuXian.setVisibility(View.VISIBLE);
+                }
                 return view;
             }
 
@@ -364,6 +374,12 @@ public class PinPaiXCActivity extends ZjbBaseNotLeftActivity implements View.OnC
                         finish();
                     }
                 });
+                View viewBuXian = view.findViewById(R.id.viewBuXian);
+                if (isName) {
+                    viewBuXian.setVisibility(View.GONE);
+                } else {
+                    viewBuXian.setVisibility(View.VISIBLE);
+                }
                 return view;
             }
 
