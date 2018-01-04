@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AlertDialog;
@@ -61,9 +60,6 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             switch (action) {
-                case Constant.BroadcastCode.DUI_BI:
-                    mTabHost.setCurrentTab(1);
-                    break;
                 default:
                     break;
             }
@@ -177,14 +173,10 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     @Override
     public void onStart() {
         super.onStart();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constant.BroadcastCode.DUI_BI);
-        registerReceiver(reciver, filter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(reciver);
     }
 }

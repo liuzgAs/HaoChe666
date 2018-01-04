@@ -2,6 +2,10 @@ package com.haoche666.buyer.fragment;
 
 
 import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,6 +53,19 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
     private int page = 1;
     private TextView textStart;
     private TextView textEnd;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.CHONG_ZHI:
+                    onRefresh();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     public XiaoFeiMXFragment() {
         // Required empty public constructor
@@ -111,31 +128,31 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-           ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
-               @Override
-               public void onSuccess(String s) {
-                   try {
-                       page++;
-                       CorderGetconsumedetail corderGetconsumedetail = GsonUtils.parseJSON(s, CorderGetconsumedetail.class);
-                       int status = corderGetconsumedetail.getStatus();
-                       if (status == 1) {
-                           List<CorderGetconsumedetail.DataBean> dataBeanList = corderGetconsumedetail.getData();
-                           adapter.addAll(dataBeanList);
-                       } else if (status == 3) {
-                           MyDialog.showReLoginDialog(getActivity());
-                       } else {
-                           adapter.pauseMore();
-                       }
-                   } catch (Exception e) {
-                       adapter.pauseMore();
-                   }
-               }
+                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            page++;
+                            CorderGetconsumedetail corderGetconsumedetail = GsonUtils.parseJSON(s, CorderGetconsumedetail.class);
+                            int status = corderGetconsumedetail.getStatus();
+                            if (status == 1) {
+                                List<CorderGetconsumedetail.DataBean> dataBeanList = corderGetconsumedetail.getData();
+                                adapter.addAll(dataBeanList);
+                            } else if (status == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                                adapter.pauseMore();
+                            }
+                        } catch (Exception e) {
+                            adapter.pauseMore();
+                        }
+                    }
 
-               @Override
-               public void onError() {
-                   adapter.pauseMore();
-               }
-           });
+                    @Override
+                    public void onError() {
+                        adapter.pauseMore();
+                    }
+                });
             }
 
             @Override
@@ -272,9 +289,9 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                         onRefresh();
                     }
                 }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DAY_OF_MONTH));
-                if (!TextUtils.isEmpty(date_end)){
+                if (!TextUtils.isEmpty(date_end)) {
                     datePickerDialog1.getDatePicker().setMaxDate(Long.parseLong(date_end));
-                }else {
+                } else {
                     datePickerDialog1.getDatePicker().setMaxDate(System.currentTimeMillis());
                 }
                 datePickerDialog1.show();
@@ -294,7 +311,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                     }
                 }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-                if (!TextUtils.isEmpty(date_begin)){
+                if (!TextUtils.isEmpty(date_begin)) {
                     datePickerDialog.getDatePicker().setMinDate(Long.parseLong(date_begin));
                 }
                 datePickerDialog.show();
@@ -302,5 +319,19 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.CHONG_ZHI);
+        getActivity().registerReceiver(reciver, filter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(reciver);
     }
 }

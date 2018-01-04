@@ -709,6 +709,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                             imageCollect.setImageResource(R.mipmap.shoucang_true);
                             textCollect.setText("已关注");
                         }
+                        Intent intent = new Intent();
+                        intent.setAction(Constant.BroadcastCode.DUI_BI);
+                        sendBroadcast(intent);
                     } else if (simpleInfo.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheLiangXQActivity.this);
                     } else {

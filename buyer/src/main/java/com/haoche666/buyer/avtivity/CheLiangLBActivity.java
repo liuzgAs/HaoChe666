@@ -29,12 +29,13 @@ import java.util.List;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 
-public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<Buyer.DataBean> adapter;
     private Buyer.HotSearch hotSearch;
     private Buyer.HotCar hotCar;
+    private boolean isFromDuiBi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         if (hotCar != null) {
             hotcat_id = hotCar.getId();
         }
+        isFromDuiBi = intent.getBooleanExtra(Constant.IntentKey.IS_FROM_DUI_BI, false);
     }
 
     @Override
@@ -85,6 +87,9 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         }
         if (hotCar != null) {
             ((TextView) findViewById(R.id.textViewTitle)).setText(hotCar.getTitle());
+        }
+        if (isFromDuiBi) {
+            ((TextView) findViewById(R.id.textViewTitle)).setText("全部车源");
         }
         initRecycler();
     }
@@ -164,6 +169,10 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                Intent intent = new Intent();
+                intent.setClass(CheLiangLBActivity.this, CheLiangXQActivity.class);
+                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
+                startActivity(intent);
             }
         });
         recyclerView.setRefreshListener(this);
@@ -171,7 +180,7 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
 
     @Override
     protected void setListeners() {
-
+        findViewById(R.id.imageBack).setOnClickListener(this);
     }
 
     @Override
@@ -198,9 +207,9 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
     private String getOkObject() {
         MaiChe maiChe;
         if (isLogin) {
-            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, hotcat_id, city_id,z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", userInfo.getUid(), tokenTime, page, bid, bsid, sort_id, hotcat_id, city_id, z_price, z_age, title);
         } else {
-            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id,city_id, z_price, z_age, title);
+            maiChe = new MaiChe(1, "android", page, bid, bsid, sort_id, hotcat_id, city_id, z_price, z_age, title);
         }
         return GsonUtils.parseObject(maiChe);
     }
@@ -254,5 +263,16 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
                 recyclerView.showError();
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.imageBack:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

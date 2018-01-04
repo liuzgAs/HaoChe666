@@ -1,11 +1,16 @@
 package com.haoche666.buyer.avtivity;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +52,19 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     private RecyclerArrayAdapter<AttentionGetattention.DataBean> adapter;
     private int page = 1;
     private ImageView imageBianJi;
+    private BroadcastReceiver reciver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.DUI_BI:
+                    onRefresh();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,9 +200,44 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
      * date： 2017/12/26/026 16:07
      */
     private void addCar() {
-        Intent intent = new Intent();
-        intent.setAction(Constant.BroadcastCode.DUI_BI);
-        sendBroadcast(intent);
+        LayoutInflater inflater1 = LayoutInflater.from(CheLiangDBActivity.this);
+        View dialog_tian_jia_db = inflater1.inflate(R.layout.dialog_tian_jia_db, null);
+        final AlertDialog cheKuangDialog = new AlertDialog.Builder(CheLiangDBActivity.this, R.style.dialog)
+                .setView(dialog_tian_jia_db)
+                .create();
+        cheKuangDialog.show();
+        dialog_tian_jia_db.findViewById(R.id.textAddAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cheKuangDialog.dismiss();
+                Intent intent = new Intent();
+                intent.setClass(CheLiangDBActivity.this, CheLiangLBActivity.class);
+                intent.putExtra(Constant.IntentKey.IS_FROM_DUI_BI, true);
+                startActivity(intent);
+            }
+        });
+        dialog_tian_jia_db.findViewById(R.id.textAddFoot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cheKuangDialog.dismiss();
+                Intent intent = new Intent();
+                intent.setClass(CheLiangDBActivity.this, ZuJiActivity.class);
+                startActivity(intent);
+            }
+        });
+        dialog_tian_jia_db.findViewById(R.id.textCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cheKuangDialog.dismiss();
+            }
+        });
+        Window dialogWindow1 = cheKuangDialog.getWindow();
+        dialogWindow1.setGravity(Gravity.BOTTOM);
+        dialogWindow1.setWindowAnimations(R.style.dialogFenXiang);
+        WindowManager.LayoutParams lp1 = dialogWindow1.getAttributes();
+        DisplayMetrics d1 = getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+        lp1.width = (int) (d1.widthPixels * 1); // 高度设置为屏幕的0.6
+        dialogWindow1.setAttributes(lp1);
     }
 
     @Override
@@ -316,5 +369,19 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                 recyclerView.showError();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.DUI_BI);
+        registerReceiver(reciver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(reciver);
     }
 }
