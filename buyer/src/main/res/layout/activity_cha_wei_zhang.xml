@@ -68,7 +68,8 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:maxLength="20"
+            android:id="@+id/editChePai"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -103,7 +104,10 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:inputType="number"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:maxLength="6"
+            android:id="@+id/editCheJia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -138,7 +142,10 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:inputType="number"
+            android:maxLength="6"
+            android:id="@+id/editFaDongJi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -190,7 +197,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="40dp"
-        android:id="@+id/button7"
+        android:id="@+id/buttonTiJiao"
         android:text="立即查询" />
 
 </LinearLayout>
