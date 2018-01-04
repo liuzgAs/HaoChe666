@@ -1,1 +1,1 @@
-include ':buyer', ':library', ':seller'
+include ':buyer', ':library', ':seller', ':IMKit', ':IMLib'

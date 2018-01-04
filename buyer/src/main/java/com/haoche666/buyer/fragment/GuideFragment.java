@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.DengLuActivity;
+import com.haoche666.buyer.avtivity.MainActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 
@@ -97,7 +97,7 @@ public class GuideFragment extends ZjbBaseFragment {
             public void onClick(View v) {
                 ACache aCache = ACache.get(getActivity(), Constant.Acache.FRIST);
                 aCache.put(Constant.Acache.FRIST, "0");
-                Intent intent = new Intent(getActivity(), DengLuActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }

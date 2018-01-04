@@ -11,9 +11,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/viewBottom"
         app:layout_progress="@layout/view_progress"
-        app:scrollbarStyle="insideOverlay"
-        android:layout_above="@+id/viewBottom" />
+        app:scrollbarStyle="insideOverlay" />
 
     <LinearLayout
         android:id="@+id/viewBar"
@@ -45,7 +45,6 @@
                 android:src="@mipmap/left" />
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,6 +52,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/titleSize"
+                android:textStyle="bold"
                 tools:text="标题" />
 
             <ImageView
@@ -70,83 +70,106 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/viewBottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normalItemHeight"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/viewBottom">
+        android:orientation="horizontal">
 
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_weight="1"
+            android:background="@color/background"
+            android:paddingTop="1dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:id="@+id/viewGuanZhu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/mine_guanzhu"
+                    android:id="@+id/imageCollect"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:id="@+id/imageCollect"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/mine_guanzhu" />
 
                 <TextView
+                    android:id="@+id/textCollect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="关注"
-                    android:id="@+id/textCollect"
                     android:layout_below="@+id/imageCollect"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="关注" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/viewDuiBi"
-                android:layout_weight="1"
-                android:layout_marginLeft="1dp"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
 
                 <ImageView
-                    android:src="@mipmap/mine_duibi"
+                    android:id="@+id/imageView61"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:id="@+id/imageView61"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/mine_duibi" />
 
                 <TextView
+                    android:id="@+id/textDuiBi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="对比"
-                    android:id="@+id/textDuiBi"
                     android:layout_below="@+id/imageView61"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="对比" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewHuiHua"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView63"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/huihua" />
 
             </RelativeLayout>
         </LinearLayout>
+
         <TextView
-            android:textColor="@color/basic_color"
-            android:textStyle="bold"
+            android:id="@+id/textCall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/basic_color01"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:text="电话咨询"
+            android:textColor="@color/basic_color"
             android:textSize="@dimen/bigText"
-            android:id="@+id/textCall" />
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

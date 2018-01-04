@@ -261,11 +261,20 @@ public class CarDetails {
          */
 
         private int id;
+        private int uid;
         private int is_attention;
         private String intro;
         private String logo;
         private String name;
         private String tel;
+
+        public int getUid() {
+            return uid;
+        }
+
+        public void setUid(int uid) {
+            this.uid = uid;
+        }
 
         public int getIs_attention() {
             return is_attention;

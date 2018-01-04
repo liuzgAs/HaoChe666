@@ -31,6 +31,7 @@ import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Attention;
 import com.haoche666.buyer.model.CarDetails;
+import com.haoche666.buyer.model.IndexGetyuntoken;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
@@ -53,6 +54,8 @@ import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.RecycleViewDistancaUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -150,6 +153,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         findViewById(R.id.viewGuanZhu).setOnClickListener(this);
         findViewById(R.id.textCall).setOnClickListener(this);
         findViewById(R.id.viewDuiBi).setOnClickListener(this);
+        findViewById(R.id.viewHuiHua).setOnClickListener(this);
         imageShare.setOnClickListener(this);
     }
 
@@ -590,9 +594,58 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
 
     private IWXAPI api = WXAPIFactory.createWXAPI(this, Constant.WXAPPID, true);
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getRongYunOkObject() {
+        String url = Constant.HOST + Constant.Url.INDEX_GETYUNTOKEN;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime", tokenTime);
+        }
+        params.put("f", String.valueOf(userInfo.getUid()));
+        params.put("t", String.valueOf(storeBean.getUid()));
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.viewHuiHua:
+                if (isLogin){
+                    showLoadingDialog();
+                    ApiClient.post(CheLiangXQActivity.this, getRongYunOkObject(), new ApiClient.CallBack() {
+                        @Override
+                        public void onSuccess(String s) {
+                            cancelLoadingDialog();
+                            LogUtil.LogShitou("CheLiangXQActivity--融云token", s + "");
+                            try {
+                                IndexGetyuntoken indexGetyuntoken = GsonUtils.parseJSON(s, IndexGetyuntoken.class);
+                                if (indexGetyuntoken.getStatus() == 1) {
+                                    connectRongYun(indexGetyuntoken);
+                                } else if (indexGetyuntoken.getStatus() == 3) {
+                                    MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                                } else {
+                                    Toast.makeText(CheLiangXQActivity.this, indexGetyuntoken.getInfo(), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (Exception e) {
+                                Toast.makeText(CheLiangXQActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onError() {
+                            cancelLoadingDialog();
+                            Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else {
+                    ToLoginActivity.toLoginActivity(this);
+                }
+                break;
             case R.id.imageShare:
                 if (share != null) {
                     isShare = true;
@@ -630,6 +683,42 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             default:
                 break;
         }
+    }
+
+    /**
+     * 链接融云
+     */
+    private void connectRongYun(IndexGetyuntoken indexGetyuntoken) {
+        RongIM.connect(indexGetyuntoken.getF(), new RongIMClient.ConnectCallback() {
+
+            /**
+             * Token 错误。可以从下面两点检查 1.  Token 是否过期，如果过期您需要向 App Server 重新请求一个新的 Token
+             *                  2.  token 对应的 appKey 和工程里设置的 appKey 是否一致
+             */
+            @Override
+            public void onTokenIncorrect() {
+                LogUtil.LogShitou("CheLiangXQActivity--onTokenIncorrect", "1111");
+            }
+
+            /**
+             * 连接融云成功
+             * @param userid 当前 token 对应的用户 id
+             */
+            @Override
+            public void onSuccess(String userid) {
+                LogUtil.LogShitou("CheLiangXQActivity--onSuccess", ""+userid);
+
+            }
+
+            /**
+             * 连接融云失败
+             * @param errorCode 错误码，可到官网 查看错误码对应的注释
+             */
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+                LogUtil.LogShitou("CheLiangXQActivity--onError", ""+errorCode.toString());
+            }
+        });
     }
 
     /**

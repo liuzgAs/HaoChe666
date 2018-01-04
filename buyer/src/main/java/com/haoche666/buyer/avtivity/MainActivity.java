@@ -2,7 +2,6 @@ package com.haoche666.buyer.avtivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,16 +54,6 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
     public boolean isPinPaiXC = false;
     public boolean isJiaGEXC = false;
     public boolean isSearch = false;
-    private BroadcastReceiver reciver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            switch (action) {
-                default:
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +86,7 @@ public class MainActivity extends ZjbBaseNotLeftActivity {
         tabsItem[2] = "卖车";
         tabsItem[3] = "消息";
         tabsItem[4] = "我的";
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtab);
+        mTabHost.setup(MainActivity.this, getSupportFragmentManager(), R.id.realtab);
         for (int i = 0; i < tabsItem.length; i++) {
             View inflate = getLayoutInflater().inflate(R.layout.tabs_item, null);
             TextView tabsText = inflate.findViewById(R.id.tabs_text);

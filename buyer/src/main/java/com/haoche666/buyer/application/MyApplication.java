@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.LogUtil;
+import io.rong.imkit.RongIM;
 
 
 /**
@@ -40,6 +41,7 @@ public class MyApplication extends MultiDexApplication {
         } catch (Exception e) {
         }
         initCloudChannel(this);
+        RongIM.init(this);
     }
 
 

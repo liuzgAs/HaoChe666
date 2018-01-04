@@ -234,6 +234,10 @@ public class Constant {
          * 系统消息
          */
         public static final String USER_MSG = "/User/msg";
+        /**
+         * 获取融云聊天token
+         */
+        public static final String INDEX_GETYUNTOKEN = "/Index/getYunToken";
     }
 
     public static class IntentKey {
