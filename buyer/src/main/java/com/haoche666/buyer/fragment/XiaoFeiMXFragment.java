@@ -103,14 +103,10 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CorderGetconsumedetail.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                int layout = R.layout.item_ding_dan_gl;
-                return new XiaoFeiMXViewHolder(parent, layout, viewType);
+                int layout = R.layout.item_chong_zhi_mx;
+                return new XiaoFeiMXViewHolder(parent, layout);
             }
 
-            @Override
-            public int getViewType(int position) {
-                return getItem(position).getType_id();
-            }
         });
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
