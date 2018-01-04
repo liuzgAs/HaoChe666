@@ -1,7 +1,10 @@
 package com.haoche666.buyer.avtivity;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -77,6 +80,29 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private TextView textCollect;
     private TextView textDuiBi;
     private CarDetails.ShareBean share;
+    private boolean isShare = false;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case Constant.BroadcastCode.WX_SHARE:
+                    if (isShare) {
+                        MyDialog.showTipDialog(CheLiangXQActivity.this, "分享成功");
+                        isShare = false;
+                    }
+                    break;
+                case Constant.BroadcastCode.WX_SHARE_FAIL:
+                    if (isShare) {
+                        MyDialog.showTipDialog(CheLiangXQActivity.this, "取消分享");
+                        isShare = false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -561,13 +587,15 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             }
         });
     }
+
     private IWXAPI api = WXAPIFactory.createWXAPI(this, Constant.WXAPPID, true);
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageShare:
-                if (share!=null){
+                if (share != null) {
+                    isShare = true;
                     MyDialog.share(this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), share.getShareImg());
                 }
                 break;
@@ -813,5 +841,20 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     protected void onPause() {
         super.onPause();
         JZVideoPlayer.releaseAllVideos();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BroadcastCode.WX_SHARE);
+        filter.addAction(Constant.BroadcastCode.WX_SHARE_FAIL);
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }
