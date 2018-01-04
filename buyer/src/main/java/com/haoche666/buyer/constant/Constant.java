@@ -226,6 +226,10 @@ public class Constant {
          * 查询广告图获取
          */
         public static final String PRODUCT_GETBANNER = "/product/getBanner";
+        /**
+         * 查看是否支持查询（查维保）
+         */
+        public static final String CARSEARCH_ISSUPPORTED = "/carsearch/isSupported";
     }
 
     public static class IntentKey {

@@ -172,6 +172,22 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
         return new OkObject(params, url);
     }
 
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getBeforOkObject() {
+        String url = Constant.HOST + Constant.Url.CARSEARCH_ISSUPPORTED;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("vin",editVin.getText().toString().trim());
+        return new OkObject(params, url);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -184,37 +200,63 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                     Toast.makeText(ChaWeiBaoActivity.this, R.string.chaxunpinpai, Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 showLoadingDialog();
-                ApiClient.post(ChaWeiBaoActivity.this, getOkObject(), new ApiClient.CallBack() {
+                ApiClient.post(ChaWeiBaoActivity.this, getBeforOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         cancelLoadingDialog();
-                        LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
+                        LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess",s+ "");
                         try {
-                            CorderCreateorder corderCreateorder = GsonUtils.parseJSON(s, CorderCreateorder.class);
-                            if (corderCreateorder.getStatus() == 1) {
-                                order_no = corderCreateorder.getOrder_no();
-                                switch (payMode) {
-                                    case 0:
-                                        yuEZhiFu();
-                                        break;
-                                    case 1:
-                                        zhiFuBao();
-                                        break;
-                                    case 2:
-                                        weiXinZF();
-                                        break;
-                                    default:
+                            SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                            if (simpleInfo.getStatus()==1){
+                                showLoadingDialog();
+                                ApiClient.post(ChaWeiBaoActivity.this, getOkObject(), new ApiClient.CallBack() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        cancelLoadingDialog();
+                                        LogUtil.LogShitou("ChaWeiBaoActivity--onSuccess", s + "");
+                                        try {
+                                            CorderCreateorder corderCreateorder = GsonUtils.parseJSON(s, CorderCreateorder.class);
+                                            if (corderCreateorder.getStatus() == 1) {
+                                                order_no = corderCreateorder.getOrder_no();
+                                                switch (payMode) {
+                                                    case 0:
+                                                        yuEZhiFu();
+                                                        break;
+                                                    case 1:
+                                                        zhiFuBao();
+                                                        break;
+                                                    case 2:
+                                                        weiXinZF();
+                                                        break;
+                                                    default:
 
-                                        break;
-                                }
-                            } else if (corderCreateorder.getStatus() == 3) {
+                                                        break;
+                                                }
+                                            } else if (corderCreateorder.getStatus() == 3) {
+                                                MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
+                                            } else {
+                                                Toast.makeText(ChaWeiBaoActivity.this, corderCreateorder.getInfo(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (Exception e) {
+                                            Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        cancelLoadingDialog();
+                                        Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }else if (simpleInfo.getStatus()==3){
                                 MyDialog.showReLoginDialog(ChaWeiBaoActivity.this);
-                            } else {
-                                Toast.makeText(ChaWeiBaoActivity.this, corderCreateorder.getInfo(), Toast.LENGTH_SHORT).show();
+                            }else {
+                                MyDialog.showTipDialog(ChaWeiBaoActivity.this,simpleInfo.getInfo());
                             }
                         } catch (Exception e) {
-                            Toast.makeText(ChaWeiBaoActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChaWeiBaoActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -224,6 +266,8 @@ public class ChaWeiBaoActivity extends ZjbBaseActivity implements View.OnClickLi
                         Toast.makeText(ChaWeiBaoActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
                 break;
             case R.id.viewBrand:
                 Intent intent = new Intent();

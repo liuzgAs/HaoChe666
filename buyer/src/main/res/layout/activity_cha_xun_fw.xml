@@ -10,22 +10,23 @@
 
     <include layout="@layout/view_bar_white" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
 
-            <com.bigkoo.convenientbanner.ConvenientBanner
-                android:id="@+id/banner"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:canLoop="true">
+            <!--<com.bigkoo.convenientbanner.ConvenientBanner-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/banner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="220dp"-->
+                <!--app:canLoop="true">-->
 
-            </com.bigkoo.convenientbanner.ConvenientBanner>
+            <!--</com.bigkoo.convenientbanner.ConvenientBanner>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,7 +167,7 @@
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 
 </LinearLayout>

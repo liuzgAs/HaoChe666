@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
@@ -16,12 +14,9 @@ import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.model.Product;
 import com.haoche666.buyer.model.ProductGetbalance;
-import com.haoche666.buyer.model.ProductGetbanner;
 import com.haoche666.buyer.util.ApiClient;
-import com.haoche666.buyer.viewholder.ChaXunBannerImgHolderView;
 
 import java.util.HashMap;
-import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
@@ -32,7 +27,7 @@ import huisedebi.zjb.mylibrary.util.LogUtil;
  * @author Administrator
  */
 public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickListener {
-    private ConvenientBanner banner;
+//    private ConvenientBanner banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +48,14 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
 
     @Override
     protected void findID() {
-        banner = (ConvenientBanner) findViewById(R.id.banner);
+//        banner = (ConvenientBanner) findViewById(R.id.banner);
     }
 
     @Override
     protected void initViews() {
         ((TextView) findViewById(R.id.textViewTitle)).setText("查询服务");
-        banner.setScrollDuration(1000);
-        banner.startTurning(3000);
+//        banner.setScrollDuration(1000);
+//        banner.startTurning(3000);
     }
 
     @Override
@@ -72,56 +67,56 @@ public class ChaXunFWActivity extends ZjbBaseActivity implements View.OnClickLis
         findViewById(R.id.viewChaXunLS).setOnClickListener(this);
     }
 
-    /**
-     * des： 网络请求参数
-     * author： ZhangJieBo
-     * date： 2017/8/28 0028 上午 9:55
-     */
-    private OkObject getBannerOkObject() {
-        String url = Constant.HOST + Constant.Url.PRODUCT_GETBANNER;
-        HashMap<String, String> params = new HashMap<>();
-        if (isLogin) {
-            params.put("uid", userInfo.getUid());
-            params.put("tokenTime", tokenTime);
-        }
-        return new OkObject(params, url);
-    }
+//    /**
+//     * des： 网络请求参数
+//     * author： ZhangJieBo
+//     * date： 2017/8/28 0028 上午 9:55
+//     */
+//    private OkObject getBannerOkObject() {
+//        String url = Constant.HOST + Constant.Url.PRODUCT_GETBANNER;
+//        HashMap<String, String> params = new HashMap<>();
+//        if (isLogin) {
+//            params.put("uid", userInfo.getUid());
+//            params.put("tokenTime", tokenTime);
+//        }
+//        return new OkObject(params, url);
+//    }
 
     @Override
     protected void initData() {
-        showLoadingDialog();
-        ApiClient.post(ChaXunFWActivity.this, getBannerOkObject(), new ApiClient.CallBack() {
-            @Override
-            public void onSuccess(String s) {
-                cancelLoadingDialog();
-                LogUtil.LogShitou("SellCheFragment--onSuccess", s + "");
-                try {
-                    ProductGetbanner productGetbanner = GsonUtils.parseJSON(s, ProductGetbanner.class);
-                    if (productGetbanner.getStatus() == 1) {
-                        List<ProductGetbanner.BannerBean> productGetbannerBanner = productGetbanner.getBanner();
-                        banner.setPages(new CBViewHolderCreator() {
-                            @Override
-                            public Object createHolder() {
-                                return new ChaXunBannerImgHolderView();
-                            }
-                        }, productGetbannerBanner);
-                        banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
-                    } else if (productGetbanner.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(ChaXunFWActivity.this);
-                    } else {
-                        Toast.makeText(ChaXunFWActivity.this, productGetbanner.getInfo(), Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(ChaXunFWActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onError() {
-                cancelLoadingDialog();
-                Toast.makeText(ChaXunFWActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        showLoadingDialog();
+//        ApiClient.post(ChaXunFWActivity.this, getBannerOkObject(), new ApiClient.CallBack() {
+//            @Override
+//            public void onSuccess(String s) {
+//                cancelLoadingDialog();
+//                LogUtil.LogShitou("SellCheFragment--onSuccess", s + "");
+//                try {
+//                    ProductGetbanner productGetbanner = GsonUtils.parseJSON(s, ProductGetbanner.class);
+//                    if (productGetbanner.getStatus() == 1) {
+//                        List<ProductGetbanner.BannerBean> productGetbannerBanner = productGetbanner.getBanner();
+//                        banner.setPages(new CBViewHolderCreator() {
+//                            @Override
+//                            public Object createHolder() {
+//                                return new ChaXunBannerImgHolderView();
+//                            }
+//                        }, productGetbannerBanner);
+//                        banner.setPageIndicator(new int[]{R.drawable.shape_indicator_normal, R.drawable.shape_indicator_selected});
+//                    } else if (productGetbanner.getStatus() == 3) {
+//                        MyDialog.showReLoginDialog(ChaXunFWActivity.this);
+//                    } else {
+//                        Toast.makeText(ChaXunFWActivity.this, productGetbanner.getInfo(), Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (Exception e) {
+//                    Toast.makeText(ChaXunFWActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onError() {
+//                cancelLoadingDialog();
+//                Toast.makeText(ChaXunFWActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
