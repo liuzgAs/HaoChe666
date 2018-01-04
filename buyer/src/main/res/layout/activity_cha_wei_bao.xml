@@ -28,9 +28,6 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:inputType="number"
-            android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
-            android:maxLength="17"
             android:id="@+id/editVin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +41,8 @@
             android:hint="请输入VIN码"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="@dimen/normal_textsize" />
+            android:textSize="@dimen/normal_textsize"
+            style="@style/vinStytle" />
     </RelativeLayout>
 
     <RelativeLayout

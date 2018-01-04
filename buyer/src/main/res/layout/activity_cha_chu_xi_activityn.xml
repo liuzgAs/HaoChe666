@@ -28,7 +28,8 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText5"
+            style="@style/vinStytle"
+            android:id="@+id/editVin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -76,7 +77,7 @@
     </RelativeLayout>
     <include layout="@layout/view_zhifu"/>
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/buttonTiJiao"
         style="@style/MyBtn01"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

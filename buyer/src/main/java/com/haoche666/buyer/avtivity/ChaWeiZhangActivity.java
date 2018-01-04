@@ -501,35 +501,40 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
                                 try {
                                     PayTask alipay = new PayTask(ChaWeiZhangActivity.this);
                                     Map<String, String> stringMap = alipay.payV2(payAlipay.getOrderinfo(), true);
-                                    AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
+                                    final AliPayBean aliPayBean = GsonUtils.parseJSON(stringMap.get("result"), AliPayBean.class);
                                     LogUtil.LogShitou("ChaWeiZhangActivity--支付结果", "" + stringMap.get("result"));
                                     LogUtil.LogShitou("ChaWeiZhangActivity--支付结果码", "" + aliPayBean.getAlipay_trade_app_pay_response().getCode());
-                                    switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
-                                        case 10000:
-                                            paySuccess();
-                                            break;
-                                        case 8000:
-                                            paySuccess();
-                                            break;
-                                        case 4000:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "订单支付失败");
-                                            break;
-                                        case 5000:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "重复请求");
-                                            break;
-                                        case 6001:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "取消支付");
-                                            break;
-                                        case 6002:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "网络连接错误");
-                                            break;
-                                        case 6004:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "支付结果未知");
-                                            break;
-                                        default:
-                                            MyDialog.showTipDialog(ChaWeiZhangActivity.this, "支付失败");
-                                            break;
-                                    }
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            switch (aliPayBean.getAlipay_trade_app_pay_response().getCode()) {
+                                                case 10000:
+                                                    paySuccess();
+                                                    break;
+                                                case 8000:
+                                                    paySuccess();
+                                                    break;
+                                                case 4000:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "订单支付失败");
+                                                    break;
+                                                case 5000:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "重复请求");
+                                                    break;
+                                                case 6001:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "取消支付");
+                                                    break;
+                                                case 6002:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "网络连接错误");
+                                                    break;
+                                                case 6004:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "支付结果未知");
+                                                    break;
+                                                default:
+                                                    MyDialog.showTipDialog(ChaWeiZhangActivity.this, "支付失败");
+                                                    break;
+                                            }
+                                        }
+                                    });
                                 } catch (Exception e) {
                                 }
                             }
@@ -589,13 +594,14 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
                     if (carsearch.getStatus() == 1) {
                         Intent intent = new Intent();
                         intent.setClass(ChaWeiZhangActivity.this,WebActivity.class);
-                        intent.putExtra(Constant.IntentKey.TITLE,"查维保");
+                        intent.putExtra(Constant.IntentKey.TITLE,"查违章");
                         intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
                         startActivity(intent);
+                        finish();
                     } else if (carsearch.getStatus() == 3) {
                         MyDialog.showReLoginDialog(ChaWeiZhangActivity.this);
                     } else {
-                        Toast.makeText(ChaWeiZhangActivity.this, carsearch.getInfo(), Toast.LENGTH_SHORT).show();
+                        MyDialog.dialogFinish(ChaWeiZhangActivity.this,carsearch.getInfo());
                     }
                 } catch (Exception e) {
                     Toast.makeText(ChaWeiZhangActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
