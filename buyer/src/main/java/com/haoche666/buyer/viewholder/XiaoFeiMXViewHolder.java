@@ -27,7 +27,7 @@ public class XiaoFeiMXViewHolder extends BaseViewHolder<CorderGetconsumedetail.D
     @Override
     public void setData(CorderGetconsumedetail.DataBean data) {
         super.setData(data);
-        textDes.setText(data.getProduct_title());
+        textDes.setText(data.getTitle());
         textCreatetime.setText(data.getCreate_time());
         textPrice.setText("¥"+data.getPrice());
     }

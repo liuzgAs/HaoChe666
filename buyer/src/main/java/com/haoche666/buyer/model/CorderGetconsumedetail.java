@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CorderGetconsumedetail {
     /**
-     * data : [{"amount":0,"create_time":"2017-12-25 17:12","id":4,"price":0,"product_title":"查维保","type_id":1},{"amount":20,"create_time":"2017-12-25 14:17","id":3,"price":0.2,"product_title":"查维保","type_id":1},{"amount":20,"create_time":"2017-12-25 14:13","id":2,"price":0.2,"product_title":"查维保","type_id":1}]
+     * data : [{"create_time":"2018-01-04 11:23","price":0.01,"title":"支付宝充值"}]
      * info : 返回成功！
-     * page : {"dataTotal":3,"page":1,"pageSize":10,"pageTotal":1}
+     * page : {"dataTotal":1,"page":1,"pageSize":10,"pageTotal":1}
      * status : 1
      */
 
@@ -55,7 +55,7 @@ public class CorderGetconsumedetail {
 
     public static class PageBean {
         /**
-         * dataTotal : 3
+         * dataTotal : 1
          * page : 1
          * pageSize : 10
          * pageTotal : 1
@@ -101,28 +101,14 @@ public class CorderGetconsumedetail {
 
     public static class DataBean {
         /**
-         * amount : 0
-         * create_time : 2017-12-25 17:12
-         * id : 4
-         * price : 0
-         * product_title : 查维保
-         * type_id : 1
+         * create_time : 2018-01-04 11:23
+         * price : 0.01
+         * title : 支付宝充值
          */
 
-        private int amount;
         private String create_time;
-        private int id;
         private double price;
-        private String product_title;
-        private int type_id;
-
-        public int getAmount() {
-            return amount;
-        }
-
-        public void setAmount(int amount) {
-            this.amount = amount;
-        }
+        private String title;
 
         public String getCreate_time() {
             return create_time;
@@ -130,14 +116,6 @@ public class CorderGetconsumedetail {
 
         public void setCreate_time(String create_time) {
             this.create_time = create_time;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
         }
 
         public double getPrice() {
@@ -148,20 +126,12 @@ public class CorderGetconsumedetail {
             this.price = price;
         }
 
-        public String getProduct_title() {
-            return product_title;
+        public String getTitle() {
+            return title;
         }
 
-        public void setProduct_title(String product_title) {
-            this.product_title = product_title;
-        }
-
-        public int getType_id() {
-            return type_id;
-        }
-
-        public void setType_id(int type_id) {
-            this.type_id = type_id;
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 }
