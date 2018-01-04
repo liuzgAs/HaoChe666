@@ -37,6 +37,8 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +76,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     private ImageView imageCollect;
     private TextView textCollect;
     private TextView textDuiBi;
+    private CarDetails.ShareBean share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +124,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         findViewById(R.id.viewGuanZhu).setOnClickListener(this);
         findViewById(R.id.textCall).setOnClickListener(this);
         findViewById(R.id.viewDuiBi).setOnClickListener(this);
+        imageShare.setOnClickListener(this);
     }
 
     @Override
@@ -515,6 +519,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         }
                         storeBean = carDetails.getStore();
                         video = carDetails.getVideo();
+                        share = carDetails.getShare();
                         List<CarDetails.ImgListBean> imgListBeanList = carDetails.getImgList();
                         adapter.clear();
                         adapter.addAll(imgListBeanList);
@@ -556,10 +561,16 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             }
         });
     }
+    private IWXAPI api = WXAPIFactory.createWXAPI(this, Constant.WXAPPID, true);
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.imageShare:
+                if (share!=null){
+                    MyDialog.share(this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), share.getShareImg());
+                }
+                break;
             case R.id.viewDuiBi:
                 if (isLogin) {
                     if (carBean.getIs_contrast() == 1) {
