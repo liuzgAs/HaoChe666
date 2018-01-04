@@ -230,6 +230,10 @@ public class Constant {
          * 查看是否支持查询（查维保）
          */
         public static final String CARSEARCH_ISSUPPORTED = "/carsearch/isSupported";
+        /**
+         * 系统消息
+         */
+        public static final String USER_MSG = "/User/msg";
     }
 
     public static class IntentKey {
