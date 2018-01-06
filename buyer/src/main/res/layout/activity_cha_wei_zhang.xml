@@ -106,7 +106,6 @@
         <EditText
             android:inputType="number"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:maxLength="6"
             android:id="@+id/editCheJia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -144,7 +143,6 @@
         <EditText
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:inputType="number"
-            android:maxLength="6"
             android:id="@+id/editFaDongJi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

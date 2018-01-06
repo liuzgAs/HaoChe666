@@ -65,7 +65,7 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
     private EditText editFaDongJi;
     private String order_no;
     final IWXAPI api = WXAPIFactory.createWXAPI(this, null);
-    private int type_id =3;
+    private int type_id = 3;
     private BroadcastReceiver recevier = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -213,11 +213,11 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
                     Toast.makeText(ChaWeiZhangActivity.this, "请输入车牌号", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (editCheJia.getText().toString().trim().length()<6) {
+                if (TextUtils.isEmpty(editCheJia.getText().toString().trim())) {
                     Toast.makeText(ChaWeiZhangActivity.this, "请输入车架号后6位", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (editFaDongJi.getText().toString().trim().length()<6) {
+                if (TextUtils.isEmpty(editFaDongJi.getText().toString().trim())) {
                     Toast.makeText(ChaWeiZhangActivity.this, "请输入发动机后6位", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -570,10 +570,10 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("order_no",order_no);
-        params.put("type_id",type_id+"");
+        params.put("order_no", order_no);
+        params.put("type_id", type_id + "");
         return new OkObject(params, url);
     }
 
@@ -593,15 +593,15 @@ public class ChaWeiZhangActivity extends ZjbBaseActivity implements View.OnClick
                     Carsearch carsearch = GsonUtils.parseJSON(s, Carsearch.class);
                     if (carsearch.getStatus() == 1) {
                         Intent intent = new Intent();
-                        intent.setClass(ChaWeiZhangActivity.this,WebActivity.class);
-                        intent.putExtra(Constant.IntentKey.TITLE,"查违章");
-                        intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
+                        intent.setClass(ChaWeiZhangActivity.this, WebActivity.class);
+                        intent.putExtra(Constant.IntentKey.TITLE, "查违章");
+                        intent.putExtra(Constant.IntentKey.URL, carsearch.getUrl());
                         startActivity(intent);
                         finish();
                     } else if (carsearch.getStatus() == 3) {
                         MyDialog.showReLoginDialog(ChaWeiZhangActivity.this);
                     } else {
-                        MyDialog.dialogFinish(ChaWeiZhangActivity.this,carsearch.getInfo());
+                        MyDialog.dialogFinish(ChaWeiZhangActivity.this, carsearch.getInfo());
                     }
                 } catch (Exception e) {
                     Toast.makeText(ChaWeiZhangActivity.this, "数据出错", Toast.LENGTH_SHORT).show();

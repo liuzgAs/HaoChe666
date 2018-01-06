@@ -262,6 +262,8 @@ public class Constant {
         public static final String NAME = "name";
         public static final String BRAND = "brand";
         public static final String IS_FROM_DUI_BI = "is_from_dui_bi";
+        public static final String BIG_IMG = "bigImg";
+        public static final String BIG_IMG_POSITION = "bigImgPosition";
     }
 
     public static class RequestResultCode {
