@@ -1,6 +1,5 @@
 package com.haoche666.buyer.activity;
 
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +28,8 @@ import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.AttentionGetattention;
 import com.haoche666.buyer.model.DuiBi;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.PiLiangShanChuDB;
+import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheLiangDBViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -35,6 +37,7 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -65,6 +68,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
             }
         }
     };
+    private Button buttonDuiBi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     protected void findID() {
         recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
         imageBianJi = (ImageView) findViewById(R.id.imageBianJi);
+        buttonDuiBi = (Button) findViewById(R.id.buttonDuiBi);
     }
 
     @Override
@@ -183,7 +188,7 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
     @Override
     protected void setListeners() {
         findViewById(R.id.imageBack).setOnClickListener(this);
-        findViewById(R.id.buttonDuiBi).setOnClickListener(this);
+        buttonDuiBi.setOnClickListener(this);
         findViewById(R.id.imageAdd).setOnClickListener(this);
         imageBianJi.setOnClickListener(this);
         recyclerView.getEmptyView().findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
@@ -289,16 +294,82 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
      * 删除pop
      */
     private void showDeleteDialog() {
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_delete, null);
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(view);
-        Window dialogWindow = dialog.getWindow();
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.x = (int) DpUtils.convertDpToPixel(20, this);
-        lp.y = (int) DpUtils.convertDpToPixel(20, this);
-        dialogWindow.setGravity(Gravity.RIGHT | Gravity.TOP);
-        dialogWindow.setAttributes(lp);
-        dialog.show();
+        LayoutInflater inflater1 = LayoutInflater.from(CheLiangDBActivity.this);
+        View dialog_tian_jia_db = inflater1.inflate(R.layout.dialog_dui_bi_del, null);
+        final AlertDialog cheKuangDialog = new AlertDialog.Builder(CheLiangDBActivity.this, R.style.dialog)
+                .setView(dialog_tian_jia_db)
+                .create();
+        cheKuangDialog.show();
+        dialog_tian_jia_db.findViewById(R.id.textAddAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cheKuangDialog.dismiss();
+                shanChu();
+            }
+        });
+        dialog_tian_jia_db.findViewById(R.id.textCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cheKuangDialog.dismiss();
+            }
+        });
+        Window dialogWindow1 = cheKuangDialog.getWindow();
+        dialogWindow1.setGravity(Gravity.BOTTOM);
+        dialogWindow1.setWindowAnimations(R.style.dialogFenXiang);
+        WindowManager.LayoutParams lp1 = dialogWindow1.getAttributes();
+        DisplayMetrics d1 = getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+        lp1.width = (int) (d1.widthPixels * 1); // 高度设置为屏幕的0.6
+        dialogWindow1.setAttributes(lp1);
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private String getShanCHuOkObject() {
+        List<Integer> id = new ArrayList<>();
+        for (int i = 0; i < adapter.getAllData().size(); i++) {
+            if (adapter.getAllData().get(i).isSelect()){
+                id.add(adapter.getAllData().get(i).getId());
+            }
+        }
+        PiLiangShanChuDB piLiangShanChuDB = new PiLiangShanChuDB("1","android",userInfo.getUid(),tokenTime,id);
+        return GsonUtils.parseObject(piLiangShanChuDB);
+    }
+
+    /**
+     * 删除
+     */
+    private void shanChu() {
+        showLoadingDialog();
+        String url = Constant.HOST + Constant.Url.Attention_delAll;
+
+        ApiClient.postJson(CheLiangDBActivity.this,url, getShanCHuOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("CheLiangDBActivity--onSuccess",s+ "");
+                try {
+                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
+                    if (simpleInfo.getStatus()==1){
+                        onRefresh();
+                    }else if (simpleInfo.getStatus()==3){
+                        MyDialog.showReLoginDialog(CheLiangDBActivity.this);
+                    }else {
+                    }
+                    Toast.makeText(CheLiangDBActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(CheLiangDBActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheLiangDBActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -335,6 +406,11 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                         }
                         adapter.clear();
                         adapter.addAll(dataBeanList);
+                        if (dataBeanList.size()==0){
+                            buttonDuiBi.setVisibility(View.GONE);
+                        }else {
+                            buttonDuiBi.setVisibility(View.VISIBLE);
+                        }
                     } else if (attentionGetattention.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheLiangDBActivity.this);
                     } else {

@@ -242,6 +242,10 @@ public class Constant {
          * 我买的车
          */
         public static final String SELLCAR_GETSELLCAR = "/Sellcar/getSellcar";
+        /**
+         * 批量删除对比车辆
+         */
+        public static final String Attention_delAll = "/Attention/delAll";
     }
 
     public static class IntentKey {

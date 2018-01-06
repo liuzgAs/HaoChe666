@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textAddAll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+    <TextView
+        android:id="@+id/textCancle"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normalItemHeight"
+        android:background="@drawable/layout_selector_white_system_gray"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/bigText" />
+
+</LinearLayout>
