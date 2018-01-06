@@ -6,7 +6,7 @@
     android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.haoche666.buyer.avtivity.DingDanGLActivity">
+    tools:context="com.haoche666.buyer.activity.DingDanGLActivity">
 
     <include layout="@layout/view_ding_dan_gl_bar"/>
 

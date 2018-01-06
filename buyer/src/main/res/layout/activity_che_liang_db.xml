@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.haoche666.buyer.avtivity.CheLiangDBActivity">
+    tools:context="com.haoche666.buyer.activity.CheLiangDBActivity">
 
    <include layout="@layout/view_che_liang_db_bar"/>
 

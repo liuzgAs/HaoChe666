@@ -433,4 +433,55 @@ public class MyDialog {
         dialogWindow.setAttributes(lp);
     }
 
+    public static void share01(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialog_shengji = inflater.inflate(R.layout.dianlog_share, null);
+        final AlertDialog alertDialog1 = new AlertDialog.Builder(context, R.style.dialog)
+                .setView(dialog_shengji)
+                .create();
+        alertDialog1.show();
+        dialog_shengji.findViewById(R.id.textViewCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog1.dismiss();
+            }
+        });
+        dialog_shengji.findViewById(R.id.weixin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkIsSupportedWeachatPay(api)) {
+                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                wxShare(api, 0, url, title, des, img);
+                alertDialog1.dismiss();
+            }
+        });
+        dialog_shengji.findViewById(R.id.pengyouquan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkIsSupportedWeachatPay(api)) {
+                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                shareXiaoChengXu();
+                alertDialog1.dismiss();
+            }
+        });
+        Window dialogWindow = alertDialog1.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        DisplayMetrics d = context.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+        lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
+        dialogWindow.setAttributes(lp);
+    }
+
+    /**
+     * 分享到小程序
+     */
+    private static void shareXiaoChengXu() {
+
+    }
+
 }

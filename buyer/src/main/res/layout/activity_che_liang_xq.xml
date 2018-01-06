@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="com.haoche666.buyer.avtivity.CheLiangXQActivity">
+    tools:context="com.haoche666.buyer.activity.CheLiangXQActivity">
 
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/recyclerView"
@@ -79,14 +79,43 @@
 
 
         <LinearLayout
-            android:background="@color/background"
-            android:paddingTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:background="@color/background"
+            android:orientation="horizontal"
+            android:paddingTop="1dp">
 
             <RelativeLayout
+                android:id="@+id/viewHuiHua"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/layout_selector_white_system_gray"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView63"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/huihua" />
+
+                <TextView
+                    android:textSize="@dimen/litterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView63"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="消息" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="1dp"
                 android:id="@+id/viewGuanZhu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -96,13 +125,14 @@
 
                 <ImageView
                     android:id="@+id/imageCollect"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@mipmap/mine_guanzhu" />
 
                 <TextView
+                    android:textSize="@dimen/litterText"
                     android:id="@+id/textCollect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -123,13 +153,14 @@
 
                 <ImageView
                     android:id="@+id/imageView61"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@mipmap/mine_duibi" />
 
                 <TextView
+                    android:textSize="@dimen/litterText"
                     android:id="@+id/textDuiBi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -140,24 +171,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/viewHuiHua"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/imageView63"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/huihua" />
-
-            </RelativeLayout>
         </LinearLayout>
 
         <TextView

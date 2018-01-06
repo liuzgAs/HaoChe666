@@ -25,4 +25,15 @@ public class DateTransforam {
         res = String.valueOf(ts);
         return res;
     }
+
+    /**
+     * 时间戳转日期
+     * @param s
+     * @return
+     */
+    public static String stampToDate(long s){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        String dateTime = sdf.format(s);
+        return dateTime;
+    }
 }

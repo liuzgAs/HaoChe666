@@ -238,6 +238,10 @@ public class Constant {
          * 获取融云聊天token
          */
         public static final String INDEX_GETYUNTOKEN = "/Index/getYunToken";
+        /**
+         * 我买的车
+         */
+        public static final String SELLCAR_GETSELLCAR = "/Sellcar/getSellcar";
     }
 
     public static class IntentKey {

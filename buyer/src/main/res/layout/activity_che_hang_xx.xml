@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="com.haoche666.buyer.avtivity.CheHangXXActivity">
+    tools:context="com.haoche666.buyer.activity.CheHangXXActivity">
 
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/recyclerView"

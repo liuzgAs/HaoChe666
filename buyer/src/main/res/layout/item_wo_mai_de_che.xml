@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/layout_selector_white_system_gray">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/aodi" />
+    <!--<ImageView-->
+    <!--android:id="@+id/imageView4"-->
+    <!--android:layout_width="120dp"-->
+    <!--android:layout_height="80dp"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@mipmap/aodi" />-->
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView4"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="3dp"
-        android:layout_toEndOf="@+id/imageView4"
-        android:layout_toRightOf="@+id/imageView4"
+        android:layout_marginTop="15dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="标致207 2009款 三厢1.6L 手自一体"
@@ -33,36 +30,61 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/textDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textName"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/imageView4"
         android:text="5万公里|1012年"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/litterText" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textSell_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/textDes"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageView4"
-        android:text="51.8万"
-        android:textColor="@color/textGold"
-        android:textSize="@dimen/normal_textsize" />
+        android:layout_marginTop="5dp"
+        android:text="卖车城市：厦门"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/litterText" />
 
-    <ImageView
-        android:id="@+id/imageView62"
-        android:layout_width="40dp"
+    <TextView
+        android:id="@+id/textBrand_city"
+        android:layout_toRightOf="@+id/textSell_city"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:src="@mipmap/daishou" />
+        android:layout_below="@+id/textDes"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="上牌城市：厦门"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/litterText" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/textView4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignBottom="@+id/imageView4"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginBottom="3dp"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_toRightOf="@+id/imageView4"-->
+    <!--android:text="51.8万"-->
+    <!--android:textColor="@color/textGold"-->
+    <!--android:textSize="@dimen/normal_textsize" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/imageView62"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignBottom="@+id/textView4"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:src="@mipmap/daishou" />-->
 
 </RelativeLayout>

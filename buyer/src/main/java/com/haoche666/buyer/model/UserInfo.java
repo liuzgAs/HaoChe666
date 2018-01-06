@@ -16,6 +16,15 @@ public class UserInfo implements Serializable {
     private String userName;
     private int status;
     private String info;
+    private String yunToken;
+
+    public String getYunToken() {
+        return yunToken;
+    }
+
+    public void setYunToken(String yunToken) {
+        this.yunToken = yunToken;
+    }
 
     public String getUid() {
         return uid;

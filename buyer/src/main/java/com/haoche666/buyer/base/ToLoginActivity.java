@@ -3,7 +3,7 @@ package com.haoche666.buyer.base;
 import android.content.Context;
 import android.content.Intent;
 
-import com.haoche666.buyer.avtivity.DengLuActivity;
+import com.haoche666.buyer.activity.DengLuActivity;
 import com.haoche666.buyer.constant.Constant;
 
 import huisedebi.zjb.mylibrary.util.ACache;

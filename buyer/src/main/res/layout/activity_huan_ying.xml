@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".avtivity.WelcomeActivity">
+    tools:context=".activity.WelcomeActivity">
     <ImageView
         android:src="@mipmap/welcome01"
         android:scaleType="centerCrop"

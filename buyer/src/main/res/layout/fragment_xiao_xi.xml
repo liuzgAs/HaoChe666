@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/relaTitleStatue"
         android:layout_marginTop="5dp"
         android:background="@color/white"
@@ -53,27 +53,27 @@
             android:background="@color/line_gray" />
 
         <RelativeLayout
+            android:id="@+id/viewKeFu"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal">
 
             <ImageView
-                android:id="@+id/imageView41"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:padding="10dp"
+                android:id="@+id/imageKeFu"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:src="@mipmap/zhuanshukefu" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toEndOf="@+id/imageView41"
-                android:layout_toRightOf="@+id/imageView41"
+                android:layout_toEndOf="@+id/imageKeFu"
+                android:layout_toRightOf="@+id/imageKeFu"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="专属客服-军军"
+                    android:text="客服对话"
                     android:textSize="@dimen/bigText" />
 
                 <RelativeLayout
@@ -107,10 +107,11 @@
                         android:layout_toStartOf="@+id/textView64"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:text="我是您的专属客服军军 有什么……"
+                        android:text="我是您的专属客服 有什么可以帮助你的吗？"
                         android:textColor="@color/text_gray" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/textView64"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -133,4 +134,10 @@
             android:layout_marginRight="10dp"
             android:background="@color/line_gray" />
     </LinearLayout>
+    <!--<fragment-->
+        <!--android:id="@+id/conversationlist"-->
+        <!--android:name="io.rong.imkit.fragment.ConversationListFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+         <!--/>-->
 </LinearLayout>

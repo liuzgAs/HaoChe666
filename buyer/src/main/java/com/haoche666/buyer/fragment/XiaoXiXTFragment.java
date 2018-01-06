@@ -16,7 +16,7 @@ import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.OkObject;
-import com.haoche666.buyer.model.SimpleInfo;
+import com.haoche666.buyer.model.UserMsg;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.XiaoXiViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -24,8 +24,8 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.HashMap;
+import java.util.List;
 
-import huisedebi.zjb.mylibrary.provider.DataProvider;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 
@@ -36,7 +36,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
 
 
     private EasyRecyclerView recyclerView;
-    private RecyclerArrayAdapter<Integer> adapter;
+    private RecyclerArrayAdapter<UserMsg.DataBean> adapter;
     private int page = 1;
     private int type = 1;
 
@@ -92,7 +92,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
     private void initRecycler() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Integer>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<UserMsg.DataBean>(getActivity()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_gonggao;
@@ -102,8 +102,32 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                page++;
-                adapter.addAll(DataProvider.getPersonList(page));
+             ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                 @Override
+                 public void onSuccess(String s) {
+                     LogUtil.LogShitou("DingDanGLActivity--加载更多", s+"");
+                     try {
+                         page++;
+                         UserMsg userMsg = GsonUtils.parseJSON(s, UserMsg.class);
+                         int status = userMsg.getStatus();
+                         if (status == 1) {
+                             List<UserMsg.DataBean> dataBeanList = userMsg.getData();
+                             adapter.addAll(dataBeanList);
+                         } else if (status == 3) {
+                             MyDialog.showReLoginDialog(getActivity());
+                         } else {
+                             adapter.pauseMore();
+                         }
+                     } catch (Exception e) {
+                         adapter.pauseMore();
+                     }
+                 }
+
+                 @Override
+                 public void onError() {
+                     adapter.pauseMore();
+                 }
+             });
             }
 
             @Override
@@ -177,13 +201,15 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
                 LogUtil.LogShitou("消息"+type, s);
                 try {
                     page++;
-                    SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
-                    if (simpleInfo.getStatus() == 1) {
-
-                    } else if (simpleInfo.getStatus() == 3) {
+                    UserMsg userMsg = GsonUtils.parseJSON(s, UserMsg.class);
+                    if (userMsg.getStatus() == 1) {
+                        List<UserMsg.DataBean> dataBeanList = userMsg.getData();
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                    } else if (userMsg.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
-                        showError(simpleInfo.getInfo());
+                        showError(userMsg.getInfo());
                     }
                 } catch (Exception e) {
                     showError("数据出错");

@@ -51,4 +51,5 @@ dependencies {
     implementation files('libs/wechat-sdk-android-with-mta-1.0.2.jar')
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     implementation project(':IMKit')
+    compile 'q.rorbin:badgeview:1.1.2'
 }

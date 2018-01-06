@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context="com.haoche666.buyer.avtivity.WoDeGZActivity">
+    tools:context="com.haoche666.buyer.activity.WoDeGZActivity">
 
     <include layout="@layout/view_tab_bar" />
 

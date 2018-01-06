@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.activity.CheLiangXQActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 

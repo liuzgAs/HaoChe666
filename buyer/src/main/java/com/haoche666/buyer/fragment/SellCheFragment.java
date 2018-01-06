@@ -19,9 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.ChengShiXZActivity;
-import com.haoche666.buyer.avtivity.PinPaiXCActivity;
-import com.haoche666.buyer.avtivity.WebActivity;
+import com.haoche666.buyer.activity.ChengShiXZActivity;
+import com.haoche666.buyer.activity.PinPaiXCActivity;
+import com.haoche666.buyer.activity.WebActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;

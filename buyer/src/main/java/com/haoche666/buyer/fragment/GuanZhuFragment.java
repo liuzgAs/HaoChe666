@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.CheLiangXQActivity;
+import com.haoche666.buyer.activity.CheLiangXQActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;

@@ -215,7 +215,40 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
+        <!--会话界面-->
+        <activity
+            android:name=".activity.ConversationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.haoche666.buyer"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!--会话列表-->
+        <activity
+            android:name=".activity.ConversationListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.haoche666.buyer"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
         <!-- wechat callback -->
         <activity
             android:name=".wxapi.WXPayEntryActivity"
@@ -236,13 +269,13 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <!-- V3.0.9及以上版本需配置 -->
         <activity
             android:name="com.alibaba.sdk.android.push.keeplive.PushExtActivity"
@@ -257,7 +290,7 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".avtivity.WelcomeActivity"
+            android:name=".activity.WelcomeActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -266,121 +299,121 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".avtivity.MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppThemeNoTranslucent" />
         <activity
-            android:name=".avtivity.DengLuActivity"
+            android:name=".activity.DengLuActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".avtivity.ZuJiActivity"
+            android:name=".activity.ZuJiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WoYaoMcActivity"
+            android:name=".activity.WoYaoMcActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.CheLiangXQActivity"
+            android:name=".activity.CheLiangXQActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".avtivity.WoDeGZActivity"
+            android:name=".activity.WoDeGZActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.CheLiangDBActivity"
+            android:name=".activity.CheLiangDBActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WoDeDDActivity"
+            android:name=".activity.WoDeDDActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChaXunFWActivity"
+            android:name=".activity.ChaXunFWActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.SheZhiActivity"
+            android:name=".activity.SheZhiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChaWeiBaoActivity"
+            android:name=".activity.ChaWeiBaoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChaWeiZhangActivity"
+            android:name=".activity.ChaWeiZhangActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChaXunLSActivity"
+            android:name=".activity.ChaXunLSActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChaChuXianActivity"
+            android:name=".activity.ChaChuXianActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.CheHangXXActivity"
+            android:name=".activity.CheHangXXActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ZhuCeActivity"
+            android:name=".activity.ZhuCeActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WangJiMMActivity"
+            android:name=".activity.WangJiMMActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.DingDanGLActivity"
+            android:name=".activity.DingDanGLActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.PinPaiXCActivity"
+            android:name=".activity.PinPaiXCActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.PayVipActivity"
+            android:name=".activity.PayVipActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.PayVideoActivity"
+            android:name=".activity.PayVideoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.DuiBiActivity"
+            android:name=".activity.DuiBiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChongZhiActivity"
+            android:name=".activity.ChongZhiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.YiJianFKActivity"
+            android:name=".activity.YiJianFKActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.XiTongXXActivity"
+            android:name=".activity.XiTongXXActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChangJianWenTiActivity"
+            android:name=".activity.ChangJianWenTiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.GeRenXXActivity"
+            android:name=".activity.GeRenXXActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WoMaiDeCheActivity"
+            android:name=".activity.WoMaiDeCheActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.CheHangLBActivity"
+            android:name=".activity.CheHangLBActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WenZhangLBActivity"
+            android:name=".activity.WenZhangLBActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.MapActivity"
+            android:name=".activity.MapActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.EditActivity"
+            android:name=".activity.EditActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.WebActivity"
+            android:name=".activity.WebActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.XiuGaiMMActivity"
+            android:name=".activity.XiuGaiMMActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.YinDaoActivity"
+            android:name=".activity.YinDaoActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.PayChongZhiActivity"
+            android:name=".activity.PayChongZhiActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.CheLiangLBActivity"
+            android:name=".activity.CheLiangLBActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".avtivity.ChengShiXZActivity"
+            android:name=".activity.ChengShiXZActivity"
             android:launchMode="singleTop" />
     </application>
 

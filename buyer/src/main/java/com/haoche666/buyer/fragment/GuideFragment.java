@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.MainActivity;
+import com.haoche666.buyer.activity.MainActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
 

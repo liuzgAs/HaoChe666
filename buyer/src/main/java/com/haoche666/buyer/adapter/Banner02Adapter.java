@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.CheHangXXActivity;
-import com.haoche666.buyer.avtivity.CheLiangXQActivity;
-import com.haoche666.buyer.avtivity.MainActivity;
+import com.haoche666.buyer.activity.CheHangXXActivity;
+import com.haoche666.buyer.activity.CheLiangXQActivity;
+import com.haoche666.buyer.activity.MainActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.constant.Constant;

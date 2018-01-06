@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.haoche666.buyer.avtivity.PayChongZhiActivity">
+    tools:context="com.haoche666.buyer.activity.PayChongZhiActivity">
     <include layout="@layout/view_bar_white"/>
     <TextView
         android:id="@+id/textJinE"

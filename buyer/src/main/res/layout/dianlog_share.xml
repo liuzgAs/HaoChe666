@@ -53,6 +53,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="invisible"
                 android:id="@+id/relaShouCang"
                 android:layout_weight="1"
                 android:layout_width="match_parent"

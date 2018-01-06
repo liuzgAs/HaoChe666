@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.avtivity.PinPaiXCActivity;
+import com.haoche666.buyer.activity.PinPaiXCActivity;
 import com.haoche666.buyer.model.CarCarparam;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
