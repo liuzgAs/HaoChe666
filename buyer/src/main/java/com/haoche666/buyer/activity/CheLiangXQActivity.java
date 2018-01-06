@@ -276,6 +276,15 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         }
                     }
                 });
+                header_che_liang_xq.findViewById(R.id.viewCheHang).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.putExtra(Constant.IntentKey.ID, storeBean.getId());
+                        intent.setClass(CheLiangXQActivity.this,CheHangXXActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 return header_che_liang_xq;
             }
 

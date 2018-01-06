@@ -42,29 +42,35 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
-
-                <huisedebi.zjb.mylibrary.customview.CircleImageView
-                    android:id="@+id/imageLogo"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/nikesi" />
-
-                <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/textName"
+                <RelativeLayout
+                    android:background="@drawable/layout_selector_white_system_gray"
+                    android:id="@+id/viewCheHang"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toEndOf="@+id/imageLogo"
-                    android:layout_toRightOf="@+id/imageLogo"
-                    android:text="尼克斯品质车行"
-                    android:textColor="@color/light_black"
-                    android:textSize="@dimen/bigText" />
+                    android:layout_height="match_parent">
+                    <huisedebi.zjb.mylibrary.customview.CircleImageView
+                        android:id="@+id/imageLogo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/nikesi" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toEndOf="@+id/imageLogo"
+                        android:layout_toRightOf="@+id/imageLogo"
+                        android:text="尼克斯品质车行"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/bigText" />
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/buttonGuanZhu"
