@@ -30,6 +30,7 @@ import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Attention;
+import com.haoche666.buyer.model.BigImgList;
 import com.haoche666.buyer.model.CarDetails;
 import com.haoche666.buyer.model.IndexGetyuntoken;
 import com.haoche666.buyer.model.OkObject;
@@ -44,6 +45,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -156,6 +158,21 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         findViewById(R.id.viewDuiBi).setOnClickListener(this);
         findViewById(R.id.viewHuiHua).setOnClickListener(this);
         imageShare.setOnClickListener(this);
+        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                List<String> imgList = new ArrayList<>();
+                for (int i = 0; i < adapter.getAllData().size(); i++) {
+                    imgList.add(adapter.getItem(i).getImg());
+                }
+                Intent intent = new Intent();
+                intent.setClass(CheLiangXQActivity.this, BigImgActivity.class);
+                intent.putExtra(Constant.IntentKey.BIG_IMG, new BigImgList(imgList));
+                intent.putExtra(Constant.IntentKey.BIG_IMG_POSITION, position);
+                intent.putExtra(Constant.IntentKey.VALUE,"");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -366,7 +383,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                         banner.setPages(new CBViewHolderCreator() {
                             @Override
                             public Object createHolder() {
-                                return new CheLiangBannerImgHolderView();
+                                return new CheLiangBannerImgHolderView(bannerBeanList);
                             }
                         }, bannerBeanList);
                     } else {

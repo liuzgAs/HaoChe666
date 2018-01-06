@@ -185,7 +185,7 @@ public class BigImgActivity extends ZjbBaseNotLeftActivity {
             Glide.with(mContext)
                     .load(imgList.get(position))
                     .asBitmap()
-                    .placeholder(R.mipmap.ic_empty)
+                    .placeholder(R.mipmap.empty_wo_de_dd)
                     .into(photoView);
             // Now just add PhotoView to ViewPager and return it
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT,
