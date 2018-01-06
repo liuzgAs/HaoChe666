@@ -290,6 +290,9 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 final NumberPicker numPicker05 = dialog_chan_pin.findViewById(R.id.numPicker05);
                 numPicker05.setMinValue(0);
                 numPicker05.setMaxValue(9);
+                final NumberPicker numPicker06 = dialog_chan_pin.findViewById(R.id.numPicker06);
+                numPicker06.setMinValue(0);
+                numPicker06.setMaxValue(9);
                 final AlertDialog xinZengDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
                         .setView(dialog_chan_pin)
                         .create();
@@ -303,7 +306,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 dialog_chan_pin.findViewById(R.id.textSure).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        km = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue() + numPicker05.getValue());
+                        km = Integer.parseInt("" + numPicker01.getValue() + numPicker02.getValue() + numPicker03.getValue() + numPicker04.getValue() + numPicker05.getValue()+ numPicker06.getValue());
                         textLiCheng.setText(km + "公里");
                         xinZengDialog.dismiss();
                     }
