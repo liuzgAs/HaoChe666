@@ -2,6 +2,7 @@ package com.haoche666.buyer.viewholder;
 
 import android.graphics.Color;
 import android.support.annotation.LayoutRes;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,26 @@ public class LiaoTianXiaoXiViewHolder extends BaseViewHolder<LiaoTian> {
     public void setData(LiaoTian data) {
         super.setData(data);
         getUserInfo(data);
-        textDes.setText(data.getLatestMessage().getUserInfo().getName()+"："+data.getLatestMessage().getContent());
+        switch (data.getObjectName()) {
+            case "RC:ImgMsg":
+                textDes.setText("图片");
+                break;
+            case "RC:VcMsg":
+                textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：语音消息" );
+                break;
+            case "RC:TxtMsg":
+                textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：" + data.getLatestMessage().getContent());
+                break;
+            default:
+                if (TextUtils.equals(data.getSentStatus(), "SENT")) {
+                    textDes.setText("您发送了一条消息");
+                } else if (TextUtils.equals(data.getSentStatus(), "sentStatus")) {
+                    textDes.setText("发送中……");
+                } else {
+                    textDes.setText("收到了对方的消息");
+                }
+                break;
+        }
         textTime.setText(DateTransforam.stampToDate(data.getReceivedTime()));
         badge.bindTarget(viewKeFu).setBadgeNumber(data.getUnreadMessageCount());
     }
