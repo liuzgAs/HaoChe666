@@ -250,6 +250,10 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
 
     @Override
     public void onRefresh() {
-        connectRongYun();
+        if (isLogin){
+            connectRongYun();
+        }else {
+            adapter.clear();
+        }
     }
 }

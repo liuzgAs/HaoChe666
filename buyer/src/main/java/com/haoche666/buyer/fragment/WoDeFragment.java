@@ -1,13 +1,16 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,16 +41,19 @@ import com.haoche666.buyer.model.UserInfo;
 import com.haoche666.buyer.util.ApiClient;
 
 import java.util.HashMap;
+import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.ACache;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.LogUtil;
 import huisedebi.zjb.mylibrary.util.ScreenUtils;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListener {
+public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListener , EasyPermissions.PermissionCallbacks{
 
 
     private View mInflate;
@@ -143,6 +149,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         mInflate.findViewById(R.id.textChongZhi).setOnClickListener(this);
         mInflate.findViewById(R.id.viewGeRenXX).setOnClickListener(this);
         mInflate.findViewById(R.id.viewWoMaiDeChe).setOnClickListener(this);
+        mInflate.findViewById(R.id.viewLianXiKeFu).setOnClickListener(this);
         imageVip.setOnClickListener(this);
     }
 
@@ -236,11 +243,71 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         super.onResume();
         mHeaderWaveHelper.start();
     }
+    private static final int CALL_PHONE = 1991;
+
+    /**
+     * 检查权限
+     */
+    private void requiresPermission() {
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(getActivity(), perms)) {
+            // Already have permission, do the thing
+            call();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "需要拨打电话权限",
+                    CALL_PHONE, perms);
+        }
+    }
+
+    /**
+     * 拨打电话
+     */
+    private void call() {
+    /*跳转到拨号界面，同时传递电话号码*/
+        if (userBuyerindex != null) {
+            if (TextUtils.isEmpty(userBuyerindex.getService_telephone())) {
+                Toast.makeText(getActivity(), "电话号码为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + userBuyerindex.getService_telephone()));
+            startActivity(dialIntent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        call();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("为了您能使用拨打电话功能，请开启打电话权限！")
+                    .setPositiveButton("去设置")
+                    .setNegativeButton("取消")
+                    .setRequestCode(CALL_PHONE)
+                    .build()
+                    .show();
+        }
+    }
 
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
+            case R.id.viewLianXiKeFu:
+                requiresPermission();
+                break;
             case R.id.viewWoMaiDeChe:
                 if (isLogin) {
                     intent.setClass(getActivity(), WoMaiDeCheActivity.class);

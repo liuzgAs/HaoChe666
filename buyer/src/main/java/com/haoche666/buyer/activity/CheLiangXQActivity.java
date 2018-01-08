@@ -422,7 +422,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     viewVideo.setVisibility(View.VISIBLE);
                     textShiPing.setVisibility(View.VISIBLE);
                     jzVideoPlayerStandard.setUp(video.getPlayUrl()
-                            , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, video.getTitle());
+                            , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL);
                     Glide.with(CheLiangXQActivity.this)
                             .load(video.getCoverForFeed())
                             .asBitmap()

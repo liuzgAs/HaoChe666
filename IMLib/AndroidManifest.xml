@@ -19,7 +19,11 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application>
-
+        <!--融云生产环境：-->
+        <!--App Key-->
+        <!--ik1qhw09ivmup-->
+        <!--App Secret-->
+        <!--LKA5u3T9Pl4JQ-->
         <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"

@@ -26,32 +26,38 @@
                     android:text="@string/duiBiTitle01" />
 
                 <TextView
+                    android:id="@+id/text0000"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0101" />
 
                 <TextView
+                    android:id="@+id/text0001"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0102" />
 
                 <TextView
+                    android:id="@+id/text0002"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0103" />
 
                 <TextView
+                    android:id="@+id/text0003"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0104" />
 
                 <TextView
+                    android:id="@+id/text0004"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0105" />
 
                 <TextView
+                    android:id="@+id/text0005"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0106" />
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0107" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0107" />-->
 
                 <TextView
                     android:id="@+id/textCeiling02"
@@ -59,270 +65,411 @@
                     android:text="@string/duiBiTitle02" />
 
                 <TextView
+                    android:id="@+id/text0100"
                     style="@style/duiBiItem"
                     android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0101"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0202" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0102"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0203" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0103"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0204" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0104"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0205" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0105"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0206" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0106"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0207" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0107"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0208" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0108"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0209" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0109"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0210" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
-                    android:id="@+id/textCeiling03"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle03" />
-
-                <TextView
+                    android:id="@+id/text0110"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0301" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0111"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0302" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0112"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0303" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0113"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0304" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0114"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0305" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0115"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0306" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0116"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0307" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0117"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0308" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0118"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0309" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
-                    android:id="@+id/textCeiling04"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle04" />
-
-                <TextView
+                    android:id="@+id/text0119"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0401" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0120"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0402" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0121"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0403" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0122"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0404" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0123"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0405" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0124"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0406" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0125"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0407" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0126"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0408" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
+                    android:id="@+id/text0127"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0409" />
+                    android:text="@string/duiBi0201" />
 
                 <TextView
-                    android:id="@+id/textCeiling05"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle05" />
-
-                <TextView
+                    android:id="@+id/text0128"
                     style="@style/duiBiItem"
-                    android:text="@string/duiBi0501" />
+                    android:text="@string/duiBi0201" />
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0502" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0202" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0503" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0203" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0504" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0204" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0505" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0205" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0506" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0206" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0507" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0207" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0508" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0208" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0509" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0209" />-->
 
-                <TextView
-                    android:id="@+id/textCeiling06"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle06" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0210" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0601" />
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling03"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle03" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0602" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0301" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0603" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0302" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0604" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0303" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0605" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0304" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0606" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0305" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0607" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0306" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0608" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0307" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0609" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0308" />-->
 
-                <TextView
-                    android:id="@+id/textCeiling07"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle07" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0309" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0701" />
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling04"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle04" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0702" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0401" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0703" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0402" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0704" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0403" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0705" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0404" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0706" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0405" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0707" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0406" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0708" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0407" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0709" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0408" />-->
 
-                <TextView
-                    android:id="@+id/textCeiling08"
-                    style="@style/itemDuiBiTitle"
-                    android:text="@string/duiBiTitle08" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0409" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0801" />
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling05"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle05" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0802" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0501" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0803" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0502" />-->
 
-                <TextView
-                    style="@style/duiBiItem"
-                    android:text="@string/duiBi0804" />
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0503" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0504" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0505" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0506" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0507" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0508" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0509" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling06"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle06" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0601" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0602" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0603" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0604" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0605" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0606" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0607" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0608" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0609" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling07"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle07" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0701" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0702" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0703" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0704" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0705" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0706" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0707" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0708" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0709" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/textCeiling08"-->
+                <!--style="@style/itemDuiBiTitle"-->
+                <!--android:text="@string/duiBiTitle08" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0801" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0802" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0803" />-->
+
+                <!--<TextView-->
+                <!--style="@style/duiBiItem"-->
+                <!--android:text="@string/duiBi0804" />-->
             </LinearLayout>
 
             <com.jude.easyrecyclerview.EasyRecyclerView

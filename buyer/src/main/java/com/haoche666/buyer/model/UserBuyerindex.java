@@ -27,7 +27,16 @@ public class UserBuyerindex implements Serializable{
     private String mobile;
     private double money;
     private String nickname;
+    private String service_telephone;
     private int status;
+
+    public String getService_telephone() {
+        return service_telephone;
+    }
+
+    public void setService_telephone(String service_telephone) {
+        this.service_telephone = service_telephone;
+    }
 
     public int getGrade() {
         return grade;

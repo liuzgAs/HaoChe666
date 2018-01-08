@@ -88,7 +88,12 @@
 
         <meta-data
             android:name="android.support.VERSION"
-            android:value="26.1.0" /> <!-- imlib config begin -->
+            android:value="26.1.0" /> <!-- 融云生产环境： -->
+        <!-- App Key -->
+        <!-- ik1qhw09ivmup -->
+        <!-- App Secret -->
+        <!-- LKA5u3T9Pl4JQ -->
+        <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
             android:value="3argexb630c2e" />
