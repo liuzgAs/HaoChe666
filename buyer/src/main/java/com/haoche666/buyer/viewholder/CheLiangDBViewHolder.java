@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.model.AttentionGetattention;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -37,6 +38,11 @@ public class CheLiangDBViewHolder extends BaseViewHolder<AttentionGetattention.D
         }
         textTitle.setText(data.getTitle());
         textDes.setText(data.getDes());
+        Glide.with(getContext())
+                .load(data.getImg())
+                .asBitmap()
+                .placeholder(R.mipmap.ic_empty)
+                .into(imageImg);
     }
     
 }

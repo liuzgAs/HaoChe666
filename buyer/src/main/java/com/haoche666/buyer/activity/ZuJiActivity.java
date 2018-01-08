@@ -1,5 +1,6 @@
 package com.haoche666.buyer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.ZjbBaseActivity;
+import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.fragment.ZuJiCheLiangFragment;
 import com.haoche666.buyer.fragment.ZuJiNeiRongFragment;
 
@@ -28,6 +30,7 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
     private TabLayout tablayout;
     private ViewPager viewPager;
     List<String> list = new ArrayList<>();
+    private boolean isFromDuiBi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,8 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
 
     @Override
     protected void initIntent() {
-
+        Intent intent = getIntent();
+        isFromDuiBi = intent.getBooleanExtra(Constant.IntentKey.IS_FROM_DUI_BI, false);
     }
 
     @Override
@@ -108,7 +112,7 @@ public class ZuJiActivity extends ZjbBaseActivity implements View.OnClickListene
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new ZuJiCheLiangFragment();
+                    return new ZuJiCheLiangFragment(isFromDuiBi);
                 case 1:
                     return new ZuJiNeiRongFragment();
                 default:

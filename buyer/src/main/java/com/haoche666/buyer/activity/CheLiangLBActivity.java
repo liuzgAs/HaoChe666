@@ -9,13 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Attention;
 import com.haoche666.buyer.model.Buyer;
 import com.haoche666.buyer.model.MaiChe;
+import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ShouYeViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -24,6 +27,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import huisedebi.zjb.mylibrary.util.GsonUtils;
@@ -169,10 +173,67 @@ public class CheLiangLBActivity extends ZjbBaseActivity implements SwipeRefreshL
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent();
-                intent.setClass(CheLiangLBActivity.this, CheLiangXQActivity.class);
-                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
-                startActivity(intent);
+                if (isFromDuiBi){
+                    guanZhuCheLiang(adapter.getItem(position).getId());
+                }else {
+                    Intent intent = new Intent();
+                    intent.setClass(CheLiangLBActivity.this, CheLiangXQActivity.class);
+                    intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
+                    startActivity(intent);
+                }
+            }
+
+            /**
+             * des： 网络请求参数
+             * author： ZhangJieBo
+             * date： 2017/8/28 0028 上午 9:55
+             */
+            private OkObject getGuanZhuCLOkObject(int id) {
+                String url = Constant.HOST + Constant.Url.ATTENTION;
+                HashMap<String, String> params = new HashMap<>();
+                if (isLogin) {
+                    params.put("uid", userInfo.getUid());
+                    params.put("tokenTime", tokenTime);
+                }
+                params.put("type_id", "4");
+                params.put("car_store_id",id+ "");
+                params.put("a_status", "1");
+                return new OkObject(params, url);
+            }
+
+            /**
+             * des： 关注车行
+             * author： ZhangJieBo
+             * date： 2017/12/25/025 13:45
+             */
+            private void guanZhuCheLiang(int id) {
+                showLoadingDialog();
+                ApiClient.post(CheLiangLBActivity.this, getGuanZhuCLOkObject(id), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        cancelLoadingDialog();
+                        LogUtil.LogShitou("CheHangXXActivity--onSuccess", s + "");
+                        try {
+                            Attention simpleInfo = GsonUtils.parseJSON(s, Attention.class);
+                            if (simpleInfo.getStatus() == 1) {
+                                setResult(Constant.RequestResultCode.DUI_BI);
+                                finish();
+                            } else if (simpleInfo.getStatus() == 3) {
+                                MyDialog.showReLoginDialog(CheLiangLBActivity.this);
+                            } else {
+                            }
+                            Toast.makeText(CheLiangLBActivity.this, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(CheLiangLBActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        cancelLoadingDialog();
+                        Toast.makeText(CheLiangLBActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         recyclerView.setRefreshListener(this);

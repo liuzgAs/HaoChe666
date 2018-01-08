@@ -264,6 +264,7 @@ public class Constant {
         public static final String IS_FROM_DUI_BI = "is_from_dui_bi";
         public static final String BIG_IMG = "bigImg";
         public static final String BIG_IMG_POSITION = "bigImgPosition";
+        public static final String DUI_BI = "duiBi";
     }
 
     public static class RequestResultCode {
@@ -273,6 +274,7 @@ public class Constant {
         public static final int MAICHE = 2032;
         public static final int CITY = 2033;
         public static final int CITY01 = 2034;
+        public static final int DUI_BI = 2035;
     }
 
     public static class Acache {

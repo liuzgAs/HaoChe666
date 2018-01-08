@@ -1,6 +1,7 @@
 package com.haoche666.buyer.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haoche666.buyer.R;
 import com.haoche666.buyer.activity.CheLiangXQActivity;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ZjbBaseFragment;
 import com.haoche666.buyer.constant.Constant;
+import com.haoche666.buyer.model.Attention;
 import com.haoche666.buyer.model.CarHistory;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
@@ -35,6 +38,7 @@ import huisedebi.zjb.mylibrary.util.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
  * @author Administrator
  */
 public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -44,9 +48,15 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
     private EasyRecyclerView recyclerView;
     private RecyclerArrayAdapter<CarHistory.DataBean> adapter;
     private int page = 1;
+    private boolean isFromDuiBi = false;
 
     public ZuJiCheLiangFragment() {
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public ZuJiCheLiangFragment(boolean isFromDuiBi) {
+        this.isFromDuiBi = isFromDuiBi;
     }
 
 
@@ -104,31 +114,31 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
             @Override
             public void onMoreShow() {
                 page++;
-             ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
-                 @Override
-                 public void onSuccess(String s) {
-                     try {
-                         page++;
-                         CarHistory carHistory = GsonUtils.parseJSON(s, CarHistory.class);
-                         int status = carHistory.getStatus();
-                         if (status == 1) {
-                             List<CarHistory.DataBean> dataBeanList = carHistory.getData();
-                             adapter.addAll(dataBeanList);
-                         } else if (status == 3) {
-                             MyDialog.showReLoginDialog(getActivity());
-                         } else {
-                             adapter.pauseMore();
-                         }
-                     } catch (Exception e) {
-                         adapter.pauseMore();
-                     }
-                 }
+                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            page++;
+                            CarHistory carHistory = GsonUtils.parseJSON(s, CarHistory.class);
+                            int status = carHistory.getStatus();
+                            if (status == 1) {
+                                List<CarHistory.DataBean> dataBeanList = carHistory.getData();
+                                adapter.addAll(dataBeanList);
+                            } else if (status == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                                adapter.pauseMore();
+                            }
+                        } catch (Exception e) {
+                            adapter.pauseMore();
+                        }
+                    }
 
-                 @Override
-                 public void onError() {
-                     adapter.pauseMore();
-                 }
-             });
+                    @Override
+                    public void onError() {
+                        adapter.pauseMore();
+                    }
+                });
             }
 
             @Override
@@ -161,10 +171,67 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), CheLiangXQActivity.class);
-                intent.putExtra(Constant.IntentKey.ID,adapter.getItem(position).getId());
-                startActivity(intent);
+                if (isFromDuiBi) {
+                    guanZhuCheLiang(adapter.getItem(position).getId());
+                } else {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), CheLiangXQActivity.class);
+                    intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
+                    startActivity(intent);
+                }
+            }
+
+            /**
+             * des： 网络请求参数
+             * author： ZhangJieBo
+             * date： 2017/8/28 0028 上午 9:55
+             */
+            private OkObject getGuanZhuCLOkObject(int id) {
+                String url = Constant.HOST + Constant.Url.ATTENTION;
+                HashMap<String, String> params = new HashMap<>();
+                if (isLogin) {
+                    params.put("uid", userInfo.getUid());
+                    params.put("tokenTime", tokenTime);
+                }
+                params.put("type_id", "4");
+                params.put("car_store_id",id+ "");
+                params.put("a_status", "1");
+                return new OkObject(params, url);
+            }
+
+            /**
+             * des： 关注车行
+             * author： ZhangJieBo
+             * date： 2017/12/25/025 13:45
+             */
+            private void guanZhuCheLiang(int id) {
+                showLoadingDialog();
+                ApiClient.post(getActivity(), getGuanZhuCLOkObject(id), new ApiClient.CallBack() {
+                    @Override
+                    public void onSuccess(String s) {
+                        cancelLoadingDialog();
+                        LogUtil.LogShitou("CheHangXXActivity--onSuccess", s + "");
+                        try {
+                            Attention simpleInfo = GsonUtils.parseJSON(s, Attention.class);
+                            if (simpleInfo.getStatus() == 1) {
+                                getActivity().setResult(Constant.RequestResultCode.DUI_BI);
+                                getActivity().finish();
+                            } else if (simpleInfo.getStatus() == 3) {
+                                MyDialog.showReLoginDialog(getActivity());
+                            } else {
+                            }
+                            Toast.makeText(getActivity(), simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        cancelLoadingDialog();
+                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
@@ -189,9 +256,9 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("p",page+"");
+        params.put("p", page + "");
         return new OkObject(params, url);
     }
 
@@ -209,7 +276,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
                         adapter.clear();
                         List<CarHistory.DataBean> dataBeanList = carHistory.getData();
                         adapter.addAll(dataBeanList);
-                    } else if (carHistory.getStatus()== 3) {
+                    } else if (carHistory.getStatus() == 3) {
                         MyDialog.showReLoginDialog(getActivity());
                     } else {
                         showError(carHistory.getInfo());
@@ -223,6 +290,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
             public void onError() {
                 showError("网络出错");
             }
+
             /**
              * 错误显示
              * @param msg

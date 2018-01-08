@@ -214,20 +214,13 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         dialog_tian_jia_db.findViewById(R.id.textAddAll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cheKuangDialog.dismiss();
-                Intent intent = new Intent();
-                intent.setClass(CheLiangDBActivity.this, CheLiangLBActivity.class);
-                intent.putExtra(Constant.IntentKey.IS_FROM_DUI_BI, true);
-                startActivity(intent);
+                xuanZeCheLiangAll(cheKuangDialog);
             }
         });
         dialog_tian_jia_db.findViewById(R.id.textAddFoot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cheKuangDialog.dismiss();
-                Intent intent = new Intent();
-                intent.setClass(CheLiangDBActivity.this, ZuJiActivity.class);
-                startActivity(intent);
+                xuanZeCheLiangZuJi(cheKuangDialog);
             }
         });
         dialog_tian_jia_db.findViewById(R.id.textCancle).setOnClickListener(new View.OnClickListener() {
@@ -243,6 +236,30 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
         DisplayMetrics d1 = getResources().getDisplayMetrics(); // 获取屏幕宽、高用
         lp1.width = (int) (d1.widthPixels * 1); // 高度设置为屏幕的0.6
         dialogWindow1.setAttributes(lp1);
+    }
+
+    /**
+     * 从足迹选择车辆
+     * @param cheKuangDialog
+     */
+    private void xuanZeCheLiangZuJi(AlertDialog cheKuangDialog) {
+        cheKuangDialog.dismiss();
+        Intent intent = new Intent();
+        intent.setClass(CheLiangDBActivity.this, ZuJiActivity.class);
+        intent.putExtra(Constant.IntentKey.IS_FROM_DUI_BI, true);
+        startActivityForResult(intent,Constant.RequestResultCode.DUI_BI);
+    }
+
+    /**
+     * 从所有车源选择车辆
+     * @param cheKuangDialog
+     */
+    private void xuanZeCheLiangAll(AlertDialog cheKuangDialog) {
+        cheKuangDialog.dismiss();
+        Intent intent = new Intent();
+        intent.setClass(CheLiangDBActivity.this, CheLiangLBActivity.class);
+        intent.putExtra(Constant.IntentKey.IS_FROM_DUI_BI, true);
+        startActivityForResult(intent,Constant.RequestResultCode.DUI_BI);
     }
 
     @Override
@@ -445,6 +462,14 @@ public class CheLiangDBActivity extends ZjbBaseActivity implements View.OnClickL
                 recyclerView.showError();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==Constant.RequestResultCode.DUI_BI&&resultCode==Constant.RequestResultCode.DUI_BI){
+            onRefresh();
+        }
     }
 
     @Override
