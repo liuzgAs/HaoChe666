@@ -246,6 +246,10 @@ public class Constant {
          * 批量删除对比车辆
          */
         public static final String Attention_delAll = "/Attention/delAll";
+        /**
+         * 视频列表
+         */
+        public static final String BUYER_GETVIDEOLIST = "/Buyer/getVideoList";
     }
 
     public static class IntentKey {

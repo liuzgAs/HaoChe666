@@ -121,7 +121,7 @@
             android:layout_marginRight="10dp"
             android:id="@+id/videoplayer"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="@dimen/shipinheight"/>
     </RelativeLayout>
 
     <RelativeLayout

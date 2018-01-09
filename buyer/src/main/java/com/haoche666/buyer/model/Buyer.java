@@ -430,7 +430,16 @@ public class Buyer {
         private int id;
         private String img;
         private String title;
+        private String share_url;
         private VideoBean video;
+
+        public String getShare_url() {
+            return share_url;
+        }
+
+        public void setShare_url(String share_url) {
+            this.share_url = share_url;
+        }
 
         public int getId() {
             return id;

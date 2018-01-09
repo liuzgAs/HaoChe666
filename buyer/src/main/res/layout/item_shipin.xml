@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/viewShiPin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/imageImg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/shipinheight"
+            android:layout_margin="10dp" />
+        <ImageView
+            android:src="@mipmap/bofang"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageView18"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/viewShiPin"
+        android:text="好车666"
+        android:textSize="@dimen/bigText"
+        android:textColor="@color/light_black"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textDes"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textTitle"
+        android:layout_marginLeft="10dp"
+        android:text="播放了226次"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textDate"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textTitle"
+        android:layout_marginRight="10dp"
+        android:text="1970.01.01更新"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

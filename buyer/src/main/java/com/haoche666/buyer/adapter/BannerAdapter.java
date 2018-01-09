@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.activity.CheLiangXQActivity;
+import com.haoche666.buyer.activity.WebActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 
@@ -43,8 +43,9 @@ public class BannerAdapter extends PagerAdapter{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IntentKey.ID,imgList.get(position%imgList.size()).getId());
-                intent.setClass(mContext, CheLiangXQActivity.class);
+                intent.setClass(mContext, WebActivity.class);
+                intent.putExtra(Constant.IntentKey.TITLE, imgList.get(position%imgList.size()).getTitle());
+                intent.putExtra(Constant.IntentKey.URL, imgList.get(position%imgList.size()).getShare_url());
                 mContext.startActivity(intent);
             }
         });

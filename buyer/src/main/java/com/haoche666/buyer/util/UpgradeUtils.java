@@ -338,7 +338,7 @@ public class UpgradeUtils extends Activity {
                 // 单击后自动删除
                 // .setOngoing(true)// 无法删除的通知
                 // 定制通知布局
-                .setSmallIcon(huisedebi.zjb.mylibrary.R.mipmap.logo)
+                .setSmallIcon(R.mipmap.logo)
                 .setTicker("正在下载")
                 .setWhen(System.currentTimeMillis())
 //                .setSound(Uri.parse("")) //声音

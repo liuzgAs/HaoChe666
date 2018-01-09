@@ -10,4 +10,5 @@
     <dimen name="duiBiWidth">160dp</dimen>
     <dimen name="CheHangLieBiaoImg">80dp</dimen>
     <dimen name="side_letter_bar_width">36dp</dimen>
+    <dimen name="shipinheight">200dp</dimen>
 </resources>

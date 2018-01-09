@@ -22,6 +22,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.activity.ShiPinLBActivity;
 import com.haoche666.buyer.adapter.Banner02Adapter;
 import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.activity.CheHangLBActivity;
@@ -302,7 +303,9 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.textMore).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), ShiPinLBActivity.class);
+                        startActivity(intent);
                     }
                 });
                 textPaiDangTitle = header_shou_ye.findViewById(R.id.textPaiDangTitle);
