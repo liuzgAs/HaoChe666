@@ -72,7 +72,6 @@ public class DuiBiInfoViewHolder extends BaseViewHolder<AttentionGetcontrastinfo
     public void setData(AttentionGetcontrastinfo.DataBean data) {
         super.setData(data);
         List<String> list00 = data.getParams_v().get(0);
-        List<String> list01 = data.getParams_v().get(1);
         if (list00!=null){
             for (int i = 0; i < text00.length; i++) {
                 text00[i].setText(list00.get(i)+"");
@@ -87,20 +86,23 @@ public class DuiBiInfoViewHolder extends BaseViewHolder<AttentionGetcontrastinfo
                 text00[i].setVisibility(View.GONE);
             }
         }
-        if (list01!=null){
-            for (int i = 0; i < text01.length; i++) {
-                if (!TextUtils.isEmpty(list01.get(i))){
-                    text01[i].setText(list01.get(i)+"");
+        if (data.getParams_v().size()>1){
+            List<String> list01 = data.getParams_v().get(1);
+            if (list01!=null){
+                for (int i = 0; i < text01.length; i++) {
+                    if (!TextUtils.isEmpty(list01.get(i))){
+                        text01[i].setText(list01.get(i)+"");
+                    }
+                    if (data.getParams_vBoolean().get(1).get(i)){
+                        text01[i].setVisibility(View.VISIBLE);
+                    }else {
+                        text01[i].setVisibility(View.GONE);
+                    }
                 }
-                if (data.getParams_vBoolean().get(1).get(i)){
-                    text01[i].setVisibility(View.VISIBLE);
-                }else {
+            }else {
+                for (int i = 0; i < list01.size(); i++) {
                     text01[i].setVisibility(View.GONE);
                 }
-            }
-        }else {
-            for (int i = 0; i < list01.size(); i++) {
-                text01[i].setVisibility(View.GONE);
             }
         }
     }

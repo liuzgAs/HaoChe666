@@ -299,196 +299,203 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("对比参数", s);
-                s = "{\n" +
-                        "\t\"data\":[\n" +
-                        "\t\t{\n" +
-                        "\t\t\t\"img\":\"https://www.haoche666.com/Uploads/attachment/20180104/1dddf19ee9419c1694eb9697072e5660.jpg\",\n" +
-                        "\t\t\t\"params_v\":[\n" +
-                        "\t\t\t\t[\n" +
-                        "\t\t\t\t\t\"4.00万\",\n" +
-                        "\t\t\t\t\t\"9.58万\",\n" +
-                        "\t\t\t\t\t\"9.50万公里\",\n" +
-                        "\t\t\t\t\t\"3年\",\n" +
-                        "\t\t\t\t\t\"北京\",\n" +
-                        "\t\t\t\t\t\"现代\"\n" +
-                        "\t\t\t\t],\n" +
-                        "\t\t\t\t[\n" +
-                        "\t\t\t\t\t\"北京现代\",\n" +
-                        "\t\t\t\t\t\"合资\",\n" +
-                        "\t\t\t\t\t\"领动\",\n" +
-                        "\t\t\t\t\t\"领动(16/03-)\",\n" +
-                        "\t\t\t\t\t\"XDA1AK01\",\n" +
-                        "\t\t\t\t\t\"AP_4028b2b653a2f3280153bba629682ab6\",\n" +
-                        "\t\t\t\t\t\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\",\n" +
-                        "\t\t\t\t\t\"北京现代BH7167TAV轿车\",\n" +
-                        "\t\t\t\t\t\"1.591\",\n" +
-                        "\t\t\t\t\t\"2016\",\n" +
-                        "\t\t\t\t\t\"手自一体\",\n" +
-                        "\t\t\t\t\t\"直喷\",\n" +
-                        "\t\t\t\t\t\"直喷\",\n" +
-                        "\t\t\t\t\t\"北京现代G4FD\",\n" +
-                        "\t\t\t\t\t\"前置前驱\",\n" +
-                        "\t\t\t\t\t\"手自一体 智炫·精英型 GLX 国Ⅴ\",\n" +
-                        "\t\t\t\t\t\"1\",\n" +
-                        "\t\t\t\t\t\"119800\",\n" +
-                        "\t\t\t\t\t\"103800\",\n" +
-                        "\t\t\t\t\t\"5\",\n" +
-                        "\t\t\t\t\t\"智炫精英型\",\n" +
-                        "\t\t\t\t\t\"201603\",\n" +
-                        "\t\t\t\t\t\"4610*1800*1450\",\n" +
-                        "\t\t\t\t\t\"2700\",\n" +
-                        "\t\t\t\t\t\"6\",\n" +
-                        "\t\t\t\t\t\"1317\",\n" +
-                        "\t\t\t\t\t\"95.3\",\n" +
-                        "\t\t\t\t\t\"国五\",\n" +
-                        "\t\t\t\t\t\"优雅白\"\n" +
-                        "\t\t\t\t]\n" +
-                        "\t\t\t],\n" +
-                        "\t\t\t\"title\":\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\"\n" +
-                        "\t\t},\n" +
-                        "\t\t{\n" +
-                        "\t\t\t\"img\":\"https://www.haoche666.com/Uploads/attachment/20180104/1dddf19ee9419c1694eb9697072e5660.jpg\",\n" +
-                        "\t\t\t\"params_v\":[\n" +
-                        "\t\t\t\t[\n" +
-                        "\t\t\t\t\t\"4.00万\",\n" +
-                        "\t\t\t\t\t\"9.58万\",\n" +
-                        "\t\t\t\t\t\"9.50万公里\",\n" +
-                        "\t\t\t\t\t\"3年\",\n" +
-                        "\t\t\t\t\t\"北京\",\n" +
-                        "\t\t\t\t\t\"现代\"\n" +
-                        "\t\t\t\t],\n" +
-                        "\t\t\t\t[\n" +
-                        "\t\t\t\t\t\"北京现代\",\n" +
-                        "\t\t\t\t\t\"合资\",\n" +
-                        "\t\t\t\t\t\"领动\",\n" +
-                        "\t\t\t\t\t\"领动(16/03-)\",\n" +
-                        "\t\t\t\t\t\"XDA1AK01\",\n" +
-                        "\t\t\t\t\t\"AP_4028b2b653a2f3280153bba629682ab6\",\n" +
-                        "\t\t\t\t\t\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\",\n" +
-                        "\t\t\t\t\t\"北京现代BH7167TAV轿车\",\n" +
-                        "\t\t\t\t\t\"1.591\",\n" +
-                        "\t\t\t\t\t\"2016\",\n" +
-                        "\t\t\t\t\t\"手自一体\",\n" +
-                        "\t\t\t\t\t\"直喷\",\n" +
-                        "\t\t\t\t\t\"直喷\",\n" +
-                        "\t\t\t\t\t\"北京现代G4FD\",\n" +
-                        "\t\t\t\t\t\"前置前驱\",\n" +
-                        "\t\t\t\t\t\"手自一体 智炫·精英型 GLX 国Ⅴ\",\n" +
-                        "\t\t\t\t\t\"1\",\n" +
-                        "\t\t\t\t\t\"119800\",\n" +
-                        "\t\t\t\t\t\"103800\",\n" +
-                        "\t\t\t\t\t\"5\",\n" +
-                        "\t\t\t\t\t\"智炫精英型\",\n" +
-                        "\t\t\t\t\t\"201603\",\n" +
-                        "\t\t\t\t\t\"4610*1800*1450\",\n" +
-                        "\t\t\t\t\t\"2700\",\n" +
-                        "\t\t\t\t\t\"6\",\n" +
-                        "\t\t\t\t\t\"1317\",\n" +
-                        "\t\t\t\t\t\"95.3\",\n" +
-                        "\t\t\t\t\t\"国五\",\n" +
-                        "\t\t\t\t\t\"优雅白\"\n" +
-                        "\t\t\t\t]\n" +
-                        "\t\t\t],\n" +
-                        "\t\t\t\"title\":\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\"\n" +
-                        "\t\t}\n" +
-                        "\t],\n" +
-                        "\t\"info\":\"获取成功！\",\n" +
-                        "\t\"left_nav\":[\n" +
-                        "\t\t{\n" +
-                        "\t\t\t\"item_name\":\"主要参数\",\n" +
-                        "\t\t\t\"item_v\":[\n" +
-                        "\t\t\t\t\"车主报价\",\n" +
-                        "\t\t\t\t\"新车购置价\",\n" +
-                        "\t\t\t\t\"行驶里程\",\n" +
-                        "\t\t\t\t\"车龄\",\n" +
-                        "\t\t\t\t\"车牌城市\",\n" +
-                        "\t\t\t\t\"车牌号\"\n" +
-                        "\t\t\t]\n" +
-                        "\t\t},\n" +
-                        "\t\t{\n" +
-                        "\t\t\t\"item_name\":\"基本参数\",\n" +
-                        "\t\t\t\"item_v\":[\n" +
-                        "\t\t\t\t\"品牌名称\",\n" +
-                        "\t\t\t\t\"国产/进口\",\n" +
-                        "\t\t\t\t\"车系\",\n" +
-                        "\t\t\t\t\"车组名称\",\n" +
-                        "\t\t\t\t\"车组编码\",\n" +
-                        "\t\t\t\t\"车型代码，唯一标识\",\n" +
-                        "\t\t\t\t\"车型名称\",\n" +
-                        "\t\t\t\t\"车型俗称\",\n" +
-                        "\t\t\t\t\"排量\",\n" +
-                        "\t\t\t\t\"年款\",\n" +
-                        "\t\t\t\t\"变速箱类型\",\n" +
-                        "\t\t\t\t\"供油方式\",\n" +
-                        "\t\t\t\t\"燃油类型\",\n" +
-                        "\t\t\t\t\"发动机型号\",\n" +
-                        "\t\t\t\t\"驱动形式\",\n" +
-                        "\t\t\t\t\"备注\",\n" +
-                        "\t\t\t\t\"是否有更多配置\",\n" +
-                        "\t\t\t\t\"厂商指导价\",\n" +
-                        "\t\t\t\t\"新车购置价\",\n" +
-                        "\t\t\t\t\"座位数\",\n" +
-                        "\t\t\t\t\"配置等级\",\n" +
-                        "\t\t\t\t\"上市年份\",\n" +
-                        "\t\t\t\t\"外形尺寸\",\n" +
-                        "\t\t\t\t\"轴距\",\n" +
-                        "\t\t\t\t\"变速器档数\",\n" +
-                        "\t\t\t\t\"整备质量（千克）\",\n" +
-                        "\t\t\t\t\"功率\",\n" +
-                        "\t\t\t\t\"排放标准\",\n" +
-                        "\t\t\t\t\"车身颜色\"\n" +
-                        "\t\t\t]\n" +
-                        "\t\t}\n" +
-                        "\t],\n" +
-                        "\t\"status\":1\n" +
-                        "}";
+//                s = "{\n" +
+//                        "\t\"data\":[\n" +
+//                        "\t\t{\n" +
+//                        "\t\t\t\"img\":\"https://www.haoche666.com/Uploads/attachment/20180104/1dddf19ee9419c1694eb9697072e5660.jpg\",\n" +
+//                        "\t\t\t\"params_v\":[\n" +
+//                        "\t\t\t\t[\n" +
+//                        "\t\t\t\t\t\"4.00万\",\n" +
+//                        "\t\t\t\t\t\"9.58万\",\n" +
+//                        "\t\t\t\t\t\"9.50万公里\",\n" +
+//                        "\t\t\t\t\t\"3年\",\n" +
+//                        "\t\t\t\t\t\"北京\",\n" +
+//                        "\t\t\t\t\t\"现代\"\n" +
+//                        "\t\t\t\t],\n" +
+//                        "\t\t\t\t[\n" +
+//                        "\t\t\t\t\t\"北京现代\",\n" +
+//                        "\t\t\t\t\t\"合资\",\n" +
+//                        "\t\t\t\t\t\"领动\",\n" +
+//                        "\t\t\t\t\t\"领动(16/03-)\",\n" +
+//                        "\t\t\t\t\t\"XDA1AK01\",\n" +
+//                        "\t\t\t\t\t\"AP_4028b2b653a2f3280153bba629682ab6\",\n" +
+//                        "\t\t\t\t\t\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\",\n" +
+//                        "\t\t\t\t\t\"北京现代BH7167TAV轿车\",\n" +
+//                        "\t\t\t\t\t\"1.591\",\n" +
+//                        "\t\t\t\t\t\"2016\",\n" +
+//                        "\t\t\t\t\t\"手自一体\",\n" +
+//                        "\t\t\t\t\t\"直喷\",\n" +
+//                        "\t\t\t\t\t\"直喷\",\n" +
+//                        "\t\t\t\t\t\"北京现代G4FD\",\n" +
+//                        "\t\t\t\t\t\"前置前驱\",\n" +
+//                        "\t\t\t\t\t\"手自一体 智炫·精英型 GLX 国Ⅴ\",\n" +
+//                        "\t\t\t\t\t\"1\",\n" +
+//                        "\t\t\t\t\t\"119800\",\n" +
+//                        "\t\t\t\t\t\"103800\",\n" +
+//                        "\t\t\t\t\t\"5\",\n" +
+//                        "\t\t\t\t\t\"智炫精英型\",\n" +
+//                        "\t\t\t\t\t\"201603\",\n" +
+//                        "\t\t\t\t\t\"4610*1800*1450\",\n" +
+//                        "\t\t\t\t\t\"2700\",\n" +
+//                        "\t\t\t\t\t\"6\",\n" +
+//                        "\t\t\t\t\t\"1317\",\n" +
+//                        "\t\t\t\t\t\"95.3\",\n" +
+//                        "\t\t\t\t\t\"国五\",\n" +
+//                        "\t\t\t\t\t\"优雅白\"\n" +
+//                        "\t\t\t\t]\n" +
+//                        "\t\t\t],\n" +
+//                        "\t\t\t\"title\":\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\"\n" +
+//                        "\t\t},\n" +
+//                        "\t\t{\n" +
+//                        "\t\t\t\"img\":\"https://www.haoche666.com/Uploads/attachment/20180104/1dddf19ee9419c1694eb9697072e5660.jpg\",\n" +
+//                        "\t\t\t\"params_v\":[\n" +
+//                        "\t\t\t\t[\n" +
+//                        "\t\t\t\t\t\"4.00万\",\n" +
+//                        "\t\t\t\t\t\"9.58万\",\n" +
+//                        "\t\t\t\t\t\"9.50万公里\",\n" +
+//                        "\t\t\t\t\t\"3年\",\n" +
+//                        "\t\t\t\t\t\"北京\",\n" +
+//                        "\t\t\t\t\t\"现代\"\n" +
+//                        "\t\t\t\t],\n" +
+//                        "\t\t\t\t[\n" +
+//                        "\t\t\t\t\t\"北京现代\",\n" +
+//                        "\t\t\t\t\t\"合资\",\n" +
+//                        "\t\t\t\t\t\"领动\",\n" +
+//                        "\t\t\t\t\t\"领动(16/03-)\",\n" +
+//                        "\t\t\t\t\t\"XDA1AK01\",\n" +
+//                        "\t\t\t\t\t\"AP_4028b2b653a2f3280153bba629682ab6\",\n" +
+//                        "\t\t\t\t\t\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\",\n" +
+//                        "\t\t\t\t\t\"北京现代BH7167TAV轿车\",\n" +
+//                        "\t\t\t\t\t\"1.591\",\n" +
+//                        "\t\t\t\t\t\"2016\",\n" +
+//                        "\t\t\t\t\t\"手自一体\",\n" +
+//                        "\t\t\t\t\t\"直喷\",\n" +
+//                        "\t\t\t\t\t\"直喷\",\n" +
+//                        "\t\t\t\t\t\"北京现代G4FD\",\n" +
+//                        "\t\t\t\t\t\"前置前驱\",\n" +
+//                        "\t\t\t\t\t\"手自一体 智炫·精英型 GLX 国Ⅴ\",\n" +
+//                        "\t\t\t\t\t\"1\",\n" +
+//                        "\t\t\t\t\t\"119800\",\n" +
+//                        "\t\t\t\t\t\"103800\",\n" +
+//                        "\t\t\t\t\t\"5\",\n" +
+//                        "\t\t\t\t\t\"智炫精英型\",\n" +
+//                        "\t\t\t\t\t\"201603\",\n" +
+//                        "\t\t\t\t\t\"4610*1800*1450\",\n" +
+//                        "\t\t\t\t\t\"2700\",\n" +
+//                        "\t\t\t\t\t\"6\",\n" +
+//                        "\t\t\t\t\t\"1317\",\n" +
+//                        "\t\t\t\t\t\"95.3\",\n" +
+//                        "\t\t\t\t\t\"国五\",\n" +
+//                        "\t\t\t\t\t\"优雅白\"\n" +
+//                        "\t\t\t\t]\n" +
+//                        "\t\t\t],\n" +
+//                        "\t\t\t\"title\":\"2016款 北京现代 领动 三厢 1.6L 手自一体 智炫精英型 (BH7167TAV)\"\n" +
+//                        "\t\t}\n" +
+//                        "\t],\n" +
+//                        "\t\"info\":\"获取成功！\",\n" +
+//                        "\t\"left_nav\":[\n" +
+//                        "\t\t{\n" +
+//                        "\t\t\t\"item_name\":\"主要参数\",\n" +
+//                        "\t\t\t\"item_v\":[\n" +
+//                        "\t\t\t\t\"车主报价\",\n" +
+//                        "\t\t\t\t\"新车购置价\",\n" +
+//                        "\t\t\t\t\"行驶里程\",\n" +
+//                        "\t\t\t\t\"车龄\",\n" +
+//                        "\t\t\t\t\"车牌城市\",\n" +
+//                        "\t\t\t\t\"车牌号\"\n" +
+//                        "\t\t\t]\n" +
+//                        "\t\t},\n" +
+//                        "\t\t{\n" +
+//                        "\t\t\t\"item_name\":\"基本参数\",\n" +
+//                        "\t\t\t\"item_v\":[\n" +
+//                        "\t\t\t\t\"品牌名称\",\n" +
+//                        "\t\t\t\t\"国产/进口\",\n" +
+//                        "\t\t\t\t\"车系\",\n" +
+//                        "\t\t\t\t\"车组名称\",\n" +
+//                        "\t\t\t\t\"车组编码\",\n" +
+//                        "\t\t\t\t\"车型代码，唯一标识\",\n" +
+//                        "\t\t\t\t\"车型名称\",\n" +
+//                        "\t\t\t\t\"车型俗称\",\n" +
+//                        "\t\t\t\t\"排量\",\n" +
+//                        "\t\t\t\t\"年款\",\n" +
+//                        "\t\t\t\t\"变速箱类型\",\n" +
+//                        "\t\t\t\t\"供油方式\",\n" +
+//                        "\t\t\t\t\"燃油类型\",\n" +
+//                        "\t\t\t\t\"发动机型号\",\n" +
+//                        "\t\t\t\t\"驱动形式\",\n" +
+//                        "\t\t\t\t\"备注\",\n" +
+//                        "\t\t\t\t\"是否有更多配置\",\n" +
+//                        "\t\t\t\t\"厂商指导价\",\n" +
+//                        "\t\t\t\t\"新车购置价\",\n" +
+//                        "\t\t\t\t\"座位数\",\n" +
+//                        "\t\t\t\t\"配置等级\",\n" +
+//                        "\t\t\t\t\"上市年份\",\n" +
+//                        "\t\t\t\t\"外形尺寸\",\n" +
+//                        "\t\t\t\t\"轴距\",\n" +
+//                        "\t\t\t\t\"变速器档数\",\n" +
+//                        "\t\t\t\t\"整备质量（千克）\",\n" +
+//                        "\t\t\t\t\"功率\",\n" +
+//                        "\t\t\t\t\"排放标准\",\n" +
+//                        "\t\t\t\t\"车身颜色\"\n" +
+//                        "\t\t\t]\n" +
+//                        "\t\t}\n" +
+//                        "\t],\n" +
+//                        "\t\"status\":1\n" +
+//                        "}";
 //                try {
-                AttentionGetcontrastinfo attentionGetcontrastinfo = GsonUtils.parseJSON(s, AttentionGetcontrastinfo.class);
-                if (attentionGetcontrastinfo.getStatus() == 1) {
-                    AttentionGetcontrastinfo.LeftNavBean leftNavBean0 = attentionGetcontrastinfo.getLeft_nav().get(0);
-                    if (leftNavBean0 != null) {
-                        textCeillingArr[0].setText(leftNavBean0.getItem_name());
-                        for (int i = 0; i < leftNavBean0.getItem_v().size(); i++) {
-                            textZhuYao[i].setText(leftNavBean0.getItem_v().get(i));
-                        }
-                    } else {
-                        for (int i = 0; i < leftNavBean0.getItem_v().size(); i++) {
-                            textZhuYao[i].setVisibility(View.GONE);
-                        }
-                        textCeillingArr[0].setVisibility(View.GONE);
-                    }
-                    AttentionGetcontrastinfo.LeftNavBean leftNavBean1 = attentionGetcontrastinfo.getLeft_nav().get(1);
-                    if (attentionGetcontrastinfo.getLeft_nav().get(1) != null) {
-                        for (int i = 0; i < leftNavBean1.getItem_v().size(); i++) {
-                            textJiBen[i].setText(leftNavBean1.getItem_v().get(i));
-                        }
-                        textCeillingArr[1].setText(attentionGetcontrastinfo.getLeft_nav().get(1).getItem_name());
-                    } else {
-                        for (int i = 0; i < leftNavBean1.getItem_v().size(); i++) {
-                            textJiBen[i].setVisibility(View.GONE);
-                        }
-                        textCeillingArr[1].setVisibility(View.GONE);
-                    }
-                    List<AttentionGetcontrastinfo.DataBean> dataBeanList = attentionGetcontrastinfo.getData();
-                    for (int i = 0; i < dataBeanList.size(); i++) {
-                        List<List<Boolean>> list = new ArrayList<>();
-                        for (int j = 0; j < dataBeanList.get(i).getParams_v().size(); j++) {
-                            List<Boolean> booleanList = new ArrayList<>();
-                            for (int k = 0; k < dataBeanList.get(i).getParams_v().get(j).size(); k++) {
-                                booleanList.add(true);
+                    AttentionGetcontrastinfo attentionGetcontrastinfo = GsonUtils.parseJSON(s, AttentionGetcontrastinfo.class);
+                    if (attentionGetcontrastinfo.getStatus() == 1) {
+                        AttentionGetcontrastinfo.LeftNavBean leftNavBean0 = attentionGetcontrastinfo.getLeft_nav().get(0);
+                        if (leftNavBean0 != null) {
+                            textCeillingArr[0].setText(leftNavBean0.getItem_name());
+                            for (int i = 0; i < leftNavBean0.getItem_v().size(); i++) {
+                                textZhuYao[i].setText(leftNavBean0.getItem_v().get(i));
                             }
-                            list.add(booleanList);
+                        } else {
+                            for (int i = 0; i < leftNavBean0.getItem_v().size(); i++) {
+                                textZhuYao[i].setVisibility(View.GONE);
+                            }
+                            textCeillingArr[0].setVisibility(View.GONE);
                         }
-                        dataBeanList.get(i).setParams_vBoolean(list);
+                        if (attentionGetcontrastinfo.getLeft_nav().size()>1){
+                            AttentionGetcontrastinfo.LeftNavBean leftNavBean1 = attentionGetcontrastinfo.getLeft_nav().get(1);
+                            if (attentionGetcontrastinfo.getLeft_nav().get(1) != null) {
+                                for (int i = 0; i < leftNavBean1.getItem_v().size(); i++) {
+                                    textJiBen[i].setText(leftNavBean1.getItem_v().get(i));
+                                }
+                                textCeillingArr[1].setText(attentionGetcontrastinfo.getLeft_nav().get(1).getItem_name());
+                            } else {
+                                for (int i = 0; i < leftNavBean1.getItem_v().size(); i++) {
+                                    textJiBen[i].setVisibility(View.GONE);
+                                }
+                                textCeillingArr[1].setVisibility(View.GONE);
+                            }
+                        }else {
+                            for (int i = 0; i < textJiBen.length; i++) {
+                                textJiBen[i].setVisibility(View.GONE);
+                            }
+                            textCeillingArr[1].setVisibility(View.GONE);
+                        }
+                        List<AttentionGetcontrastinfo.DataBean> dataBeanList = attentionGetcontrastinfo.getData();
+                        for (int i = 0; i < dataBeanList.size(); i++) {
+                            List<List<Boolean>> list = new ArrayList<>();
+                            for (int j = 0; j < dataBeanList.get(i).getParams_v().size(); j++) {
+                                List<Boolean> booleanList = new ArrayList<>();
+                                for (int k = 0; k < dataBeanList.get(i).getParams_v().get(j).size(); k++) {
+                                    booleanList.add(true);
+                                }
+                                list.add(booleanList);
+                            }
+                            dataBeanList.get(i).setParams_vBoolean(list);
+                        }
+                        adapter.clear();
+                        adapter.addAll(dataBeanList);
+                        adapterInfo.addAll(dataBeanList);
+                    } else if (attentionGetcontrastinfo.getStatus() == 3) {
+                        MyDialog.showReLoginDialog(DuiBiActivity.this);
+                    } else {
+                        showError(attentionGetcontrastinfo.getInfo());
                     }
-                    adapter.clear();
-                    adapter.addAll(dataBeanList);
-                    adapterInfo.addAll(dataBeanList);
-                } else if (attentionGetcontrastinfo.getStatus() == 3) {
-                    MyDialog.showReLoginDialog(DuiBiActivity.this);
-                } else {
-                    showError(attentionGetcontrastinfo.getInfo());
-                }
 //                } catch (Exception e) {
 //                    showError("数据出错");
 //                }
@@ -533,9 +540,7 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
                         AttentionGetcontrastinfo.DataBean dataBean = adapterInfo.getAllData().get(i);
                         AttentionGetcontrastinfo.DataBean dataBean01 = adapterInfo.getAllData().get(i + 1);
                         List<String> strings00 = dataBean.getParams_v().get(0);
-                        List<String> strings01 = dataBean.getParams_v().get(1);
                         List<String> strings10 = dataBean01.getParams_v().get(0);
-                        List<String> strings11 = dataBean01.getParams_v().get(1);
                         for (int j = 0; j < strings00.size(); j++) {
                             if (TextUtils.equals(strings00.get(i), strings10.get(i))) {
                                 if (i == adapterInfo.getAllData().size() - 2) {
@@ -544,11 +549,15 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
                                 }
                             }
                         }
-                        for (int j = 0; j < strings01.size(); j++) {
-                            if (TextUtils.equals(strings01.get(i), strings11.get(i))) {
-                                if (i == adapterInfo.getAllData().size() - 2) {
-                                    textJiBen[j].setVisibility(View.GONE);
-                                    adapterInfo.getItem(i).getParams_vBoolean().get(1).set(j, false);
+                        if (dataBean.getParams_v().size()>1&&dataBean01.getParams_v().size()>1){
+                            List<String> strings01 = dataBean.getParams_v().get(1);
+                            List<String> strings11 = dataBean01.getParams_v().get(1);
+                            for (int j = 0; j < strings01.size(); j++) {
+                                if (TextUtils.equals(strings01.get(i), strings11.get(i))) {
+                                    if (i == adapterInfo.getAllData().size() - 2) {
+                                        textJiBen[j].setVisibility(View.GONE);
+                                        adapterInfo.getItem(i).getParams_vBoolean().get(1).set(j, false);
+                                    }
                                 }
                             }
                         }
@@ -558,8 +567,10 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
                             for (int k = 0; k < adapterInfo.getItem(0).getParams_vBoolean().get(0).size(); k++) {
                                 adapterInfo.getItem(i).getParams_vBoolean().get(0).set(k, adapterInfo.getItem(0).getParams_vBoolean().get(0).get(k));
                             }
-                            for (int k = 0; k < adapterInfo.getItem(0).getParams_vBoolean().get(1).size(); k++) {
-                                adapterInfo.getItem(i).getParams_vBoolean().get(1).set(k, adapterInfo.getItem(0).getParams_vBoolean().get(1).get(k));
+                            if (adapterInfo.getItem(0).getParams_vBoolean().size()>1){
+                                for (int k = 0; k < adapterInfo.getItem(0).getParams_vBoolean().get(1).size(); k++) {
+                                    adapterInfo.getItem(i).getParams_vBoolean().get(1).set(k, adapterInfo.getItem(0).getParams_vBoolean().get(1).get(k));
+                                }
                             }
                         }
                     }
@@ -580,8 +591,10 @@ public class DuiBiActivity extends ZjbBaseActivity implements View.OnClickListen
                     for (int i = 0; i < textZhuYao.length; i++) {
                         textZhuYao[i].setVisibility(View.VISIBLE);
                     }
-                    for (int i = 0; i < textJiBen.length; i++) {
-                        textJiBen[i].setVisibility(View.VISIBLE);
+                    if (adapterInfo.getItem(0).getParams_vBoolean().size()>1){
+                        for (int i = 0; i < textJiBen.length; i++) {
+                            textJiBen[i].setVisibility(View.VISIBLE);
+                        }
                     }
                 }
                 adapterInfo.notifyDataSetChanged();
