@@ -676,7 +676,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             case R.id.imageShare:
                 if (share != null) {
                     isShare = true;
-                    MyDialog.share(this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), share.getShareImg());
+                    MyDialog.share(this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), share.getShareImg(),"page/buycar/details?id="+id);
                 }
                 break;
             case R.id.viewDuiBi:

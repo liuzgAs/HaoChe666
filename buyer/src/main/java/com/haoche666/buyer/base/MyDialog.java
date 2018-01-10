@@ -28,6 +28,7 @@ import com.haoche666.buyer.constant.Constant;
 import com.luoxudong.app.threadpool.ThreadPoolHelp;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 
@@ -300,7 +301,7 @@ public class MyDialog {
                 });
     }
 
-    private static void wxShare(final IWXAPI api, final int flag, String url, String title, String des, final String img) {
+    private static void wxShare(final Context context,final IWXAPI api, final int flag, String url, String title, String des, final String img) {
         api.registerApp(Constant.WXAPPID);
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = url;
@@ -313,7 +314,7 @@ public class MyDialog {
                 .execute(new Runnable() {
                     @Override
                     public void run() {
-                        Bitmap bitmap = netPicToBmp(img);
+                        Bitmap bitmap = netPicToBmp(context,img);
                         msg.setThumbImage(bitmap);
                         SendMessageToWX.Req req = new SendMessageToWX.Req();
                         req.transaction = buildTransaction("webpage");
@@ -337,7 +338,7 @@ public class MyDialog {
                 });
     }
 
-    public static Bitmap netPicToBmp(String src) {
+    public static Bitmap netPicToBmp(Context context,String src) {
         try {
             Log.d("FileUtil", src);
             URL url = new URL(src);
@@ -366,7 +367,10 @@ public class MyDialog {
             return bitmap;
         } catch (IOException e) {
             // Log exception
-            return null;
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, true);
+            bitmap.recycle();
+            return scaledBitmap;
         }
     }
 
@@ -382,7 +386,7 @@ public class MyDialog {
         return isPaySupported;
     }
 
-    public static void share(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img) {
+    public static void share(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img, final String path) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialog_shengji = inflater.inflate(R.layout.dianlog_share, null);
         final AlertDialog alertDialog1 = new AlertDialog.Builder(context, R.style.dialog)
@@ -402,7 +406,8 @@ public class MyDialog {
                     Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                wxShare(api, 0, url, title, des, img);
+//                wxShare(api, 0, url, title, des, img);
+                shareXiaoChengXu(context,api, url, title, des, img, path);
                 alertDialog1.dismiss();
             }
         });
@@ -413,14 +418,14 @@ public class MyDialog {
                     Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                wxShare(api, 1, url, title, des, img);
+                wxShare(context,api, 1, url, title, des, img);
                 alertDialog1.dismiss();
             }
         });
         dialog_shengji.findViewById(R.id.relaShouCang).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wxShare(api, 2, url, title, des, img);
+                wxShare(context,api, 2, url, title, des, img);
                 alertDialog1.dismiss();
             }
         });
@@ -433,55 +438,32 @@ public class MyDialog {
         dialogWindow.setAttributes(lp);
     }
 
-    public static void share01(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View dialog_shengji = inflater.inflate(R.layout.dianlog_share, null);
-        final AlertDialog alertDialog1 = new AlertDialog.Builder(context, R.style.dialog)
-                .setView(dialog_shengji)
-                .create();
-        alertDialog1.show();
-        dialog_shengji.findViewById(R.id.textViewCancle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialog1.dismiss();
-            }
-        });
-        dialog_shengji.findViewById(R.id.weixin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checkIsSupportedWeachatPay(api)) {
-                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                wxShare(api, 0, url, title, des, img);
-                alertDialog1.dismiss();
-            }
-        });
-        dialog_shengji.findViewById(R.id.pengyouquan).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checkIsSupportedWeachatPay(api)) {
-                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                shareXiaoChengXu();
-                alertDialog1.dismiss();
-            }
-        });
-        Window dialogWindow = alertDialog1.getWindow();
-        dialogWindow.setGravity(Gravity.BOTTOM);
-        dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        DisplayMetrics d = context.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
-        lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
-        dialogWindow.setAttributes(lp);
-    }
 
     /**
-     * 分享到小程序
+     * 小程序分享
      */
-    private static void shareXiaoChengXu() {
-
+    private static void shareXiaoChengXu(final Context context,final IWXAPI api, String url, String title, String des, final String img, String path) {
+        WXMiniProgramObject miniProgram = new WXMiniProgramObject();
+        miniProgram.webpageUrl = url;
+        miniProgram.userName = "gh_cc09f0c0670f";
+        miniProgram.path = path;
+        final WXMediaMessage msg = new WXMediaMessage(miniProgram);
+        msg.title = title;
+        msg.description = des;
+        ThreadPoolHelp.Builder
+                .cached()
+                .builder()
+                .execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bitmap bitmap = netPicToBmp(context,img);
+                        msg.setThumbImage(bitmap);
+                        SendMessageToWX.Req req = new SendMessageToWX.Req();
+                        req.transaction = buildTransaction("webpage");
+                        req.message = msg;
+                        req.scene = SendMessageToWX.Req.WXSceneSession;
+                        api.sendReq(req);
+                    }
+                });
     }
-
 }
