@@ -64,10 +64,18 @@ public class LiaoTianXiaoXiViewHolder extends BaseViewHolder<LiaoTian> {
                 textDes.setText("图片");
                 break;
             case "RC:VcMsg":
-                textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：语音消息" );
+                if (data.getLatestMessage().getUserInfo()!=null){
+                    textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：语音消息" );
+                }else {
+                    textDes.setText( "语音消息" );
+                }
                 break;
             case "RC:TxtMsg":
-                textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：" + data.getLatestMessage().getContent());
+                if (data.getLatestMessage().getUserInfo()!=null){
+                    textDes.setText(data.getLatestMessage().getUserInfo().getName() + "：" + data.getLatestMessage().getContent());
+                }else {
+                    textDes.setText(data.getLatestMessage().getContent());
+                }
                 break;
             default:
                 if (TextUtils.equals(data.getSentStatus(), "SENT")) {
