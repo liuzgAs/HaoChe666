@@ -416,7 +416,9 @@
         <activity
             android:name=".activity.BigImgActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.ShiPinLBActivity"></activity>
+        <activity
+            android:name=".activity.ShiPinLBActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
