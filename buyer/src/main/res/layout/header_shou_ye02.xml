@@ -39,8 +39,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/white"
-        android:id="@+id/textView163" />
+        android:background="@color/white" />
 
     <RelativeLayout
         android:background="@color/white"
@@ -68,7 +67,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="最新上架"
-            android:id="@+id/textView165"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />

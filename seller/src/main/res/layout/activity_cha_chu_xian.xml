@@ -28,7 +28,6 @@
             android:textSize="@dimen/normal_textsize" />
 
         <EditText
-            android:id="@+id/editText5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -51,7 +50,6 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView153"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -63,7 +61,6 @@
             android:textSize="@dimen/normal_textsize" />
 
         <TextView
-            android:id="@+id/textView154"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -76,7 +73,6 @@
     </RelativeLayout>
     <include layout="@layout/view_zhifu"/>
     <Button
-        android:id="@+id/button8"
         style="@style/btnYuanJiao"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

@@ -61,7 +61,6 @@
                             android:src="@mipmap/fuwu_chaweixiu" />
 
                         <TextView
-                            android:id="@+id/textView123"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/imageView66"
@@ -90,7 +89,6 @@
                             android:src="@mipmap/fuwu_chaweizhang" />
 
                         <TextView
-                            android:id="@+id/textView124"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/imageView67"
@@ -126,7 +124,6 @@
                             android:src="@mipmap/fuwu_chachuxian" />
 
                         <TextView
-                            android:id="@+id/textView125"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/imageView68"
@@ -155,7 +152,6 @@
                             android:src="@mipmap/fuwu_chaxunlishi" />
 
                         <TextView
-                            android:id="@+id/textView126"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/imageView69"

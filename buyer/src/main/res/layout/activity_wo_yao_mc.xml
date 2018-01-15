@@ -11,7 +11,6 @@
     <include layout="@layout/view_bar_white" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
@@ -57,7 +56,6 @@
                                 android:textSize="@dimen/moreLitterText" />
 
                             <ImageView
-                                android:id="@+id/imageView42"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -89,7 +87,6 @@
                                 android:textSize="@dimen/moreLitterText" />
 
                             <ImageView
-                                android:id="@+id/imageView43"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -117,7 +114,6 @@
                             android:textSize="@dimen/litterText" />
 
                         <TextView
-                            android:id="@+id/textView68"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/textView67"
@@ -129,7 +125,6 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/textView69"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#eeeeee" />
@@ -159,7 +154,6 @@
                                 android:textSize="@dimen/litterText" />
 
                             <TextView
-                                android:id="@+id/textView71"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/textView70"
@@ -171,7 +165,6 @@
                         </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/textView74"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="#eeeeee" />
@@ -194,7 +187,6 @@
                                 android:textSize="@dimen/litterText" />
 
                             <TextView
-                                android:id="@+id/textView73"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/textView72"
@@ -208,7 +200,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView75"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#eeeeee" />
@@ -240,7 +231,6 @@
                                 android:textSize="@dimen/normal_textsize" />
 
                             <ImageView
-                                android:id="@+id/imageView44"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -251,7 +241,6 @@
                         </RelativeLayout>
 
                         <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                            android:id="@+id/ratingbar_pingfeng"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/relativeLayout2"
@@ -270,7 +259,6 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/button"
                 style="@style/MyBtn01"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
@@ -282,7 +270,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="输入信息获得真是报价"
-                android:id="@+id/textView77"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
@@ -292,7 +279,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7天内只能提交一次车辆信息"
-                android:id="@+id/textView78"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>

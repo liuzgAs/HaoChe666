@@ -18,7 +18,6 @@
 
             <TextView
                 android:textStyle="bold"
-                android:id="@+id/textView96"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -139,7 +138,6 @@
                 android:layout_height="45dp">
 
                 <TextView
-                    android:id="@+id/textView98"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -151,7 +149,6 @@
 
                 <TextView
                     android:visibility="gone"
-                    android:id="@+id/textView99"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -192,7 +189,6 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:id="@+id/textView101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imageView56"
@@ -233,7 +229,6 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:id="@+id/textView105"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imageView57"
@@ -274,7 +269,6 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:id="@+id/textView107"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imageView58"
@@ -315,7 +309,6 @@
                     android:textSize="@dimen/litterText" />
 
                 <TextView
-                    android:id="@+id/textView109"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/imageView59"
@@ -339,7 +332,6 @@
 
         <TextView
             android:textStyle="bold"
-            android:id="@+id/textView114"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -353,7 +345,6 @@
         <TextView
             android:visibility="gone"
             android:textColor="@color/text_gray"
-            android:id="@+id/textView115"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

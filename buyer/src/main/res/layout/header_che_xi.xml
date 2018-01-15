@@ -45,14 +45,12 @@
             android:textColor="@color/light_black"
             android:paddingLeft="10dp"
             android:background="@color/white"
-            android:textSize="@dimen/bigText"
-            android:id="@+id/textView183" />
+            android:textSize="@dimen/bigText" />
 
         <TextView
             android:layout_width="match_parent"
             android:background="@color/background"
-            android:layout_height="1dp"
-            android:id="@+id/textView184" />
+            android:layout_height="1dp" />
 
         <TextView
             android:textColor="@color/light_black"
@@ -67,8 +65,7 @@
         <TextView
             android:layout_width="match_parent"
             android:background="@color/background"
-            android:layout_height="1dp"
-            android:id="@+id/textView186" />
+            android:layout_height="1dp" />
     </LinearLayout>
 
 

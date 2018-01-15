@@ -25,7 +25,6 @@
             android:src="@mipmap/right" />
 
         <TextView
-            android:id="@+id/textView146"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -165,7 +164,6 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView140"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

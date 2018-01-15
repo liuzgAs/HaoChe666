@@ -10,7 +10,6 @@
     <include layout="@layout/view_bar_white" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
@@ -57,7 +56,6 @@
                                 android:textSize="@dimen/moreLitterText" />
 
                             <ImageView
-                                android:id="@+id/imageView42"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -90,7 +88,6 @@
                                 android:textSize="@dimen/moreLitterText" />
 
                             <ImageView
-                                android:id="@+id/imageView43"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -131,7 +128,6 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/textView69"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#eeeeee" />
@@ -174,7 +170,6 @@
                         </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/textView74"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="#eeeeee" />
@@ -212,7 +207,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView75"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#eeeeee" />
@@ -245,7 +239,6 @@
                                 android:textSize="@dimen/normal_textsize" />
 
                             <ImageView
-                                android:id="@+id/imageView44"
                                 android:layout_width="5dp"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -282,7 +275,6 @@
                 android:text="确认提交" />
 
             <TextView
-                android:id="@+id/textView77"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -291,7 +283,6 @@
                 android:textSize="@dimen/moreLitterText" />
 
             <TextView
-                android:id="@+id/textView78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

@@ -56,7 +56,6 @@
                 tools:text="标题" />
 
             <ImageView
-                android:id="@+id/imageView45"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
@@ -103,7 +102,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="关注"
-                    android:id="@+id/textView110"
                     android:layout_below="@+id/imageView60"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
@@ -129,7 +127,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="对比"
-                    android:id="@+id/textView111"
                     android:layout_below="@+id/imageView61"
                     android:layout_centerHorizontal="true" />
 
@@ -144,7 +141,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="电话咨询"
-            android:textSize="@dimen/bigText"
-            android:id="@+id/textView113" />
+            android:textSize="@dimen/bigText" />
     </LinearLayout>
 </RelativeLayout>

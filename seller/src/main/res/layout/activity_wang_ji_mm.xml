@@ -27,7 +27,6 @@
             android:src="@mipmap/wang_ji_mm_phone" />
 
         <EditText
-            android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -59,7 +58,6 @@
             android:src="@mipmap/wang_ji_mm_duanxin" />
 
         <EditText
-            android:id="@+id/editSms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -105,7 +103,6 @@
             android:src="@mipmap/wang_ji_mm_mima" />
 
         <EditText
-            android:id="@+id/editPsw01"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -135,7 +132,6 @@
             android:src="@mipmap/wang_ji_mm_mima" />
 
         <EditText
-            android:id="@+id/editPsw02"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"

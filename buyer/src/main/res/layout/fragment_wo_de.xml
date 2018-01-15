@@ -16,7 +16,6 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MineHead"
 
@@ -28,7 +27,6 @@
                     android:layout_height="@dimen/MineHead" />
 
                 <ImageView
-                    android:id="@+id/imageView26"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="45dp"
@@ -172,7 +170,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView49"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -184,7 +181,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -202,7 +198,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -214,7 +209,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -232,7 +226,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -244,7 +237,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -262,7 +254,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -274,7 +265,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -292,7 +282,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -304,7 +293,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -322,7 +310,6 @@
                 android:background="@drawable/layout_selector_white_system_gray">
 
                 <TextView
-                    android:id="@+id/textView54"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -334,7 +321,6 @@
                     android:textSize="@dimen/bigText" />
 
                 <ImageView
-                    android:id="@+id/imageView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

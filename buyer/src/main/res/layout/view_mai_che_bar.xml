@@ -117,7 +117,6 @@
                 android:textSize="@dimen/normal_textsize" />
 
             <ImageView
-                android:id="@+id/imageView35"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -146,7 +145,6 @@
                 android:textSize="@dimen/normal_textsize" />
 
             <ImageView
-                android:id="@+id/imageView36"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -175,7 +173,6 @@
                 android:textSize="@dimen/normal_textsize" />
 
             <ImageView
-                android:id="@+id/imageView37"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -204,7 +201,6 @@
                 android:textSize="@dimen/normal_textsize" />
 
             <ImageView
-                android:id="@+id/imageView38"
 
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"

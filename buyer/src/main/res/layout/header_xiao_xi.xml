@@ -28,7 +28,6 @@
                 android:src="@mipmap/xitongxiaoxi" />
 
             <TextView
-                android:id="@+id/textView60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -91,7 +90,6 @@
                     android:layout_marginTop="5dp">
 
                     <TextView
-                        android:id="@+id/textView63"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -123,7 +121,6 @@
 
         <TextView
             android:visibility="gone"
-            android:id="@+id/textView62"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="10dp"

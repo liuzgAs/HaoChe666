@@ -80,7 +80,6 @@
 
         <Button
             android:visibility="gone"
-            android:id="@+id/buttonVR"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"
@@ -132,7 +131,6 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView82"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -146,7 +144,6 @@
 
         <TextView
             android:visibility="gone"
-            android:id="@+id/textView83"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

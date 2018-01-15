@@ -163,7 +163,6 @@
                         android:background="@color/text_gray" />
 
                     <EditText
-                        android:id="@+id/edit0001"
                         android:layout_width="70dp"
                         android:layout_height="30dp"
                         android:layout_centerVertical="true"

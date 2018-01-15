@@ -670,19 +670,19 @@ public final class R {
         public static int status_bar_latest_event_content = 0x7f0c0058;
         public static int submenuarrow = 0x7f0c0059;
         public static int submit_area = 0x7f0c005a;
-        public static int tabMode = 0x7f0c005c;
-        public static int text = 0x7f0c005d;
-        public static int text2 = 0x7f0c005e;
-        public static int textSpacerNoButtons = 0x7f0c005f;
-        public static int textSpacerNoTitle = 0x7f0c0060;
-        public static int time = 0x7f0c0061;
-        public static int title = 0x7f0c0062;
-        public static int titleDividerNoCustom = 0x7f0c0063;
-        public static int title_template = 0x7f0c0064;
-        public static int topPanel = 0x7f0c0065;
-        public static int uniform = 0x7f0c0066;
-        public static int up = 0x7f0c0067;
-        public static int wrap_content = 0x7f0c0068;
+        public static int tabMode = 0x7f0c005b;
+        public static int text = 0x7f0c005c;
+        public static int text2 = 0x7f0c005d;
+        public static int textSpacerNoButtons = 0x7f0c005e;
+        public static int textSpacerNoTitle = 0x7f0c005f;
+        public static int time = 0x7f0c0060;
+        public static int title = 0x7f0c0061;
+        public static int titleDividerNoCustom = 0x7f0c0062;
+        public static int title_template = 0x7f0c0063;
+        public static int topPanel = 0x7f0c0064;
+        public static int uniform = 0x7f0c0065;
+        public static int up = 0x7f0c0066;
+        public static int wrap_content = 0x7f0c0067;
     }
     public static final class integer {
         public static int abc_config_activityDefaultDur = 0x7f0d0001;

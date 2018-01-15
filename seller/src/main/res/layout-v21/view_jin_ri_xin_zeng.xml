@@ -134,7 +134,6 @@
                     android:textSize="@dimen/normal_textsize" />
 
                 <ImageView
-                    android:id="@+id/imageView35"
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

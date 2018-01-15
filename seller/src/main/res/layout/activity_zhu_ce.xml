@@ -75,7 +75,6 @@
         android:text="注册"
         android:textColor="@color/basic_color01"
         android:textStyle="bold"
-        android:id="@+id/textView142"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout

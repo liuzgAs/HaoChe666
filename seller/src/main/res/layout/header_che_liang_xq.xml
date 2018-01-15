@@ -35,7 +35,6 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView79"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -67,7 +66,6 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/textView81"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView80"
@@ -80,7 +78,6 @@
 
         <Button
             android:visibility="gone"
-            android:id="@+id/buttonVR"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"
@@ -140,7 +137,6 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView82"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -154,7 +150,6 @@
 
         <TextView
             android:visibility="gone"
-            android:id="@+id/textView83"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -210,7 +205,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView85"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView84"
@@ -252,7 +246,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView87"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView86"
@@ -294,7 +287,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView89"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView88"
@@ -342,7 +334,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView91"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView90"
@@ -384,7 +375,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView93"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView92"
@@ -426,7 +416,6 @@
                     android:textSize="@dimen/moreLitterText" />
 
                 <TextView
-                    android:id="@+id/textView95"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textView94"

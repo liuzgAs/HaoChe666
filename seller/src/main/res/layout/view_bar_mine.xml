@@ -56,7 +56,6 @@
             android:layout_alignParentRight="true">
 
             <ImageView
-                android:id="@+id/imageSheZhi"
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

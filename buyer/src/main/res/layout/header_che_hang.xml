@@ -55,7 +55,6 @@
                 android:text="关注：198"
                 android:layout_margin="10dp"
                 android:textSize="@dimen/normal_textsize"
-                android:id="@+id/textText2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />

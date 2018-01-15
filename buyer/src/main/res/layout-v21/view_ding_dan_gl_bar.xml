@@ -87,7 +87,6 @@
                 android:src="@mipmap/cha_xun_ding_dan"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView88"
                 android:layout_centerVertical="true"
                 android:layout_alignLeft="@+id/textView157"
                 android:layout_alignStart="@+id/textView157" />

@@ -67,7 +67,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView142"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
@@ -274,7 +273,6 @@
                 android:src="@mipmap/xuanzhong" />
 
             <TextView
-                android:id="@+id/textView155"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -315,7 +313,6 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView156"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

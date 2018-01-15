@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="订单创建时间：2017-10-26"
-        android:textColor="@color/text_gray"
-        android:id="@+id/textView122" />
+        android:textColor="@color/text_gray" />
 
     <RelativeLayout
         android:layout_marginBottom="20dp"
@@ -60,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="交易成功"
-            android:id="@+id/textView121"
             android:layout_alignBottom="@+id/imageView4"
             android:layout_alignLeft="@+id/textView2"
             android:layout_alignStart="@+id/textView2" />
