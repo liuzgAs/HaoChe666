@@ -47,6 +47,7 @@
             android:background="@color/line_gray" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/viewKeFu"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -121,6 +122,7 @@
         </RelativeLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/textView62"
             android:layout_width="match_parent"
             android:layout_height="1dp"
