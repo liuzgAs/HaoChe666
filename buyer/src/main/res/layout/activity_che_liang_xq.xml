@@ -86,33 +86,33 @@
             android:orientation="horizontal"
             android:paddingTop="1dp">
 
-            <RelativeLayout
-                android:id="@+id/viewHuiHua"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_selector_white_system_gray"
-                android:gravity="center">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/viewHuiHua"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="1dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/layout_selector_white_system_gray"-->
+                <!--android:gravity="center">-->
 
-                <ImageView
-                    android:id="@+id/imageView63"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/huihua" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/imageView63"-->
+                    <!--android:layout_width="18dp"-->
+                    <!--android:layout_height="18dp"-->
+                    <!--android:layout_alignParentTop="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:src="@mipmap/huihua" />-->
 
-                <TextView
-                    android:textSize="@dimen/litterText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageView63"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:text="消息" />
+                <!--<TextView-->
+                    <!--android:textSize="@dimen/litterText"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/imageView63"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_marginTop="2dp"-->
+                    <!--android:text="消息" />-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
             <RelativeLayout
                 android:layout_marginLeft="1dp"
@@ -179,9 +179,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/basic_color01"
+            android:background="@color/basic_color"
             android:gravity="center"
             android:text="电话咨询"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/bigText"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/viewHuiHua"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/basic_color01"
+            android:gravity="center"
+            android:text="发起对话"
             android:textColor="@color/basic_color"
             android:textSize="@dimen/bigText"
             android:textStyle="bold" />
