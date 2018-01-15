@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -27,6 +26,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.constant.Constant;
 import com.luoxudong.app.threadpool.ThreadPoolHelp;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
@@ -301,6 +301,43 @@ public class MyDialog {
                 });
     }
 
+    private static void wxShareImg(final Context context,final IWXAPI api, final int flag, String url, String title, String des, final String img) {
+        api.registerApp(Constant.WXAPPID);
+        ThreadPoolHelp.Builder
+                .cached()
+                .builder()
+                .execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bitmap bmp = netPicToBmp(context,img);
+                        WXImageObject imgObj = new WXImageObject((bmp));
+                        WXMediaMessage msg = new WXMediaMessage();
+                        msg.mediaObject = imgObj;
+
+                        Bitmap thumbBmp= Bitmap.createScaledBitmap(bmp,200,200,true);
+                        bmp.recycle();
+                        msg.setThumbImage(thumbBmp);
+                        SendMessageToWX.Req req = new SendMessageToWX.Req();
+                        req.transaction = buildTransaction("img");
+                        req.message = msg;
+                        switch (flag) {
+                            case 0:
+                                req.scene = SendMessageToWX.Req.WXSceneSession;
+                                break;
+                            case 1:
+                                req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                                break;
+                            case 2:
+                                req.scene = SendMessageToWX.Req.WXSceneFavorite;
+                                break;
+                            default:
+                                break;
+                        }
+                        api.sendReq(req);
+                    }
+                });
+    }
+
     private static void wxShare(final Context context,final IWXAPI api, final int flag, String url, String title, String des, final String img) {
         api.registerApp(Constant.WXAPPID);
         WXWebpageObject webpage = new WXWebpageObject();
@@ -347,24 +384,24 @@ public class MyDialog {
             connection.connect();
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
-
-            //设置固定大小
-            //需要的大小
-            float newWidth = 200f;
-            float newHeigth = 200f;
-
-            //图片大小
-            int width = myBitmap.getWidth();
-            int height = myBitmap.getHeight();
-
-            //缩放比例
-            float scaleWidth = newWidth / width;
-            float scaleHeigth = newHeigth / height;
-            Matrix matrix = new Matrix();
-            matrix.postScale(scaleWidth, scaleHeigth);
-
-            Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
-            return bitmap;
+//
+//            //设置固定大小
+//            //需要的大小
+//            float newWidth = 200f;
+//            float newHeigth = 200f;
+//
+//            //图片大小
+//            int width = myBitmap.getWidth();
+//            int height = myBitmap.getHeight();
+//
+//            //缩放比例
+//            float scaleWidth = newWidth / width;
+//            float scaleHeigth = newHeigth / height;
+//            Matrix matrix = new Matrix();
+//            matrix.postScale(scaleWidth, scaleHeigth);
+//
+//            Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
+            return myBitmap;
         } catch (IOException e) {
             // Log exception
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
@@ -418,7 +455,7 @@ public class MyDialog {
                     Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                wxShare(context,api, 1, url, title, des, img);
+                wxShareImg(context,api, 1, url, title, des, img);
                 alertDialog1.dismiss();
             }
         });

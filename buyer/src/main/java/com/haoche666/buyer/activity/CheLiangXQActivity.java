@@ -34,6 +34,7 @@ import com.haoche666.buyer.model.BigImgList;
 import com.haoche666.buyer.model.CarDetails;
 import com.haoche666.buyer.model.IndexGetyuntoken;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.SellerPoster;
 import com.haoche666.buyer.model.SimpleInfo;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.CheLiangBannerImgHolderView;
@@ -674,10 +675,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 }
                 break;
             case R.id.imageShare:
-                if (share != null) {
-                    isShare = true;
-                    MyDialog.share(this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), share.getShareImg(),"page/buycar/details?id="+id);
-                }
+                zhiZuoHaiBao();
                 break;
             case R.id.viewDuiBi:
                 if (isLogin) {
@@ -710,6 +708,57 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             default:
                 break;
         }
+    }
+
+    /**
+     * des： 网络请求参数
+     * author： ZhangJieBo
+     * date： 2017/8/28 0028 上午 9:55
+     */
+    private OkObject getHaiBaoOkObject() {
+        String url = Constant.HOST + Constant.Url.SELLER_POSTER;
+        HashMap<String, String> params = new HashMap<>();
+        if (isLogin) {
+            params.put("uid", userInfo.getUid());
+            params.put("tokenTime",tokenTime);
+        }
+        params.put("id",String.valueOf(id));
+        return new OkObject(params, url);
+    }
+
+    /**
+     * 制作海报
+     */
+    private void zhiZuoHaiBao() {
+        showLoadingDialog();
+        ApiClient.post(CheLiangXQActivity.this, getHaiBaoOkObject(), new ApiClient.CallBack() {
+            @Override
+            public void onSuccess(String s) {
+                cancelLoadingDialog();
+                LogUtil.LogShitou("CheLiangXQActivity--onSuccess",s+ "");
+                try {
+                    SellerPoster sellerPoster = GsonUtils.parseJSON(s, SellerPoster.class);
+                    if (sellerPoster.getStatus()==1){
+                        if (share != null) {
+                            isShare = true;
+                            MyDialog.share(CheLiangXQActivity.this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), sellerPoster.getImg(),"page/buycar/details?id="+id);
+                        }
+                    }else if (sellerPoster.getStatus()==3){
+                        MyDialog.showReLoginDialog(CheLiangXQActivity.this);
+                    }else {
+                        Toast.makeText(CheLiangXQActivity.this, sellerPoster.getInfo(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(CheLiangXQActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError() {
+                cancelLoadingDialog();
+                Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**

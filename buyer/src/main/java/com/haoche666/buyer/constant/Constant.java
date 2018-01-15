@@ -250,6 +250,10 @@ public class Constant {
          * 视频列表
          */
         public static final String BUYER_GETVIDEOLIST = "/Buyer/getVideoList";
+        /**
+         * 制作海报
+         */
+        public static final String SELLER_POSTER = "/Seller/poster";
     }
 
     public static class IntentKey {
