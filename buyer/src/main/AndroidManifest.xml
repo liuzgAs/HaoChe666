@@ -60,10 +60,10 @@
         <!-- 测试推送 -->
         <meta-data
             android:name="com.alibaba.app.appkey"
-            android:value="24697610" /> <!-- 请填写你自己的- appKey -->
+            android:value="24763767" /> <!-- 请填写你自己的- appKey -->
         <meta-data
             android:name="com.alibaba.app.appsecret"
-            android:value="d86c2b6e6f94f627159280f5d6e1ad61" /> <!-- 请填写你自己的appSecret -->
+            android:value="d06e9c84ad038fd1594af7fe87107046" /> <!-- 请填写你自己的appSecret -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="4b0ee254a06cf716acf1505fb5215566" />
