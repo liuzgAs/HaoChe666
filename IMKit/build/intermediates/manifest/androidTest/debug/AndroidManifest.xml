@@ -84,11 +84,7 @@
         <activity
             android:name="io.rong.imkit.activity.CSLeaveMessageActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" />
-
-        <meta-data
-            android:name="android.support.VERSION"
-            android:value="26.1.0" /> <!-- 融云生产环境： -->
+            android:screenOrientation="portrait" /> <!-- 融云生产环境： -->
         <!-- App Key -->
         <!-- ik1qhw09ivmup -->
         <!-- App Secret -->
@@ -98,6 +94,10 @@
             android:name="RONG_CLOUD_APP_KEY"
             android:value="3argexb630c2e" />
 
+        <service
+            android:name="io.rong.imlib.ipc.RongService"
+            android:exported="true"
+            android:process=":ipc" />
         <service
             android:name="io.rong.imlib.ipc.RongService"
             android:exported="true"

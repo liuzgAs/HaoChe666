@@ -38,6 +38,10 @@
             android:exported="true"
             android:process=":ipc" />
         <service
+            android:name="io.rong.imlib.ipc.RongService"
+            android:exported="true"
+            android:process=":ipc" />
+        <service
             android:name="io.rong.imlib.ReConnectService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />

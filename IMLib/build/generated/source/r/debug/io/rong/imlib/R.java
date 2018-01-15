@@ -7,6 +7,9 @@
 package io.rong.imlib;
 
 public final class R {
+    public static final class array {
+        public static int rc_reconnect_interval = 0x7f030001;
+    }
     public static final class attr {
         public static int font = 0x7f040001;
         public static int fontProviderAuthority = 0x7f040002;
@@ -20,6 +23,8 @@ public final class R {
     }
     public static final class bool {
         public static int abc_action_bar_embed_tabs = 0x7f050001;
+        public static int rc_extension_history = 0x7f050002;
+        public static int rc_typing_status = 0x7f050003;
     }
     public static final class color {
         public static int notification_action_color_filter = 0x7f060001;
@@ -91,7 +96,10 @@ public final class R {
         public static int title = 0x7f0c0019;
     }
     public static final class integer {
-        public static int status_bar_notification_info_maxnum = 0x7f0d0001;
+        public static int rc_audio_encoding_bit_rate = 0x7f0d0001;
+        public static int rc_image_quality = 0x7f0d0002;
+        public static int rc_image_size = 0x7f0d0003;
+        public static int status_bar_notification_info_maxnum = 0x7f0d0004;
     }
     public static final class layout {
         public static int notification_action = 0x7f0f0001;
@@ -102,7 +110,15 @@ public final class R {
         public static int notification_template_part_time = 0x7f0f0006;
     }
     public static final class string {
-        public static int status_bar_notification_info_overflow = 0x7f150001;
+        public static int rc_heartbeat_timer = 0x7f150001;
+        public static int rc_init_failed = 0x7f150002;
+        public static int rc_location_sharing_ended = 0x7f150003;
+        public static int rc_media_message_default_save_path = 0x7f150004;
+        public static int rc_notification_new_msg = 0x7f150005;
+        public static int rc_notification_new_plural_msg = 0x7f150006;
+        public static int rc_notification_ticker_text = 0x7f150007;
+        public static int rc_quit_custom_service = 0x7f150008;
+        public static int status_bar_notification_info_overflow = 0x7f150009;
     }
     public static final class style {
         public static int TextAppearance_Compat_Notification = 0x7f160001;

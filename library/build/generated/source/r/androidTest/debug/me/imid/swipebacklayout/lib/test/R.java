@@ -2204,7 +2204,7 @@ containing a value of this type.
         public static final int listMode=0x7f0a000e;
         public static final int list_item=0x7f0a003e;
         public static final int media_actions=0x7f0a006e;
-        public static final int message=0x7f0a007c;
+        public static final int message=0x7f0a007b;
         public static final int middle=0x7f0a0026;
         public static final int multiply=0x7f0a0018;
         public static final int never=0x7f0a0030;
@@ -2247,7 +2247,6 @@ containing a value of this type.
         public static final int status_bar_latest_event_content=0x7f0a006d;
         public static final int submenuarrow=0x7f0a0053;
         public static final int submit_area=0x7f0a0064;
-        public static final int swipe=0x7f0a007b;
         public static final int tabMode=0x7f0a0010;
         public static final int text=0x7f0a000a;
         public static final int text2=0x7f0a000b;

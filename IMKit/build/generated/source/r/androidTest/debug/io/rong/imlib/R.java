@@ -69,31 +69,31 @@ public final class R {
         public static final int notify_panel_notification_icon_bg = 0x7f020009;
     }
     public static final class id {
-        public static final int action_container = 0x7f0b0048;
-        public static final int action_divider = 0x7f0b004f;
-        public static final int action_image = 0x7f0b0049;
-        public static final int action_text = 0x7f0b004a;
-        public static final int actions = 0x7f0b0059;
-        public static final int async = 0x7f0b003e;
-        public static final int blocking = 0x7f0b003f;
-        public static final int chronometer = 0x7f0b0054;
-        public static final int forever = 0x7f0b0040;
-        public static final int icon = 0x7f0b0056;
-        public static final int icon_group = 0x7f0b005a;
-        public static final int info = 0x7f0b0055;
-        public static final int italic = 0x7f0b0041;
+        public static final int action_container = 0x7f0b0049;
+        public static final int action_divider = 0x7f0b0050;
+        public static final int action_image = 0x7f0b004a;
+        public static final int action_text = 0x7f0b004b;
+        public static final int actions = 0x7f0b005a;
+        public static final int async = 0x7f0b003f;
+        public static final int blocking = 0x7f0b0040;
+        public static final int chronometer = 0x7f0b0055;
+        public static final int forever = 0x7f0b0041;
+        public static final int icon = 0x7f0b0057;
+        public static final int icon_group = 0x7f0b005b;
+        public static final int info = 0x7f0b0056;
+        public static final int italic = 0x7f0b0042;
         public static final int line1 = 0x7f0b0000;
         public static final int line3 = 0x7f0b0001;
-        public static final int normal = 0x7f0b0042;
-        public static final int notification_background = 0x7f0b0058;
-        public static final int notification_main_column = 0x7f0b0051;
-        public static final int notification_main_column_container = 0x7f0b0050;
-        public static final int right_icon = 0x7f0b0057;
-        public static final int right_side = 0x7f0b0052;
-        public static final int text = 0x7f0b0039;
-        public static final int text2 = 0x7f0b003a;
-        public static final int time = 0x7f0b0053;
-        public static final int title = 0x7f0b003b;
+        public static final int normal = 0x7f0b0043;
+        public static final int notification_background = 0x7f0b0059;
+        public static final int notification_main_column = 0x7f0b0052;
+        public static final int notification_main_column_container = 0x7f0b0051;
+        public static final int right_icon = 0x7f0b0058;
+        public static final int right_side = 0x7f0b0053;
+        public static final int text = 0x7f0b003a;
+        public static final int text2 = 0x7f0b003b;
+        public static final int time = 0x7f0b0054;
+        public static final int title = 0x7f0b003c;
     }
     public static final class integer {
         public static final int rc_audio_encoding_bit_rate = 0x7f0c0001;
@@ -137,9 +137,12 @@ public final class R {
         public static final int FontFamily_fontProviderCerts = 3;
         public static final int FontFamily_fontProviderFetchStrategy = 4;
         public static final int FontFamily_fontProviderFetchTimeout = 5;
-        public static final int[] FontFamilyFont = { 0x7f01000b, 0x7f01000c, 0x7f01000d };
-        public static final int FontFamilyFont_fontStyle = 0;
-        public static final int FontFamilyFont_font = 1;
-        public static final int FontFamilyFont_fontWeight = 2;
+        public static final int[] FontFamilyFont = { 0x01010532, 0x01010533, 0x0101053f, 0x7f01000b, 0x7f01000c, 0x7f01000d };
+        public static final int FontFamilyFont_android_font = 0;
+        public static final int FontFamilyFont_android_fontWeight = 1;
+        public static final int FontFamilyFont_android_fontStyle = 2;
+        public static final int FontFamilyFont_fontStyle = 3;
+        public static final int FontFamilyFont_font = 4;
+        public static final int FontFamilyFont_fontWeight = 5;
     }
 }

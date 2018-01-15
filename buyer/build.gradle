@@ -49,7 +49,7 @@ dependencies {
     compile 'cn.jzvd:jiaozivideoplayer:6.2.3'
     compile 'com.crystal:crystalrangeseekbar:1.1.3'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
-    implementation project(':IMKit')
     compile 'q.rorbin:badgeview:1.1.2'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    compile project(':IMKit')
 }
