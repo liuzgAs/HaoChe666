@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -384,23 +385,59 @@ public class MyDialog {
             connection.connect();
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
-//
-//            //设置固定大小
-//            //需要的大小
-//            float newWidth = 200f;
-//            float newHeigth = 200f;
-//
-//            //图片大小
-//            int width = myBitmap.getWidth();
-//            int height = myBitmap.getHeight();
-//
-//            //缩放比例
-//            float scaleWidth = newWidth / width;
-//            float scaleHeigth = newHeigth / height;
-//            Matrix matrix = new Matrix();
-//            matrix.postScale(scaleWidth, scaleHeigth);
-//
-//            Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
+
+            //设置固定大小
+            //需要的大小
+            float newWidth = 200f;
+            float newHeigth = 200f;
+
+            //图片大小
+            int width = myBitmap.getWidth();
+            int height = myBitmap.getHeight();
+
+            //缩放比例
+            float scaleWidth = newWidth / width;
+            float scaleHeigth = newHeigth / height;
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeigth);
+
+            Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, true);
+            bitmap.recycle();
+            return scaledBitmap;
+        }
+    }
+
+    public static Bitmap netPicToBmp01(Context context,String src) {
+        try {
+            Log.d("FileUtil", src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+
+            //设置固定大小
+            //需要的大小
+            float newWidth = 200f;
+            float newHeigth = 200f;
+
+            //图片大小
+            int width = myBitmap.getWidth();
+            int height = myBitmap.getHeight();
+
+            //缩放比例
+            float scaleWidth = newWidth / width;
+            float scaleHeigth = newHeigth / height;
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeigth);
+
+            Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
             return myBitmap;
         } catch (IOException e) {
             // Log exception
@@ -423,7 +460,7 @@ public class MyDialog {
         return isPaySupported;
     }
 
-    public static void share(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img, final String path) {
+    public static void share(final Context context, final IWXAPI api, final String url, final String title, final String des, final String img, final String img01, final String path) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialog_shengji = inflater.inflate(R.layout.dianlog_share, null);
         final AlertDialog alertDialog1 = new AlertDialog.Builder(context, R.style.dialog)
@@ -444,7 +481,7 @@ public class MyDialog {
                     return;
                 }
 //                wxShare(api, 0, url, title, des, img);
-                shareXiaoChengXu(context,api, url, title, des, img, path);
+                shareXiaoChengXu(context,api, url, title, des, img01, path);
                 alertDialog1.dismiss();
             }
         });
@@ -493,7 +530,7 @@ public class MyDialog {
                 .execute(new Runnable() {
                     @Override
                     public void run() {
-                        Bitmap bitmap = netPicToBmp(context,img);
+                        Bitmap bitmap = netPicToBmp01(context,img);
                         msg.setThumbImage(bitmap);
                         SendMessageToWX.Req req = new SendMessageToWX.Req();
                         req.transaction = buildTransaction("webpage");

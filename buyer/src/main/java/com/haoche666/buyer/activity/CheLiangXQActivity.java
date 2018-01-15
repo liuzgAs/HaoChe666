@@ -741,7 +741,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     if (sellerPoster.getStatus()==1){
                         if (share != null) {
                             isShare = true;
-                            MyDialog.share(CheLiangXQActivity.this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), sellerPoster.getImg(),"page/buycar/details?id="+id);
+                            MyDialog.share(CheLiangXQActivity.this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), sellerPoster.getImg(),share.getShareImg(),"page/buycar/details?id="+id);
                         }
                     }else if (sellerPoster.getStatus()==3){
                         MyDialog.showReLoginDialog(CheLiangXQActivity.this);
