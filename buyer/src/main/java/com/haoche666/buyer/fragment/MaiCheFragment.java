@@ -549,17 +549,23 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         for (int i = 0; i < sortIdBeanList.size(); i++) {
             sortIdBeanList.get(i).setSelect(false);
         }
-        sortIdBeanList.get(0).setSelect(true);
-        for (int i = 0; i < zPriceBeanList.size(); i++) {
-            zPriceBeanList.get(i).setSelect(false);
+        if (sortIdBeanList.size()>0){
+            sortIdBeanList.get(0).setSelect(true);
         }
-        zPriceBeanList.get(0).setSelect(true);
+        if (zPriceBeanList.size()>0){
+            for (int i = 0; i < zPriceBeanList.size(); i++) {
+                zPriceBeanList.get(i).setSelect(false);
+            }
+            zPriceBeanList.get(0).setSelect(true);
+        }
         rangeSeekbar.setMinStartValue(0).setMaxStartValue(60).apply();
-        for (int i = 0; i < zAgeBeanList.size(); i++) {
-            zAgeBeanList.get(i).setSelect(false);
+        if (zAgeBeanList.size()>0){
+            for (int i = 0; i < zAgeBeanList.size(); i++) {
+                zAgeBeanList.get(i).setSelect(false);
+            }
+            zAgeBeanList.get(0).setSelect(true);
         }
         rangeSeekbar1.setMinStartValue(0).setMaxStartValue(12).apply();
-        zAgeBeanList.get(0).setSelect(true);
         priceAdapter.notifyDataSetChanged();
         ageAdapter.notifyDataSetChanged();
     }
