@@ -52,7 +52,7 @@ public class LiaoTianXiaoXiViewHolder extends BaseViewHolder<LiaoTian> {
                 .setBadgeTextSize(8f, true)
                 .setBadgeBackgroundColor(getContext().getResources().getColor(R.color.red))
                 .setBadgeGravity(Gravity.END | Gravity.TOP)
-                .setGravityOffset(3f, 0f, true);
+                .setGravityOffset(5f, 10f, true);
     }
 
     @Override
