@@ -4,20 +4,20 @@
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_cs_group_dialog_ok_selector.xml"
     },
     {
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\drawable\\notification_bg.xml"
+    },
+    {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_ic_phone_selector.xml",
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_ic_phone_selector.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_bg.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\drawable\\notification_bg.xml"
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_sp_grid_mask.xml",
+        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_sp_grid_mask.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_cs_evaluate_selector.xml",
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_cs_evaluate_selector.xml"
-    },
-    {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_sp_grid_mask.xml",
-        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable\\rc_sp_grid_mask.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_corner_location_style.xml",
@@ -25,7 +25,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_tile_bg.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\drawable\\notification_tile_bg.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\drawable\\notification_tile_bg.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_progress_sending_style.xml",
@@ -117,7 +117,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_bg_low.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\drawable\\notification_bg_low.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\drawable\\notification_bg_low.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\rc_ed_public_service_search_selector.xml",
@@ -265,6 +265,6 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\drawable\\notification_icon_background.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\drawable\\notification_icon_background.xml"
     }
 ]

@@ -13,7 +13,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_template_icon_group.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_base_activity_layout.xml",
@@ -29,7 +29,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_action.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_action.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_picsel_original.xml",
@@ -52,12 +52,12 @@
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_plugin_location_activity.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_media_custom.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.0.aar\\707e647afd8bbb30fe2c947c92e9ecc2\\res\\layout\\notification_template_media_custom.xml"
-    },
-    {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_text_message_evaluate.xml",
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_text_message_evaluate.xml"
+    },
+    {
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.0.aar\\707e647afd8bbb30fe2c947c92e9ecc2\\res\\layout\\notification_template_media_custom.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_media.xml",
@@ -92,12 +92,12 @@
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_public_service_input_menus.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_icon_rt_location_marker.xml",
-        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_icon_rt_location_marker.xml"
-    },
-    {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_voice_message.xml",
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_voice_message.xml"
+    },
+    {
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_icon_rt_location_marker.xml",
+        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_icon_rt_location_marker.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_big_media_narrow.xml",
@@ -124,12 +124,12 @@
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_picsel_grid_camera.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_discussion_notification_message.xml",
-        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_discussion_notification_message.xml"
-    },
-    {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_fr_conversationlist.xml",
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_fr_conversationlist.xml"
+    },
+    {
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_discussion_notification_message.xml",
+        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_discussion_notification_message.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_ext_emoticon_tab_item.xml",
@@ -152,12 +152,12 @@
         "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_item_public_service_list.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_fr_image.xml",
-        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_fr_image.xml"
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_template_part_chronometer.xml"
+        "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_fr_image.xml",
+        "source": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\bundles\\debug\\res\\layout\\rc_fr_image.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_ext_indicator.xml",
@@ -277,7 +277,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_time.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_template_part_time.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_progress.xml",
@@ -333,7 +333,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_action_tombstone.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_public_service_message.xml",
@@ -385,7 +385,7 @@
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.0.aar\\6b9a4d0c4928d550b6aaaf619954d342\\res\\layout\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\f243d299e7951d2f761f12b2eb0be63d\\res\\layout\\notification_template_custom_big.xml"
     },
     {
         "merged": "G:\\project\\HaoChe666\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\rc_item_image_message.xml",
