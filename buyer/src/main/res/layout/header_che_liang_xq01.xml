@@ -42,7 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
                 <RelativeLayout
-                    android:background="@drawable/layout_selector_white_system_gray"
                     android:id="@+id/viewCheHang"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
@@ -55,7 +54,12 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:src="@mipmap/nikesi" />
-
+                    <ImageView
+                        android:layout_alignBottom="@+id/imageLogo"
+                        android:layout_alignRight="@+id/imageLogo"
+                        android:src="@mipmap/jiav"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp" />
                     <TextView
                         android:textStyle="bold"
                         android:id="@+id/textName"
