@@ -341,8 +341,17 @@ public class Buyer {
         private int id;
         private String intro;
         private String name;
+        private String imageUrl;
         private int is_attention;
         private List<CarBean> car;
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
 
         public int getIs_attention() {
             return is_attention;

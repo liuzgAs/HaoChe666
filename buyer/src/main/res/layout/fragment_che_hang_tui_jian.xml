@@ -12,12 +12,15 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical"
         android:paddingLeft="10dp">
-        <ImageView
+        <huisedebi.zjb.mylibrary.customview.CircleImageView
+            android:scaleType="centerCrop"
             android:id="@+id/imageLogo"
             android:src="@mipmap/ic_empty"
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <ImageView
+            android:layout_marginRight="-2dp"
+            android:layout_marginBottom="-2dp"
             android:layout_alignBottom="@+id/imageLogo"
             android:layout_alignRight="@+id/imageLogo"
             android:src="@mipmap/jiav"
@@ -36,6 +39,9 @@
             android:textStyle="bold" />
 
         <TextView
+            android:maxLines="1"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imageLogo"
             android:id="@+id/textIntro"

@@ -73,6 +73,7 @@ public class Banner02Adapter extends PagerAdapter {
         TextView textName = inflate.findViewById(R.id.textName);
         TextView textIntro = inflate.findViewById(R.id.textIntro);
         TextView textDes = inflate.findViewById(R.id.textDes);
+        ImageView imageLogo = inflate.findViewById(R.id.imageLogo);
         textGuanZhu = inflate.findViewById(R.id.textGuanZhu);
         imageViews[0] = inflate.findViewById(R.id.image01);
         imageViews[1] = inflate.findViewById(R.id.image02);
@@ -84,6 +85,11 @@ public class Banner02Adapter extends PagerAdapter {
             textIntro.setText("简介：" + imgList.get(position % imgList.size()).getIntro());
             textName.setText(imgList.get(position % imgList.size()).getName());
             textDes.setText(imgList.get(position % imgList.size()).getDes());
+            Glide.with(mContext)
+                    .load(imgList.get(position % imgList.size()).getImageUrl())
+                    .asBitmap()
+                    .placeholder(R.mipmap.ic_empty)
+                    .into(imageLogo);
             final List<Buyer.StoreBean.CarBean> carBeanList = imgList.get(position % imgList.size()).getCar();
             for (int i = 0; i < carBeanList.size(); i++) {
                 if (!TextUtils.isEmpty(carBeanList.get(i).getImg())) {
