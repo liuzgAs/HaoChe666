@@ -1,23 +1,23 @@
 -- Merging decision tree log ---
 manifest
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
-INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
+INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
 	package
 		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:2:5-28
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
 	android:versionName
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
 	android:versionCode
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-106:12
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:1-112:12
 		INJECTED from G:\project\HaoChe666\IMLib\AndroidManifest.xml
 	xmlns:android
 		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:1:11-69
@@ -84,102 +84,102 @@ ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:19:5-81
 	android:name
 		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:19:22-78
 application
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:21:5-104:19
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:21:5-110:19
 meta-data#RONG_CLOUD_APP_KEY
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:29:9-31:45
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:35:9-37:45
 	android:value
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:31:13-42
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:37:13-42
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:30:13-46
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:36:13-46
 service#io.rong.imlib.ipc.RongService
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:33:9-36:38
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:39:9-42:38
 	android:process
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:36:13-35
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:42:13-35
 	android:exported
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:35:13-36
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:41:13-36
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:34:13-57
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:40:13-57
 service#io.rong.imlib.ReConnectService
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:43:9-46:72
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:49:9-52:72
 	android:exported
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:45:13-36
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:51:13-36
 	android:permission
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:46:13-69
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:52:13-69
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:44:13-45
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:50:13-45
 receiver#io.rong.imlib.ConnectChangeReceiver
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:48:9-50:39
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:54:9-56:39
 	android:exported
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:50:13-36
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:56:13-36
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:49:13-63
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:55:13-63
 receiver#io.rong.imlib.HeartbeatReceiver
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:52:9-54:38
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:58:9-60:38
 	android:process
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:54:13-35
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:60:13-35
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:53:13-59
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:59:13-59
 service#io.rong.push.core.PushRegistrationService
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:61:9-64:72
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:67:9-70:72
 	android:exported
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:63:13-36
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:69:13-36
 	android:permission
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:64:13-69
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:70:13-69
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:62:13-69
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:68:13-69
 service#io.rong.push.core.MessageHandleService
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:66:9-69:72
-	android:exported
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:68:13-36
-	android:permission
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:69:13-69
-	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:67:13-66
-service#io.rong.push.PushService
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:72:9-76:46
-	android:process
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:76:13-43
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:72:9-75:72
 	android:exported
 		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:74:13-36
 	android:permission
 		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:75:13-69
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:73:13-52
-receiver#io.rong.push.PushReceiver
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:79:9-99:20
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:73:13-66
+service#io.rong.push.PushService
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:78:9-82:46
 	android:process
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:81:13-43
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:82:13-43
+	android:exported
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:80:13-36
+	android:permission
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:81:13-69
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:80:13-53
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:79:13-52
+receiver#io.rong.push.PushReceiver
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:85:9-105:20
+	android:process
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:87:13-43
+	android:name
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:86:13-53
 intent-filter#io.rong.push.intent.action.HEART_BEAT
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:83:13-85:29
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:89:13-91:29
 action#io.rong.push.intent.action.HEART_BEAT
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:84:17-80
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:90:17-80
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:84:25-77
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:90:25-77
 intent-filter#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:87:13-89:29
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:93:13-95:29
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:88:17-79
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:94:17-79
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:88:25-76
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:94:25-76
 intent-filter#android.intent.action.BOOT_COMPLETED
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:91:13-93:29
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:97:13-99:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:92:17-79
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:98:17-79
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:92:25-76
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:98:25-76
 intent-filter#android.intent.action.ACTION_POWER_CONNECTED+android.intent.action.ACTION_POWER_DISCONNECTED+android.intent.action.USER_PRESENT
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:94:13-98:29
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:100:13-104:29
 action#android.intent.action.USER_PRESENT
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:95:17-77
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:101:17-77
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:95:25-74
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:101:25-74
 action#android.intent.action.ACTION_POWER_CONNECTED
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:96:17-87
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:102:17-87
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:96:25-84
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:102:25-84
 action#android.intent.action.ACTION_POWER_DISCONNECTED
-ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:97:17-90
+ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:103:17-90
 	android:name
-		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:97:25-87
+		ADDED from G:\project\HaoChe666\IMLib\AndroidManifest.xml:103:25-87
