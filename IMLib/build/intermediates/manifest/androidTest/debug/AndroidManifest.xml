@@ -28,15 +28,19 @@
 
     <application android:debuggable="true" >
         <uses-library android:name="android.test.runner" />
+        <!-- 融云开发环境： -->
+        <!-- App Key -->
+        <!-- 3argexb630c2e -->
+        <!-- App Secret -->
+        <!-- kDu3k9mcSbtW -->
         <!-- 融云生产环境： -->
         <!-- App Key -->
         <!-- ik1qhw09ivmup -->
         <!-- App Secret -->
         <!-- LKA5u3T9Pl4JQ -->
-        <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
-            android:value="3argexb630c2e" />
+            android:value="ik1qhw09ivmup" />
 
         <service
             android:name="io.rong.imlib.ipc.RongService"

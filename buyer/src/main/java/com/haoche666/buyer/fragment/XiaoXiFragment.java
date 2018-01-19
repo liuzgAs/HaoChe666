@@ -228,10 +228,12 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
 //                RongIM.getInstance().startConversationList(getActivity(), supportedConversation);
                 List<Conversation> conversationList = RongIM.getInstance().getRongIMClient().getConversationList();
                 List<LiaoTian> liaoTianList = new ArrayList<>();
-                for (int i = 0; i < conversationList.size(); i++) {
-                    LogUtil.LogShitou("XiaoXiFragment--onSuccess", GsonUtils.parseObject(conversationList.get(i)));
-                    LiaoTian liaoTian = GsonUtils.parseJSON(GsonUtils.parseObject(conversationList.get(i)), LiaoTian.class);
-                    liaoTianList.add(liaoTian);
+                if (conversationList!=null){
+                    for (int i = 0; i < conversationList.size(); i++) {
+                        LogUtil.LogShitou("XiaoXiFragment--onSuccess", GsonUtils.parseObject(conversationList.get(i)));
+                        LiaoTian liaoTian = GsonUtils.parseJSON(GsonUtils.parseObject(conversationList.get(i)), LiaoTian.class);
+                        liaoTianList.add(liaoTian);
+                    }
                 }
                 adapter.clear();
                 adapter.addAll(liaoTianList);
