@@ -94,13 +94,13 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ProductQueryhistory.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ProductQueryhistory.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_cha_xun_ls;
@@ -110,7 +110,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-              ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+              ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                   @Override
                   public void onSuccess(String s) {
                       try {
@@ -121,7 +121,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
                               List<ProductQueryhistory.DataBean> dataBeanList = productQueryhistory.getData();
                               adapter.addAll(dataBeanList);
                           } else if (status == 3) {
-                              MyDialog.showReLoginDialog(getActivity());
+                              MyDialog.showReLoginDialog(mContext);
                           } else {
                               adapter.pauseMore();
                           }
@@ -168,7 +168,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
             @Override
             public void onItemClick(int position) {
                 showLoadingDialog();
-                ApiClient.post(getActivity(), getJieGuoOkObject(adapter.getItem(position)), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getJieGuoOkObject(adapter.getItem(position)), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         cancelLoadingDialog();
@@ -177,24 +177,24 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
                             Carsearch carsearch = GsonUtils.parseJSON(s, Carsearch.class);
                             if (carsearch.getStatus() == 1) {
                                 Intent intent = new Intent();
-                                intent.setClass(getActivity(),WebActivity.class);
+                                intent.setClass(mContext,WebActivity.class);
                                 intent.putExtra(Constant.IntentKey.TITLE,"查维保");
                                 intent.putExtra(Constant.IntentKey.URL,carsearch.getUrl());
                                 startActivity(intent);
                             } else if (carsearch.getStatus() == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
-                                Toast.makeText(getActivity(), carsearch.getInfo(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, carsearch.getInfo(), Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
-                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "数据出错", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError() {
                         cancelLoadingDialog();
-                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "请求失败", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -248,7 +248,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("查询历史"+type, s);
@@ -260,7 +260,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (productQueryhistory.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(productQueryhistory.getInfo());
                     }
@@ -279,7 +279,7 @@ public class ChaXunLSFragment extends ZjbBaseFragment implements SwipeRefreshLay
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {

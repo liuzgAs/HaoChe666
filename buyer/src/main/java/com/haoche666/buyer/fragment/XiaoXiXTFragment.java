@@ -90,9 +90,9 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
     }
 
     private void initRecycler() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<UserMsg.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<UserMsg.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_gonggao;
@@ -102,7 +102,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-             ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+             ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                  @Override
                  public void onSuccess(String s) {
                      LogUtil.LogShitou("DingDanGLActivity--加载更多", s+"");
@@ -114,7 +114,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
                              List<UserMsg.DataBean> dataBeanList = userMsg.getData();
                              adapter.addAll(dataBeanList);
                          } else if (status == 3) {
-                             MyDialog.showReLoginDialog(getActivity());
+                             MyDialog.showReLoginDialog(mContext);
                          } else {
                              adapter.pauseMore();
                          }
@@ -195,7 +195,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("消息"+type, s);
@@ -207,7 +207,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (userMsg.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(userMsg.getInfo());
                     }
@@ -226,7 +226,7 @@ public class XiaoXiXTFragment extends ZjbBaseFragment implements View.OnClickLis
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {

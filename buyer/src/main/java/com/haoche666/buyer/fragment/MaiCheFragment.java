@@ -123,7 +123,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
     @Override
     protected void initSP() {
-        ACache aCache = ACache.get(getActivity(), Constant.Acache.LOCATION);
+        ACache aCache = ACache.get(mContext, Constant.Acache.LOCATION);
         lat = aCache.getAsString(Constant.Acache.LAT);
         lng = aCache.getAsString(Constant.Acache.LNG);
     }
@@ -156,9 +156,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     protected void initViews() {
         ViewGroup.LayoutParams layoutParams = mRelaTitleStatue.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         mRelaTitleStatue.setLayoutParams(layoutParams);
-        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
         initRecycle();
         initSortRecycler();
         priceAdapter = new PriceAdapter(zPriceBeanList);
@@ -168,13 +168,13 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Buyer.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Buyer.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_shou_ye;
@@ -184,7 +184,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                ApiClient.postJson(getActivity(), url, getOkObject(), new ApiClient.CallBack() {
+                ApiClient.postJson(mContext, url, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         try {
@@ -195,7 +195,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                                 List<Buyer.DataBean> dataBeanList = buyer.getData();
                                 adapter.addAll(dataBeanList);
                             } else if (status == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                                 adapter.pauseMore();
                             }
@@ -243,7 +243,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             public void onItemClick(int position) {
                 Intent intent = new Intent();
                 intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
-                intent.setClass(getActivity(), CheLiangXQActivity.class);
+                intent.setClass(mContext, CheLiangXQActivity.class);
                 startActivity(intent);
             }
         });
@@ -253,12 +253,12 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
      * 初始化recyclerview
      */
     private void initSortRecycler() {
-        recyclerViewShaiXuan00.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewShaiXuan00.setLayoutManager(new LinearLayoutManager(mContext));
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerViewShaiXuan00.addItemDecoration(itemDecoration);
         recyclerViewShaiXuan00.setRefreshingColorResources(R.color.basic_color);
-        recyclerViewShaiXuan00.setAdapterWithProgress(adapterSort = new RecyclerArrayAdapter<CarGetsearchdata.DataBean.SortIdBean>(getActivity()) {
+        recyclerViewShaiXuan00.setAdapterWithProgress(adapterSort = new RecyclerArrayAdapter<CarGetsearchdata.DataBean.SortIdBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_sort;
@@ -413,7 +413,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     protected void initData() {
 
-        ApiClient.post(getActivity(), getLocationOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getLocationOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("定位城市", s);
@@ -423,7 +423,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         city_id = indexMpcity.getCityId();
                         textLocation.setText(indexMpcity.getCityName());
                     } else if (indexMpcity.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(indexMpcity.getInfo());
                     }
@@ -442,7 +442,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
@@ -458,7 +458,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         });
 
 
-        ApiClient.post(getActivity(), getSearchOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getSearchOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("MaiCheFragment--获取价格、车龄范围数组", s + "");
@@ -489,9 +489,9 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         ageAdapter.notifyDataSetChanged();
                         onRefresh();
                     } else if (carGetsearchdata.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
-                        Toast.makeText(getActivity(), carGetsearchdata.getInfo(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, carGetsearchdata.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     showError("数据出错");
@@ -508,7 +508,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
@@ -590,7 +590,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         textSearch.setText(title);
         page = 1;
         recyclerView.showProgress();
-        ApiClient.postJson(getActivity(), url, getOkObject(), new ApiClient.CallBack() {
+        ApiClient.postJson(mContext, url, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("买车", s);
@@ -602,7 +602,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (buyer.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(buyer.getInfo());
                     }
@@ -621,7 +621,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
@@ -661,21 +661,21 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.viewLocation:
-                intent.setClass(getActivity(), ChengShiXZActivity.class);
+                intent.setClass(mContext, ChengShiXZActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.CITY);
                 break;
             case R.id.imageZuJi:
                 if (isLogin) {
-                    intent.setClass(getActivity(), ZuJiActivity.class);
+                    intent.setClass(mContext, ZuJiActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.viewSearch:
                 shaiXuanVisible = -1;
                 viewShaiXuan.setVisibility(View.GONE);
-                MyDialog.showSearchDialog(getActivity(), title);
+                MyDialog.showSearchDialog(mContext, title);
                 MyDialog.setOnSearchDoneListener(new MyDialog.OnSearchDoneListener() {
                     @Override
                     public void searchDone(String key) {
@@ -715,7 +715,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             case R.id.viewAll:
                 viewShaiXuan.setVisibility(View.GONE);
                 shaiXuanVisible = -1;
-                intent.setClass(getActivity(), PinPaiXCActivity.class);
+                intent.setClass(mContext, PinPaiXCActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
                 break;
             default:
@@ -762,7 +762,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             ViewHolder holder;
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_price_age, null);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_price_age, null);
                 holder.textName = (TextView) convertView.findViewById(R.id.textName);
                 convertView.setTag(holder);
             } else {
@@ -770,10 +770,10 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             }
             holder.textName.setText(list.get(position).getTitle());
             if (list.get(position).isSelect()) {
-                holder.textName.setTextColor(ContextCompat.getColor(getActivity(), R.color.textGold));
+                holder.textName.setTextColor(ContextCompat.getColor(mContext, R.color.textGold));
                 holder.textName.setBackgroundResource(R.drawable.shape_gold1dp_priceage3dp);
             } else {
-                holder.textName.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_black));
+                holder.textName.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
                 holder.textName.setBackgroundResource(R.drawable.shape_linegray1dp_3dp);
             }
             return convertView;
@@ -783,11 +783,11 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
-        if (((MainActivity) getActivity()).isSearch) {
+        if (((MainActivity) mContext).isSearch) {
             initShaiXuan();
             shaiXuanVisible = -1;
             viewShaiXuan.setVisibility(View.GONE);
-            MyDialog.showSearchDialog(getActivity(), title);
+            MyDialog.showSearchDialog(mContext, title);
             MyDialog.setOnSearchDoneListener(new MyDialog.OnSearchDoneListener() {
                 @Override
                 public void searchDone(String key) {
@@ -795,18 +795,18 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     onRefresh();
                 }
             });
-            ((MainActivity) getActivity()).isSearch = false;
+            ((MainActivity) mContext).isSearch = false;
         }
-        if (((MainActivity) getActivity()).isPinPaiXC) {
+        if (((MainActivity) mContext).isPinPaiXC) {
             initShaiXuan();
             viewShaiXuan.setVisibility(View.GONE);
             shaiXuanVisible = -1;
             Intent intent = new Intent();
-            intent.setClass(getActivity(), PinPaiXCActivity.class);
+            intent.setClass(mContext, PinPaiXCActivity.class);
             startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
-            ((MainActivity) getActivity()).isPinPaiXC = false;
+            ((MainActivity) mContext).isPinPaiXC = false;
         }
-        if (((MainActivity) getActivity()).isJiaGEXC) {
+        if (((MainActivity) mContext).isJiaGEXC) {
             initShaiXuan();
             viewShaiXuan.setVisibility(View.VISIBLE);
             shaiXuanVisible = 1;
@@ -814,7 +814,7 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 viewShaiXuanArr[j].setVisibility(View.GONE);
             }
             viewShaiXuanArr[1].setVisibility(View.VISIBLE);
-            ((MainActivity) getActivity()).isJiaGEXC = false;
+            ((MainActivity) mContext).isJiaGEXC = false;
         }
     }
 

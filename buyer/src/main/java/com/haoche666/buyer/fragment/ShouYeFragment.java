@@ -99,7 +99,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
      */
     private void shuaXinCheHang() {
         showLoadingDialog();
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
@@ -110,19 +110,19 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         storeBeanList = buyer.getStore();
                         adapter.notifyDataSetChanged();
                     } else if (buyer.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
-                        Toast.makeText(getActivity(), buyer.getInfo(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, buyer.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onError() {
                 cancelLoadingDialog();
-                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -167,20 +167,20 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     protected void initViews() {
         ViewGroup.LayoutParams layoutParams = mRelaTitleStatue.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         mRelaTitleStatue.setLayoutParams(layoutParams);
-        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
         initRecycle();
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Buyer.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Buyer.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_shou_ye;
@@ -223,7 +223,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
 
             @Override
             public View onCreateView(ViewGroup parent) {
-                final View header_shou_ye = LayoutInflater.from(getActivity()).inflate(R.layout.header_shou_ye, null);
+                final View header_shou_ye = LayoutInflater.from(mContext).inflate(R.layout.header_shou_ye, null);
                 bannerText[0] = header_shou_ye.findViewById(R.id.bannerText01);
                 bannerText[1] = header_shou_ye.findViewById(R.id.bannerText02);
                 bannerText[2] = header_shou_ye.findViewById(R.id.bannerText03);
@@ -280,15 +280,15 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewPinPaiXC).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-                        ((MainActivity) getActivity()).isPinPaiXC = true;
+                        ((MainActivity) mContext).mTabHost.setCurrentTab(1);
+                        ((MainActivity) mContext).isPinPaiXC = true;
                     }
                 });
                 header_shou_ye.findViewById(R.id.textMoreCheHang).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.setClass(getActivity(), CheHangLBActivity.class);
+                        intent.setClass(mContext, CheHangLBActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -296,7 +296,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.setClass(getActivity(), WenZhangLBActivity.class);
+                        intent.setClass(mContext, WenZhangLBActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -304,7 +304,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.setClass(getActivity(), ShiPinLBActivity.class);
+                        intent.setClass(mContext, ShiPinLBActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -337,7 +337,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         if (newsBeanList != null) {
                             if (newsBeanList.size() > 0) {
                                 Intent intent = new Intent();
-                                intent.setClass(getActivity(), WebActivity.class);
+                                intent.setClass(mContext, WebActivity.class);
                                 intent.putExtra(Constant.IntentKey.TITLE, newsBeanList.get(0).getTitle());
                                 intent.putExtra(Constant.IntentKey.URL, newsBeanList.get(0).getUrl());
                                 startActivity(intent);
@@ -348,20 +348,20 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.textNewMore).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity) mContext).mTabHost.setCurrentTab(1);
                     }
                 });
                 header_shou_ye.findViewById(R.id.viewJiaGeXC).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-                        ((MainActivity) getActivity()).isJiaGEXC = true;
+                        ((MainActivity) mContext).mTabHost.setCurrentTab(1);
+                        ((MainActivity) mContext).isJiaGEXC = true;
                     }
                 });
                 header_shou_ye.findViewById(R.id.viewWoYaoMC).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).mTabHost.setCurrentTab(2);
+                        ((MainActivity) mContext).mTabHost.setCurrentTab(2);
                     }
                 });
                 header_shou_ye.findViewById(R.id.viewZhuCe).setOnClickListener(new View.OnClickListener() {
@@ -369,10 +369,10 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                     public void onClick(View view) {
                         if (!isLogin) {
                             Intent intent = new Intent();
-                            intent.setClass(getActivity(), ZhuCeActivity.class);
+                            intent.setClass(mContext, ZhuCeActivity.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(getActivity(), "您已经是会员了", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "您已经是会员了", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -394,7 +394,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent();
-                            intent.setClass(getActivity(),CheLiangLBActivity.class);
+                            intent.setClass(mContext,CheLiangLBActivity.class);
                             intent.putExtra(Constant.IntentKey.VALUE,hotCarList.get(finalI));
                             startActivity(intent);
                         }
@@ -409,7 +409,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent();
-                            intent.setClass(getActivity(), CheLiangLBActivity.class);
+                            intent.setClass(mContext, CheLiangLBActivity.class);
                             intent.putExtra(Constant.IntentKey.BEAN,hotSearch.get(finalI));
                             startActivity(intent);
                         }
@@ -418,7 +418,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewAll).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity)getActivity()).mTabHost.setCurrentTab(1);
+                        ((MainActivity)mContext).mTabHost.setCurrentTab(1);
                     }
                 });
                 return header_shou_ye;
@@ -436,7 +436,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 }
                 if (newsBeanList != null) {
                     if (newsBeanList.size() > 0) {
-                        Glide.with(getActivity())
+                        Glide.with(mContext)
                                 .load(newsBeanList.get(0).getImg())
                                 .asBitmap()
                                 .placeholder(R.mipmap.ic_empty)
@@ -448,18 +448,18 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 if (videoBeanXList != null) {
                     if (videoBeanXList.size() > 0) {
                         viewVideo.setVisibility(View.VISIBLE);
-                        id_viewpager.setAdapter(new BannerAdapter(getActivity(), videoBeanXList));
+                        id_viewpager.setAdapter(new BannerAdapter(mContext, videoBeanXList));
                         id_viewpager.setCurrentItem(50);
                     } else {
                         viewVideo.setVisibility(View.GONE);
                     }
                 }
-                banner02Adapter = new Banner02Adapter(getActivity(), storeBeanList);
+                banner02Adapter = new Banner02Adapter(mContext, storeBeanList);
                 id_viewpager01.setAdapter(banner02Adapter);
                 id_viewpager01.setCurrentItem(50);
                 if (hotCarList != null) {
                     for (int i = 0; i < hotCarList.size(); i++) {
-                        Glide.with(getActivity())
+                        Glide.with(mContext)
                                 .load(hotCarList.get(i).getImg())
                                 .asBitmap()
                                 .placeholder(R.mipmap.ic_empty)
@@ -537,7 +537,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             public void onItemClick(int position) {
                 Intent intent = new Intent();
                 intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
-                intent.setClass(getActivity(), CheLiangXQActivity.class);
+                intent.setClass(mContext, CheLiangXQActivity.class);
                 startActivity(intent);
             }
         });
@@ -574,7 +574,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
 
             @Override
             public void onSuccess(String s) {
@@ -593,7 +593,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (buyer.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(buyer.getInfo());
                     }
@@ -612,7 +612,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
@@ -632,19 +632,19 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageMine:
-                ((MainActivity) getActivity()).mTabHost.setCurrentTab(4);
+                ((MainActivity) mContext).mTabHost.setCurrentTab(4);
                 break;
             case R.id.viewSearch:
-                ((MainActivity) getActivity()).mTabHost.setCurrentTab(1);
-                ((MainActivity) getActivity()).isSearch = true;
+                ((MainActivity) mContext).mTabHost.setCurrentTab(1);
+                ((MainActivity) mContext).isSearch = true;
                 break;
             case R.id.imageZuJi:
                 if (isLogin) {
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), ZuJiActivity.class);
+                    intent.setClass(mContext, ZuJiActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             default:
@@ -658,12 +658,12 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         super.onStart();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.BroadcastCode.CHE_HANG_GUAN_ZHU);
-        getActivity().registerReceiver(reciver, filter);
+        mContext.registerReceiver(reciver, filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(reciver);
+        mContext.unregisterReceiver(reciver);
     }
 }

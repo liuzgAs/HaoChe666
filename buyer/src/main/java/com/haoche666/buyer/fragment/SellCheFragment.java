@@ -115,9 +115,9 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
     @Override
     protected void initViews() {
         ViewGroup.LayoutParams layoutParams = viewBar.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         viewBar.setLayoutParams(layoutParams);
-        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
         imageBack.setVisibility(View.GONE);
         ((TextView) mInflate.findViewById(R.id.textViewTitle)).setText("我要卖车");
         textViewRight.setText("卖车流程");
@@ -188,31 +188,31 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
         switch (view.getId()) {
             case R.id.buttonTiJiao:
                 if (sell_city_id == 0) {
-                    Toast.makeText(getActivity(), "请选择出售城市", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择出售城市", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (brand_city_id == 0) {
-                    Toast.makeText(getActivity(), "请选择车牌城市", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择车牌城市", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(name)) {
-                    Toast.makeText(getActivity(), "请选择车辆名称", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择车辆名称", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(card_time)) {
-                    Toast.makeText(getActivity(), "请选择上牌时间", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择上牌时间", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (km == -1) {
-                    Toast.makeText(getActivity(), "请选择表显里程", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择表显里程", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (cheKuang == 0) {
-                    Toast.makeText(getActivity(), "请选择车况等级", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请选择车况等级", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 showLoadingDialog();
-                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         cancelLoadingDialog();
@@ -221,26 +221,26 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                             SimpleInfo simpleInfo = GsonUtils.parseJSON(s, SimpleInfo.class);
                             if (simpleInfo.getStatus() == 1) {
                             } else if (simpleInfo.getStatus() == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                             }
-                            MyDialog.showTipDialog(getActivity(), simpleInfo.getInfo());
+                            MyDialog.showTipDialog(mContext, simpleInfo.getInfo());
                         } catch (Exception e) {
-                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "数据出错", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError() {
                         cancelLoadingDialog();
-                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "请求失败", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
             case R.id.viewCheKuang:
-                LayoutInflater inflater1 = LayoutInflater.from(getActivity());
+                LayoutInflater inflater1 = LayoutInflater.from(mContext);
                 View dialog_che_kuang = inflater1.inflate(R.layout.dialog_che_kuang, null);
-                final AlertDialog cheKuangDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
+                final AlertDialog cheKuangDialog = new AlertDialog.Builder(mContext, R.style.dialog)
                         .setView(dialog_che_kuang)
                         .create();
                 cheKuangDialog.show();
@@ -268,12 +268,12 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 dialogWindow1.setGravity(Gravity.BOTTOM);
                 dialogWindow1.setWindowAnimations(R.style.dialogFenXiang);
                 WindowManager.LayoutParams lp1 = dialogWindow1.getAttributes();
-                DisplayMetrics d1 = getActivity().getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+                DisplayMetrics d1 = mContext.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
                 lp1.width = (int) (d1.widthPixels * 1); // 高度设置为屏幕的0.6
                 dialogWindow1.setAttributes(lp1);
                 break;
             case R.id.viewLiCheng:
-                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                LayoutInflater inflater = LayoutInflater.from(mContext);
                 View dialog_chan_pin = inflater.inflate(R.layout.dialog_li_cheng, null);
                 final NumberPicker numPicker01 = dialog_chan_pin.findViewById(R.id.numPicker01);
                 numPicker01.setMinValue(0);
@@ -293,7 +293,7 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 final NumberPicker numPicker06 = dialog_chan_pin.findViewById(R.id.numPicker06);
                 numPicker06.setMinValue(0);
                 numPicker06.setMaxValue(9);
-                final AlertDialog xinZengDialog = new AlertDialog.Builder(getActivity(), R.style.dialog)
+                final AlertDialog xinZengDialog = new AlertDialog.Builder(mContext, R.style.dialog)
                         .setView(dialog_chan_pin)
                         .create();
                 xinZengDialog.show();
@@ -315,13 +315,13 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 dialogWindow.setGravity(Gravity.BOTTOM);
                 dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
                 WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-                DisplayMetrics d = getActivity().getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+                DisplayMetrics d = mContext.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
                 lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
                 dialogWindow.setAttributes(lp);
                 break;
             case R.id.viewTime:
                 Calendar c = Calendar.getInstance();
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         try {
@@ -336,20 +336,20 @@ public class SellCheFragment extends ZjbBaseFragment implements View.OnClickList
                 datePickerDialog.show();
                 break;
             case R.id.viewCarName:
-                intent.setClass(getActivity(), PinPaiXCActivity.class);
+                intent.setClass(mContext, PinPaiXCActivity.class);
                 intent.putExtra(Constant.IntentKey.NAME, true);
                 startActivityForResult(intent, Constant.RequestResultCode.PIN_PAI);
                 break;
             case R.id.viewChePiaCity:
-                intent.setClass(getActivity(), ChengShiXZActivity.class);
+                intent.setClass(mContext, ChengShiXZActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.CITY01);
                 break;
             case R.id.viewSellCity:
-                intent.setClass(getActivity(), ChengShiXZActivity.class);
+                intent.setClass(mContext, ChengShiXZActivity.class);
                 startActivityForResult(intent, Constant.RequestResultCode.CITY);
                 break;
             case R.id.textViewRight:
-                intent.setClass(getActivity(), WebActivity.class);
+                intent.setClass(mContext, WebActivity.class);
                 intent.putExtra(Constant.IntentKey.TITLE, "卖车流程");
                 intent.putExtra(Constant.IntentKey.URL, Constant.Url.MAI_CHE_GUI_ZE);
                 startActivity(intent);

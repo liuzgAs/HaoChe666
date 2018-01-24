@@ -128,15 +128,15 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
 
     @Override
     protected void initViews() {
-        mHeaderWaveHelper = new HeaderWaveHelper(waveView, ContextCompat.getColor(getActivity(), R.color.waveBgLigth), ContextCompat.getColor(getActivity(), R.color.waveBg));
+        mHeaderWaveHelper = new HeaderWaveHelper(waveView, ContextCompat.getColor(mContext, R.color.waveBgLigth), ContextCompat.getColor(mContext, R.color.waveBg));
         ViewGroup.LayoutParams layoutParams = viewBar.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         viewBar.setLayoutParams(layoutParams);
-        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        viewBar.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
         ViewGroup.LayoutParams layoutParams01 = viewBar01.getLayoutParams();
-        layoutParams01.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams01.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         viewBar01.setLayoutParams(layoutParams01);
-        viewBar01.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        viewBar01.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
     }
 
     @Override
@@ -173,14 +173,14 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         if (isLogin) {
             textName.setText(userInfo.getUserName());
             textMoney.setText("00.00");
-            Glide.with(getActivity())
+            Glide.with(mContext)
                     .load(userInfo.getHeadImg())
                     .asBitmap()
                     .dontAnimate()
                     .placeholder(R.mipmap.ic_empty)
                     .into(imageHead);
             showLoadingDialog();
-            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                 @Override
                 public void onSuccess(String s) {
                     cancelLoadingDialog();
@@ -188,7 +188,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                     try {
                         userBuyerindex = GsonUtils.parseJSON(s, UserBuyerindex.class);
                         if (userBuyerindex.getStatus() == 1) {
-                            Glide.with(getActivity())
+                            Glide.with(mContext)
                                     .load(userBuyerindex.getHeadimg())
                                     .asBitmap()
                                     .placeholder(R.mipmap.ic_empty)
@@ -200,30 +200,30 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                             } else {
                                 imageVip.setImageResource(R.mipmap.pay_vip);
                             }
-                            ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
+                            ACache aCache = ACache.get(mContext, Constant.Acache.APP);
                             UserInfo userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
                             userInfo.setHeadImg(userBuyerindex.getHeadimg());
                             userInfo.setUserName(userBuyerindex.getNickname());
                             aCache.put(Constant.Acache.USER_INFO, userInfo);
                         } else if (userBuyerindex.getStatus() == 3) {
-                            MyDialog.showReLoginDialog(getActivity());
+                            MyDialog.showReLoginDialog(mContext);
                         } else {
-                            Toast.makeText(getActivity(), userBuyerindex.getInfo(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, userBuyerindex.getInfo(), Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "数据出错", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onError() {
                     cancelLoadingDialog();
-                    Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "请求失败", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
             textName.setText("未登录");
-            Glide.with(getActivity())
+            Glide.with(mContext)
                     .load(R.mipmap.mine_head)
                     .asBitmap()
                     .dontAnimate()
@@ -250,7 +250,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
      */
     private void requiresPermission() {
         String[] perms = {Manifest.permission.CALL_PHONE};
-        if (EasyPermissions.hasPermissions(getActivity(), perms)) {
+        if (EasyPermissions.hasPermissions(mContext, perms)) {
             // Already have permission, do the thing
             call();
         } else {
@@ -267,7 +267,7 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
     /*跳转到拨号界面，同时传递电话号码*/
         if (userBuyerindex != null) {
             if (TextUtils.isEmpty(userBuyerindex.getService_telephone())) {
-                Toast.makeText(getActivity(), "电话号码为空", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "电话号码为空", Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + userBuyerindex.getService_telephone()));
@@ -310,67 +310,67 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
                 break;
             case R.id.viewWoMaiDeChe:
                 if (isLogin) {
-                    intent.setClass(getActivity(), WoMaiDeCheActivity.class);
+                    intent.setClass(mContext, WoMaiDeCheActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.viewGeRenXX:
                 if (isLogin) {
-                    intent.setClass(getActivity(), GeRenXXActivity.class);
+                    intent.setClass(mContext, GeRenXXActivity.class);
                     intent.putExtra(Constant.IntentKey.BEAN, userBuyerindex);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.textChongZhi:
                 if (isLogin) {
-                    intent.setClass(getActivity(), ChongZhiActivity.class);
+                    intent.setClass(mContext, ChongZhiActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.imageVip:
                 if (isLogin) {
-                    intent.setClass(getActivity(), PayVipActivity.class);
+                    intent.setClass(mContext, PayVipActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.imageSheZhi:
-                intent.setClass(getActivity(), SheZhiActivity.class);
+                intent.setClass(mContext, SheZhiActivity.class);
                 startActivity(intent);
                 break;
             case R.id.viewChaXunFW:
-                intent.setClass(getActivity(), ChaXunFWActivity.class);
+                intent.setClass(mContext, ChaXunFWActivity.class);
                 startActivity(intent);
                 break;
             case R.id.viewWoDeDD:
                 if (isLogin) {
-                    intent.setClass(getActivity(), DingDanGLActivity.class);
+                    intent.setClass(mContext, DingDanGLActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.viewDuiBi:
                 if (isLogin) {
-                    intent.setClass(getActivity(), CheLiangDBActivity.class);
+                    intent.setClass(mContext, CheLiangDBActivity.class);
                     startActivityForResult(intent,Constant.RequestResultCode.MAICHE);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             case R.id.viewWoDeGZ:
                 if (isLogin) {
-                    intent.setClass(getActivity(), WoDeGZActivity.class);
+                    intent.setClass(mContext, WoDeGZActivity.class);
                     startActivity(intent);
                 } else {
-                    ToLoginActivity.toLoginActivity(getActivity());
+                    ToLoginActivity.toLoginActivity(mContext);
                 }
                 break;
             default:
@@ -385,12 +385,12 @@ public class WoDeFragment extends ZjbBaseFragment implements View.OnClickListene
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.BroadcastCode.USERINFO);
         filter.addAction(Constant.BroadcastCode.CHONG_ZHI);
-        getActivity().registerReceiver(reciver, filter);
+        mContext.registerReceiver(reciver, filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(reciver);
+        mContext.unregisterReceiver(reciver);
     }
 }

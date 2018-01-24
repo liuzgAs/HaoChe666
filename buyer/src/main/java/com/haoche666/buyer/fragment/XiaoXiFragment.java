@@ -89,9 +89,9 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
     @Override
     protected void initViews() {
         ViewGroup.LayoutParams layoutParams = mRelaTitleStatue.getLayoutParams();
-        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(getActivity()));
+        layoutParams.height = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(mContext));
         mRelaTitleStatue.setLayoutParams(layoutParams);
-        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
+        mRelaTitleStatue.setPadding(0, ScreenUtils.getStatusBarHeight(mContext), 0, 0);
         initRecycler();
     }
 
@@ -99,12 +99,12 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
      * 初始化recyclerview
      */
     private void initRecycler() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) getResources().getDimension(R.dimen.line_width), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<LiaoTian>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<LiaoTian>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_xiaoxi;
@@ -114,12 +114,12 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
-                View view = LayoutInflater.from(getActivity()).inflate(R.layout.header_xiao_xi, null);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.header_xiao_xi, null);
                 view.findViewById(R.id.viewXiTongXiaoXi).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.setClass(getActivity(), XiTongXXActivity.class);
+                        intent.setClass(mContext, XiTongXXActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -134,7 +134,7 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                RongIM.getInstance().startConversation(getActivity(), Conversation.ConversationType.PRIVATE,adapter.getItem(position).getTargetId(),adapter.getItem(position).getNickName());
+                RongIM.getInstance().startConversation(mContext, Conversation.ConversationType.PRIVATE,adapter.getItem(position).getTargetId(),adapter.getItem(position).getNickName());
             }
         });
         recyclerView.setRefreshListener(this);
@@ -186,7 +186,7 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
      * 链接融云
      */
     private void connectRongYun() {
-        ACache aCache = ACache.get(getActivity(), Constant.Acache.APP);
+        ACache aCache = ACache.get(mContext, Constant.Acache.APP);
         final UserInfo userInfo = (UserInfo) aCache.getAsObject(Constant.Acache.USER_INFO);
         RongIM.connect(userInfo.getYunToken(), new RongIMClient.ConnectCallback() {
 
@@ -225,7 +225,7 @@ public class XiaoXiFragment extends ZjbBaseFragment implements View.OnClickListe
                 RongIM.getInstance().setMessageAttachedUserInfo(true);
                 Map<String, Boolean> supportedConversation = new HashMap<>();
                 supportedConversation.put(Conversation.ConversationType.PRIVATE.getName(), false);
-//                RongIM.getInstance().startConversationList(getActivity(), supportedConversation);
+//                RongIM.getInstance().startConversationList(mContext, supportedConversation);
                 List<Conversation> conversationList = RongIM.getInstance().getRongIMClient().getConversationList();
                 List<LiaoTian> liaoTianList = new ArrayList<>();
                 if (conversationList!=null){

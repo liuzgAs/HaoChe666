@@ -85,10 +85,10 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ArticleHistory.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<ArticleHistory.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_jing_xuan_tu_wen;
@@ -98,9 +98,9 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         footer = new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
-                View view = new View(getActivity());
+                View view = new View(mContext);
                 view.setBackgroundColor(Color.WHITE);
-                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(10, getActivity())));
+                view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DpUtils.convertDpToPixel(10, mContext)));
                 return view;
             }
 
@@ -113,7 +113,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-            ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+            ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                 @Override
                 public void onSuccess(String s) {
                     try {
@@ -128,7 +128,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
                                 recyclerView.showEmpty();
                             }
                         } else if (status == 3) {
-                            MyDialog.showReLoginDialog(getActivity());
+                            MyDialog.showReLoginDialog(mContext);
                         } else {
                             adapter.pauseMore();
                         }
@@ -175,7 +175,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), WebActivity.class);
+                intent.setClass(mContext, WebActivity.class);
                 intent.putExtra(Constant.IntentKey.TITLE,adapter.getItem(position).getTitle());
                 intent.putExtra(Constant.IntentKey.URL,adapter.getItem(position).getUrl());
                 startActivity(intent);
@@ -212,7 +212,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("足迹文章", s);
@@ -224,7 +224,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (articleHistory.getStatus()== 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(articleHistory.getInfo());
                     }
@@ -242,7 +242,7 @@ public class ZuJiNeiRongFragment extends ZjbBaseFragment implements SwipeRefresh
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {

@@ -93,13 +93,13 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<AttentionGetattention.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<AttentionGetattention.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout;
@@ -122,7 +122,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         try {
@@ -133,7 +133,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
                                 List<AttentionGetattention.DataBean> dataBeanList = simpleInfo.getData();
                                 adapter.addAll(dataBeanList);
                             } else if (status == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                                 adapter.pauseMore();
                             }
@@ -183,7 +183,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
                 switch (type) {
                     case 1:
                         intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
-                        intent.setClass(getActivity(), CheLiangXQActivity.class);
+                        intent.setClass(mContext, CheLiangXQActivity.class);
                         startActivity(intent);
                         break;
                     default:
@@ -224,7 +224,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("关注" + type, s);
@@ -236,7 +236,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (simpleInfo.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(simpleInfo.getInfo());
                     }
@@ -255,7 +255,7 @@ public class GuanZhuFragment extends ZjbBaseFragment implements SwipeRefreshLayo
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {

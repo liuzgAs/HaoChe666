@@ -111,13 +111,13 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CorderGetconsumedetail.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CorderGetconsumedetail.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_chong_zhi_mx;
@@ -128,7 +128,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
-                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         try {
@@ -139,7 +139,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                                 List<CorderGetconsumedetail.DataBean> dataBeanList = corderGetconsumedetail.getData();
                                 adapter.addAll(dataBeanList);
                             } else if (status == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                                 adapter.pauseMore();
                             }
@@ -225,7 +225,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("消费明细", s);
@@ -237,7 +237,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                         adapter.clear();
                         adapter.addAll(dataBeanList);
                     } else if (corderGetconsumedetail.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(corderGetconsumedetail.getInfo());
                     }
@@ -256,7 +256,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
@@ -277,7 +277,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         switch (view.getId()) {
             case R.id.viewStart:
                 Calendar c1 = Calendar.getInstance();
-                DatePickerDialog datePickerDialog1 = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog1 = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         try {
@@ -298,7 +298,7 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
                 break;
             case R.id.viewEnd:
                 Calendar c = Calendar.getInstance();
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         try {
@@ -326,12 +326,12 @@ public class XiaoFeiMXFragment extends ZjbBaseFragment implements SwipeRefreshLa
         super.onStart();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.BroadcastCode.CHONG_ZHI);
-        getActivity().registerReceiver(reciver, filter);
+        mContext.registerReceiver(reciver, filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(reciver);
+        mContext.unregisterReceiver(reciver);
     }
 }

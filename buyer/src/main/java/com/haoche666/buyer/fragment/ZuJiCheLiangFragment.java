@@ -97,13 +97,13 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
     }
 
     private void initRecycle() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, getActivity()), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.TRANSPARENT, (int) DpUtils.convertDpToPixel(1f, mContext), 0, 0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setRefreshingColorResources(R.color.basic_color);
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CarHistory.DataBean>(getActivity()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<CarHistory.DataBean>(mContext) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 int layout = R.layout.item_zu_ji_che_liang;
@@ -114,7 +114,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
             @Override
             public void onMoreShow() {
                 page++;
-                ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         try {
@@ -125,7 +125,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
                                 List<CarHistory.DataBean> dataBeanList = carHistory.getData();
                                 adapter.addAll(dataBeanList);
                             } else if (status == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                                 adapter.pauseMore();
                             }
@@ -175,7 +175,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
                     guanZhuCheLiang(adapter.getItem(position).getId());
                 } else {
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), CheLiangXQActivity.class);
+                    intent.setClass(mContext, CheLiangXQActivity.class);
                     intent.putExtra(Constant.IntentKey.ID, adapter.getItem(position).getId());
                     startActivity(intent);
                 }
@@ -206,7 +206,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
              */
             private void guanZhuCheLiang(int id) {
                 showLoadingDialog();
-                ApiClient.post(getActivity(), getGuanZhuCLOkObject(id), new ApiClient.CallBack() {
+                ApiClient.post(mContext, getGuanZhuCLOkObject(id), new ApiClient.CallBack() {
                     @Override
                     public void onSuccess(String s) {
                         cancelLoadingDialog();
@@ -214,22 +214,22 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
                         try {
                             Attention simpleInfo = GsonUtils.parseJSON(s, Attention.class);
                             if (simpleInfo.getStatus() == 1) {
-                                getActivity().setResult(Constant.RequestResultCode.DUI_BI);
-                                getActivity().finish();
+                                mContext.setResult(Constant.RequestResultCode.DUI_BI);
+                                mContext.finish();
                             } else if (simpleInfo.getStatus() == 3) {
-                                MyDialog.showReLoginDialog(getActivity());
+                                MyDialog.showReLoginDialog(mContext);
                             } else {
                             }
-                            Toast.makeText(getActivity(), simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, simpleInfo.getInfo(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Toast.makeText(getActivity(), "数据出错", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "数据出错", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError() {
                         cancelLoadingDialog();
-                        Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "请求失败", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -265,7 +265,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
     @Override
     public void onRefresh() {
         page = 1;
-        ApiClient.post(getActivity(), getOkObject(), new ApiClient.CallBack() {
+        ApiClient.post(mContext, getOkObject(), new ApiClient.CallBack() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.LogShitou("足迹车辆", s);
@@ -277,7 +277,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
                         List<CarHistory.DataBean> dataBeanList = carHistory.getData();
                         adapter.addAll(dataBeanList);
                     } else if (carHistory.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(getActivity());
+                        MyDialog.showReLoginDialog(mContext);
                     } else {
                         showError(carHistory.getInfo());
                     }
@@ -296,7 +296,7 @@ public class ZuJiCheLiangFragment extends ZjbBaseFragment implements SwipeRefres
              * @param msg
              */
             private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(getActivity()).inflate(R.layout.view_loaderror, null);
+                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
                 TextView textMsg = viewLoader.findViewById(R.id.textMsg);
                 textMsg.setText(msg);
                 viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
