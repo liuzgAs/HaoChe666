@@ -2,7 +2,6 @@ package com.haoche666.buyer.util;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -33,7 +32,9 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.haoche666.buyer.BuildConfig;
 import com.haoche666.buyer.R;
+import com.haoche666.buyer.application.MyApplication;
 import com.haoche666.buyer.model.OkObject;
 
 import java.io.File;
@@ -46,17 +47,13 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.HashMap;
 
-import huisedebi.zjb.mylibrary.BuildConfig;
 import huisedebi.zjb.mylibrary.util.GsonUtils;
 import huisedebi.zjb.mylibrary.util.VersionUtils;
 
 
-/**
- * @author Administrator
- */
 public class UpgradeUtils extends Activity {
     public static final String APK_UPGRADE = Environment
-            .getExternalStorageDirectory() + "/jinglingzhiquan/upgrade/jinglingzhiquan.apk";
+            .getExternalStorageDirectory() + "/danaoleida/upgrade/danaoleida.apk";
     private static Context mContext;
     private static NotificationManager mNotifiMgr;
     private static Notification mNotifi;
@@ -97,21 +94,6 @@ public class UpgradeUtils extends Activity {
         });
     }
 
-    public static void checkUpgradeIsAble(Context context, String url) {
-        mContext = context;
-        ApiClient.post(context, getOkObject(url), new ApiClient.CallBack() {
-            @Override
-            public void onSuccess(String s) {
-                checkUpgradeIsAble(s);
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-    }
-
     private static void checkUpDialog(String json) {
         upgrade = GsonUtils.parseJSON(json, Upgrade.class);
         int currVersion = VersionUtils.getCurrVersion(mContext);
@@ -121,7 +103,7 @@ public class UpgradeUtils extends Activity {
             TextView tvShengJi = (TextView) dialog_shengji.findViewById(R.id.tvShengJi);
             tvShengJi.setText(upgrade.getTitle());
             tvShengJi.setMovementMethod(ScrollingMovementMethod.getInstance());
-            final android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(mContext, huisedebi.zjb.mylibrary.R.style.dialog)
+            final android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(mContext, R.style.dialog)
                     .setView(dialog_shengji)
                     .create();
             alertDialog.show();
@@ -134,6 +116,7 @@ public class UpgradeUtils extends Activity {
                     public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
                             dialog.dismiss();
+                            MyApplication.getInstance().exit();
                             // 杀掉进程
                             Process.killProcess(Process.myPid());
                             System.exit(0);
@@ -174,6 +157,7 @@ public class UpgradeUtils extends Activity {
                 public void onClick(View view) {
                     if (upgrade.getUpStatus() == 1) {
                         alertDialog.dismiss();
+                        MyApplication.getInstance().exit();
                         // 杀掉进程
                         Process.killProcess(Process.myPid());
                         System.exit(0);
@@ -189,42 +173,6 @@ public class UpgradeUtils extends Activity {
             dialogWindow.setAttributes(lp);
         } else {
             Toast.makeText(mContext, "已是最新版本", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private static void checkUpgradeIsAble(String json) {
-        upgrade = GsonUtils.parseJSON(json, Upgrade.class);
-        int currVersion = VersionUtils.getCurrVersion(mContext);
-        if (upgrade.version > currVersion) {
-            new AlertDialog.Builder(mContext)
-                    .setTitle("升级")
-                    .setMessage(upgrade.feature)
-                    .setPositiveButton("升级",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog,
-                                                    int which) {
-                                    if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                            != PackageManager.PERMISSION_GRANTED) {
-                                        //申请WRITE_EXTERNAL_STORAGE权限
-                                        ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                0);
-                                    } else {
-                                        upgrade(upgrade);
-                                        ProgressDialog progressDialog = new ProgressDialog(mContext);
-                                        progressDialog.setMessage("正在下载……");
-                                        progressDialog.setCancelable(false);
-                                        progressDialog.show();
-                                    }
-                                }
-                            })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Process.killProcess(Process.myPid());
-                            System.exit(0);
-                        }
-                    }).show();
         }
     }
 
@@ -338,7 +286,7 @@ public class UpgradeUtils extends Activity {
                 // 单击后自动删除
                 // .setOngoing(true)// 无法删除的通知
                 // 定制通知布局
-                .setSmallIcon(R.mipmap.logo)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setTicker("正在下载")
                 .setWhen(System.currentTimeMillis())
 //                .setSound(Uri.parse("")) //声音
@@ -351,7 +299,7 @@ public class UpgradeUtils extends Activity {
     private static void updateNotify(int loadedLen) {
 //		int progress = loadedLen * 100 / upgrade.filelen;
         int progress = (int) (((double) loadedLen / (double) contentLength) * 100);
-        if (progressDialog != null) {
+        if (progressDialog!=null){
             progressDialog.setProgress(progress);
         }
         mNotifiviews.setTextViewText(R.id.tv_subtitle, progress + "%");
@@ -363,7 +311,7 @@ public class UpgradeUtils extends Activity {
 
     private static void finishNotify() {
         try {
-            if (progressDialog != null) {
+            if (progressDialog!=null){
                 progressDialog.dismiss();
             }
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -392,17 +340,26 @@ public class UpgradeUtils extends Activity {
 //        intent.setDataAndType(Uri.fromFile(file),
 //                "application/vnd.android.package-archive");
 
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
-//判断是否是AndroidN以及更高的版本
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", file);
-            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
-        } else {
-            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        //版本在7.0以上是不能直接通过uri访问的
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            // 由于没有在Activity环境下启动Activity,设置下面的标签
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //参数1 上下文, 参数2 Provider主机地址 和配置文件中保持一致   参数3  共享的文件
+            Uri apkUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID+".myprovider", file);
+            //添加这一句表示对目标应用临时授权该Uri所代表的文件
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(file),
+                    "application/vnd.android.package-archive");
         }
         mContext.startActivity(intent);
+
+
+
+
         mNotifiMgr.cancel(12345);
     }
 
