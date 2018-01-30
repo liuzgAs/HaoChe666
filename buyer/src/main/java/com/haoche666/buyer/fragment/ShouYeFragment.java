@@ -22,17 +22,16 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bumptech.glide.Glide;
 import com.haoche666.buyer.R;
-import com.haoche666.buyer.activity.ShiPinLBActivity;
-import com.haoche666.buyer.adapter.Banner02Adapter;
-import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.activity.CheHangLBActivity;
 import com.haoche666.buyer.activity.CheLiangLBActivity;
 import com.haoche666.buyer.activity.CheLiangXQActivity;
 import com.haoche666.buyer.activity.MainActivity;
+import com.haoche666.buyer.activity.ShiPinLBActivity;
 import com.haoche666.buyer.activity.WebActivity;
 import com.haoche666.buyer.activity.WenZhangLBActivity;
-import com.haoche666.buyer.activity.ZhuCeActivity;
 import com.haoche666.buyer.activity.ZuJiActivity;
+import com.haoche666.buyer.adapter.Banner02Adapter;
+import com.haoche666.buyer.adapter.BannerAdapter;
 import com.haoche666.buyer.base.MyDialog;
 import com.haoche666.buyer.base.ToLoginActivity;
 import com.haoche666.buyer.base.ZjbBaseFragment;
@@ -364,16 +363,16 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         ((MainActivity) mContext).mTabHost.setCurrentTab(2);
                     }
                 });
-                header_shou_ye.findViewById(R.id.viewZhuCe).setOnClickListener(new View.OnClickListener() {
+                header_shou_ye.findViewById(R.id.viewRuZhu).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!isLogin) {
-                            Intent intent = new Intent();
-                            intent.setClass(mContext, ZhuCeActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(mContext, "您已经是会员了", Toast.LENGTH_SHORT).show();
-                        }
+//                        if (!isLogin) {
+//                            Intent intent = new Intent();
+//                            intent.setClass(mContext, ZhuCeActivity.class);
+//                            startActivity(intent);
+//                        } else {
+//                            Toast.makeText(mContext, "您已经是会员了", Toast.LENGTH_SHORT).show();
+//                        }
                     }
                 });
                 hotImg[0] = header_shou_ye.findViewById(R.id.imageHotCar0000);

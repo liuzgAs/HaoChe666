@@ -32,7 +32,6 @@ import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
 import com.haoche666.buyer.model.CarGetsearchdata;
 import com.haoche666.buyer.model.IndexCitylist;
-import com.haoche666.buyer.model.IndexMpcity;
 import com.haoche666.buyer.model.MaiChe;
 import com.haoche666.buyer.model.OkObject;
 import com.haoche666.buyer.util.ApiClient;
@@ -405,57 +404,57 @@ public class MaiCheFragment extends ZjbBaseFragment implements SwipeRefreshLayou
             params.put("uid", userInfo.getUid());
             params.put("tokenTime", tokenTime);
         }
-        params.put("lat", lat);
-        params.put("lng", lng);
+//        params.put("lat", lat);
+//        params.put("lng", lng);
         return new OkObject(params, url);
     }
 
     @Override
     protected void initData() {
 
-        ApiClient.post(mContext, getLocationOkObject(), new ApiClient.CallBack() {
-            @Override
-            public void onSuccess(String s) {
-                LogUtil.LogShitou("定位城市", s);
-                try {
-                    IndexMpcity indexMpcity = GsonUtils.parseJSON(s, IndexMpcity.class);
-                    if (indexMpcity.getStatus() == 1) {
-                        city_id = indexMpcity.getCityId();
-                        textLocation.setText(indexMpcity.getCityName());
-                    } else if (indexMpcity.getStatus() == 3) {
-                        MyDialog.showReLoginDialog(mContext);
-                    } else {
-                        showError(indexMpcity.getInfo());
-                    }
-                } catch (Exception e) {
-                    showError("数据出错");
-                }
-            }
-
-            @Override
-            public void onError() {
-                showError("网络出错");
-            }
-
-            /**
-             * 错误显示
-             * @param msg
-             */
-            private void showError(String msg) {
-                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
-                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
-                textMsg.setText(msg);
-                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        recyclerView.showProgress();
-                        initData();
-                    }
-                });
-                recyclerView.setErrorView(viewLoader);
-                recyclerView.showError();
-            }
-        });
+//        ApiClient.post(mContext, getLocationOkObject(), new ApiClient.CallBack() {
+//            @Override
+//            public void onSuccess(String s) {
+//                LogUtil.LogShitou("定位城市", s);
+//                try {
+//                    IndexMpcity indexMpcity = GsonUtils.parseJSON(s, IndexMpcity.class);
+//                    if (indexMpcity.getStatus() == 1) {
+//                        city_id = indexMpcity.getCityId();
+//                        textLocation.setText(indexMpcity.getCityName());
+//                    } else if (indexMpcity.getStatus() == 3) {
+//                        MyDialog.showReLoginDialog(mContext);
+//                    } else {
+//                        showError(indexMpcity.getInfo());
+//                    }
+//                } catch (Exception e) {
+//                    showError("数据出错");
+//                }
+//            }
+//
+//            @Override
+//            public void onError() {
+//                showError("网络出错");
+//            }
+//
+//            /**
+//             * 错误显示
+//             * @param msg
+//             */
+//            private void showError(String msg) {
+//                View viewLoader = LayoutInflater.from(mContext).inflate(R.layout.view_loaderror, null);
+//                TextView textMsg = viewLoader.findViewById(R.id.textMsg);
+//                textMsg.setText(msg);
+//                viewLoader.findViewById(R.id.buttonReLoad).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        recyclerView.showProgress();
+//                        initData();
+//                    }
+//                });
+//                recyclerView.setErrorView(viewLoader);
+//                recyclerView.showError();
+//            }
+//        });
 
 
         ApiClient.post(mContext, getSearchOkObject(), new ApiClient.CallBack() {

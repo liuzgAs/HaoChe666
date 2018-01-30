@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.hubert.library.HighLight;
+import com.app.hubert.library.NewbieGuide;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bumptech.glide.Glide;
@@ -148,6 +151,22 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         viewBarHeight = (int) (getResources().getDimension(R.dimen.titleHeight) + ScreenUtils.getStatusBarHeight(this));
         viewBar.getBackground().mutate().setAlpha(0);
         textViewTitle.setAlpha(0);
+//        NewbieGuide.with(this)//传入activity
+//                .setLabel("guide1")//设置引导层标示，用于区分不同引导层，必传！否则报错
+//                .addHighLight(imageShare, HighLight.Type.RECTANGLE)//添加需要高亮的view
+//                .setLayoutRes(R.layout.view_che_liangxq_yindao)//自定义的提示layout，不要添加背景色，引导层背景色通过setBackgroundColor()设置
+//                .show();//显示引导层
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                NewbieGuide.with(CheLiangXQActivity.this)//传入activity
+                        .setLabel("guide1")//设置引导层标示，必传！否则报错
+                        .addHighLight(imageShare, HighLight.Type.ROUND_RECTANGLE,(int)DpUtils.convertDpToPixel(5,CheLiangXQActivity.this))//添加需要高亮的view
+                        .setLayoutRes(R.layout.view_che_liangxq_yindao)//自定义的提示layout，不要添加背景色，引导层背景色通过setBackgroundColor()设置
+//                        .setBackgroundColor(Color.parseColor("#aa000000"))
+                        .show();//直接显示引导层
+            }
+        });
         initRecycle();
     }
 
@@ -170,7 +189,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                 intent.setClass(CheLiangXQActivity.this, BigImgActivity.class);
                 intent.putExtra(Constant.IntentKey.BIG_IMG, new BigImgList(imgList));
                 intent.putExtra(Constant.IntentKey.BIG_IMG_POSITION, position);
-                intent.putExtra(Constant.IntentKey.VALUE,"");
+                intent.putExtra(Constant.IntentKey.VALUE, "");
                 startActivity(intent);
             }
         });
@@ -299,7 +318,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                     public void onClick(View view) {
                         Intent intent = new Intent();
                         intent.putExtra(Constant.IntentKey.ID, storeBean.getId());
-                        intent.setClass(CheLiangXQActivity.this,CheHangXXActivity.class);
+                        intent.setClass(CheLiangXQActivity.this, CheHangXXActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -643,7 +662,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.viewHuiHua:
-                if (isLogin){
+                if (isLogin) {
                     showLoadingDialog();
                     ApiClient.post(CheLiangXQActivity.this, getRongYunOkObject(), new ApiClient.CallBack() {
                         @Override
@@ -670,11 +689,12 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                             Toast.makeText(CheLiangXQActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
                         }
                     });
-                }else {
+                } else {
                     ToLoginActivity.toLoginActivity(this);
                 }
                 break;
             case R.id.imageShare:
+                LogUtil.LogShitou("CheLiangXQActivity--onClick", "1111111");
                 zhiZuoHaiBao();
                 break;
             case R.id.viewDuiBi:
@@ -720,9 +740,9 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
         HashMap<String, String> params = new HashMap<>();
         if (isLogin) {
             params.put("uid", userInfo.getUid());
-            params.put("tokenTime",tokenTime);
+            params.put("tokenTime", tokenTime);
         }
-        params.put("id",String.valueOf(id));
+        params.put("id", String.valueOf(id));
         return new OkObject(params, url);
     }
 
@@ -735,21 +755,21 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
             @Override
             public void onSuccess(String s) {
                 cancelLoadingDialog();
-                LogUtil.LogShitou("CheLiangXQActivity--onSuccess",s+ "");
+                LogUtil.LogShitou("CheLiangXQActivity--onSuccess", s + "");
                 try {
                     SellerPoster sellerPoster = GsonUtils.parseJSON(s, SellerPoster.class);
-                    if (sellerPoster.getStatus()==1){
+                    if (sellerPoster.getStatus() == 1) {
                         if (share != null) {
                             isShare = true;
-                            MyDialog.share(CheLiangXQActivity.this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), sellerPoster.getImg(),share.getShareImg(),"page/buycar/details?id="+id);
+                            MyDialog.share(CheLiangXQActivity.this, api, share.getShareUrl(), share.getShareTitle(), share.getShareDes(), sellerPoster.getImg(), share.getShareImg(), "page/buycar/details?id=" + id);
                         }
-                    }else if (sellerPoster.getStatus()==3){
+                    } else if (sellerPoster.getStatus() == 3) {
                         MyDialog.showReLoginDialog(CheLiangXQActivity.this);
-                    }else {
+                    } else {
                         Toast.makeText(CheLiangXQActivity.this, sellerPoster.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(CheLiangXQActivity.this,"数据出错", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheLiangXQActivity.this, "数据出错", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -782,7 +802,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
              */
             @Override
             public void onSuccess(String userid) {
-                LogUtil.LogShitou("CheLiangXQActivity--onSuccess", "userid"+userid);
+                LogUtil.LogShitou("CheLiangXQActivity--onSuccess", "userid" + userid);
                 final io.rong.imlib.model.UserInfo userInfoRongYun = new io.rong.imlib.model.UserInfo(userInfo.getUid(), userInfo.getUserName(), Uri.parse(userInfo.getHeadImg()));
 //                RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
 //                    @Override
@@ -801,7 +821,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
                  * @param state 是否携带用户信息，true 携带，false 不携带。
                  */
                 RongIM.getInstance().setMessageAttachedUserInfo(true);
-                RongIM.getInstance().startConversation(CheLiangXQActivity.this, Conversation.ConversationType.PRIVATE,String.valueOf(storeBean.getUid()),storeBean.getName());
+                RongIM.getInstance().startConversation(CheLiangXQActivity.this, Conversation.ConversationType.PRIVATE, String.valueOf(storeBean.getUid()), storeBean.getName());
             }
 
             /**
@@ -810,7 +830,7 @@ public class CheLiangXQActivity extends ZjbBaseActivity implements SwipeRefreshL
              */
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                LogUtil.LogShitou("CheLiangXQActivity--onError", ""+errorCode.toString());
+                LogUtil.LogShitou("CheLiangXQActivity--onError", "" + errorCode.toString());
             }
         });
     }

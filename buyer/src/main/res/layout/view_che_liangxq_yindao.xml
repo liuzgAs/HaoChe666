@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:visibility="invisible"
+        android:id="@+id/includeBar"
+        layout="@layout/view_bar_white"/>
+    <ImageView
+        android:layout_marginTop="-30dp"
+        android:layout_marginRight="50dp"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/share_yindao"
+        android:layout_below="@+id/includeBar"
+        android:layout_width="60dp"
+        android:id="@+id/imageImg"
+        android:layout_height="60dp" />
+    <TextView
+        android:text="点击这里可以分享哦~"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_below="@+id/imageImg"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

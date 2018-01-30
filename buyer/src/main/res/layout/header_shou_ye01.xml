@@ -97,12 +97,14 @@
     </LinearLayout>
 
     <TextView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="5dp"
         android:background="@color/white" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
@@ -151,9 +153,12 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <include layout="@layout/item_jing_xuan_tu_wen" />
+    <include
+        android:visibility="gone"
+        layout="@layout/item_jing_xuan_tu_wen" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"

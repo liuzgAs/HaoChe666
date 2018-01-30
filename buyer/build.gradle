@@ -52,4 +52,5 @@ dependencies {
     compile 'q.rorbin:badgeview:1.1.2'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     compile project(':IMKit')
+    compile 'com.github.huburt-Hu:NewbieGuide:v1.2.0'
 }
