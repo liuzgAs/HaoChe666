@@ -16,6 +16,7 @@ import com.haoche666.buyer.base.ZjbBaseActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.BuyerGetvideolistu;
 import com.haoche666.buyer.model.OkObject;
+import com.haoche666.buyer.model.ShareBean;
 import com.haoche666.buyer.util.ApiClient;
 import com.haoche666.buyer.viewholder.ShiPinLBViewHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -140,8 +141,10 @@ public class ShiPinLBActivity extends ZjbBaseActivity implements View.OnClickLis
             public void onItemClick(int position) {
                 Intent intent = new Intent();
                 intent.setClass(ShiPinLBActivity.this, WebActivity.class);
-                intent.putExtra(Constant.IntentKey.TITLE, adapter.getItem(position).getTitle());
-                intent.putExtra(Constant.IntentKey.URL, adapter.getItem(position).getShare_url());
+                intent.putExtra(Constant.IntentKey.TITLE, getString(R.string.shipinxaingqing));
+                BuyerGetvideolistu.DataBean dataBean = adapter.getItem(position);
+                intent.putExtra(Constant.IntentKey.URL, dataBean.getShare_url());
+                intent.putExtra(Constant.IntentKey.BEAN,new ShareBean(dataBean.getImg(),dataBean.getTitle(),dataBean.getDes(),dataBean.getShare_url()));
                 startActivity(intent);
             }
         });

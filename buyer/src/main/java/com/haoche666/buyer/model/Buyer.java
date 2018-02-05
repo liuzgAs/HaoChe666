@@ -448,8 +448,17 @@ public class Buyer {
         private int id;
         private String img;
         private String title;
+        private String des;
         private String share_url;
         private VideoBean video;
+
+        public String getDes() {
+            return des;
+        }
+
+        public void setDes(String des) {
+            this.des = des;
+        }
 
         public String getShare_url() {
             return share_url;

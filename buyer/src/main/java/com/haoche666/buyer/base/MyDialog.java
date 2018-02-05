@@ -438,7 +438,7 @@ public class MyDialog {
             matrix.postScale(scaleWidth, scaleHeigth);
 
             Bitmap bitmap = Bitmap.createBitmap(myBitmap, 0, 0, width, height, matrix, true);
-            return myBitmap;
+            return bitmap;
         } catch (IOException e) {
             // Log exception
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo);
@@ -530,7 +530,7 @@ public class MyDialog {
                 .execute(new Runnable() {
                     @Override
                     public void run() {
-                        Bitmap bitmap = netPicToBmp01(context,img);
+                        Bitmap bitmap = netPicToBmp(context,img);
                         msg.setThumbImage(bitmap);
                         SendMessageToWX.Req req = new SendMessageToWX.Req();
                         req.transaction = buildTransaction("webpage");
@@ -539,5 +539,102 @@ public class MyDialog {
                         api.sendReq(req);
                     }
                 });
+    }
+
+    public static void share01(final Context context, final IWXAPI api, final String url, final String title,final  String des, final String img) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialog_shengji = inflater.inflate(R.layout.dianlog_share, null);
+        final AlertDialog alertDialog1 = new AlertDialog.Builder(context, R.style.dialog)
+                .setView(dialog_shengji)
+                .create();
+        alertDialog1.show();
+        dialog_shengji.findViewById(R.id.textViewCancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog1.dismiss();
+            }
+        });
+        dialog_shengji.findViewById(R.id.weixin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkIsSupportedWeachatPay(api)) {
+                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                wxShare1(context, api, 0, url, title,des,img);
+                alertDialog1.dismiss();
+            }
+        });
+        dialog_shengji.findViewById(R.id.pengyouquan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkIsSupportedWeachatPay(api)) {
+                    Toast.makeText(context, "您暂未安装微信,请下载安装最新版本的微信", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                wxShare1(context, api, 1, url, title,des,img);
+                alertDialog1.dismiss();
+            }
+        });
+        dialog_shengji.findViewById(R.id.relaShouCang).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wxShare1(context, api, 2, url, title,des,img);
+                alertDialog1.dismiss();
+                alertDialog1.dismiss();
+            }
+        });
+        Window dialogWindow = alertDialog1.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        dialogWindow.setWindowAnimations(R.style.dialogFenXiang);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        DisplayMetrics d = context.getResources().getDisplayMetrics(); // 获取屏幕宽、高用
+        lp.width = (int) (d.widthPixels * 1); // 高度设置为屏幕的0.6
+        dialogWindow.setAttributes(lp);
+    }
+
+    private static void wxShare1(final Context context, final IWXAPI api, final int flag, String url, String title, String des, final String img) {
+        api.registerApp(Constant.WXAPPID);
+        WXWebpageObject webpage = new WXWebpageObject();
+        webpage.webpageUrl = url;
+        final WXMediaMessage msg = new WXMediaMessage(webpage);
+        msg.title = title;
+        msg.description = des;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                onProgressDialogListener.show();
+                Bitmap bitmap = netPicToBmp01(context,img);
+                msg.setThumbImage(bitmap);
+                SendMessageToWX.Req req = new SendMessageToWX.Req();
+                req.transaction = buildTransaction("webpage");
+                req.message = msg;
+                switch (flag) {
+                    case 0:
+                        req.scene = SendMessageToWX.Req.WXSceneSession;
+                        break;
+                    case 1:
+                        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                        break;
+                    case 2:
+                        req.scene = SendMessageToWX.Req.WXSceneFavorite;
+                        break;
+                }
+                api.sendReq(req);
+                onProgressDialogListener.hide();
+            }
+        }).start();
+    }
+
+
+    public interface OnProgressDialogListener{
+        void show();
+        void hide();
+    }
+
+    public static OnProgressDialogListener onProgressDialogListener;
+
+    public static void setOnProgressDialogListener(OnProgressDialogListener onProgressDialogListener) {
+        MyDialog.onProgressDialogListener = onProgressDialogListener;
     }
 }

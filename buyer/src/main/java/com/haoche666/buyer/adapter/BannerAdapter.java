@@ -13,6 +13,7 @@ import com.haoche666.buyer.R;
 import com.haoche666.buyer.activity.WebActivity;
 import com.haoche666.buyer.constant.Constant;
 import com.haoche666.buyer.model.Buyer;
+import com.haoche666.buyer.model.ShareBean;
 
 import java.util.List;
 
@@ -44,8 +45,10 @@ public class BannerAdapter extends PagerAdapter{
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(mContext, WebActivity.class);
-                intent.putExtra(Constant.IntentKey.TITLE, imgList.get(position%imgList.size()).getTitle());
-                intent.putExtra(Constant.IntentKey.URL, imgList.get(position%imgList.size()).getShare_url());
+                intent.putExtra(Constant.IntentKey.TITLE,  mContext.getString(R.string.shipinxaingqing));
+                Buyer.VideoBeanX videoBeanX = imgList.get(position % imgList.size());
+                intent.putExtra(Constant.IntentKey.URL, videoBeanX.getShare_url());
+                intent.putExtra(Constant.IntentKey.BEAN,new ShareBean(videoBeanX.getImg(),videoBeanX.getTitle(),videoBeanX.getDes(),videoBeanX.getShare_url()));
                 mContext.startActivity(intent);
             }
         });
