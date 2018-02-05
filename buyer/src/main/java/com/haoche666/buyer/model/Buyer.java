@@ -22,6 +22,7 @@ public class Buyer {
      */
 
     private String info;
+    private String settled_url;
     private PageBean page;
     private int status;
     private List<BannerBean> banner;
@@ -31,6 +32,14 @@ public class Buyer {
     private List<VideoBeanX> video;
     private List<HotCar> hotcar;
     private List<HotSearch> hotSearch;
+
+    public String getSettled_url() {
+        return settled_url;
+    }
+
+    public void setSettled_url(String settled_url) {
+        this.settled_url = settled_url;
+    }
 
     public List<HotSearch> getHotSearch() {
         return hotSearch;

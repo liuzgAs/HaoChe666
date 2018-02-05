@@ -92,6 +92,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
         }
     };
     private List<Buyer.HotSearch> hotSearch;
+    private String settled_url;
 
     /**
      * 刷新车行
@@ -366,13 +367,11 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                 header_shou_ye.findViewById(R.id.viewRuZhu).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        if (!isLogin) {
-//                            Intent intent = new Intent();
-//                            intent.setClass(mContext, ZhuCeActivity.class);
-//                            startActivity(intent);
-//                        } else {
-//                            Toast.makeText(mContext, "您已经是会员了", Toast.LENGTH_SHORT).show();
-//                        }
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), WebActivity.class);
+                        intent.putExtra(Constant.IntentKey.TITLE, "申请入驻");
+                        intent.putExtra(Constant.IntentKey.URL, settled_url);
+                        startActivity(intent);
                     }
                 });
                 hotImg[0] = header_shou_ye.findViewById(R.id.imageHotCar0000);
@@ -591,6 +590,7 @@ public class ShouYeFragment extends ZjbBaseFragment implements SwipeRefreshLayou
                         List<Buyer.DataBean> dataBeanList = buyer.getData();
                         adapter.clear();
                         adapter.addAll(dataBeanList);
+                        settled_url = buyer.getSettled_url();
                     } else if (buyer.getStatus() == 3) {
                         MyDialog.showReLoginDialog(mContext);
                     } else {
